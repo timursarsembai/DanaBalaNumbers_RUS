@@ -59,6 +59,19 @@
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
 
+        <!-- Новые упражнения на последовательности -->
+        <activity
+            android:name=".AscendingSequenceActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".DescendingSequenceActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="portrait" />
+
         <!-- Отдельные страницы результатов для каждого упражнения -->
         <activity
             android:name=".NumberRecognitionResultsActivity"
@@ -88,6 +101,19 @@
             android:name=".AudioMatchingResultsActivity"
             android:exported="false"
             android:parentActivityName=".AudioMatchingActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- Страницы результатов для новых упражнений -->
+        <activity
+            android:name=".AscendingSequenceResultsActivity"
+            android:exported="false"
+            android:parentActivityName=".AscendingSequenceActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".DescendingSequenceResultsActivity"
+            android:exported="false"
+            android:parentActivityName=".DescendingSequenceActivity"
             android:screenOrientation="portrait" />
 
     </application>

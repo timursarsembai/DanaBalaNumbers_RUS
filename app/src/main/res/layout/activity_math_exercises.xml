@@ -304,12 +304,122 @@
                             android:text="Сопоставление по звуку"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:textColor="#558B2F" />
+                            android:textColor="#689F38" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Слушай числа и выбирай правильную цифру"
+                            android:text="Слушай звуки и соединяй с правильными числами"
+                            android:textSize="14sp"
+                            android:textColor="#666666"
+                            android:layout_marginTop="2dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Упражнение: Последовательность по возрастанию -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardAscendingSequence"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="#E8F5E8">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📈"
+                        android:textSize="32sp"
+                        android:layout_marginEnd="16dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Числа по возрастанию"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#2E7D32" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Заполни пропущенные числа по порядку"
+                            android:textSize="14sp"
+                            android:textColor="#666666"
+                            android:layout_marginTop="2dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Упражнение: Последовательность по убыванию -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardDescendingSequence"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="#FFEBEE">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📉"
+                        android:textSize="32sp"
+                        android:layout_marginEnd="16dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Числа по убыванию"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#D32F2F" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Заполни пропущенные числа в обратном порядке"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
