@@ -1,4 +1,4 @@
-package com.example.danabalanumbers
+package com.timursarsembayev.danabalanumbers
 
 data class MatchingItem(
     val id: Int,

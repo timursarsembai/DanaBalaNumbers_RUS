@@ -1,4 +1,4 @@
-package com.example.danabalanumbersnumbers
+package com.timursarsembayev.danabalanumbersnumbers
 
 import android.content.Intent
 import android.os.Bundle

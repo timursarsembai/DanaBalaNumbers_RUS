@@ -1,4 +1,4 @@
-package com.example.danabalanumbers
+package com.timursarsembayev.danabalanumbers
 
 import android.view.LayoutInflater
 import android.view.View

@@ -1,4 +1,4 @@
-package com.example.danabalanumbersnumbers
+package com.timursarsembayev.danabalanumbersnumbers
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter

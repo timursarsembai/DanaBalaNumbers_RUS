@@ -1,4 +1,4 @@
-package com.example.danabalanumbers
+package com.timursarsembayev.danabalanumbers
 
 import org.junit.Test
 
