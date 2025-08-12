@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.danabala"
+    namespace = "com.example.danabalanumbers"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.danabala"
+        applicationId = "com.example.danabalanumbers"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

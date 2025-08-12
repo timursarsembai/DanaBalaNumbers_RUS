@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "DanaBala_Math_Level_0_RUS"
+rootProject.name = "DanaBalaNumbers_RUS"
 include(":app")

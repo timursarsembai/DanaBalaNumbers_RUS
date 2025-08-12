@@ -1,4 +1,4 @@
-package com.example.danabala
+package com.example.danabalanumbers
 
 import org.junit.Test
 
