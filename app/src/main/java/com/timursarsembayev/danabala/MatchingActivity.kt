@@ -1,4 +1,4 @@
-package com.timursarsembayev.danabalanumbersnumbers
+package com.timursarsembayev.danabalanumbers
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -122,7 +122,7 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         // Сбрасываем выделения
         clearSelections()
 
-        // Сбрасываем прозрачность всех view после анимаций
+        // Сбрасываем прозрачность всех view пос��е анимаций
         resetViewsAlpha()
     }
 
@@ -192,7 +192,7 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         // Выделяем элемент
         view.setBackgroundResource(android.R.drawable.editbox_background)
 
-        // Проверяем совпадение
+        // Проверяем совпаден��е
         checkMatch()
     }
 
