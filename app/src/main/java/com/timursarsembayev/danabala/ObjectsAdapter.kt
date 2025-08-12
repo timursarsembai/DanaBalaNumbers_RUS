@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.math.min
 
 class ObjectsAdapter(
     private var items: MutableList<MatchingItem>,
@@ -29,26 +30,19 @@ class ObjectsAdapter(
         val objectsString = item.emoji.repeat(item.value)
         holder.objectsText.text = objectsString
 
-        // Устанавливаем прозрачность для сопоставленных элементов
+        // Устанавливаем прозрачност�� для сопоставленных элементов
         holder.cardView.alpha = if (item.isMatched) 0.3f else 1.0f
 
         holder.cardView.setOnClickListener {
             if (!item.isMatched) {
+                // Простой эффект нажатия
+                holder.cardView.animate().scaleX(0.95f).scaleY(0.95f).setDuration(100)
+                    .withEndAction {
+                        holder.cardView.animate().scaleX(1.0f).scaleY(1.0f).setDuration(100).start()
+                    }.start()
+
                 onItemClick(item, holder.cardView)
             }
-        }
-
-        // Добавляем эффект нажатия
-        holder.cardView.setOnTouchListener { view, event ->
-            when (event.action) {
-                android.view.MotionEvent.ACTION_DOWN -> {
-                    view.animate().scaleX(0.95f).scaleY(0.95f).duration = 100
-                }
-                android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> {
-                    view.animate().scaleX(1.0f).scaleY(1.0f).duration = 100
-                }
-            }
-            false
         }
     }
 

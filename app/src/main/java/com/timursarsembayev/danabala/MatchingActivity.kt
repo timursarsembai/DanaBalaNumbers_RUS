@@ -9,6 +9,7 @@ import android.speech.tts.TextToSpeech
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -156,7 +157,10 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         if (item.isMatched) return
 
         // Убираем предыдущее выделение
-        selectedNumberView?.setBackgroundResource(0)
+        selectedNumberView?.let { prevView ->
+            val numberText = prevView.findViewById<TextView>(R.id.numberText)
+            numberText?.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, R.color.button_color))
+        }
 
         if (selectedNumberItem == item) {
             // Отменяем выделение
@@ -167,10 +171,11 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         selectedNumberItem = item
         selectedNumberView = view
 
-        // Выделяем элемент
-        view.setBackgroundResource(android.R.drawable.editbox_background)
+        // Выделяем элемент СРАЗУ зеленым цветом
+        val numberText = view.findViewById<TextView>(R.id.numberText)
+        numberText?.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, android.R.color.holo_green_light))
 
-        // Проверяем совпадение
+        // Проверяем совпадение только если выбраны обе карточки
         checkMatch()
     }
 
@@ -178,7 +183,10 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         if (item.isMatched) return
 
         // Убираем предыдущее выделение
-        selectedObjectView?.setBackgroundResource(0)
+        selectedObjectView?.let { prevView ->
+            val linearLayout = prevView.findViewById<LinearLayout>(R.id.objectsLayout)
+            linearLayout?.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, android.R.color.white))
+        }
 
         if (selectedObjectItem == item) {
             // Отменяем выделение
@@ -189,10 +197,11 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         selectedObjectItem = item
         selectedObjectView = view
 
-        // Выделяем элемент
-        view.setBackgroundResource(android.R.drawable.editbox_background)
+        // Выделяем элемент СРАЗУ зеленым цветом
+        val linearLayout = view.findViewById<LinearLayout>(R.id.objectsLayout)
+        linearLayout?.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, android.R.color.holo_green_light))
 
-        // Проверяем совпаден��е
+        // Проверяем совпадение только если выбраны обе карточки
         checkMatch()
     }
 
@@ -248,7 +257,31 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         val randomPhrase = MatchingFeedbackPhrases.incorrectPhrases[Random.nextInt(MatchingFeedbackPhrases.incorrectPhrases.size)]
         speakText(randomPhrase)
 
-        // Анимация неправильного совпадения
+        // Выделяем обе карточки красным цветом на полсекунды
+        selectedNumberView?.let { view ->
+            val numberText = view.findViewById<TextView>(R.id.numberText)
+            numberText?.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, android.R.color.holo_red_light))
+        }
+
+        selectedObjectView?.let { view ->
+            val linearLayout = view.findViewById<LinearLayout>(R.id.objectsLayout)
+            linearLayout?.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, android.R.color.holo_red_light))
+        }
+
+        // Через 500ms возвращаем зеленое выделение
+        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+            selectedNumberView?.let { view ->
+                val numberText = view.findViewById<TextView>(R.id.numberText)
+                numberText?.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, android.R.color.holo_green_light))
+            }
+
+            selectedObjectView?.let { view ->
+                val linearLayout = view.findViewById<LinearLayout>(R.id.objectsLayout)
+                linearLayout?.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, android.R.color.holo_green_light))
+            }
+        }, 500)
+
+        // Анимация тряски для неправильного совпадения
         animateIncorrectMatch(selectedNumberView!!, selectedObjectView!!)
         clearSelections()
     }
@@ -308,8 +341,18 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private fun clearSelections() {
         selectedNumberItem = null
         selectedObjectItem = null
-        selectedNumberView?.setBackgroundResource(0)
-        selectedObjectView?.setBackgroundResource(0)
+
+        // Сбрасываем выделение правильным способом
+        selectedNumberView?.let { view ->
+            val numberText = view.findViewById<TextView>(R.id.numberText)
+            numberText?.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, R.color.button_color))
+        }
+
+        selectedObjectView?.let { view ->
+            val linearLayout = view.findViewById<LinearLayout>(R.id.objectsLayout)
+            linearLayout?.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, android.R.color.white))
+        }
+
         selectedNumberView = null
         selectedObjectView = null
     }
