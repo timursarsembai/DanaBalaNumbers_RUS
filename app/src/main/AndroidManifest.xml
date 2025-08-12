@@ -47,10 +47,24 @@
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
 
+
+        <!-- Отдельные страницы результатов для каждого упражнения -->
         <activity
-            android:name=".ResultsActivity"
+            android:name=".NumberRecognitionResultsActivity"
             android:exported="false"
             android:parentActivityName=".NumberRecognitionActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".CountingResultsActivity"
+            android:exported="false"
+            android:parentActivityName=".CountingActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ObjectCountingResultsActivity"
+            android:exported="false"
+            android:parentActivityName=".ObjectCountingActivity"
             android:screenOrientation="portrait" />
 
     </application>

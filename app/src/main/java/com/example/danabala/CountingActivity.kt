@@ -132,10 +132,6 @@ class CountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
         progressBar.progress = (currentQuestion * 100) / totalQuestions
 
-        // Выбираем случайную категорию эмодзи
-        val selectedCategory = allCategories.random()
-        val selectedEmoji = selectedCategory.random()
-
         // Генерируем варианты ответов
         val answers = generateAnswerOptions(targetNumber)
 
@@ -154,8 +150,11 @@ class CountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             findViewById<TextView>(R.id.answerText4)
         )
 
-        // Заполняем карточки
+        // Заполняем карточки разными предметами
         for (i in 0..3) {
+            // Выбираем случайную категорию и предмет для каждого варианта ответа
+            val selectedCategory = allCategories.random()
+            val selectedEmoji = selectedCategory.random()
             val emojiString = selectedEmoji.repeat(answers[i])
             answerTexts[i].text = emojiString
 
@@ -316,10 +315,10 @@ class CountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     private fun showResultsScreen() {
-        val intent = Intent(this, ResultsActivity::class.java)
-        intent.putExtra("score", score)
-        intent.putExtra("total", totalQuestions)
-        intent.putExtra("parentSection", "math")
+        val intent = Intent(this, CountingResultsActivity::class.java)
+        intent.putExtra("SCORE", score)
+        intent.putExtra("TOTAL_QUESTIONS", totalQuestions)
+        intent.putExtra("TOTAL_CORRECT", totalCorrectAnswers)
         startActivity(intent)
         finish()
     }

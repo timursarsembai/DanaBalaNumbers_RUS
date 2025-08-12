@@ -21,12 +21,12 @@ class NumberRecognitionActivity : AppCompatActivity(), TextToSpeech.OnInitListen
 
     private var targetNumber = 1
     private var score = 0 // Правильные ответы с первого раза
-    private var totalCorrectAnswers = 0 // Все правильные ответы (вкл��чая с повторными попытками)
+    private var totalCorrectAnswers = 0 // Все правильные ответы (включая с повторными попытками)
     private var currentQuestion = 0
     private val totalQuestions = 20
     private var tts: TextToSpeech? = null
     private var isFirstInit = true // Флаг для первой инициализации
-    private var hasTriedCurrentQuestion = false // Фла�� для отслеживания попыток на те��ущем вопросе
+    private var hasTriedCurrentQuestion = false // Флаг для отслеживания попыток на текущем вопросе
 
     // Список всех вопросов (каждая цифра от 0 до 9 по 2 раза)
     private val questionNumbers = mutableListOf<Int>()
@@ -36,6 +36,34 @@ class NumberRecognitionActivity : AppCompatActivity(), TextToSpeech.OnInitListen
     private val numberWords = arrayOf(
         "ноль", "один", "два", "три", "четыре", "пять",
         "шесть", "семь", "восемь", "девять"
+    )
+
+    // Варианты похвалы за правильные ответы
+    private val correctPhrases = listOf(
+        "Молодец!",
+        "Так держать!",
+        "Превосходно!",
+        "Отлично!",
+        "Замечательно!",
+        "Ты супер!",
+        "Великолепно!",
+        "Браво!",
+        "Умница!",
+        "Здорово!"
+    )
+
+    // Варианты подбадривания для неправильных ответов
+    private val incorrectPhrases = listOf(
+        "Попробуй ещё раз! У тебя получится!",
+        "Не сдавайся! Ты можешь!",
+        "Подумай ещё немножко!",
+        "Почти правильно! Попробуй снова!",
+        "Давай ещё раз! Всё получится!",
+        "Не переживай! Попробуй другой вариант!",
+        "Ты на верном пути! Попробуй ещё!",
+        "Думай внимательнее! У тебя всё получится!",
+        "Не расстраивайся! Попробуй другую карточку!",
+        "Ты умный! Попробуй ещё раз!"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -171,7 +199,7 @@ class NumberRecognitionActivity : AppCompatActivity(), TextToSpeech.OnInitListen
     }
 
     private fun checkAnswer(selectedNumber: Int, selectedCard: CardView) {
-        // Отключаем все карточки от наж��тий
+        // Отключаем все карточки от нажатий
         disableAllCards()
 
         if (selectedNumber == targetNumber) {
@@ -184,7 +212,10 @@ class NumberRecognitionActivity : AppCompatActivity(), TextToSpeech.OnInitListen
             }
 
             animateCorrectAnswer(selectedCard)
-            tts?.speak("Молодец!", TextToSpeech.QUEUE_FLUSH, null, "correct")
+
+            // Выбираем случайную фразу похвалы
+            val randomPraise = correctPhrases.random()
+            tts?.speak(randomPraise, TextToSpeech.QUEUE_FLUSH, null, "correct")
 
             // Переходим к следующему вопросу через 2 секунды
             findViewById<View>(R.id.card1).postDelayed({
@@ -195,7 +226,10 @@ class NumberRecognitionActivity : AppCompatActivity(), TextToSpeech.OnInitListen
             hasTriedCurrentQuestion = true
 
             animateWrongAnswer(selectedCard)
-            tts?.speak("Попробуй ещё раз!", TextToSpeech.QUEUE_FLUSH, null, "wrong")
+
+            // Выбираем случайную фразу подбадривания
+            val randomEncouragement = incorrectPhrases.random()
+            tts?.speak(randomEncouragement, TextToSpeech.QUEUE_FLUSH, null, "wrong")
 
             // Через 2 секунды включаем карточки обратно
             findViewById<View>(R.id.card1).postDelayed({
@@ -268,10 +302,10 @@ class NumberRecognitionActivity : AppCompatActivity(), TextToSpeech.OnInitListen
     }
 
     private fun showResultsScreen() {
-        val intent = Intent(this, ResultsActivity::class.java)
-        intent.putExtra("score", score)
-        intent.putExtra("total", totalQuestions)
-        intent.putExtra("parentSection", "math") // Указываем, что пришли из раздела математики
+        val intent = Intent(this, NumberRecognitionResultsActivity::class.java)
+        intent.putExtra("SCORE", score)
+        intent.putExtra("TOTAL_QUESTIONS", totalQuestions)
+        intent.putExtra("TOTAL_CORRECT", totalCorrectAnswers)
         startActivity(intent)
         finish()
     }
