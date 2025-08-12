@@ -47,6 +47,11 @@
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".MatchingActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="portrait" />
 
         <!-- Отдельные страницы результатов для каждого упражнения -->
         <activity
@@ -65,6 +70,12 @@
             android:name=".ObjectCountingResultsActivity"
             android:exported="false"
             android:parentActivityName=".ObjectCountingActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".MatchingResultsActivity"
+            android:exported="false"
+            android:parentActivityName=".MatchingActivity"
             android:screenOrientation="portrait" />
 
     </application>

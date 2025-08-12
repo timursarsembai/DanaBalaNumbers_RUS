@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Результаты"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_color"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Очки: 0"
+        android:textSize="24sp"
+        android:textColor="@color/text_color"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/levelsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Пройдено уровней: 0 из 10"
+        android:textSize="20sp"
+        android:textColor="@color/text_color"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/feedbackText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Отличная работа!"
+        android:textSize="18sp"
+        android:textColor="@color/accent_color"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="40dp" />
+
+    <Button
+        android:id="@+id/playAgainButton"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Играть снова"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="@drawable/button_round"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/homeButton"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Главное меню"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="@drawable/button_round" />
+
+</LinearLayout>

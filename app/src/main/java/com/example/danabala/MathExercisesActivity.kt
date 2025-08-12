@@ -36,5 +36,10 @@ class MathExercisesActivity : AppCompatActivity() {
             val intent = Intent(this, ObjectCountingActivity::class.java)
             startActivity(intent)
         }
+
+        findViewById<CardView>(R.id.cardMatching).setOnClickListener {
+            val intent = Intent(this, MatchingActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
