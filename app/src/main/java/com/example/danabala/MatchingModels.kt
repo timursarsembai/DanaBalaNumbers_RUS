@@ -29,7 +29,8 @@ class MatchingGameData {
         private val objectEmojis = listOf("🍎", "⭐", "🎈", "🌸", "🎯", "🍓", "🎪", "🎨", "🎁", "🌟")
 
         fun generateLevel(levelNumber: Int): MatchingLevel {
-            val numbers = (1..5).toList()
+            // Генерируем 5 случайных чисел от 1 до 9 без повторений
+            val numbers = (1..9).shuffled().take(5)
             val shuffledEmojis = objectEmojis.shuffled().take(5)
 
             val pairs = numbers.mapIndexed { index, number ->
@@ -55,7 +56,9 @@ class MatchingGameData {
         }
 
         fun generateAllLevels(): List<MatchingLevel> {
-            return (1..10).map { generateLevel(it) }
+            return (1..10).map { levelNumber ->
+                generateLevel(levelNumber)
+            }
         }
     }
 }

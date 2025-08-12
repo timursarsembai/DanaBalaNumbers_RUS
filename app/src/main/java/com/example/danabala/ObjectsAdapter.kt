@@ -65,8 +65,7 @@ class ObjectsAdapter(
         if (position != -1) {
             items.removeAt(position)
             notifyItemRemoved(position)
-            // Анимация сдвига элементов вниз
-            notifyItemRangeChanged(position, items.size)
+            // Убираем notifyItemRangeChanged чтобы избежать мерцания
         }
     }
 }

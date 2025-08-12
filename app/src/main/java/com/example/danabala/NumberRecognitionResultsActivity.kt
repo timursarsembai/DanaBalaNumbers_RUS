@@ -10,10 +10,12 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.util.*
+import kotlin.random.Random
 
-class NumberRecognitionResultsActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+class  NumberRecognitionResultsActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private var tts: TextToSpeech? = null
+    private var isTtsReady = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +36,13 @@ class NumberRecognitionResultsActivity : AppCompatActivity(), TextToSpeech.OnIni
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            tts?.language = Locale.forLanguageTag("ru-RU")
+            val result = tts?.setLanguage(Locale("ru"))
+            isTtsReady = result != TextToSpeech.LANG_MISSING_DATA && result != TextToSpeech.LANG_NOT_SUPPORTED
+
+            // Если TTS готов, озвучиваем поздравление
+            if (isTtsReady) {
+                speakCongratulation()
+            }
         }
     }
 
@@ -59,28 +67,56 @@ class NumberRecognitionResultsActivity : AppCompatActivity(), TextToSpeech.OnIni
 
         findViewById<TextView>(R.id.resultMessage).text = message
         findViewById<TextView>(R.id.encouragementText).text = encouragement
+    }
 
-        // Озвучиваем результат
-        val speechText = "$message $encouragement"
-        tts?.speak(speechText, TextToSpeech.QUEUE_ADD, null, "result")
+    private fun speakCongratulation() {
+        if (isTtsReady) {
+            // Получаем данные для расчета процента
+            val score = intent.getIntExtra("SCORE", 0)
+            val totalQuestions = intent.getIntExtra("TOTAL_QUESTIONS", 20)
+
+            val percentage = if (totalQuestions > 0) {
+                (score * 100) / totalQuestions
+            } else {
+                0
+            }
+
+            // Выбираем фразы в зависимости от результата
+            val phrases = when {
+                percentage == 100 -> DifferentiatedCongratulationPhrases.perfect100Phrases
+                percentage >= 90 -> DifferentiatedCongratulationPhrases.excellent90Phrases
+                percentage >= 80 -> DifferentiatedCongratulationPhrases.good80Phrases
+                else -> DifferentiatedCongratulationPhrases.encouragement80Phrases
+            }
+
+            val randomPhrase = phrases[Random.nextInt(phrases.size)]
+            tts?.speak(randomPhrase, TextToSpeech.QUEUE_FLUSH, null, "congratulation")
+        }
     }
 
     private fun setupButtons() {
         findViewById<CardView>(R.id.btnPlayAgain).setOnClickListener {
+            stopTTS()
             val intent = Intent(this, NumberRecognitionActivity::class.java)
             startActivity(intent)
             finish()
         }
 
         findViewById<CardView>(R.id.btnBackToMenu).setOnClickListener {
+            stopTTS()
             val intent = Intent(this, MathExercisesActivity::class.java)
             startActivity(intent)
             finish()
         }
 
         findViewById<ImageView>(R.id.btnBack).setOnClickListener {
+            stopTTS()
             finish()
         }
+    }
+
+    private fun stopTTS() {
+        tts?.stop()
     }
 
     override fun onDestroy() {

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
+    android:background="@drawable/child_gradient_background"
     android:orientation="vertical"
     android:padding="24dp"
     android:gravity="center">
@@ -11,29 +12,90 @@
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Результаты"
-        android:textSize="32sp"
+        android:text="🎉 Результаты 🎉"
+        android:textSize="28sp"
         android:textStyle="bold"
-        android:textColor="@color/text_color"
-        android:layout_marginBottom="32dp" />
+        android:textColor="#2E7D32"
+        android:layout_marginBottom="32dp"
+        android:gravity="center" />
 
-    <TextView
-        android:id="@+id/scoreText"
-        android:layout_width="wrap_content"
+    <!-- Карточка с результатами -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Очки: 0"
-        android:textSize="24sp"
-        android:textColor="@color/text_color"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="#FFFFFF">
 
-    <TextView
-        android:id="@+id/levelsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Пройдено уровней: 0 из 10"
-        android:textSize="20sp"
-        android:textColor="@color/text_color"
-        android:layout_marginBottom="24dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/scoreText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Итоговые очки: 0"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#2E7D32"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/levelsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Пройдено уровней: 0 из 10"
+                android:textSize="18sp"
+                android:textColor="#666666"
+                android:gravity="center"
+                android:layout_marginBottom="20dp" />
+
+            <!-- Разделитель -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Статистика действий -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📊 Статистика"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#2E7D32"
+                android:gravity="center"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:id="@+id/correctActionsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="✅ Правильных действий: 0 (+0 очков)"
+                android:textSize="16sp"
+                android:textColor="#4CAF50"
+                android:gravity="center"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/incorrectActionsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="❌ Ошибок: 0 (-0 очков)"
+                android:textSize="16sp"
+                android:textColor="#F44336"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/feedbackText"
@@ -41,16 +103,16 @@
         android:layout_height="wrap_content"
         android:text="Отличная работа!"
         android:textSize="18sp"
-        android:textColor="@color/accent_color"
+        android:textColor="#2E7D32"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="32dp" />
 
     <Button
         android:id="@+id/playAgainButton"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:text="Играть снова"
+        android:text="Играть еще раз"
         android:textSize="18sp"
         android:textColor="@color/white"
         android:background="@drawable/button_round"
@@ -60,7 +122,7 @@
         android:id="@+id/homeButton"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:text="Главное меню"
+        android:text="На главную"
         android:textSize="18sp"
         android:textColor="@color/white"
         android:background="@drawable/button_round" />

@@ -5,22 +5,26 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.util.Locale
+import kotlin.random.Random
 
-class MatchingActivity : AppCompatActivity() {
+class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private lateinit var numbersRecyclerView: RecyclerView
     private lateinit var objectsRecyclerView: RecyclerView
     private lateinit var numbersAdapter: NumbersAdapter
     private lateinit var objectsAdapter: ObjectsAdapter
-    private lateinit var levelText: TextView
-    private lateinit var nextLevelButton: Button
-    private lateinit var backButton: Button
+    private lateinit var progressBar: ProgressBar
+    private lateinit var backButton: ImageView
 
     private var currentLevel = 1
     private var totalLevels = 10
@@ -34,37 +38,48 @@ class MatchingActivity : AppCompatActivity() {
 
     private var completedMatches = 0
     private var totalScore = 0
+    private var correctActions = 0
+    private var incorrectActions = 0
+
+    private lateinit var tts: TextToSpeech
+    private var isTtsReady = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_matching)
 
+        initTTS()
         initViews()
         initData()
         setupRecyclerViews()
         loadLevel(currentLevel)
     }
 
+    private fun initTTS() {
+        tts = TextToSpeech(this, this)
+    }
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val result = tts.setLanguage(Locale("ru"))
+            isTtsReady = result != TextToSpeech.LANG_MISSING_DATA && result != TextToSpeech.LANG_NOT_SUPPORTED
+        }
+    }
+
+    private fun speakText(text: String) {
+        if (isTtsReady) {
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+        }
+    }
+
     private fun initViews() {
         numbersRecyclerView = findViewById(R.id.numbersRecyclerView)
         objectsRecyclerView = findViewById(R.id.objectsRecyclerView)
-        levelText = findViewById(R.id.levelText)
-        nextLevelButton = findViewById(R.id.nextLevelButton)
+        progressBar = findViewById(R.id.progressBar)
         backButton = findViewById(R.id.backButton)
 
         backButton.setOnClickListener {
             finish()
-        }
-
-        nextLevelButton.setOnClickListener {
-            if (currentLevel < totalLevels) {
-                currentLevel++
-                loadLevel(currentLevel)
-                nextLevelButton.visibility = View.GONE
-            } else {
-                // Переход к экрану результатов
-                showResults()
-            }
         }
     }
 
@@ -94,7 +109,7 @@ class MatchingActivity : AppCompatActivity() {
 
     private fun loadLevel(level: Int) {
         currentLevelData = levels[level - 1]
-        levelText.text = "$level/$totalLevels"
+        updateProgressBar()
         completedMatches = 0
 
         // Перемешиваем элементы для случайного порядка
@@ -106,6 +121,35 @@ class MatchingActivity : AppCompatActivity() {
 
         // Сбрасываем выделения
         clearSelections()
+
+        // Сбрасываем прозрачность всех view после анимаций
+        resetViewsAlpha()
+    }
+
+    private fun updateProgressBar() {
+        val progress = (currentLevel * 100) / totalLevels
+        progressBar.progress = progress
+    }
+
+    private fun resetViewsAlpha() {
+        // Сбрасываем прозрачность для всех элементов RecyclerView
+        numbersRecyclerView.post {
+            for (i in 0 until numbersRecyclerView.childCount) {
+                val child = numbersRecyclerView.getChildAt(i)
+                child.alpha = 1.0f
+                child.scaleX = 1.0f
+                child.scaleY = 1.0f
+            }
+        }
+
+        objectsRecyclerView.post {
+            for (i in 0 until objectsRecyclerView.childCount) {
+                val child = objectsRecyclerView.getChildAt(i)
+                child.alpha = 1.0f
+                child.scaleX = 1.0f
+                child.scaleY = 1.0f
+            }
+        }
     }
 
     private fun onNumberItemClick(item: MatchingItem, view: View) {
@@ -168,6 +212,13 @@ class MatchingActivity : AppCompatActivity() {
     }
 
     private fun onCorrectMatch(numberItem: MatchingItem, objectItem: MatchingItem) {
+        // Увеличиваем счетчик правильных действий
+        correctActions++
+
+        // Озвучиваем поощрение
+        val randomPhrase = MatchingFeedbackPhrases.correctPhrases[Random.nextInt(MatchingFeedbackPhrases.correctPhrases.size)]
+        speakText(randomPhrase)
+
         // Отмечаем элементы как сопоставленные
         numberItem.isMatched = true
         objectItem.isMatched = true
@@ -179,7 +230,6 @@ class MatchingActivity : AppCompatActivity() {
             objectsAdapter.removeItem(objectItem)
 
             completedMatches++
-            totalScore += 10
 
             // Проверяем завершение уровня
             if (completedMatches >= 5) {
@@ -191,6 +241,13 @@ class MatchingActivity : AppCompatActivity() {
     }
 
     private fun onIncorrectMatch() {
+        // Увеличиваем счетчик неправильных действий
+        incorrectActions++
+
+        // Озвучиваем подбадривание
+        val randomPhrase = MatchingFeedbackPhrases.incorrectPhrases[Random.nextInt(MatchingFeedbackPhrases.incorrectPhrases.size)]
+        speakText(randomPhrase)
+
         // Анимация неправильного совпадения
         animateIncorrectMatch(selectedNumberView!!, selectedObjectView!!)
         clearSelections()
@@ -259,19 +316,33 @@ class MatchingActivity : AppCompatActivity() {
 
     private fun onLevelCompleted() {
         if (currentLevel < totalLevels) {
-            nextLevelButton.visibility = View.VISIBLE
-            nextLevelButton.text = "Следующий уровень"
+            // Убираем задержку - сразу переходим на следующий уровень
+            currentLevel++
+            loadLevel(currentLevel)
         } else {
-            nextLevelButton.visibility = View.VISIBLE
-            nextLevelButton.text = "Показать результаты"
+            // Переход к экрану результатов без задержки
+            showResults()
         }
     }
 
     private fun showResults() {
+        // Вычисляем итоговые очки: +10 за правильные действия, -5 за ошибки
+        val finalScore = (correctActions * 10) - (incorrectActions * 5)
+
         val intent = Intent(this, MatchingResultsActivity::class.java)
-        intent.putExtra("total_score", totalScore)
         intent.putExtra("completed_levels", currentLevel)
+        intent.putExtra("correct_actions", correctActions)
+        intent.putExtra("incorrect_actions", incorrectActions)
+        intent.putExtra("final_score", finalScore)
         startActivity(intent)
         finish()
+    }
+
+    override fun onDestroy() {
+        if (::tts.isInitialized) {
+            tts.stop()
+            tts.shutdown()
+        }
+        super.onDestroy()
     }
 }

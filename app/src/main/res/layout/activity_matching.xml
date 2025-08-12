@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
+    android:background="@drawable/child_gradient_background"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".MatchingActivity">
 
-    <!-- Заголовок -->
+    <!-- Верхняя панель с кнопкой назад и заголовком -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,38 +16,43 @@
         android:gravity="center_vertical"
         android:layout_marginBottom="20dp">
 
-        <Button
+        <!-- Кнопка "Назад" -->
+        <ImageView
             android:id="@+id/backButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/button_round"
-            android:text="←"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:layout_marginEnd="16dp" />
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_arrow_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Назад" />
 
+        <!-- Заголовок -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Сопоставление"
-            android:textSize="24sp"
+            android:text="🔗 Сопоставление"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/text_color"
-            android:gravity="center" />
-
-        <TextView
-            android:id="@+id/levelText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1/10"
-            android:textSize="18sp"
-            android:textColor="@color/text_color"
-            android:background="@drawable/button_round"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="6dp" />
+            android:textColor="#2E7D32"
+            android:layout_marginStart="12dp"
+            android:gravity="start" />
 
     </LinearLayout>
+
+    <!-- Прогресс-бар -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_marginBottom="30dp"
+        android:max="100"
+        android:progress="10"
+        android:progressTint="#4CAF50"
+        android:progressBackgroundTint="#E0E0E0" />
 
     <!-- Инструкция -->
     <TextView
@@ -55,7 +60,7 @@
         android:layout_height="wrap_content"
         android:text="Соедини числа с соответствующим количеством предметов"
         android:textSize="16sp"
-        android:textColor="@color/text_color"
+        android:textColor="#2E7D32"
         android:gravity="center"
         android:layout_marginBottom="20dp" />
 
@@ -81,7 +86,7 @@
                 android:text="Числа"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/text_color"
+                android:textColor="#2E7D32"
                 android:gravity="center"
                 android:layout_marginBottom="10dp" />
 
@@ -108,7 +113,7 @@
                 android:text="Предметы"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/text_color"
+                android:textColor="#2E7D32"
                 android:gravity="center"
                 android:layout_marginBottom="10dp" />
 
@@ -122,17 +127,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <!-- Кнопка завершения уровня -->
-    <Button
-        android:id="@+id/nextLevelButton"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:text="Следующий уровень"
-        android:textSize="18sp"
-        android:textColor="@color/white"
-        android:background="@drawable/button_round"
-        android:layout_marginTop="16dp"
-        android:visibility="gone" />
 
 </LinearLayout>
