@@ -53,6 +53,12 @@
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".AudioMatchingActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="portrait" />
+
         <!-- Отдельные страницы результатов для каждого упражнения -->
         <activity
             android:name=".NumberRecognitionResultsActivity"
@@ -76,6 +82,12 @@
             android:name=".MatchingResultsActivity"
             android:exported="false"
             android:parentActivityName=".MatchingActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".AudioMatchingResultsActivity"
+            android:exported="false"
+            android:parentActivityName=".AudioMatchingActivity"
             android:screenOrientation="portrait" />
 
     </application>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/child_gradient_background"
+    android:padding="24dp"
+    tools:context=".AudioMatchingResultsActivity">
+
+    <!-- Кнопка назад -->
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_arrow_back"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="Назад"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Заголовок -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🔊 Сопоставление по звуку"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#2E7D32"
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Результаты -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="#FFFFFF">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/resultMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Превосходно! 🏆"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#4CAF50"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/encouragementText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ты отлично слышишь и различаешь числа!"
+                android:textSize="18sp"
+                android:textColor="#666666"
+                android:gravity="center"
+                android:layout_marginBottom="24dp" />
+
+            <TextView
+                android:id="@+id/completedLevelsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Пройдено уровней: 10"
+                android:textSize="16sp"
+                android:textColor="#2E7D32"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/correctActionsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Правильных действий: 45"
+                android:textSize="16sp"
+                android:textColor="#2E7D32"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/incorrectActionsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ошибок: 5"
+                android:textSize="16sp"
+                android:textColor="#2E7D32"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/finalScoreText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Итоговые очки: 425"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#4CAF50"
+                android:layout_marginTop="8dp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Кнопки -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+
+        <!-- Кнопка "Играть снова" -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnPlayAgain"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="#4CAF50">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="🔄 Играть снова"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:gravity="center" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Кнопка "В главное меню" -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnBackToMenu"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="#2196F3">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="🏠 В главное меню"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:gravity="center" />
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</LinearLayout>

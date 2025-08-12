@@ -41,5 +41,10 @@ class MathExercisesActivity : AppCompatActivity() {
             val intent = Intent(this, MatchingActivity::class.java)
             startActivity(intent)
         }
+
+        findViewById<CardView>(R.id.cardAudioMatching).setOnClickListener {
+            val intent = Intent(this, AudioMatchingActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
