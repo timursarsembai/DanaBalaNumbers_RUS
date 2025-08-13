@@ -61,5 +61,10 @@ class MathExercisesActivity : AppCompatActivity() {
             val intent = Intent(this, DescendingSequenceActivity::class.java)
             startActivity(intent)
         }
+
+        findViewById<CardView>(R.id.cardNumberComparison).setOnClickListener {
+            val intent = Intent(this, NumberComparisonActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

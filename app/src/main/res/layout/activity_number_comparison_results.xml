@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/child_gradient_blue"
+    android:padding="12dp"
+    tools:context=".NumberComparisonResultsActivity">
+
+    <!-- Header with Back Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="Назад"
+            android:layout_marginEnd="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🏆"
+            android:textSize="20sp"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Результаты сравнения"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#1565C0" />
+
+    </LinearLayout>
+
+    <!-- Main Content Area with Two Blocks -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+
+        <!-- Left Block - Statistics -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📊"
+                    android:textSize="24sp"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Твои результаты"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="#1565C0"
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Score Display -->
+                <TextView
+                    android:id="@+id/scoreDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Очки: 1500"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#4CAF50"
+                    android:gravity="center"
+                    android:layout_marginBottom="6dp" />
+
+                <!-- Correct Answers Display -->
+                <TextView
+                    android:id="@+id/correctAnswersDisplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Правильных ответов: 15 из 20"
+                    android:textSize="11sp"
+                    android:textColor="#333333"
+                    android:gravity="center"
+                    android:layout_marginBottom="6dp" />
+
+                <!-- Accuracy Display -->
+                <TextView
+                    android:id="@+id/accuracyDisplay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Точность: 75%"
+                    android:textSize="11sp"
+                    android:textColor="#333333"
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Performance Badge -->
+                <TextView
+                    android:id="@+id/performanceBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🌟 ОТЛИЧНО!"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:textColor="#FF9800"
+                    android:background="@drawable/badge_background"
+                    android:padding="4dp"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Right Block - Congratulations and Motivation -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:gravity="center">
+
+                <!-- Congratulations Icon -->
+                <TextView
+                    android:id="@+id/congratulationsIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🎉"
+                    android:textSize="32sp"
+                    android:layout_marginBottom="6dp" />
+
+                <!-- Main Message -->
+                <TextView
+                    android:id="@+id/messageDisplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Поздравляем! Ты отлично справился!"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="#1565C0"
+                    android:gravity="center"
+                    android:layout_marginBottom="6dp" />
+
+                <!-- Motivational Message -->
+                <TextView
+                    android:id="@+id/motivationalMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="Ты становишься настоящим математиком! Продолжай изучать числа."
+                    android:textSize="10sp"
+                    android:textColor="#666666"
+                    android:gravity="center"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Achievement Stars -->
+                <LinearLayout
+                    android:id="@+id/achievementStars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <!-- Звезды будут добавлены программно -->
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <!-- Bottom Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/restartButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:text="🔄 Играть снова"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_check"
+            android:elevation="4dp" />
+
+        <Button
+            android:id="@+id/homeButton"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:text="🏠 На главную"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_next"
+            android:elevation="4dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

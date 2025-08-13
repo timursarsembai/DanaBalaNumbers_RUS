@@ -78,6 +78,13 @@
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
 
+        <!-- Упражнение на сравнение чисел -->
+        <activity
+            android:name=".NumberComparisonActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="landscape" />
+
         <!-- Отдельные страницы результатов для каждого упражнения -->
         <activity
             android:name=".NumberRecognitionResultsActivity"
@@ -122,6 +129,12 @@
             android:parentActivityName=".DescendingSequenceActivity"
             android:screenOrientation="portrait" />
 
+        <!-- Страница результатов для упражнения сравнения чисел -->
+        <activity
+            android:name=".NumberComparisonResultsActivity"
+            android:exported="false"
+            android:parentActivityName=".NumberComparisonActivity"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>
