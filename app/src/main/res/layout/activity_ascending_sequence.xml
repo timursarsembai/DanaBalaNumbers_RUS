@@ -81,7 +81,7 @@
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="4dp"
                     android:background="@drawable/number_drop_zone"
                     android:gravity="center"
                     android:textSize="24sp"
@@ -94,7 +94,7 @@
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginHorizontal="4dp"
                     android:background="@drawable/number_drop_zone"
                     android:gravity="center"
                     android:textSize="24sp"
@@ -107,7 +107,7 @@
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginHorizontal="4dp"
                     android:background="@drawable/number_drop_zone"
                     android:gravity="center"
                     android:textSize="24sp"
@@ -120,7 +120,7 @@
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginHorizontal="4dp"
                     android:background="@drawable/number_drop_zone"
                     android:gravity="center"
                     android:textSize="24sp"
@@ -133,7 +133,7 @@
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:background="@drawable/number_drop_zone"
                     android:gravity="center"
                     android:textSize="24sp"
@@ -144,6 +144,47 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <!-- Direction Hints for Ascending -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp"
+            android:paddingHorizontal="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="меньше"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#FF5722"
+                android:padding="8dp"
+                android:background="@drawable/hint_background" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="→ → → →"
+                android:textSize="18sp"
+                android:textColor="#4CAF50"
+                android:gravity="center"
+                android:layout_marginHorizontal="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="больше"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#4CAF50"
+                android:padding="8dp"
+                android:background="@drawable/hint_background" />
+
+        </LinearLayout>
 
         <!-- Hint Text -->
         <TextView

@@ -114,13 +114,11 @@ class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListen
                         true
                     }
                     DragEvent.ACTION_DROP -> {
-                        val draggedNumber = event.clipData.getItemAt(0).text.toString().toInt()
-                        (view as TextView).text = draggedNumber.toString()
-                        view.setBackgroundResource(R.drawable.number_drop_zone_filled)
-                        userAnswers[index] = draggedNumber
+                        val dragData = event.clipData.getItemAt(0).text.toString()
+                        val draggedNumber = dragData.split("|")[0].toInt()
+                        val sourceType = if (dragData.contains("|")) dragData.split("|")[1] else "selection"
 
-                        // Удаляем использованную карточку
-                        removeDraggedCard(draggedNumber)
+                        handleCardDrop(view as TextView, index, draggedNumber, sourceType)
                         true
                     }
                     DragEvent.ACTION_DRAG_ENDED -> {
@@ -135,7 +133,114 @@ class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListen
             dropZone.setOnClickListener {
                 returnCardToSelection(dropZone as TextView, index)
             }
+
+            // Добавляем возможность перетаскивания карточек между ячейками
+            dropZone.setOnTouchListener { view, event ->
+                if (event.action == MotionEvent.ACTION_DOWN &&
+                    dropZone.text.isNotEmpty() &&
+                    index != shownPosition) {
+                    val number = dropZone.text.toString().toInt()
+                    val clipData = ClipData.newPlainText("number", "$number|dropzone_$index")
+                    val shadowBuilder = View.DragShadowBuilder(view)
+                    view.startDragAndDrop(clipData, shadowBuilder, view, 0)
+                    true
+                } else {
+                    false
+                }
+            }
         }
+
+        // Настройка области выбора для приема карточек обратно
+        setupSelectionAreaDropZones()
+    }
+
+    private fun setupSelectionAreaDropZones() {
+        val firstRowContainer = findViewById<LinearLayout>(R.id.firstRowContainer)
+        val secondRowContainer = findViewById<LinearLayout>(R.id.secondRowContainer)
+
+        // Настраиваем первый ряд как drop zone
+        firstRowContainer.setOnDragListener { view, event ->
+            when (event.action) {
+                DragEvent.ACTION_DRAG_STARTED -> true
+                DragEvent.ACTION_DRAG_ENTERED -> {
+                    // Визуальная подсветка области
+                    view.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_blue_light))
+                    view.alpha = 0.3f
+                    true
+                }
+                DragEvent.ACTION_DRAG_EXITED -> {
+                    // Убираем подсветку
+                    view.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+                    view.alpha = 1.0f
+                    true
+                }
+                DragEvent.ACTION_DROP -> {
+                    // Убираем подсветку
+                    view.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+                    view.alpha = 1.0f
+
+                    val dragData = event.clipData.getItemAt(0).text.toString()
+                    if (dragData.contains("|dropzone_")) {
+                        val draggedNumber = dragData.split("|")[0].toInt()
+                        val sourceIndex = dragData.split("_")[1].toInt()
+                        returnCardFromDropZone(draggedNumber, sourceIndex)
+                    }
+                    true
+                }
+                DragEvent.ACTION_DRAG_ENDED -> {
+                    // Убираем подсветку на всякий случай
+                    view.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+                    view.alpha = 1.0f
+                    true
+                }
+                else -> false
+            }
+        }
+
+        // Настраиваем второй ряд как drop zone
+        secondRowContainer.setOnDragListener { view, event ->
+            when (event.action) {
+                DragEvent.ACTION_DRAG_STARTED -> true
+                DragEvent.ACTION_DRAG_ENTERED -> {
+                    view.setBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_blue_light))
+                    view.alpha = 0.3f
+                    true
+                }
+                DragEvent.ACTION_DRAG_EXITED -> {
+                    view.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+                    view.alpha = 1.0f
+                    true
+                }
+                DragEvent.ACTION_DROP -> {
+                    view.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+                    view.alpha = 1.0f
+
+                    val dragData = event.clipData.getItemAt(0).text.toString()
+                    if (dragData.contains("|dropzone_")) {
+                        val draggedNumber = dragData.split("|")[0].toInt()
+                        val sourceIndex = dragData.split("_")[1].toInt()
+                        returnCardFromDropZone(draggedNumber, sourceIndex)
+                    }
+                    true
+                }
+                DragEvent.ACTION_DRAG_ENDED -> {
+                    view.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+                    view.alpha = 1.0f
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun returnCardFromDropZone(number: Int, sourceIndex: Int) {
+        // Очищаем исходную ячейку
+        dropZones[sourceIndex].text = ""
+        dropZones[sourceIndex].setBackgroundResource(R.drawable.number_drop_zone)
+        userAnswers[sourceIndex] = -1
+
+        // Добавляем карточку обратно в область выбора
+        addCardBackToSelection(number)
     }
 
     private fun resetDropZoneBackground(dropZone: TextView, index: Int) {
@@ -247,7 +352,7 @@ class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListen
         availableNumbers.clear()
         for (i in 0 until sequenceSize) {
             val number = startNumber + i
-            if (i != shownPosition) { // Не добавляем уже показанное число
+            if (number != shownNumber) { // Исключаем показанное число, а не позицию
                 availableNumbers.add(number)
             }
         }
@@ -288,8 +393,8 @@ class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListen
     }
 
     private fun updateQuestionText() {
-        questionText.text = "Заполни числа по возрастанию"
-        hintText.text = "Перетащи числа в правильном порядке"
+        questionText.text = "Заполни чи́сла по возрастанию"
+        hintText.text = "Перетащи чи́сла в правильном порядке"
     }
 
     private fun updateProgress() {
@@ -390,6 +495,8 @@ class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListen
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 tts!!.setLanguage(Locale.getDefault())
             }
+            // Озвучиваем вопрос после успешной инициализации TTS
+            speakQuestion()
         }
     }
 
@@ -426,6 +533,62 @@ class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListen
             firstRowContainer.addView(card)
         } else {
             secondRowContainer.addView(card)
+        }
+    }
+
+    private fun handleCardDrop(dropZone: TextView, index: Int, draggedNumber: Int, sourceType: String) {
+        // Если это защищенная ячейка с показанным числом, не позволяем ничего делать
+        if (index == shownPosition) {
+            return
+        }
+
+        // Если карточка перетаскивается из области выбора
+        if (sourceType == "selection") {
+            // Если ячейка уже занята, возвращаем предыдущую карточку в область выбора
+            if (dropZone.text.isNotEmpty()) {
+                val previousNumber = dropZone.text.toString().toInt()
+                addCardBackToSelection(previousNumber)
+            }
+
+            // Размещаем новую карточку
+            dropZone.text = draggedNumber.toString()
+            dropZone.setBackgroundResource(R.drawable.number_drop_zone_filled)
+            userAnswers[index] = draggedNumber
+
+            // Удаляем использованную карточку из области выбора
+            removeDraggedCard(draggedNumber)
+        }
+        // Если карточка перетаскивается из другой ячейки
+        else if (sourceType.startsWith("dropzone_")) {
+            val sourceIndex = sourceType.split("_")[1].toInt()
+
+            // Если ячейка назначения пустая - просто перемещаем
+            if (dropZone.text.isEmpty()) {
+                dropZone.text = draggedNumber.toString()
+                dropZone.setBackgroundResource(R.drawable.number_drop_zone_filled)
+                userAnswers[index] = draggedNumber
+
+                // Очищаем исходную ячейку
+                dropZones[sourceIndex].text = ""
+                dropZones[sourceIndex].setBackgroundResource(R.drawable.number_drop_zone)
+                userAnswers[sourceIndex] = -1
+            }
+            // Если ячейка назначения занята - меняем карточки местами
+            else {
+                val targetNumber = dropZone.text.toString().toInt()
+
+                // Выполняем обмен карточками
+                dropZone.text = draggedNumber.toString()
+                dropZones[sourceIndex].text = targetNumber.toString()
+
+                // Обновляем массив ответов
+                userAnswers[index] = draggedNumber
+                userAnswers[sourceIndex] = targetNumber
+
+                // Обновляем фоны
+                dropZone.setBackgroundResource(R.drawable.number_drop_zone_filled)
+                dropZones[sourceIndex].setBackgroundResource(R.drawable.number_drop_zone_filled)
+            }
         }
     }
 }
