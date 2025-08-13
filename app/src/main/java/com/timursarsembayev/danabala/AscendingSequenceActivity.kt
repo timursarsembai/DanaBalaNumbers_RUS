@@ -89,7 +89,7 @@ class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListen
 
         checkButton.setOnClickListener { checkAnswer() }
         nextButton.setOnClickListener { nextQuestion() }
-
+        
         // Добавляем обработчик для кнопки "Назад"
         findViewById<ImageButton>(R.id.backButton).setOnClickListener {
             finish() // Возвращаемся к предыдущему экрану
@@ -339,7 +339,7 @@ class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListen
     private fun showIncorrectFeedback() {
         hintText.text = "Попробуй еще раз! Числа должны идти по порядку."
         hintText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
-        speakText("Попроб��й еще раз")
+        speakText("Попробуй еще раз")
     }
 
     private fun nextQuestion() {

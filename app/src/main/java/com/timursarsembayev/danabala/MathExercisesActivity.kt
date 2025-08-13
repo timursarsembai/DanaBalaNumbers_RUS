@@ -22,6 +22,11 @@ class MathExercisesActivity : AppCompatActivity() {
     }
 
     private fun setupExerciseCards() {
+        findViewById<CardView>(R.id.cardNumberIntroduction).setOnClickListener {
+            val intent = Intent(this, NumberIntroductionActivity::class.java)
+            startActivity(intent)
+        }
+
         findViewById<CardView>(R.id.cardNumbers).setOnClickListener {
             val intent = Intent(this, NumberRecognitionActivity::class.java)
             startActivity(intent)

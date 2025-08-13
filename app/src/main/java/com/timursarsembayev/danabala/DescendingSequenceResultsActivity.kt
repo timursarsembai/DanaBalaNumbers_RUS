@@ -42,7 +42,7 @@ class DescendingSequenceResultsActivity : AppCompatActivity(), TextToSpeech.OnIn
         val congratsText = findViewById<TextView>(R.id.congratsText)
 
         scoreText.text = "Очки: $score"
-
+        
         val accuracy = (correctAnswers.toFloat() / totalQuestions * 100).toInt()
         accuracyText.text = "Правильных ответов: $correctAnswers из $totalQuestions ($accuracy%)"
         progressBar.progress = accuracy

@@ -30,7 +30,7 @@ class ObjectsAdapter(
         val objectsString = item.emoji.repeat(item.value)
         holder.objectsText.text = objectsString
 
-        // Устанавливаем прозрачност�� для сопоставленных элементов
+        // Устанавливаем прозрачность для сопоставленных элементов
         holder.cardView.alpha = if (item.isMatched) 0.3f else 1.0f
 
         holder.cardView.setOnClickListener {

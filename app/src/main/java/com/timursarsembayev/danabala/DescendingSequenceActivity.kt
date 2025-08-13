@@ -131,7 +131,7 @@ class DescendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListe
                 }
             }
 
-            // Добавляем обработчик нажа��ия для возврата карточек
+            // Добавляем обработчик нажатия для возврата карточек
             dropZone.setOnClickListener {
                 returnCardToSelection(dropZone as TextView, index)
             }
@@ -210,7 +210,7 @@ class DescendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         nextButton.visibility = Button.GONE
         userAnswers.fill(-1)
 
-        // Генерируем случайную позицию для показанног�� числа (0-4)
+        // Генерируем случайную позицию для показанного числа (0-4)
         shownPosition = Random.nextInt(sequenceSize)
 
         // Генерируем показанное число от 0 до 9
@@ -243,7 +243,7 @@ class DescendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListe
             }
         }
 
-        // Создаем доступные числа для перетаскивания (по ��быва��ию)
+        // Создаем доступные числа для перетаскивания (по убыванию)
         availableNumbers.clear()
         for (i in 0 until sequenceSize) {
             val number = startNumber - i
@@ -422,7 +422,7 @@ class DescendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         // Создаем новую карточку
         val card = createDraggableCard(number)
 
-        // Добавляем в первый ряд, если там меньш�� 4 карточек, иначе во второй
+        // Добавляем в первый ряд, если там меньше 4 карточек, иначе во второй
         if (firstRowContainer.childCount < 4) {
             firstRowContainer.addView(card)
         } else {

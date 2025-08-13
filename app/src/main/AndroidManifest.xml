@@ -30,6 +30,12 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".NumberIntroductionActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".NumberRecognitionActivity"
             android:exported="false"
             android:parentActivityName=".MathExercisesActivity"

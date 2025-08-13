@@ -123,7 +123,7 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         // Сбрасываем выделения
         clearSelections()
 
-        // Сбрасываем прозрачность всех view пос��е анимаций
+        // Сбрасываем прозрачность всех view после анимаций
         resetViewsAlpha()
     }
 
