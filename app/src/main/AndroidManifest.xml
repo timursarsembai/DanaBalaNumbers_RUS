@@ -149,6 +149,20 @@
             android:exported="false"
             android:parentActivityName=".NumberDrawingActivity"
             android:screenOrientation="portrait" />
+
+        <!-- Новая игра: Лови цифру (теперь строго портретная ориентация) -->
+        <activity
+            android:name=".BubbleCatchActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- Результаты игры Лови цифру (портретная) -->
+        <activity
+            android:name=".BubbleCatchResultsActivity"
+            android:exported="false"
+            android:parentActivityName=".BubbleCatchActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

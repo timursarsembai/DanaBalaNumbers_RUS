@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/gradient_celebration_background"
+    tools:context=".BubbleCatchResultsActivity">
+
+    <!-- Верхняя панель -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="20dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_arrow_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/back" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/results_bubble_catch_title"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#1565C0"
+            android:layout_marginStart="12dp"
+            android:gravity="start" />
+
+    </LinearLayout>
+
+    <!-- Основной контент -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/emojiText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/celebration_emoji"
+            android:textSize="80sp"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:id="@+id/messageTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/your_result"
+            android:textSize="16sp"
+            android:textColor="#666666"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/scoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero_digit"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="#2E7D32"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/gameOverMessageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#424242"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp" />
+
+    </LinearLayout>
+
+    <!-- Кнопки -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnPlayAgain"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="#4CAF50">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/play_again"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:gravity="center" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnBackToMenu"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="#2196F3">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/main_menu"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:gravity="center" />
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</LinearLayout>

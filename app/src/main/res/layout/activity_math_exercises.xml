@@ -39,11 +39,42 @@
 
         </LinearLayout>
 
-        <!-- Список упражнений -->
+        <!-- Вкладки: Тренировки / Игры -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="20dp"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="4dp"
+            app:strokeWidth="0dp"
+            app:cardBackgroundColor="#FFFFFFFF"
+            app:contentPadding="8dp">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMode="fixed"
+                app:tabGravity="fill"
+                app:tabInlineLabel="true"
+                app:tabIndicatorHeight="0dp"
+                app:tabTextAppearance="@style/TabTextAppearance"
+                app:tabRippleColor="@color/selector_tab_ripple"
+                app:tabBackground="@drawable/bg_tab_item"
+                app:tabTextColor="@color/tab_text_color_unselected"
+                app:tabSelectedTextColor="@android:color/white"
+                android:layout_margin="4dp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Контейнер: Тренировки (по умолчанию видим) -->
         <LinearLayout
+            android:id="@+id/trainingsContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <!-- Список упражнений (кроме игр) -->
 
             <!-- Знакомство с цифрами -->
             <androidx.cardview.widget.CardView
@@ -89,62 +120,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Цифры 0–9"
-                            android:textSize="14sp"
-                            android:textColor="#666666"
-                            android:layout_marginTop="2dp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!-- Рисование цифр -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardNumberDrawing"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_margin="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="6dp"
-                app:cardBackgroundColor="#FFE0B2">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🎨"
-                        android:textSize="32sp"
-                        android:layout_marginEnd="16dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Рисование цифр"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="#F57C00" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Раскрась цифры"
+                            android:text="Первое знакомство с цифрами"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -199,7 +175,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Найди названную"
+                            android:text="Распознавание цифр"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -254,7 +230,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Выбери кол-во"
+                            android:text="Счёт предметов"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -309,7 +285,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Посчитай и выбери"
+                            android:text="Посчитай и выбери число"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -364,7 +340,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Соедини пары"
+                            android:text="Сопоставь число и предметы"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -419,7 +395,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Звук и число"
+                            android:text="Слушай и выбирай"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -474,7 +450,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="По возрастанию"
+                            android:text="Последовательность чисел"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -529,7 +505,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="По убыванию"
+                            android:text="Последовательность чисел"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -540,7 +516,7 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Сравнение чисел -->
+            <!-- Сравнение ��исел -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardNumberComparison"
                 android:layout_width="match_parent"
@@ -584,7 +560,127 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Сравни: &gt; &lt; ="
+                            android:text="Больше или меньше"
+                            android:textSize="14sp"
+                            android:textColor="#666666"
+                            android:layout_marginTop="2dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- Контейнер: Игры (скрыт по умолчанию) -->
+        <LinearLayout
+            android:id="@+id/gamesContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!-- Рисование цифр -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardNumberDrawing"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="#FFE0B2">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🎨"
+                        android:textSize="32sp"
+                        android:layout_marginEnd="16dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Рисование цифр"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#F57C00" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Творческая игра"
+                            android:textSize="14sp"
+                            android:textColor="#666666"
+                            android:layout_marginTop="2dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Лови цифру -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardBubbleCatch"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="#E1F5FE">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🎈"
+                        android:textSize="32sp"
+                        android:layout_marginEnd="16dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Лови цифру"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#0277BD" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Весёлая ловля"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />

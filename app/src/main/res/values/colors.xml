@@ -13,4 +13,8 @@
     <color name="primaryColor">#2196F3</color>
     <color name="successColor">#4CAF50</color>
     <color name="textColor">#333333</color>
+
+    <!-- Цвета для вкладок -->
+    <color name="tab_text_unselected">#803F51B5</color>
+    <color name="tab_text_color_unselected">#1565C0</color>
 </resources>

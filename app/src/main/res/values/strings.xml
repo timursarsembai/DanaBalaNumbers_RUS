@@ -4,4 +4,17 @@
     <string name="next">Далее</string>
     <string name="done">Готово</string>
     <string name="draw_number">Закрась цифру %1$d</string>
+    <string name="bubble_catch_title">🎈 Лови цифру</string>
+    <string name="back">Назад</string>
+    <string name="speak_target">Озвучить цель</string>
+    <string name="find_label">Ищи:</string>
+    <string name="score_label">Очки:</string>
+    <string name="time_label">Время:</string>
+    <string name="initial_time">02:00</string>
+    <string name="results_bubble_catch_title">🎈 Итоги: Лови цифру</string>
+    <string name="your_result">Твой результат</string>
+    <string name="play_again">🔄 Играть снова</string>
+    <string name="main_menu">🏠 Главное меню</string>
+    <string name="celebration_emoji">🎉</string>
+    <string name="zero_digit">0</string>
 </resources>

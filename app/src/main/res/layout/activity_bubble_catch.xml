@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/child_gradient_yellow"
+    android:padding="16dp"
+    tools:context=".BubbleCatchActivity">
+
+    <!-- Верхняя панель -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_arrow_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/back" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/bubble_catch_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#1565C0"
+            android:layout_marginStart="12dp" />
+
+        <ImageView
+            android:id="@+id/speakerButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_volume_up"
+            android:background="@drawable/speaker_button_background"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/speak_target" />
+
+    </LinearLayout>
+
+    <!-- Панель статуса: цель + очки + время -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/find_label"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#D32F2F"
+            android:background="#FFEBEE"
+            android:paddingStart="12dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:elevation="2dp" />
+
+        <TextView
+            android:id="@+id/targetText"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:text="@string/zero_digit"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#D32F2F"
+            android:gravity="center"
+            android:background="#FFEBEE"
+            android:padding="6dp"
+            android:layout_marginStart="8dp"
+            android:elevation="2dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/score_label"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#2E7D32"
+            android:layout_marginStart="24dp" />
+
+        <TextView
+            android:id="@+id/scoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero_digit"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#2E7D32"
+            android:layout_marginStart="8dp" />
+
+        <!-- Блок времени: вертикально надпись и ниже таймер -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_label"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#424242" />
+
+            <TextView
+                android:id="@+id/timerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/initial_time"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#424242" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Прогресс уровня (убывающая полоса) -->
+    <ProgressBar
+        android:id="@+id/levelProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_marginBottom="8dp"
+        android:max="120000"
+        android:progress="120000"
+        android:progressTint="#4CAF50"
+        android:progressBackgroundTint="#E0E0E0" />
+
+    <!-- Игровое поле -->
+    <FrameLayout
+        android:id="@+id/gameField"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#1A000000"
+        android:clipChildren="false"
+        android:clipToPadding="false" />
+
+</LinearLayout>
