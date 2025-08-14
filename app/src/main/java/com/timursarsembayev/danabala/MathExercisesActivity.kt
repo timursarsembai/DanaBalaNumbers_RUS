@@ -138,5 +138,10 @@ class MathExercisesActivity : AppCompatActivity() {
             val intent = Intent(this, BubbleCatchActivity::class.java)
             startActivity(intent)
         }
+
+        // Новая игра: Цифровой ряд
+        findViewById<CardView>(R.id.cardBlockMatch)?.setOnClickListener {
+            startActivity(Intent(this, BlockMatchActivity::class.java))
+        }
     }
 }

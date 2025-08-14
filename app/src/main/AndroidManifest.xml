@@ -163,6 +163,20 @@
             android:exported="false"
             android:parentActivityName=".BubbleCatchActivity"
             android:screenOrientation="portrait" />
+
+        <!-- Новая игра: Цифровой ряд -->
+        <activity
+            android:name=".BlockMatchActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- Страница результатов для игры Цифровой ряд -->
+        <activity
+            android:name=".BlockMatchResultsActivity"
+            android:exported="false"
+            android:parentActivityName=".BlockMatchActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

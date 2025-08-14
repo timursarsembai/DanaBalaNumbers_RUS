@@ -17,4 +17,11 @@
     <string name="main_menu">🏠 Главное меню</string>
     <string name="celebration_emoji">🎉</string>
     <string name="zero_digit">0</string>
+    <string name="block_match_title">💎 Цифровой ряд</string>
+    <string name="score">Очки</string>
+    <string name="level">Уровень</string>
+    <string name="defeat_title">Поражение</string>
+    <string name="defeat_message">Вы набрали %1$d очков</string>
+    <string name="retry">Повторить</string>
+    <string name="to_home">На главную</string>
 </resources>
