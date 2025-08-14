@@ -52,6 +52,11 @@ class MathExercisesActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        findViewById<CardView>(R.id.cardNumberDrawing).setOnClickListener {
+            val intent = Intent(this, NumberDrawingActivity::class.java)
+            startActivity(intent)
+        }
+
         findViewById<CardView>(R.id.cardAscendingSequence).setOnClickListener {
             val intent = Intent(this, AscendingSequenceActivity::class.java)
             startActivity(intent)

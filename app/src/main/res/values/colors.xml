@@ -8,4 +8,9 @@
     <color name="text_color">#2C3E50</color>
     <color name="button_color">#3498DB</color>
     <color name="accent_color">#E74C3C</color>
+
+    <!-- Цвета для игры рисования цифр -->
+    <color name="primaryColor">#2196F3</color>
+    <color name="successColor">#4CAF50</color>
+    <color name="textColor">#333333</color>
 </resources>

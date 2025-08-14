@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/gradient_celebration_background"
+    tools:context=".NumberDrawingResultsActivity">
+
+    <!-- Верхняя панель с кнопкой назад -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="20dp">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="Назад" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="🎨 Результаты: Рисование цифр"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#F57C00"
+            android:layout_marginStart="12dp"
+            android:gravity="start" />
+
+    </LinearLayout>
+
+    <!-- Основной контент (без статистики) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Большая иконка -->
+        <TextView
+            android:id="@+id/congratulationsIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🎉"
+            android:textSize="80sp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Главное сообщение -->
+        <TextView
+            android:id="@+id/messageDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Отлично! 🏆"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#F57C00"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Мотивация -->
+        <TextView
+            android:id="@+id/motivationalMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ты замечательно справился(ась)!"
+            android:textSize="18sp"
+            android:textColor="#FF9800"
+            android:gravity="center"
+            android:layout_marginBottom="32dp" />
+
+    </LinearLayout>
+
+    <!-- Кнопки -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/restartButton"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="🔄 Играть снова"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_check"
+            android:elevation="4dp" />
+
+        <Button
+            android:id="@+id/homeButton"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="🏠 Главное меню"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_next"
+            android:elevation="4dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

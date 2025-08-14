@@ -65,6 +65,13 @@
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
 
+        <!-- Новая активность для рисования цифр -->
+        <activity
+            android:name=".NumberDrawingActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="portrait" />
+
         <!-- Новые упражнения на последовательности -->
         <activity
             android:name=".AscendingSequenceActivity"
@@ -135,6 +142,13 @@
             android:exported="false"
             android:parentActivityName=".NumberComparisonActivity"
             android:screenOrientation="landscape" />
+
+        <!-- Страница результатов для упражнения рисования цифр -->
+        <activity
+            android:name=".NumberDrawingResultsActivity"
+            android:exported="false"
+            android:parentActivityName=".NumberDrawingActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

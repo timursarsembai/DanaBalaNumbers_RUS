@@ -10,6 +10,9 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.GestureDetectorCompat
+import android.view.GestureDetector
+import android.view.MotionEvent
 import java.util.*
 import kotlin.random.Random
 
@@ -53,10 +56,10 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
     enum class Gender {
         MASCULINE,  // мужской род
         FEMININE,   // женский род
-        NEUTER      // средний род
+        NEUTER      // ��редний род
     }
 
-    // Полная таблица склонений для всех объектов
+    // Полная табли��������а склонений для всех объектов
     private val objectDeclensions = mapOf(
         "🎈" to WordDeclension("шарик", "шарика", "шариков", Gender.MASCULINE),
         "🎁" to WordDeclension("подарок", "подарка", "подарков", Gender.MASCULINE),
@@ -81,7 +84,7 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         "✨" to WordDeclension("искорка", "искорки", "искорок", Gender.FEMININE),
         "☀️" to WordDeclension("солнце", "солнца", "солнц", Gender.NEUTER),
         "🌙" to WordDeclension("луна", "луны", "лун", Gender.FEMININE),
-        "🦋" to WordDeclension("бабочка", "бабочки", "бабочек", Gender.FEMININE),
+        "🦋" to WordDeclension("бабоч��а", "бабочки", "бабочек", Gender.FEMININE),
         "🐝" to WordDeclension("пчела", "пчелы", "пчел", Gender.FEMININE),
         "🐞" to WordDeclension("божья коровка", "божьей коровки", "божьих коровок", Gender.FEMININE),
         "🐸" to WordDeclension("лягушка", "лягушки", "лягушек", Gender.FEMININE),
@@ -92,7 +95,7 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         "🚌" to WordDeclension("автобус", "автобуса", "автобусов", Gender.MASCULINE),
         "🚓" to WordDeclension("машина", "машины", "машин", Gender.FEMININE),
         "🚑" to WordDeclension("машина", "машины", "машин", Gender.FEMININE),
-        "🚒" to WordDeclension("машина", "машины", "машин", Gender.FEMININE),
+        "🚒" to WordDeclension("машина", "маши��ы", "машин", Gender.FEMININE),
         "📖" to WordDeclension("книга", "книги", "книг", Gender.FEMININE),
         "⏰" to WordDeclension("часы", "часов", "часов", Gender.MASCULINE),
         "👓" to WordDeclension("очки", "очков", "очков", Gender.MASCULINE),
@@ -100,7 +103,7 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         "🌺" to WordDeclension("цветок", "цветка", "цветков", Gender.MASCULINE),
         "🌸" to WordDeclension("цветок", "цветка", "цветков", Gender.MASCULINE),
         "🌼" to WordDeclension("ромашка", "ромашки", "ромашек", Gender.FEMININE),
-        "🌻" to WordDeclension("подсолнух", "подсолнуха", "подсолнухов", Gender.MASCULINE),
+        "��" to WordDeclension("подсолнух", "подсолнуха", "подсолнухов", Gender.MASCULINE),
         "🌹" to WordDeclension("роза", "розы", "роз", Gender.FEMININE),
         "🌷" to WordDeclension("тюльпан", "тюльпана", "тюльпанов", Gender.MASCULINE),
         "💐" to WordDeclension("букет", "букета", "букетов", Gender.MASCULINE)
@@ -111,7 +114,7 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         NumberSlideData(
             number = 0,
             objects = "",
-            lesson = "Это цифра НОЛЬ. Она означает, что предметов совсем нет, ничего. Ноль - это пустота, отсутствие количества."
+            lesson = "Это цифра НОЛЬ. Она означает, что предметов совсем нет, ничего. Ноль - это пустота, отсутствие ко��ичества."
         ),
         NumberSlideData(
             number = 1,
@@ -131,7 +134,7 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         NumberSlideData(
             number = 4,
             objects = "",
-            lesson = "Это цифра ЧЕТЫРЕ. Она означает четыре предмета. Посмотри - здесь {OBJECT_DESCRIPTION}."
+            lesson = "Это цифра ЧЕТЫРЕ. Она означает четыр�� предмета. Посмотри - здесь {OBJECT_DESCRIPTION}."
         ),
         NumberSlideData(
             number = 5,
@@ -176,14 +179,14 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
 
         val result = StringBuilder()
 
-        // Логика размещения предметов в рядах для лучшего отображения
+        // Логика размещения предмет��в в р��да�� для лучшего отображения
         val itemsPerRow = when (count) {
             1, 2, 3, 4 -> count // 1-4 предмета в один ряд
             5, 6 -> 3 // 5-6 предметов: по 3 в ряд (2 ряда)
             7, 8, 9 -> when (count) {
                 7 -> 4 // 7 предметов: 4 + 3
                 8 -> 4 // 8 предметов: 4 + 4
-                9 -> 5 // 9 предметов: 5 + 4
+                9 -> 5 // 9 п��едметов: 5 + 4
                 else -> 4
             }
             else -> 4
@@ -261,6 +264,7 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         tts = TextToSpeech(this, this)
         initializeViews()
         setupClickListeners()
+        setupSwipeGestures()
         updateSlide()
     }
 
@@ -309,6 +313,43 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
                 animateSlideTransition()
                 speakCurrentLesson() // Озвучиваем при переходе к началу
             }
+        }
+    }
+
+    private lateinit var gestureDetector: GestureDetectorCompat
+
+    private fun setupSwipeGestures() {
+        val listener = object : GestureDetector.SimpleOnGestureListener() {
+            private val SWIPE_THRESHOLD = 100
+            private val SWIPE_VELOCITY_THRESHOLD = 100
+            override fun onDown(e: MotionEvent): Boolean = true
+            override fun onFling(e1: MotionEvent?, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
+                val start = e1 ?: return false
+                val diffX = e2.x - start.x
+                val diffY = e2.y - start.y
+                if (kotlin.math.abs(diffX) > kotlin.math.abs(diffY)
+                    && kotlin.math.abs(diffX) > SWIPE_THRESHOLD
+                    && kotlin.math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+                    return if (diffX > 0) {
+                        // Смахивание вправо -> предыдущий слайд
+                        prevButton.performClick()
+                        true
+                    } else {
+                        // Смахивание влево -> следующий слайд
+                        nextButton.performClick()
+                        true
+                    }
+                }
+                return false
+            }
+        }
+        this.gestureDetector = GestureDetectorCompat(this, listener)
+        // Вешаем слушатель на карточку с цифрой и предметами
+        val swipeArea = findViewById<android.view.View>(R.id.contentCard)
+        swipeArea.setOnTouchListener { v, event ->
+            val consumed = gestureDetector.onTouchEvent(event)
+            if (event.action == MotionEvent.ACTION_UP) v.performClick()
+            consumed
         }
     }
 
@@ -432,7 +473,7 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 tts!!.setLanguage(Locale.getDefault())
             }
-            // Озвучиваем первый слайд после инициализации TTS
+            // Оз��учиваем первый слайд после инициализации TTS
             speakCurrentLesson()
         }
     }
