@@ -58,7 +58,9 @@ class BlockMatchGameView @JvmOverloads constructor(
         // Animations
         var fallOffsetY: Float = 0f, // px offset relative to its grid cell
         var removing: Boolean = false,
-        var removeProgress: Float = 0f
+        var removeProgress: Float = 0f,
+        // Soft-drop флаг: когда пользователь тянет вниз — ускоряем падение только этого тайла
+        var softDrop: Boolean = false
     )
     private val grid: Array<Array<Tile?>> = Array(rows) { arrayOfNulls<Tile?>(cols) }
     private var score = 0
@@ -415,12 +417,13 @@ class BlockMatchGameView @JvmOverloads constructor(
 
     private fun applyGravitySmooth(dt: Float): Boolean {
         var anyFalling = false
-        val fallPxPerSec = fallSpeedCellsPerSec * cellSize
+        val baseFallPxPerSec = fallSpeedCellsPerSec * cellSize
         for (c in 0 until cols) {
             // from bottom-2 to top to pull down chain
             for (r in rows - 2 downTo 0) {
                 val t = grid[r][c] ?: continue
                 if (t.removing) continue
+                val fallPxPerSec = if (t.softDrop) baseFallPxPerSec * 3f else baseFallPxPerSec
                 var belowR = r + 1
                 if (grid[belowR][c] == null) {
                     anyFalling = true
@@ -444,6 +447,8 @@ class BlockMatchGameView @JvmOverloads constructor(
                                 t.fallOffsetY = 0f
                                 landedThisFrame.add(finalR to c)
                             }
+                            // Сброс софт-дропа на приземлении
+                            t.softDrop = false
                         }
                     }
                 } else {
@@ -455,6 +460,8 @@ class BlockMatchGameView @JvmOverloads constructor(
                         // тайл только что приземлился
                         landedThisFrame.add(r to c)
                     }
+                    // Если под нами занято и смещение обнулилось — больше не ускоряем
+                    if (grid[belowR][c] != null && t.fallOffsetY == 0f) t.softDrop = false
                 }
             }
         }
@@ -463,8 +470,34 @@ class BlockMatchGameView @JvmOverloads constructor(
 
     private var pendingScoreGain = 0
     private fun startRemoving(matches: List<List<Pair<Int, Int>>>) {
+        // Жёсткая валидация пар на всякий случай: только 2 соседние по горизонтали плитки,
+        // в одной строке, со совпадающими цифрами и без смещения падения
+        val valid = mutableListOf<Pair<Int, Int>>()
+        val used = mutableSetOf<Pair<Int, Int>>()
+        for (pair in matches) {
+            if (pair.size != 2) continue
+            val (r1, c1) = pair[0]
+            val (r2, c2) = pair[1]
+            if (r1 !in 0 until rows || c1 !in 0 until cols) continue
+            if (r2 !in 0 until rows || c2 !in 0 until cols) continue
+            val t1 = grid[r1][c1]
+            val t2 = grid[r2][c2]
+            if (t1 == null || t2 == null) continue
+            if (t1.removing || t2.removing) continue
+            if (r1 != r2) continue
+            if (kotlin.math.abs(c1 - c2) != 1) continue
+            if (t1.digit != t2.digit) continue
+            if (t1.fallOffsetY != 0f || t2.fallOffsetY != 0f) continue
+            if ((r1 to c1) in used || (r2 to c2) in used) continue
+            valid += (r1 to c1)
+            valid += (r2 to c2)
+            used += (r1 to c1)
+            used += (r2 to c2)
+        }
+        if (valid.isEmpty()) return
+
         pendingScoreGain = 0
-        for (chain in matches) for ((r, c) in chain) {
+        for ((r, c) in valid) {
             val t = grid[r][c]
             if (t != null && !t.removing) {
                 t.removing = true
@@ -587,6 +620,8 @@ class BlockMatchGameView @JvmOverloads constructor(
                 val (c, r) = cellAt(event.x, event.y)
                 movedThisGesture = false
                 if (c in 0 until cols && r in 0 until rows && grid[r][c] != null) {
+                    // Раньше здесь сбрасывался софт-дроп у всех тайлов. Теперь не трогаем его,
+                    // чтобы ускорение продолжалось до приземления даже после отпускания пальца.
                     selC = c; selR = r; selectionPulse = 0f
                     downX = event.x; downY = event.y
                     return true
@@ -602,7 +637,7 @@ class BlockMatchGameView @JvmOverloads constructor(
                 val absDx = abs(dx); val absDy = abs(dy)
                 if (max(absDx, absDy) >= clickSlop) {
                     if (absDx > absDy) {
-                        // Горизонтальное перетягивание: разрешаем движение через пустые ячейки
+                        // Горизонтальное перетягивание: поведение без изменений
                         val dirX = if (dx > 0) 1 else -1
                         val destC = findHorizontalDestination(selR, selC, dirX)
                         if (destC != selC) {
@@ -610,13 +645,25 @@ class BlockMatchGameView @JvmOverloads constructor(
                             doSwapStart(selR, selC, selR, destC)
                         }
                     } else {
-                        // Вертикальное движение: оставляем только своп с занятым соседом
-                        val dirY = if (dy > 0) 1 else -1
+                        // Вертикальное движение
                         val nc = selC
-                        val nr = selR + dirY
-                        if (nc in 0 until cols && nr in 0 until rows && grid[nr][nc] != null) {
+                        val nr = selR
+                        val belowR = nr + 1
+                        if (dy > 0 && nc in 0 until cols && belowR in 0 until rows) {
+                            // Тянем вниз: если ниже пусто — включаем ускоренное падение
+                            val t = grid[nr][nc]
+                            if (t != null && grid[belowR][nc] == null) {
+                                t.softDrop = true
+                                // не считаем это самостоятельным действием, продолжаем слушать жест
+                                return true
+                            }
+                        }
+                        // Иначе — оставляем прежний своп по вертикали с занятым соседом
+                        val dirY = if (dy > 0) 1 else -1
+                        val nbrR = selR + dirY
+                        if (nc in 0 until cols && nbrR in 0 until rows && grid[nbrR][nc] != null) {
                             movedThisGesture = true
-                            doSwapStart(selR, selC, nr, nc)
+                            doSwapStart(selR, selC, nbrR, nc)
                         }
                     }
                 }
@@ -635,13 +682,20 @@ class BlockMatchGameView @JvmOverloads constructor(
                         }
                     }
                 }
+                // Раньше здесь отключали все софт-дропы. Больше этого не делаем —
+                // ускорение сохранится до приземления.
                 performClick()
-                // Завершение жеста, следующий своп возможен только в новом DOWN
                 movedThisGesture = false
                 return true
             }
         }
         return super.onTouchEvent(event)
+    }
+
+    private fun clearAllSoftDrops() {
+        for (r in 0 until rows) for (c in 0 until cols) {
+            grid[r][c]?.softDrop = false
+        }
     }
 
     override fun performClick(): Boolean {

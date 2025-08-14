@@ -4,14 +4,14 @@
     <string name="next">Далее</string>
     <string name="done">Готово</string>
     <string name="draw_number">Закрась цифру %1$d</string>
-    <string name="bubble_catch_title">🎈 Лови цифру</string>
+    <string name="bubble_catch_title">Шарики с цифрами</string>
     <string name="back">Назад</string>
     <string name="speak_target">Озвучить цель</string>
     <string name="find_label">Ищи:</string>
     <string name="score_label">Очки:</string>
     <string name="time_label">Время:</string>
     <string name="initial_time">02:00</string>
-    <string name="results_bubble_catch_title">🎈 Итоги: Лови цифру</string>
+    <string name="results_bubble_catch_title">🎈 Итоги: Шарики с цифрами</string>
     <string name="your_result">Твой результат</string>
     <string name="play_again">🔄 Играть снова</string>
     <string name="main_menu">🏠 Главное меню</string>
@@ -20,8 +20,10 @@
     <string name="block_match_title">💎 Цифровой ряд</string>
     <string name="score">Очки</string>
     <string name="level">Уровень</string>
-    <string name="defeat_title">Поражение</string>
+    <string name="defeat_title">Конец игры</string>
     <string name="defeat_message">Вы набрали %1$d очков</string>
     <string name="retry">Повторить</string>
     <string name="to_home">На главную</string>
+    <string name="block_match_end_title">Отличная игра!</string>
+    <string name="block_match_end_message">Ты заработал(а) %1$d очков</string>
 </resources>

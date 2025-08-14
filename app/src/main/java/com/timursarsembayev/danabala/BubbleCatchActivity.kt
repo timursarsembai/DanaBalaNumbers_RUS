@@ -6,6 +6,13 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.pm.ActivityInfo
 import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.LinearGradient
+import android.graphics.RadialGradient
+import android.graphics.Shader
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
+import android.graphics.RectF
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
@@ -20,14 +27,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AccelerateInterpolator
-import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.util.Locale
@@ -402,14 +407,12 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 }
                 val x = chosenX ?: findFreeX(size, startY)
 
-                // Соз��ание view и модели
+                // Создание view и модели
                 val bubbleView = FrameLayout(this).apply {
                     layoutParams = FrameLayout.LayoutParams(size, size)
                     this.x = x
                     this.y = startY.toFloat()
-                    background = ContextCompat.getDrawable(this@BubbleCatchActivity, R.drawable.ic_balloon)!!.mutate().also {
-                        DrawableCompat.setTint(it, randomBubbleColor())
-                    }
+                    background = createGlossyBubbleDrawable(randomBubbleColor(), size)
                 }
                 val value = if (Random.nextFloat() < targetDigitProbability) targetDigit else {
                     var v: Int; do { v = Random.nextInt(0, 10) } while (v == targetDigit); v
@@ -429,7 +432,7 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 val travelDist = (startY - endY).toFloat()
                 val baseVy = -travelDist / 6f
                 val vy = baseVy * Random.nextDouble(0.85, 1.25).toFloat()
-                val vx = dp(8) * Random.nextDouble(-0.6, 0.6).toFloat() // небольшой боков��й дрейф
+                val vx = dp(8) * Random.nextDouble(-0.6, 0.6).toFloat() // небольшой боковой дрейф
 
                 val model = Bubble(bubbleView, x, startY.toFloat(), vx, vy, radius, value, true)
                 bubbleView.isClickable = true
@@ -584,6 +587,84 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         levelTimer?.cancel()
         stopGradientAnimation()
         tts?.stop(); tts?.shutdown()
+    }
+
+    private fun createGlossyBubbleDrawable(baseColor: Int, sizePx: Int): Drawable {
+        return GlossyBalloonDrawable(this, baseColor)
+    }
+
+    // Кастомный Drawable: сохраняет форму шара с хвостиком (ic_balloon) и накладывает объёмный градиент и блик
+    private class GlossyBalloonDrawable(
+        private val context: android.content.Context,
+        private val baseColor: Int
+    ) : Drawable() {
+        private val rectF = RectF()
+        private val bodyPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isDither = true }
+        private val highlightPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isDither = true }
+        private val xferAtop = PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP)
+
+        override fun draw(canvas: android.graphics.Canvas) {
+            val b = bounds
+            if (b.isEmpty) return
+            rectF.set(b)
+
+            // Подложка: исходный balloon с хвостиком, затонированный базовым цветом
+            val balloon = ContextCompat.getDrawable(context, R.drawable.ic_balloon)?.mutate() ?: return
+            balloon.setTint(baseColor)
+            balloon.bounds = b
+
+            // Градиент тела (радиальный, свет сверху-слева)
+            val cx = b.left + b.width() * 0.35f
+            val cy = b.top + b.height() * 0.35f
+            val radius = max(b.width(), b.height()) * 0.75f
+            bodyPaint.shader = RadialGradient(
+                cx, cy, radius,
+                intArrayOf(lighten(baseColor, 0.28f), baseColor, darken(baseColor, 0.22f)),
+                floatArrayOf(0f, 0.65f, 1f),
+                Shader.TileMode.CLAMP
+            )
+
+            // Блик сверху (линейный градиент)
+            highlightPaint.shader = LinearGradient(
+                b.left.toFloat(), b.top.toFloat(), b.left.toFloat(), b.top + b.height() * 0.7f,
+                intArrayOf(Color.argb(160, 255, 255, 255), Color.argb(40, 255, 255, 255), Color.TRANSPARENT),
+                floatArrayOf(0f, 0.6f, 1f),
+                Shader.TileMode.CLAMP
+            )
+
+            // Слой: рисуем форму, затем накладываем градиенты по SRC_ATOP, чтобы сохранить силуэт (включая хвостик)
+            val save = canvas.saveLayer(rectF, null)
+            balloon.draw(canvas)
+
+            bodyPaint.xfermode = xferAtop
+            canvas.drawRect(rectF, bodyPaint)
+            bodyPaint.xfermode = null
+
+            highlightPaint.xfermode = xferAtop
+            canvas.drawRect(rectF, highlightPaint)
+            highlightPaint.xfermode = null
+
+            canvas.restoreToCount(save)
+        }
+
+        override fun setAlpha(alpha: Int) {}
+        override fun setColorFilter(colorFilter: android.graphics.ColorFilter?) {}
+        override fun getOpacity(): Int = android.graphics.PixelFormat.TRANSLUCENT
+
+        private fun lighten(color: Int, amount: Float): Int {
+            val a = Color.alpha(color)
+            val r = (Color.red(color) + (255 - Color.red(color)) * amount).toInt().coerceIn(0, 255)
+            val g = (Color.green(color) + (255 - Color.green(color)) * amount).toInt().coerceIn(0, 255)
+            val b = (Color.blue(color) + (255 - Color.blue(color)) * amount).toInt().coerceIn(0, 255)
+            return Color.argb(a, r, g, b)
+        }
+        private fun darken(color: Int, amount: Float): Int {
+            val a = Color.alpha(color)
+            val r = (Color.red(color) * (1f - amount)).toInt().coerceIn(0, 255)
+            val g = (Color.green(color) * (1f - amount)).toInt().coerceIn(0, 255)
+            val b = (Color.blue(color) * (1f - amount)).toInt().coerceIn(0, 255)
+            return Color.argb(a, r, g, b)
+        }
     }
 
     companion object { private const val LEVEL_DURATION_MS = 60_000L }
