@@ -129,6 +129,11 @@ class MathExercisesActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Новая детская тренировка сравнения
+        findViewById<CardView>(R.id.cardKidsComparison).setOnClickListener {
+            startActivity(Intent(this, KidsComparisonActivity::class.java))
+        }
+
         findViewById<CardView>(R.id.cardNumberComparison).setOnClickListener {
             val intent = Intent(this, NumberComparisonActivity::class.java)
             startActivity(intent)

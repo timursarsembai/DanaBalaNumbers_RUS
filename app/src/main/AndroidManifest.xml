@@ -92,6 +92,13 @@
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="landscape" />
 
+        <!-- Новая упрощённая тренировка сравнения (детская) -->
+        <activity
+            android:name=".KidsComparisonActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="landscape" />
+
         <!-- Отдельные страницы результатов для каждого упражнения -->
         <activity
             android:name=".NumberRecognitionResultsActivity"
