@@ -148,5 +148,10 @@ class MathExercisesActivity : AppCompatActivity() {
         findViewById<CardView>(R.id.cardBlockMatch)?.setOnClickListener {
             startActivity(Intent(this, BlockMatchActivity::class.java))
         }
+
+        // Новая игра: Шульте (цифры)
+        findViewById<CardView>(R.id.cardSchulteNumbers)?.setOnClickListener {
+            startActivity(Intent(this, SchulteNumbersActivity::class.java))
+        }
     }
 }

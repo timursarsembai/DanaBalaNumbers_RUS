@@ -76,7 +76,7 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     )
 
     // Параметры игры
-    private var currentConcurrentLimit: Int = 5
+    private var currentConcurrentLimit: Int = 10
     private val maxConcurrentCapBase: Int = 15
 
     // Вероятность появления целевой цифры
@@ -209,8 +209,8 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             }
         }.start()
 
-        // Динамика одновременных шариков на уровне
-        currentConcurrentLimit = 5
+        // Динамика одновременных шариков на уровне: стартуем с 10
+        currentConcurrentLimit = 10
         scheduleConcurrencyIncrements()
 
         // Сброс и планирование уменьшения интервала спавна каждые 3 секунды
@@ -269,9 +269,8 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             override fun run() {
                 val active = bubbles.size
                 if (active < currentConcurrentLimit) {
-                    val deficit = currentConcurrentLimit - active
-                    val batch = Random.nextInt(1, min(3, deficit) + 1)
-                    spawnBubbles(batch)
+                    val deficit = (currentConcurrentLimit - active).coerceAtLeast(0)
+                    if (deficit > 0) spawnBubbles(deficit)
                 }
                 handler.postDelayed(this, currentSpawnIntervalMs)
             }

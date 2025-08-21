@@ -92,7 +92,7 @@
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="landscape" />
 
-        <!-- Новая упрощённая тренировка сравнения (детская) -->
+        <!-- Новая упрощённая трениров��а сравнения (детская) -->
         <activity
             android:name=".KidsComparisonActivity"
             android:exported="false"
@@ -183,6 +183,18 @@
             android:name=".BlockMatchResultsActivity"
             android:exported="false"
             android:parentActivityName=".BlockMatchActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- Новая игра: Шульте (цифры) -->
+        <activity
+            android:name=".SchulteNumbersActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SchulteNumbersResultsActivity"
+            android:exported="false"
+            android:parentActivityName=".SchulteNumbersActivity"
             android:screenOrientation="portrait" />
     </application>
 

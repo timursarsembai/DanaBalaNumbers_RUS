@@ -65,7 +65,7 @@ class BlockMatchGameView @JvmOverloads constructor(
     private val grid: Array<Array<Tile?>> = Array(rows) { arrayOfNulls<Tile?>(cols) }
     private var score = 0
     private var level = 1
-    private var nextLevelScoreTarget = 50 // стартовый порог победы/уровня
+    private var nextLevelScoreTarget = 20 // раньше 50, теперь +20 за уровень
 
     // Interaction / selection & swap
     private var selC = -1
@@ -84,10 +84,10 @@ class BlockMatchGameView @JvmOverloads constructor(
     private var swapProgress = 0f
     private val swapDuration = 0.15f // seconds
 
-    // Позиции тайлов, которые сместились вниз со времени последнего стабильного состояния
+    // Позиции тайлов, которые сместились вниз со време��и последнего стабильного состояния
     private val movedDownSinceLastStable = mutableSetOf<Pair<Int, Int>>()
 
-    // Позиции тайлов, которые в этом кадре полностью приземлились (fallOffsetY стал 0)
+    // Позиции тайлов, которы�� в этом кадре полностью приземлились (fallOffsetY стал 0)
     private val landedThisFrame = mutableListOf<Pair<Int, Int>>()
 
     // Paints
@@ -125,7 +125,7 @@ class BlockMatchGameView @JvmOverloads constructor(
     fun resetGame() {
         for (r in 0 until rows) for (c in 0 until cols) grid[r][c] = null
         score = 0; level = 1
-        nextLevelScoreTarget = 50
+        nextLevelScoreTarget = 20
         movedDownSinceLastStable.clear()
         landedThisFrame.clear()
         updateSpeed()
@@ -285,7 +285,7 @@ class BlockMatchGameView @JvmOverloads constructor(
             for ((r, c) in landedThisFrame) {
                 val t = grid.getOrNull(r)?.getOrNull(c) ?: continue
                 if (t.removing || t.fallOffsetY != 0f) continue
-                // левый
+                // ��евый
                 val lc = c - 1
                 if (lc >= 0) {
                     val lt = grid[r][lc]
@@ -578,8 +578,7 @@ class BlockMatchGameView @JvmOverloads constructor(
         var levelChanged = false
         while (score >= nextLevelScoreTarget) {
             level += 1
-            // Следующий порог увеличивается на 10% и округляется вверх
-            nextLevelScoreTarget = ceil(nextLevelScoreTarget * 1.1).toInt()
+            nextLevelScoreTarget += 20 // фиксированный шаг +20 очков
             levelChanged = true
         }
         if (levelChanged) {
@@ -682,7 +681,7 @@ class BlockMatchGameView @JvmOverloads constructor(
                         }
                     }
                 }
-                // Раньше здесь отключали все софт-дропы. Больше этого не делаем —
+                // Раньше здесь отключали все с��фт-дропы. Больше этого не делаем —
                 // ускорение сохранится до приземления.
                 performClick()
                 movedThisGesture = false
