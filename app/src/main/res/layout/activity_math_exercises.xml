@@ -837,7 +837,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Шульте: найди цифры"
+                            android:text="Скорочтение. Шульте"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#3F51B5" />
@@ -845,7 +845,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="5×7, поочередно 0→9"
+                            android:text="Таблица Шульте для тренировки внимания"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />

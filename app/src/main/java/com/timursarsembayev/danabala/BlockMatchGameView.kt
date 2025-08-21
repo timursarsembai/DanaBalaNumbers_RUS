@@ -84,10 +84,10 @@ class BlockMatchGameView @JvmOverloads constructor(
     private var swapProgress = 0f
     private val swapDuration = 0.15f // seconds
 
-    // Позиции тайлов, которые сместились вниз со време��и последнего стабильного состояния
+    // Позиции тайлов, которые сместились вниз со времени последнего стабильного состояния
     private val movedDownSinceLastStable = mutableSetOf<Pair<Int, Int>>()
 
-    // Позиции тайлов, которы�� в этом кадре полностью приземлились (fallOffsetY стал 0)
+    // Позиции тайлов, которые в этом кадре полностью приземлились (fallOffsetY стал 0)
     private val landedThisFrame = mutableListOf<Pair<Int, Int>>()
 
     // Paints
@@ -285,7 +285,7 @@ class BlockMatchGameView @JvmOverloads constructor(
             for ((r, c) in landedThisFrame) {
                 val t = grid.getOrNull(r)?.getOrNull(c) ?: continue
                 if (t.removing || t.fallOffsetY != 0f) continue
-                // ��евый
+                // левый
                 val lc = c - 1
                 if (lc >= 0) {
                     val lt = grid[r][lc]
@@ -681,7 +681,7 @@ class BlockMatchGameView @JvmOverloads constructor(
                         }
                     }
                 }
-                // Раньше здесь отключали все с��фт-дропы. Больше этого не делаем —
+                // Раньше здесь отключали все софт-дропы. Больше этого не делаем —
                 // ускорение сохранится до приземления.
                 performClick()
                 movedThisGesture = false

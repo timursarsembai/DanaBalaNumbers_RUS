@@ -97,6 +97,10 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         "🌟", "⭐", "✨", "🌺", "🌸", "🌼", "🌻", "🌹"
     )
 
+    // Текущее выделение пользователя
+    private enum class Selected { NONE, LEFT, RIGHT }
+    private var selected: Selected = Selected.NONE
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Keep landscape like original comparison
@@ -151,20 +155,18 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
     private fun onSideSelected(isLeft: Boolean) {
         if (nextButton.visibility == View.VISIBLE) return
 
-        // Озвучиваем выбранный вариант с названием предмета
+        // Устанавливаем выбранную сторону и обновляем UI выделения
+        selected = if (isLeft) Selected.LEFT else Selected.RIGHT
+        updateSelectionUI()
+
+        // Озвучиваем выбранный вариант с корректным определением пола
         speakSelectionQuestion(isLeft)
+
+        // Показать в центре символ выбора пользователя: слева выбирают «больше», значит '>'
+        showCenterSymbol(if (isLeft) ">" else "<")
 
         val correctLeft = leftCount > rightCount
         val correctRight = rightCount > leftCount
-
-        // Determine symbol for relation left ? right
-        val symbol = when {
-            leftCount > rightCount -> ">"
-            rightCount > leftCount -> "<"
-            else -> "="
-        }
-        showCenterSymbol(symbol)
-
         val isCorrect = (isLeft && correctLeft) || (!isLeft && correctRight)
 
         if (isCorrect) {
@@ -178,11 +180,13 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         } else {
             hintText.text = "Попробуй ещё раз"
             hintText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
-            // light red highlight for 0.5s on the tapped card
+            // временная красная подсветка на нажатой карточке
             val card = if (isLeft) leftCard else rightCard
-            val originalColor = ContextCompat.getColor(this, android.R.color.white)
+            val originalColor = (if (selected == (if (isLeft) Selected.LEFT else Selected.RIGHT))
+                ContextCompat.getColor(this, android.R.color.holo_blue_light)
+            else ContextCompat.getColor(this, android.R.color.white))
             card.setCardBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_red_light))
-            card.postDelayed({ card.setCardBackgroundColor(originalColor) }, 500)
+            card.postDelayed({ updateSelectionUI() }, 500)
             centerSymbol.setBackgroundResource(R.drawable.number_drop_zone)
             animateShake(card)
         }
@@ -190,6 +194,10 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
 
     private fun onEqualSelected() {
         if (nextButton.visibility == View.VISIBLE) return
+        // Сброс выделения при выборе равенства
+        selected = Selected.NONE
+        updateSelectionUI()
+
         // Озвучка равенства
         val item = getItemNamePlural()
         val ending = confirmationEndings.random()
@@ -212,16 +220,14 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
             hintText.text = "Попробуй ещё раз"
             hintText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
             centerSymbol.setBackgroundResource(R.drawable.number_input_incorrect)
-            // вернуть фон через 500 мс
             centerSymbol.postDelayed({ centerSymbol.setBackgroundResource(R.drawable.number_drop_zone) }, 500)
             animateShake(centerSymbol)
         }
     }
 
-    private fun showCenterSymbol(symbol: String) {
-        centerSymbol.text = symbol
-    }
+    private fun showCenterSymbol(symbol: String) { centerSymbol.text = symbol }
 
+    // Пульсация (успех)
     private fun animatePulse(view: View) {
         val sx = ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.15f, 1f)
         val sy = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.15f, 1f)
@@ -232,14 +238,37 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         }
     }
 
+    // Тряска (ошибка)
     private fun animateShake(view: View) {
         val anim = ObjectAnimator.ofFloat(view, "translationX", 0f, -10f, 10f, -5f, 5f, 0f)
         anim.duration = 500
         anim.start()
     }
 
+    // Обновляет визуальное выделение выбранной карточки
+    private fun updateSelectionUI() {
+        val blue = ContextCompat.getColor(this, android.R.color.holo_blue_light)
+        val white = ContextCompat.getColor(this, android.R.color.white)
+        when (selected) {
+            Selected.LEFT -> {
+                leftCard.setCardBackgroundColor(blue)
+                rightCard.setCardBackgroundColor(white)
+            }
+            Selected.RIGHT -> {
+                leftCard.setCardBackgroundColor(white)
+                rightCard.setCardBackgroundColor(blue)
+            }
+            Selected.NONE -> {
+                leftCard.setCardBackgroundColor(white)
+                rightCard.setCardBackgroundColor(white)
+            }
+        }
+    }
+
     private fun generateNewQuestion() {
         nextButton.visibility = View.GONE
+        selected = Selected.NONE
+        updateSelectionUI()
         centerSymbol.text = ""
         centerSymbol.setBackgroundResource(R.drawable.number_drop_zone)
 
@@ -302,6 +331,7 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         intent.putExtra("score", score)
         intent.putExtra("totalCorrectAnswers", totalCorrectAnswers)
         intent.putExtra("totalQuestions", totalQuestions)
+        intent.putExtra("fromKidsComparison", true)
         startActivity(intent)
         finish()
     }
@@ -314,11 +344,10 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
     private fun speakSelectionQuestion(isLeft: Boolean) {
         val item = getItemNamePlural()
         val ending = confirmationEndings.random()
-        val phrase = if (isLeft) {
-            "У мальчика $item больше, чем у девочки? $ending"
-        } else {
-            "У девочки $item больше, чем у мальчика? $ending"
-        }
+        val selectedIsBoy = if (isLeft) leftIsBoy else !leftIsBoy
+        val subject = if (selectedIsBoy) "мальчика" else "девочки"
+        val other = if (selectedIsBoy) "девочки" else "мальчика"
+        val phrase = "У $subject $item больше, чем у $other? $ending"
         tts?.speak(phrase, TextToSpeech.QUEUE_FLUSH, null, null)
     }
 

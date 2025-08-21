@@ -336,7 +336,7 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                     a.y -= ny * (overlap / 2f)
                     c.x += nx * (overlap / 2f)
                     c.y += ny * (overlap / 2f)
-                    // Импульс по ��ормали (равные массы)
+                    // Импульс по нормали (равные массы)
                     val rvx = c.vx - a.vx
                     val rvy = c.vy - a.vy
                     val vn = rvx * nx + rvy * ny
@@ -468,7 +468,7 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
     }
 
-    // Строгая проверка перекрытий: радиусы + гориз./верт. з��зоры
+    // Строгая проверка перекрытий: радиусы + гориз./верт. зазоры
     private fun willOverlapStrict(xTopLeft: Float, yTopLeft: Float, size: Int): Boolean {
         val cx = xTopLeft + size / 2f
         val cy = yTopLeft + size / 2f

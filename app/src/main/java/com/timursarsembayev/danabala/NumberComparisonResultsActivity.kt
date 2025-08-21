@@ -69,6 +69,7 @@ class NumberComparisonResultsActivity : AppCompatActivity(), TextToSpeech.OnInit
         val score = intent.getIntExtra("score", 0)
         val totalCorrectAnswers = intent.getIntExtra("totalCorrectAnswers", 0)
         val totalQuestions = intent.getIntExtra("totalQuestions", 20)
+        val fromKidsComparison = intent.getBooleanExtra("fromKidsComparison", false)
 
         val scoreDisplay = findViewById<TextView>(R.id.scoreDisplay)
         val correctAnswersDisplay = findViewById<TextView>(R.id.correctAnswersDisplay)
@@ -122,7 +123,7 @@ class NumberComparisonResultsActivity : AppCompatActivity(), TextToSpeech.OnInit
 
         // Кнопки
         findViewById<Button>(R.id.restartButton).setOnClickListener {
-            val intent = Intent(this, NumberComparisonActivity::class.java)
+            val intent = Intent(this, if (fromKidsComparison) KidsComparisonActivity::class.java else NumberComparisonActivity::class.java)
             startActivity(intent)
             finish()
         }
