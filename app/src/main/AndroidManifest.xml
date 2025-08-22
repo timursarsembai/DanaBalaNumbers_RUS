@@ -92,7 +92,7 @@
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="landscape" />
 
-        <!-- Новая упрощённая трениров��а сравнения (детская) -->
+        <!-- Новая упрощённая тренировка сравнения (детская) -->
         <activity
             android:name=".KidsComparisonActivity"
             android:exported="false"
@@ -196,6 +196,19 @@
             android:exported="false"
             android:parentActivityName=".SchulteNumbersActivity"
             android:screenOrientation="portrait" />
+
+        <!-- Новая тренировка: Ошибка в ряду (только альбомная ориентация) -->
+        <activity
+            android:name=".RowErrorActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="landscape" />
+
+        <activity
+            android:name=".RowErrorResultsActivity"
+            android:exported="false"
+            android:parentActivityName=".RowErrorActivity"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

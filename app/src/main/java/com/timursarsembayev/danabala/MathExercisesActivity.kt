@@ -153,5 +153,10 @@ class MathExercisesActivity : AppCompatActivity() {
         findViewById<CardView>(R.id.cardSchulteNumbers)?.setOnClickListener {
             startActivity(Intent(this, SchulteNumbersActivity::class.java))
         }
+
+        // Новая тренировка: Ошибка в ряду
+        findViewById<CardView>(R.id.cardRowError)?.setOnClickListener {
+            startActivity(Intent(this, RowErrorActivity::class.java))
+        }
     }
 }

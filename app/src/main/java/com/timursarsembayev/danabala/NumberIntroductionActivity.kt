@@ -56,10 +56,10 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
     enum class Gender {
         MASCULINE,  // мужской род
         FEMININE,   // женский род
-        NEUTER      // ��редний род
+        NEUTER      // средний род
     }
 
-    // Полная табли��������а склонений для всех объектов
+    // Полная таблица склонений для всех объектов
     private val objectDeclensions = mapOf(
         "🎈" to WordDeclension("шарик", "шарика", "шариков", Gender.MASCULINE),
         "🎁" to WordDeclension("подарок", "подарка", "подарков", Gender.MASCULINE),
@@ -84,7 +84,7 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         "✨" to WordDeclension("искорка", "искорки", "искорок", Gender.FEMININE),
         "☀️" to WordDeclension("солнце", "солнца", "солнц", Gender.NEUTER),
         "🌙" to WordDeclension("луна", "луны", "лун", Gender.FEMININE),
-        "🦋" to WordDeclension("бабоч��а", "бабочки", "бабочек", Gender.FEMININE),
+        "🦋" to WordDeclension("бабочка", "бабочки", "бабочек", Gender.FEMININE),
         "🐝" to WordDeclension("пчела", "пчелы", "пчел", Gender.FEMININE),
         "🐞" to WordDeclension("божья коровка", "божьей коровки", "божьих коровок", Gender.FEMININE),
         "🐸" to WordDeclension("лягушка", "лягушки", "лягушек", Gender.FEMININE),
@@ -95,7 +95,7 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         "🚌" to WordDeclension("автобус", "автобуса", "автобусов", Gender.MASCULINE),
         "🚓" to WordDeclension("машина", "машины", "машин", Gender.FEMININE),
         "🚑" to WordDeclension("машина", "машины", "машин", Gender.FEMININE),
-        "🚒" to WordDeclension("машина", "маши��ы", "машин", Gender.FEMININE),
+        "🚒" to WordDeclension("машина", "машины", "машин", Gender.FEMININE),
         "📖" to WordDeclension("книга", "книги", "книг", Gender.FEMININE),
         "⏰" to WordDeclension("часы", "часов", "часов", Gender.MASCULINE),
         "👓" to WordDeclension("очки", "очков", "очков", Gender.MASCULINE),
@@ -103,7 +103,7 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         "🌺" to WordDeclension("цветок", "цветка", "цветков", Gender.MASCULINE),
         "🌸" to WordDeclension("цветок", "цветка", "цветков", Gender.MASCULINE),
         "🌼" to WordDeclension("ромашка", "ромашки", "ромашек", Gender.FEMININE),
-        "��" to WordDeclension("подсолнух", "подсолнуха", "подсолнухов", Gender.MASCULINE),
+        "🌻" to WordDeclension("подсолнух", "подсолнуха", "подсолнухов", Gender.MASCULINE),
         "🌹" to WordDeclension("роза", "розы", "роз", Gender.FEMININE),
         "🌷" to WordDeclension("тюльпан", "тюльпана", "тюльпанов", Gender.MASCULINE),
         "💐" to WordDeclension("букет", "букета", "букетов", Gender.MASCULINE)
@@ -114,7 +114,7 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         NumberSlideData(
             number = 0,
             objects = "",
-            lesson = "Это цифра НОЛЬ. Она означает, что предметов совсем нет, ничего. Ноль - это пустота, отсутствие ко��ичества."
+            lesson = "Это цифра НОЛЬ. Она означает, что предметов совсем нет, ничего. Ноль - это пустота, отсутствие количества."
         ),
         NumberSlideData(
             number = 1,
@@ -134,7 +134,7 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         NumberSlideData(
             number = 4,
             objects = "",
-            lesson = "Это цифра ЧЕТЫРЕ. Она означает четыр�� предмета. Посмотри - здесь {OBJECT_DESCRIPTION}."
+            lesson = "Это цифра ЧЕТЫРЕ. Она означает четыре предмета. Посмотри - здесь {OBJECT_DESCRIPTION}."
         ),
         NumberSlideData(
             number = 5,
@@ -179,14 +179,14 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
 
         val result = StringBuilder()
 
-        // Логика размещения предмет��в в р��да�� для лучшего отображения
+        // Логика размещения предметов в рода для лучшего отображения
         val itemsPerRow = when (count) {
             1, 2, 3, 4 -> count // 1-4 предмета в один ряд
             5, 6 -> 3 // 5-6 предметов: по 3 в ряд (2 ряда)
             7, 8, 9 -> when (count) {
                 7 -> 4 // 7 предметов: 4 + 3
                 8 -> 4 // 8 предметов: 4 + 4
-                9 -> 5 // 9 п��едметов: 5 + 4
+                9 -> 5 // 9 предметов: 5 + 4
                 else -> 4
             }
             else -> 4
@@ -473,7 +473,7 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 tts!!.setLanguage(Locale.getDefault())
             }
-            // Оз��учиваем первый слайд после инициализации TTS
+            // Озвучиваем первый слайд после инициализации TTS
             speakCurrentLesson()
         }
     }
