@@ -221,6 +221,18 @@
             android:exported="false"
             android:parentActivityName=".SnakeMathActivity"
             android:screenOrientation="portrait" />
+
+        <!-- Новая игра: Сортер -->
+        <activity
+            android:name=".SorterActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SorterResultsActivity"
+            android:exported="false"
+            android:parentActivityName=".SorterActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

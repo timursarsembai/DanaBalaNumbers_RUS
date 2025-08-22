@@ -163,5 +163,10 @@ class MathExercisesActivity : AppCompatActivity() {
         findViewById<CardView>(R.id.cardSnakeMath)?.setOnClickListener {
             startActivity(Intent(this, SnakeMathActivity::class.java))
         }
+
+        // Новая игра: Сортер
+        findViewById<CardView>(R.id.cardSorter)?.setOnClickListener {
+            startActivity(Intent(this, SorterActivity::class.java))
+        }
     }
 }
