@@ -26,4 +26,7 @@
     <string name="to_home">На главную</string>
     <string name="block_match_end_title">Отличная игра!</string>
     <string name="block_match_end_message">Ты заработал(а) %1$d очков</string>
+    <string name="snake_math_title">🐍 Змейка в математике</string>
+    <string name="snake_math_results_title">Итоги: Змейка в математике</string>
+    <string name="levels_completed">Пройдено уровней: %1$d</string>
 </resources>

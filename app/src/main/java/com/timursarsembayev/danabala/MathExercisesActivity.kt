@@ -158,5 +158,10 @@ class MathExercisesActivity : AppCompatActivity() {
         findViewById<CardView>(R.id.cardRowError)?.setOnClickListener {
             startActivity(Intent(this, RowErrorActivity::class.java))
         }
+
+        // Новая игра: Змейка в математике
+        findViewById<CardView>(R.id.cardSnakeMath)?.setOnClickListener {
+            startActivity(Intent(this, SnakeMathActivity::class.java))
+        }
     }
 }
