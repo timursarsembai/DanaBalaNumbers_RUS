@@ -233,6 +233,13 @@
             android:exported="false"
             android:parentActivityName=".SorterActivity"
             android:screenOrientation="portrait" />
+
+        <!-- Новая игра: Судоку (детское) -->
+        <activity
+            android:name=".SudokuKidsActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

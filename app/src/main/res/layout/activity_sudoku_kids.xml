@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/child_gradient_blue"
+    android:padding="12dp">
+
+    <!-- Верхняя панель -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="#FFFFFFFF"
+        android:layout_marginBottom="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp">
+
+            <ImageButton
+                android:id="@+id/buttonBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/back"
+                android:background="@drawable/bg_tab_item"
+                app:tint="#1976D2"
+                android:src="@drawable/ic_arrow_back" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Простой судоку"
+                android:textStyle="bold"
+                android:textColor="#1565C0"
+                android:textSize="20sp"
+                android:gravity="center" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Инфо-блок: Размер | Таймер | Уровень -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="#FFFFFFFF"
+        android:layout_marginBottom="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp">
+
+            <!-- Размер -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="start">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Размер"
+                    android:textColor="#666"/>
+                <TextView
+                    android:id="@+id/textSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3×3"
+                    android:textStyle="bold"
+                    android:textColor="#2E7D32"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+            <!-- Таймер -->
+            <TextView
+                android:id="@+id/timerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="00:00.00"
+                android:textStyle="bold"
+                android:textColor="#1565C0"
+                android:textSize="20sp"
+                android:gravity="center" />
+
+            <!-- Уровень -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="end">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Уровень"
+                    android:textColor="#666"/>
+                <TextView
+                    android:id="@+id/textLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textStyle="bold"
+                    android:textColor="#00838F"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Игровое поле -->
+    <com.timursarsembayev.danabalanumbers.SudokuKidsView
+        android:id="@+id/sudokuKidsView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"/>
+
+    <!-- Кнопка подтверждения перехода на следующий уровень -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonNextLevel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Следующий уровень"
+        android:visibility="gone"
+        android:layout_marginTop="12dp"
+        app:cornerRadius="16dp"
+        style="@style/Widget.MaterialComponents.Button"
+        />
+
+</LinearLayout>

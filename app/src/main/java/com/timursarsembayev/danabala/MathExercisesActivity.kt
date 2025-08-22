@@ -168,5 +168,10 @@ class MathExercisesActivity : AppCompatActivity() {
         findViewById<CardView>(R.id.cardSorter)?.setOnClickListener {
             startActivity(Intent(this, SorterActivity::class.java))
         }
+
+        // Новая игра: Судоку (детское)
+        findViewById<CardView>(R.id.cardSudokuKids)?.setOnClickListener {
+            startActivity(Intent(this, SudokuKidsActivity::class.java))
+        }
     }
 }
