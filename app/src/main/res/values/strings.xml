@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DanaBala: Math Level 0</string>
+    <string name="app_name">DanaBala: Учим цифры и числа</string>
     <!-- Новые строки для упражнения рисования цифр -->
     <string name="next">Далее</string>
     <string name="done">Готово</string>
@@ -29,4 +29,5 @@
     <string name="snake_math_title">🐍 Змейка в математике</string>
     <string name="snake_math_results_title">Итоги: Змейка в математике</string>
     <string name="levels_completed">Пройдено уровней: %1$d</string>
+    <!-- Удалены дубли paywall_*; они определены в strings_paywall.xml -->
 </resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="paywall_title">Полная версия</string>
+    <string name="paywall_description">Откройте все игры и упражнения. Разовая покупка, без подписки.</string>
+    <string name="paywall_buy">Купить полную версию</string>
+    <string name="paywall_restore">Восстановить покупки</string>
+    <string name="paywall_unavailable">Покупка пока недоступна. Попробуйте позже.</string>
+    <string name="paywall_restore_requested">Запрос на восстановление отправлен</string>
+    <string name="paywall_thanks">Покупка активирована. Спасибо!</string>
+</resources>
+

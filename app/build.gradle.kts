@@ -70,6 +70,9 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
+    // Google Play Billing (для монетизации разовой покупкой)
+    implementation("com.android.billingclient:billing-ktx:6.2.1")
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

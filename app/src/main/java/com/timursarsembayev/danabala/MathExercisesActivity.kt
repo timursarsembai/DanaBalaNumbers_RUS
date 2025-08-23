@@ -10,6 +10,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.tabs.TabLayout
 
 class MathExercisesActivity : AppCompatActivity() {
+    private val billing by lazy { (application as DanaBalApplication).billing }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_math_exercises)
@@ -83,95 +85,72 @@ class MathExercisesActivity : AppCompatActivity() {
             .start()
     }
 
+    private fun openOrPaywall(clazz: Class<*>) {
+        val intent = if (billing.isPremium()) Intent(this, clazz) else Intent(this, PaywallActivity::class.java)
+        startActivity(intent)
+    }
+
     private fun setupExerciseCards() {
+        // Бесплатно: первые 4 тренировки
         findViewById<CardView>(R.id.cardNumberIntroduction).setOnClickListener {
-            val intent = Intent(this, NumberIntroductionActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, NumberIntroductionActivity::class.java))
         }
-
         findViewById<CardView>(R.id.cardNumbers).setOnClickListener {
-            val intent = Intent(this, NumberRecognitionActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, NumberRecognitionActivity::class.java))
         }
-
         findViewById<CardView>(R.id.cardCounting).setOnClickListener {
-            val intent = Intent(this, CountingActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, CountingActivity::class.java))
         }
-
         findViewById<CardView>(R.id.cardObjectCounting).setOnClickListener {
-            val intent = Intent(this, ObjectCountingActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, ObjectCountingActivity::class.java))
         }
 
+        // Остальные тренировки — только в полной версии
         findViewById<CardView>(R.id.cardMatching).setOnClickListener {
-            val intent = Intent(this, MatchingActivity::class.java)
-            startActivity(intent)
+            openOrPaywall(MatchingActivity::class.java)
         }
-
         findViewById<CardView>(R.id.cardAudioMatching).setOnClickListener {
-            val intent = Intent(this, AudioMatchingActivity::class.java)
-            startActivity(intent)
+            openOrPaywall(AudioMatchingActivity::class.java)
         }
-
-        findViewById<CardView>(R.id.cardNumberDrawing).setOnClickListener {
-            val intent = Intent(this, NumberDrawingActivity::class.java)
-            startActivity(intent)
-        }
-
         findViewById<CardView>(R.id.cardAscendingSequence).setOnClickListener {
-            val intent = Intent(this, AscendingSequenceActivity::class.java)
-            startActivity(intent)
+            openOrPaywall(AscendingSequenceActivity::class.java)
         }
-
         findViewById<CardView>(R.id.cardDescendingSequence).setOnClickListener {
-            val intent = Intent(this, DescendingSequenceActivity::class.java)
-            startActivity(intent)
+            openOrPaywall(DescendingSequenceActivity::class.java)
         }
-
-        // Новая детская тренировка сравнения
         findViewById<CardView>(R.id.cardKidsComparison).setOnClickListener {
-            startActivity(Intent(this, KidsComparisonActivity::class.java))
+            openOrPaywall(KidsComparisonActivity::class.java)
         }
-
         findViewById<CardView>(R.id.cardNumberComparison).setOnClickListener {
-            val intent = Intent(this, NumberComparisonActivity::class.java)
-            startActivity(intent)
+            openOrPaywall(NumberComparisonActivity::class.java)
         }
 
-        findViewById<CardView>(R.id.cardBubbleCatch).setOnClickListener {
-            val intent = Intent(this, BubbleCatchActivity::class.java)
-            startActivity(intent)
+        // Игры: бесплатно первые 2 (Рисование цифр, Шарики с цифрами)
+        findViewById<CardView>(R.id.cardNumberDrawing).setOnClickListener {
+            startActivity(Intent(this, NumberDrawingActivity::class.java))
+        }
+        findViewById<CardView>(R.id.cardBubbleCatch)?.setOnClickListener {
+            startActivity(Intent(this, BubbleCatchActivity::class.java))
         }
 
-        // Новая игра: Цифровой ряд
+        // Остальные игры — только в полной версии
         findViewById<CardView>(R.id.cardBlockMatch)?.setOnClickListener {
-            startActivity(Intent(this, BlockMatchActivity::class.java))
+            openOrPaywall(BlockMatchActivity::class.java)
         }
-
-        // Новая игра: Шульте (цифры)
         findViewById<CardView>(R.id.cardSchulteNumbers)?.setOnClickListener {
-            startActivity(Intent(this, SchulteNumbersActivity::class.java))
+            openOrPaywall(SchulteNumbersActivity::class.java)
         }
-
-        // Новая тренировка: Ошибка в ряду
         findViewById<CardView>(R.id.cardRowError)?.setOnClickListener {
-            startActivity(Intent(this, RowErrorActivity::class.java))
+            openOrPaywall(RowErrorActivity::class.java)
         }
-
-        // Новая игра: Змейка в математике
         findViewById<CardView>(R.id.cardSnakeMath)?.setOnClickListener {
-            startActivity(Intent(this, SnakeMathActivity::class.java))
+            openOrPaywall(SnakeMathActivity::class.java)
         }
-
-        // Новая игра: Сортер
         findViewById<CardView>(R.id.cardSorter)?.setOnClickListener {
-            startActivity(Intent(this, SorterActivity::class.java))
+            openOrPaywall(SorterActivity::class.java)
         }
-
-        // Новая игра: Судоку (детское)
         findViewById<CardView>(R.id.cardSudokuKids)?.setOnClickListener {
-            startActivity(Intent(this, SudokuKidsActivity::class.java))
+            openOrPaywall(SudokuKidsActivity::class.java)
         }
     }
 }

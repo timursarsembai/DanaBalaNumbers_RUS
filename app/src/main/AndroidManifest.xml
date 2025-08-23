@@ -29,6 +29,13 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
 
+        <!-- Экран оплаты (пейволл) -->
+        <activity
+            android:name=".PaywallActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".NumberIntroductionActivity"
             android:exported="false"
@@ -99,7 +106,7 @@
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="landscape" />
 
-        <!-- Отдельные страницы результатов для каждого упражнения -->
+        <!-- Отдельные страницы результатов для каждого упр��жнения -->
         <activity
             android:name=".NumberRecognitionResultsActivity"
             android:exported="false"
@@ -185,7 +192,7 @@
             android:parentActivityName=".BlockMatchActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Новая игра: Шульте (цифры) -->
+        <!-- Новая игра: Шульте (ц��фры) -->
         <activity
             android:name=".SchulteNumbersActivity"
             android:exported="false"

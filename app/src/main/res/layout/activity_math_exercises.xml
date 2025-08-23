@@ -32,7 +32,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="DanaBala:\nИзучение цифр и чисел"
+                android:text="DanaBala:\nУчим цифры и числа"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#1565C0" />
@@ -67,7 +67,7 @@
                 android:layout_margin="4dp" />
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Контейнер: Тр��нировки (по умолчанию видим) -->
+        <!-- Контейнер: Тренировки (по умолчанию видим) -->
         <LinearLayout
             android:id="@+id/trainingsContainer"
             android:layout_width="match_parent"
