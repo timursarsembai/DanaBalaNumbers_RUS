@@ -59,4 +59,26 @@
     <string name="training_next_exercise">Келесі жаттығу</string>
     <string name="training_repeat_exercise">Жаттығуды қайталау</string>
     <string name="training_progress">Үрдіс: %2$d-ден %1$d</string>
+
+    <!-- Сабақтар: Сандармен танысу -->
+    <string name="training_number_intro_lesson_0">Бұл НӨЛ саны. Ол мүлде зат жоқ екенін білдіреді. Нөл — санның болмауы.</string>
+    <string name="training_number_intro_lesson_1">Бұл БІР саны. Ол бір затты білдіреді. Қара — мұнда {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_2">Бұл ЕКІ саны. Ол екі затты, жұпты білдіреді. Қара — мұнда {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_3">Бұл ҮШ саны. Ол үш затты білдіреді. Қара — мұнда {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_4">Бұл ТӨРТ саны. Ол төрт затты білдіреді. Қара — мұнда {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_5">Бұл БЕС саны. Ол бес затты білдіреді. Қара — мұнда {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_6">Бұл АЛТЫ саны. Ол алты затты білдіреді. Қара — мұнда {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_7">Бұл ЖЕТІ саны. Ол жеті затты білдіреді. Қара — мұнда {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_8">Бұл СЕГІЗ саны. Ол сегіз затты білдіреді. Қара — мұнда {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_9">Бұл ТОҒЫЗ саны. Ол тоғыз затты білдіреді. Қара — мұнда {OBJECT_DESCRIPTION}.</string>
+
+    <!-- "бір" үшін гендерлік варианттар (барлығы бірдей) -->
+    <string name="number_name_1_masc">бір</string>
+    <string name="number_name_1_fem">бір</string>
+    <string name="number_name_1_neut">бір</string>
+
+    <plurals name="objects_count">
+        <item quantity="one">%d зат</item>
+        <item quantity="other">%d зат</item>
+    </plurals>
 </resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Объектілер (Қазақша) -->
+    <string-array name="number_intro_object_emojis">
+        <item>🎈</item><item>🎁</item><item>🎂</item><item>🎨</item><item>🎲</item><item>🎭</item>
+        <item>🍎</item><item>🍌</item><item>🍇</item><item>🍓</item><item>🍒</item><item>🥕</item><item>🥒</item><item>🍅</item>
+        <item>⚽</item><item>🏀</item><item>🎾</item><item>🏐</item>
+        <item>🌟</item><item>⭐</item><item>✨</item><item>☀️</item><item>🌙</item>
+        <item>🦋</item><item>🐝</item><item>🐞</item><item>🐸</item><item>🐢</item><item>🐠</item><item>🐛</item>
+        <item>🚗</item><item>🚌</item><item>🚓</item><item>🚑</item><item>🚒</item>
+        <item>📖</item><item>⏰</item><item>👓</item><item>👑</item>
+        <item>🌺</item><item>🌸</item><item>🌼</item><item>🌻</item><item>🌹</item><item>🌷</item><item>💐</item>
+    </string-array>
+
+    <!-- Қазақша: есімдер көбіне жалқы (ед. сан) түрде қолданылады -->
+    <string-array name="number_intro_object_nominative">
+        <item>шар</item><item>сыйлық</item><item>торт</item><item>бояу</item><item>текше</item><item>маска</item>
+        <item>алма</item><item>банан</item><item>жүзім</item><item>құлпынай</item><item>шие</item><item>сәбіз</item><item>қияр</item><item>қызанақ</item>
+        <item>доп</item><item>баскетбол добы</item><item>теннис добы</item><item>волейбол добы</item>
+        <item>жұлдыз</item><item>жұлдызша</item><item>жарқыл</item><item>күн</item><item>ай</item>
+        <item>көбелек</item><item>ара</item><item>күнқауыз қоңызы</item><item>бақа</item><item>тасбақа</item><item>балық</item><item>жұлдызқұрт</item>
+        <item>машина</item><item>автобус</item><item>полиция көлігі</item><item>жедел жәрдем</item><item>өрт сөндіру көлігі</item>
+        <item>кітап</item><item>сағат</item><item>көзілдірік</item><item>тәж</item>
+        <item>гүл</item><item>гүл</item><item>түймедақ</item><item>күнбағыс</item><item>раушан</item><item>қызғалдақ</item><item>гүл шоғы</item>
+    </string-array>
+
+    <!-- gen_singular/gen_plural толтыру үшін, RU емес локалдарда логика тек nominative қолданады -->
+    <string-array name="number_intro_object_gen_singular">
+        <item>шар</item><item>сыйлық</item><item>торт</item><item>бояу</item><item>текше</item><item>маска</item>
+        <item>алма</item><item>банан</item><item>жүзім</item><item>құлпынай</item><item>шие</item><item>сәбіз</item><item>қияр</item><item>қызанақ</item>
+        <item>доп</item><item>баскетбол добы</item><item>теннис добы</item><item>волейбол добы</item>
+        <item>жұлдыз</item><item>жұлдызша</item><item>жарқыл</item><item>күн</item><item>ай</item>
+        <item>көбелек</item><item>ара</item><item>күнқауыз қоңызы</item><item>бақа</item><item>тасбақа</item><item>балық</item><item>жұлдызқұрт</item>
+        <item>машина</item><item>автобус</item><item>полиция көлігі</item><item>жедел жәрдем</item><item>өрт сөндіру көлігі</item>
+        <item>кітап</item><item>сағат</item><item>көзілдірік</item><item>тәж</item>
+        <item>гүл</item><item>гүл</item><item>түймедақ</item><item>күнбағыс</item><item>раушан</item><item>қызғалдақ</item><item>гүл шоғы</item>
+    </string-array>
+
+    <string-array name="number_intro_object_gen_plural">
+        <item>шарлар</item><item>сыйлықтар</item><item>торттар</item><item>бояулар</item><item>текшелер</item><item>маскалар</item>
+        <item>алмалар</item><item>банандар</item><item>жүзімдер</item><item>құлпынайлар</item><item>шилер</item><item>сәбіздер</item><item>қиярлар</item><item>қызанақтар</item>
+        <item>доптар</item><item>баскетбол доптары</item><item>теннис доптары</item><item>волейбол доптары</item>
+        <item>жұлдыздар</item><item>жұлдызшалар</item><item>жарқылдар</item><item>күндер</item><item>айлар</item>
+        <item>көбелектер</item><item>аралар</item><item>күнқауыз қоңыздары</item><item>бақалар</item><item>тасбақалар</item><item>балықтар</item><item>жұлдызқұрттар</item>
+        <item>машиналар</item><item>автобустар</item><item>полиция көліктері</item><item>жедел жәрдемдер</item><item>өрт сөндіру көліктері</item>
+        <item>кітаптар</item><item>сағаттар</item><item>көзілдіріктер</item><item>тәждер</item>
+        <item>гүлдер</item><item>гүлдер</item><item>түймедақтар</item><item>күнбағыстар</item><item>раушандар</item><item>қызғалдақтар</item><item>гүл шоқтары</item>
+    </string-array>
+</resources>
+

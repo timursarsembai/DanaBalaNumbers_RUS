@@ -84,4 +84,11 @@
     <string name="main_game_sorter_desc">Sort digits by columns</string>
     <string name="main_game_sudoku_title">Simple Sudoku</string>
     <string name="main_game_sudoku_desc">Digits without repeats in rows and columns</string>
+    <string name="initial_slide_indicator">1 / 10</string>
+    <string name="empty_set_symbol">∅</string>
+    <string name="speak_lesson">Speak lesson</string>
+    <string name="training_prev_with_arrow">← Back</string>
+    <string name="training_next_with_arrow">Next →</string>
+    <string name="training_to_start_with_arrow">Back to start ↺</string>
+    <string name="slide_indicator_format">%1$d / %2$d</string>
 </resources>

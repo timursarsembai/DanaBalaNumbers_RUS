@@ -59,4 +59,26 @@
     <string name="training_next_exercise">Next Exercise</string>
     <string name="training_repeat_exercise">Repeat Exercise</string>
     <string name="training_progress">Progress: %1$d of %2$d</string>
+
+    <!-- Lessons: Number Introduction -->
+    <string name="training_number_intro_lesson_0">This is the number ZERO. It means there are no objects at all. Zero is emptiness, the absence of quantity.</string>
+    <string name="training_number_intro_lesson_1">This is the number ONE. It means one object, a single thing. Look — here is {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_2">This is the number TWO. It means two objects, a pair. Look — here is {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_3">This is the number THREE. It means three objects. Look — here is {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_4">This is the number FOUR. It means four objects. Look — here is {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_5">This is the number FIVE. It means five objects. Look — here is {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_6">This is the number SIX. It means six objects. Look — here is {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_7">This is the number SEVEN. It means seven objects. Look — here is {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_8">This is the number EIGHT. It means eight objects. Look — here is {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_9">This is the number NINE. It means nine objects. Look — here is {OBJECT_DESCRIPTION}.</string>
+
+    <!-- Gender variants for "one" to match code usage -->
+    <string name="number_name_1_masc">one</string>
+    <string name="number_name_1_fem">one</string>
+    <string name="number_name_1_neut">one</string>
+
+    <plurals name="objects_count">
+        <item quantity="one">%d object</item>
+        <item quantity="other">%d objects</item>
+    </plurals>
 </resources>

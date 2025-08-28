@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Objects for Number Introduction (English) -->
+    <string-array name="number_intro_object_emojis">
+        <item>🎈</item><item>🎁</item><item>🎂</item><item>🎨</item><item>🎲</item><item>🎭</item>
+        <item>🍎</item><item>🍌</item><item>🍇</item><item>🍓</item><item>🍒</item><item>🥕</item><item>🥒</item><item>🍅</item>
+        <item>⚽</item><item>🏀</item><item>🎾</item><item>🏐</item>
+        <item>🌟</item><item>⭐</item><item>✨</item><item>☀️</item><item>🌙</item>
+        <item>🦋</item><item>🐝</item><item>🐞</item><item>🐸</item><item>🐢</item><item>🐠</item><item>🐛</item>
+        <item>🚗</item><item>🚌</item><item>🚓</item><item>🚑</item><item>🚒</item>
+        <item>📖</item><item>⏰</item><item>👓</item><item>👑</item>
+        <item>🌺</item><item>🌸</item><item>🌼</item><item>🌻</item><item>🌹</item><item>🌷</item><item>💐</item>
+    </string-array>
+
+    <!-- For English: nominative = singular, gen_plural = plural, gen_singular = same as singular -->
+    <string-array name="number_intro_object_nominative">
+        <item>balloon</item><item>gift</item><item>cake</item><item>paint set</item><item>die</item><item>mask</item>
+        <item>apple</item><item>banana</item><item>grape</item><item>strawberry</item><item>cherry</item><item>carrot</item><item>cucumber</item><item>tomato</item>
+        <item>soccer ball</item><item>basketball</item><item>tennis ball</item><item>volleyball</item>
+        <item>star</item><item>little star</item><item>sparkle</item><item>sun</item><item>moon</item>
+        <item>butterfly</item><item>bee</item><item>ladybug</item><item>frog</item><item>turtle</item><item>fish</item><item>caterpillar</item>
+        <item>car</item><item>bus</item><item>police car</item><item>ambulance</item><item>fire truck</item>
+        <item>book</item><item>clock</item><item>pair of glasses</item><item>crown</item>
+        <item>flower</item><item>flower</item><item>daisy</item><item>sunflower</item><item>rose</item><item>tulip</item><item>bouquet</item>
+    </string-array>
+
+    <string-array name="number_intro_object_gen_singular">
+        <item>balloon</item><item>gift</item><item>cake</item><item>paint set</item><item>die</item><item>mask</item>
+        <item>apple</item><item>banana</item><item>grape</item><item>strawberry</item><item>cherry</item><item>carrot</item><item>cucumber</item><item>tomato</item>
+        <item>soccer ball</item><item>basketball</item><item>tennis ball</item><item>volleyball</item>
+        <item>star</item><item>little star</item><item>sparkle</item><item>sun</item><item>moon</item>
+        <item>butterfly</item><item>bee</item><item>ladybug</item><item>frog</item><item>turtle</item><item>fish</item><item>caterpillar</item>
+        <item>car</item><item>bus</item><item>police car</item><item>ambulance</item><item>fire truck</item>
+        <item>book</item><item>clock</item><item>pair of glasses</item><item>crown</item>
+        <item>flower</item><item>flower</item><item>daisy</item><item>sunflower</item><item>rose</item><item>tulip</item><item>bouquet</item>
+    </string-array>
+
+    <string-array name="number_intro_object_gen_plural">
+        <item>balloons</item><item>gifts</item><item>cakes</item><item>paint sets</item><item>dice</item><item>masks</item>
+        <item>apples</item><item>bananas</item><item>grapes</item><item>strawberries</item><item>cherries</item><item>carrots</item><item>cucumbers</item><item>tomatoes</item>
+        <item>soccer balls</item><item>basketballs</item><item>tennis balls</item><item>volleyballs</item>
+        <item>stars</item><item>little stars</item><item>sparkles</item><item>suns</item><item>moons</item>
+        <item>butterflies</item><item>bees</item><item>ladybugs</item><item>frogs</item><item>turtles</item><item>fish</item><item>caterpillars</item>
+        <item>cars</item><item>buses</item><item>police cars</item><item>ambulances</item><item>fire trucks</item>
+        <item>books</item><item>clocks</item><item>pairs of glasses</item><item>crowns</item>
+        <item>flowers</item><item>flowers</item><item>daisies</item><item>sunflowers</item><item>roses</item><item>tulips</item><item>bouquets</item>
+    </string-array>
+</resources>
+

@@ -24,7 +24,7 @@
             android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_arrow_back"
-            android:contentDescription="Назад"
+            android:contentDescription="@string/back"
             android:layout_marginEnd="16dp" />
 
         <TextView
@@ -38,7 +38,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Знакомство с цифрами"
+            android:text="@string/main_training_number_intro_title"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#1565C0" />
@@ -48,7 +48,7 @@
             android:id="@+id/slideIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1 / 10"
+            android:text="@string/initial_slide_indicator"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#1565C0"
@@ -80,7 +80,7 @@
                 android:id="@+id/numberDisplay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="@string/zero_digit"
                 android:textSize="120sp"
                 android:textStyle="bold"
                 android:textColor="#2196F3"
@@ -91,7 +91,7 @@
                 android:id="@+id/objectsDisplay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="∅"
+                android:text="@string/empty_set_symbol"
                 android:textSize="48sp"
                 android:gravity="center"
                 android:lineSpacingExtra="8dp"
@@ -125,7 +125,7 @@
                 android:layout_height="48dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_volume_up"
-                android:contentDescription="Озвучить урок"
+                android:contentDescription="@string/speak_lesson"
                 android:layout_marginEnd="16dp" />
 
             <!-- Lesson Text -->
@@ -134,7 +134,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Это цифра НОЛЬ. Она означает, что предметов совсем нет, ничего. Ноль - это пустота, отсутствие количества."
+                android:text="@string/training_number_intro_lesson_0"
                 android:textSize="16sp"
                 android:textColor="#333333"
                 android:lineSpacingExtra="4dp" />
@@ -156,7 +156,7 @@
             android:layout_height="56dp"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
-            android:text="← Назад"
+            android:text="@string/training_prev_with_arrow"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
@@ -169,7 +169,7 @@
             android:layout_height="56dp"
             android:layout_weight="1"
             android:layout_marginStart="8dp"
-            android:text="Далее →"
+            android:text="@string/training_next_with_arrow"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"

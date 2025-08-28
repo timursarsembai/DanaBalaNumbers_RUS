@@ -2,11 +2,13 @@ package com.timursarsembayev.danabalanumbers
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Button
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -18,10 +20,15 @@ import kotlin.random.Random
 
 class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.applyLanguage(it) })
+    }
+
     private var tts: TextToSpeech? = null
     private var currentSlide = 0
     private val totalSlides = 10 // Цифры от 0 до 9
     private var currentObjectType = "" // Текущий тип предмета для озвучивания
+    private var isTtsEnabled: Boolean = true
 
     // UI элементы
     private lateinit var numberDisplay: TextView
@@ -32,17 +39,13 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
     private lateinit var nextButton: Button
     private lateinit var slideIndicator: TextView
 
-    // Массивы разных предметов для рандомного отображения
-    private val objectTypes = arrayOf(
-        "🎈", "🎁", "🎂", "🎨", "🎲", "🎭",
-        "🍎", "🍌", "🍇", "🍓", "🍒", "🥕", "🥒", "🍅",
-        "⚽", "🏀", "🎾", "🏐",
-        "🌟", "⭐", "✨", "☀️", "🌙",
-        "🦋", "🐝", "🐞", "🐸", "🐢", "🐠", "🐛",
-        "🚗", "🚌", "🚓", "🚑", "🚒",
-        "📖", "⏰", "👓", "👑",
-        "🌺", "🌸", "🌼", "🌻", "🌹", "🌷", "💐"
-    )
+    // Данные из ресурсов (локализованные)
+    private lateinit var emojiList: Array<String>
+    private lateinit var nominativeList: Array<String>
+    private lateinit var genSingularList: Array<String>
+    private lateinit var genPluralList: Array<String>
+    private lateinit var genderList: Array<String>
+    private lateinit var emojiToDeclension: Map<String, WordDeclension>
 
     // Класс для хранения информации о слове с полными склонениями
     data class WordDeclension(
@@ -59,195 +62,113 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         NEUTER      // средний род
     }
 
-    // Полная таблица склонений для всех объектов
-    private val objectDeclensions = mapOf(
-        "🎈" to WordDeclension("шарик", "шарика", "шариков", Gender.MASCULINE),
-        "🎁" to WordDeclension("подарок", "подарка", "подарков", Gender.MASCULINE),
-        "🎂" to WordDeclension("торт", "торта", "тортов", Gender.MASCULINE),
-        "🎨" to WordDeclension("краски", "красок", "красок", Gender.FEMININE),
-        "🎲" to WordDeclension("кубик", "кубика", "кубиков", Gender.MASCULINE),
-        "🎭" to WordDeclension("маска", "маски", "масок", Gender.FEMININE),
-        "🍎" to WordDeclension("яблоко", "яблока", "яблок", Gender.NEUTER),
-        "🍌" to WordDeclension("банан", "банана", "бананов", Gender.MASCULINE),
-        "🍇" to WordDeclension("виноград", "винограда", "виноградов", Gender.MASCULINE),
-        "🍓" to WordDeclension("клубника", "клубники", "клубники", Gender.FEMININE),
-        "🍒" to WordDeclension("вишня", "вишни", "вишень", Gender.FEMININE),
-        "🥕" to WordDeclension("морковка", "морковки", "морковок", Gender.FEMININE),
-        "🥒" to WordDeclension("огурец", "огурца", "огурцов", Gender.MASCULINE),
-        "🍅" to WordDeclension("помидор", "помидора", "помидоров", Gender.MASCULINE),
-        "⚽" to WordDeclension("мяч", "мяча", "мячей", Gender.MASCULINE),
-        "🏀" to WordDeclension("мяч", "мяча", "мячей", Gender.MASCULINE),
-        "🎾" to WordDeclension("мячик", "мячика", "мячиков", Gender.MASCULINE),
-        "🏐" to WordDeclension("мяч", "мяча", "мячей", Gender.MASCULINE),
-        "🌟" to WordDeclension("звезда", "звезды", "звезд", Gender.FEMININE),
-        "⭐" to WordDeclension("звездочка", "звездочки", "звездочек", Gender.FEMININE),
-        "✨" to WordDeclension("искорка", "искорки", "искорок", Gender.FEMININE),
-        "☀️" to WordDeclension("солнце", "солнца", "солнц", Gender.NEUTER),
-        "🌙" to WordDeclension("луна", "луны", "лун", Gender.FEMININE),
-        "🦋" to WordDeclension("бабочка", "бабочки", "бабочек", Gender.FEMININE),
-        "🐝" to WordDeclension("пчела", "пчелы", "пчел", Gender.FEMININE),
-        "🐞" to WordDeclension("божья коровка", "божьей коровки", "божьих коровок", Gender.FEMININE),
-        "🐸" to WordDeclension("лягушка", "лягушки", "лягушек", Gender.FEMININE),
-        "🐢" to WordDeclension("черепаха", "черепахи", "черепах", Gender.FEMININE),
-        "🐠" to WordDeclension("рыбка", "рыбки", "рыбок", Gender.FEMININE),
-        "🐛" to WordDeclension("гусеница", "гусеницы", "гусениц", Gender.FEMININE),
-        "🚗" to WordDeclension("машина", "машины", "машин", Gender.FEMININE),
-        "🚌" to WordDeclension("автобус", "автобуса", "автобусов", Gender.MASCULINE),
-        "🚓" to WordDeclension("машина", "машины", "машин", Gender.FEMININE),
-        "🚑" to WordDeclension("машина", "машины", "машин", Gender.FEMININE),
-        "🚒" to WordDeclension("машина", "машины", "машин", Gender.FEMININE),
-        "📖" to WordDeclension("книга", "книги", "книг", Gender.FEMININE),
-        "⏰" to WordDeclension("часы", "часов", "часов", Gender.MASCULINE),
-        "👓" to WordDeclension("очки", "очков", "очков", Gender.MASCULINE),
-        "👑" to WordDeclension("корона", "короны", "корон", Gender.FEMININE),
-        "🌺" to WordDeclension("цветок", "цветка", "цветков", Gender.MASCULINE),
-        "🌸" to WordDeclension("цветок", "цветка", "цветков", Gender.MASCULINE),
-        "🌼" to WordDeclension("ромашка", "ромашки", "ромашек", Gender.FEMININE),
-        "🌻" to WordDeclension("подсолнух", "подсолнуха", "подсолнухов", Gender.MASCULINE),
-        "🌹" to WordDeclension("роза", "розы", "роз", Gender.FEMININE),
-        "🌷" to WordDeclension("тюльпан", "тюльпана", "тюльпанов", Gender.MASCULINE),
-        "💐" to WordDeclension("букет", "букета", "букетов", Gender.MASCULINE)
-    )
-
-    // Данные для слайдов
-    private val numberData = listOf(
-        NumberSlideData(
-            number = 0,
-            objects = "",
-            lesson = "Это цифра НОЛЬ. Она означает, что предметов совсем нет, ничего. Ноль - это пустота, отсутствие количества."
-        ),
-        NumberSlideData(
-            number = 1,
-            objects = "",
-            lesson = "Это цифра ОДИН. Она означает один предмет, что-то одно. Посмотри - здесь {OBJECT_DESCRIPTION}."
-        ),
-        NumberSlideData(
-            number = 2,
-            objects = "",
-            lesson = "Это цифра ДВА. Она означает два предмета, пару. Посмотри - здесь {OBJECT_DESCRIPTION}."
-        ),
-        NumberSlideData(
-            number = 3,
-            objects = "",
-            lesson = "Это цифра ТРИ. Она означает три предмета. Посмотри - здесь {OBJECT_DESCRIPTION}."
-        ),
-        NumberSlideData(
-            number = 4,
-            objects = "",
-            lesson = "Это цифра ЧЕТЫРЕ. Она означает четыре предмета. Посмотри - здесь {OBJECT_DESCRIPTION}."
-        ),
-        NumberSlideData(
-            number = 5,
-            objects = "",
-            lesson = "Это цифра ПЯТЬ. Она означает пять предметов. Посмотри - здесь {OBJECT_DESCRIPTION}."
-        ),
-        NumberSlideData(
-            number = 6,
-            objects = "",
-            lesson = "Это цифра ШЕСТЬ. Она означает шесть предметов. Посмотри - здесь {OBJECT_DESCRIPTION}."
-        ),
-        NumberSlideData(
-            number = 7,
-            objects = "",
-            lesson = "Это цифра СЕМЬ. Она означает семь предметов. Посмотри - здесь {OBJECT_DESCRIPTION}."
-        ),
-        NumberSlideData(
-            number = 8,
-            objects = "",
-            lesson = "Это цифра ВОСЕМЬ. Она означает восемь предметов. Посмотри - здесь {OBJECT_DESCRIPTION}."
-        ),
-        NumberSlideData(
-            number = 9,
-            objects = "",
-            lesson = "Это цифра ДЕВЯТЬ. Она означает девять предметов. Посмотри - здесь {OBJECT_DESCRIPTION}."
-        )
-    )
-
+    // Структура данных слайда
     data class NumberSlideData(
         val number: Int,
-        val objects: String,
         val lesson: String
     )
 
+    private lateinit var numberData: List<NumberSlideData>
+
+    private fun buildNumberData(): List<NumberSlideData> {
+        return listOf(
+            NumberSlideData(0, getString(R.string.training_number_intro_lesson_0)),
+            NumberSlideData(1, getString(R.string.training_number_intro_lesson_1)),
+            NumberSlideData(2, getString(R.string.training_number_intro_lesson_2)),
+            NumberSlideData(3, getString(R.string.training_number_intro_lesson_3)),
+            NumberSlideData(4, getString(R.string.training_number_intro_lesson_4)),
+            NumberSlideData(5, getString(R.string.training_number_intro_lesson_5)),
+            NumberSlideData(6, getString(R.string.training_number_intro_lesson_6)),
+            NumberSlideData(7, getString(R.string.training_number_intro_lesson_7)),
+            NumberSlideData(8, getString(R.string.training_number_intro_lesson_8)),
+            NumberSlideData(9, getString(R.string.training_number_intro_lesson_9)),
+        )
+    }
+
+    private fun randomEmoji(): String {
+        if (emojiList.isEmpty()) return ""
+        return emojiList[Random.nextInt(emojiList.size)]
+    }
+
     private fun generateRandomObjects(count: Int): String {
         if (count == 0) return ""
-
-        // Выбираем случайный тип предмета
-        val objectType = objectTypes[Random.nextInt(objectTypes.size)]
-        // Сохраняем выбранный тип для озвучивания
+        val objectType = randomEmoji()
         currentObjectType = objectType
-
         val result = StringBuilder()
-
-        // Логика размещения предметов в рода для лучшего отображения
         val itemsPerRow = when (count) {
-            1, 2, 3, 4 -> count // 1-4 предмета в один ряд
-            5, 6 -> 3 // 5-6 предметов: по 3 в ряд (2 ряда)
-            7, 8, 9 -> when (count) {
-                7 -> 4 // 7 предметов: 4 + 3
-                8 -> 4 // 8 предметов: 4 + 4
-                9 -> 5 // 9 предметов: 5 + 4
-                else -> 4
-            }
+            1, 2, 3, 4 -> count
+            5, 6 -> 3
+            7 -> 4
+            8 -> 4
+            9 -> 5
             else -> 4
         }
-
         for (i in 1..count) {
             result.append(objectType)
-
-            // Добавляем перенос строки после нужного количества предметов (кроме последнего)
-            if (i % itemsPerRow == 0 && i < count) {
-                result.append("\n")
-            }
+            if (i % itemsPerRow == 0 && i < count) result.append("\n")
         }
-
         return result.toString()
     }
 
     private fun getObjectNameWithCount(count: Int, objectEmoji: String): String {
-        val objectInfo = objectDeclensions[objectEmoji] ?: WordDeclension("предмет", "предмета", "предметов", Gender.MASCULINE)
-        val objectName = objectInfo.nominative
-        val genitiveSingular = objectInfo.genitiveSingular
-        val genitivePlural = objectInfo.genitivePlural
-        val gender = objectInfo.gender
+        val cfgLocales = resources.configuration.locales
+        val lang = if (cfgLocales.isEmpty) Locale.getDefault().language else cfgLocales[0].language
+        val info = emojiToDeclension[objectEmoji] ?: WordDeclension("предмет", "предмета", "предметов", Gender.MASCULINE)
 
-        return when (count) {
-            1 -> {
-                val numeral = when (gender) {
-                    Gender.MASCULINE -> "один"
-                    Gender.FEMININE -> "одна"
-                    Gender.NEUTER -> "одно"
+        return when (lang) {
+            // Русский: 1 — именит.; 2-4 — род. ед.; 5-9 — род. мн.; с учётом рода у «один/одна/одно»
+            "ru" -> when (count) {
+                1 -> {
+                    val numeral = when (info.gender) {
+                        Gender.MASCULINE -> getString(R.string.number_name_1_masc)
+                        Gender.FEMININE -> getString(R.string.number_name_1_fem)
+                        Gender.NEUTER -> getString(R.string.number_name_1_neut)
+                    }
+                    "$numeral ${info.nominative}"
                 }
-                "$numeral $objectName"
+                2 -> getString(R.string.number_name_2) + " " + info.genitiveSingular
+                3 -> getString(R.string.number_name_3) + " " + info.genitiveSingular
+                4 -> getString(R.string.number_name_4) + " " + info.genitiveSingular
+                5 -> getString(R.string.number_name_5) + " " + info.genitivePlural
+                6 -> getString(R.string.number_name_6) + " " + info.genitivePlural
+                7 -> getString(R.string.number_name_7) + " " + info.genitivePlural
+                8 -> getString(R.string.number_name_8) + " " + info.genitivePlural
+                9 -> getString(R.string.number_name_9) + " " + info.genitivePlural
+                else -> "$count ${info.nominative}"
             }
-            2 -> {
-                val numeral = when (gender) {
-                    Gender.MASCULINE -> "два"
-                    Gender.FEMININE -> "две"
-                    Gender.NEUTER -> "два"
-                }
-                "$numeral $genitiveSingular"
-            }
-            3 -> {
-                val numeral = "три"
-                "$numeral $genitiveSingular"
-            }
-            4 -> {
-                val numeral = "четыре"
-                "$numeral $genitiveSingular"
-            }
-            5, 6, 7, 8, 9 -> {
+            // Казахский: после числительных существительное обычно в ед. числе
+            "kk" -> {
                 val numeral = when (count) {
-                    5 -> "пять"
-                    6 -> "шесть"
-                    7 -> "семь"
-                    8 -> "восемь"
-                    9 -> "девять"
+                    1 -> getString(R.string.number_name_1)
+                    2 -> getString(R.string.number_name_2)
+                    3 -> getString(R.string.number_name_3)
+                    4 -> getString(R.string.number_name_4)
+                    5 -> getString(R.string.number_name_5)
+                    6 -> getString(R.string.number_name_6)
+                    7 -> getString(R.string.number_name_7)
+                    8 -> getString(R.string.number_name_8)
+                    9 -> getString(R.string.number_name_9)
                     else -> count.toString()
                 }
-                "$numeral $genitivePlural"
+                "$numeral ${info.nominative}"
             }
-            else -> "$count $objectName"
+            // Английский: 1 — ед. число; 2-9 — множественное
+            else -> {
+                val numeral = when (count) {
+                    1 -> getString(R.string.number_name_1)
+                    2 -> getString(R.string.number_name_2)
+                    3 -> getString(R.string.number_name_3)
+                    4 -> getString(R.string.number_name_4)
+                    5 -> getString(R.string.number_name_5)
+                    6 -> getString(R.string.number_name_6)
+                    7 -> getString(R.string.number_name_7)
+                    8 -> getString(R.string.number_name_8)
+                    9 -> getString(R.string.number_name_9)
+                    else -> count.toString()
+                }
+                val noun = if (count == 1) info.nominative else info.genitivePlural
+                "$numeral $noun"
+            }
         }
     }
 
@@ -261,11 +182,52 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
             insets
         }
 
-        tts = TextToSpeech(this, this)
         initializeViews()
+
+        // Загружаем локализованные данные объектов
+        loadNumberIntroResources()
+
+        // Определяем язык приложения и отключаем TTS для казахского
+        val cfgLocales = resources.configuration.locales
+        val appLang = if (cfgLocales.isEmpty) Locale.getDefault().language else cfgLocales[0].language
+        isTtsEnabled = appLang != "kk"
+        if (isTtsEnabled) {
+            tts = TextToSpeech(this, this)
+        } else {
+            // скрываем кнопку озвучивания, чтобы не вводить пользователя в заблуждение
+            speakButton.visibility = View.GONE
+        }
+
+        numberData = buildNumberData()
         setupClickListeners()
         setupSwipeGestures()
         updateSlide()
+    }
+
+    private fun loadNumberIntroResources() {
+        emojiList = resources.getStringArray(R.array.number_intro_object_emojis)
+        nominativeList = resources.getStringArray(R.array.number_intro_object_nominative)
+        // Для en/kk массивы gen_* используются как: singular=единств. форма, plural=множеств. форма
+        genSingularList = resources.getStringArray(R.array.number_intro_object_gen_singular)
+        genPluralList = resources.getStringArray(R.array.number_intro_object_gen_plural)
+        // Гендер нужен только для RU
+        genderList = try { resources.getStringArray(R.array.number_intro_object_genders) } catch (_: Exception) { Array(nominativeList.size) { "neuter" } }
+
+        val map = HashMap<String, WordDeclension>(emojiList.size)
+        for (i in emojiList.indices) {
+            val gender = when (genderList.getOrNull(i)?.lowercase(Locale.ROOT)) {
+                "masculine", "m", "masc" -> Gender.MASCULINE
+                "feminine", "f", "fem" -> Gender.FEMININE
+                else -> Gender.NEUTER
+            }
+            map[emojiList[i]] = WordDeclension(
+                nominative = nominativeList.getOrNull(i) ?: "",
+                genitiveSingular = genSingularList.getOrNull(i) ?: "",
+                genitivePlural = genPluralList.getOrNull(i) ?: "",
+                gender = gender
+            )
+        }
+        emojiToDeclension = map
     }
 
     private fun initializeViews() {
@@ -279,39 +241,31 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
     }
 
     private fun setupClickListeners() {
-        // Кнопка "Назад"
         findViewById<ImageButton>(R.id.backButton).setOnClickListener {
             finish()
         }
-
-        // Кнопка озвучивания
         speakButton.setOnClickListener {
-            speakCurrentLesson()
+            if (isTtsEnabled) speakCurrentLesson()
         }
-
-        // Кнопки навигации
         prevButton.setOnClickListener {
             if (currentSlide > 0) {
                 currentSlide--
                 updateSlide()
                 animateSlideTransition()
-                speakCurrentLesson() // Озвучиваем при переходе на предыдущий слайд
+                if (isTtsEnabled) speakCurrentLesson()
             }
         }
-
         nextButton.setOnClickListener {
             if (currentSlide < totalSlides - 1) {
-                // Переход к следующему слайду
                 currentSlide++
                 updateSlide()
                 animateSlideTransition()
-                speakCurrentLesson() // Озвучиваем при переходе на следующий слайд
+                if (isTtsEnabled) speakCurrentLesson()
             } else {
-                // На последнем слайде - переход к началу (слайд 0)
                 currentSlide = 0
                 updateSlide()
                 animateSlideTransition()
-                speakCurrentLesson() // Озвучиваем при переходе к началу
+                if (isTtsEnabled) speakCurrentLesson()
             }
         }
     }
@@ -345,7 +299,7 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         }
         this.gestureDetector = GestureDetectorCompat(this, listener)
         // Вешаем слушатель на карточку с цифрой и предметами
-        val swipeArea = findViewById<android.view.View>(R.id.contentCard)
+        val swipeArea = findViewById<View>(R.id.contentCard)
         swipeArea.setOnTouchListener { v, event ->
             val consumed = gestureDetector.onTouchEvent(event)
             if (event.action == MotionEvent.ACTION_UP) v.performClick()
@@ -355,101 +309,73 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
 
     private fun updateSlide() {
         val slideData = numberData[currentSlide]
-
-        // Обновляем цифру
         numberDisplay.text = slideData.number.toString()
-
-        // Обновляем объекты
         if (slideData.number == 0) {
-            // Для нуля ничего не отображаем
             objectsDisplay.text = ""
         } else {
-            // Для остальных чисел генерируем случайные предметы
             val randomObjects = generateRandomObjects(slideData.number)
             objectsDisplay.text = randomObjects
         }
-
-        // Изменяем размер текста для объектов в зависимости от числа
-        val textSize = if (slideData.number == 9) {
-            40f // Уменьшенный размер для цифры 9
-        } else {
-            48f // Обычный размер для остальных цифр
-        }
+        val textSize = if (slideData.number == 9) { 40f } else { 48f }
         objectsDisplay.textSize = textSize
-
-        // Обновляем текст урока
         if (slideData.number == 0) {
             lessonText.text = slideData.lesson
         } else {
             val objectDescription = getObjectNameWithCount(slideData.number, currentObjectType)
             lessonText.text = slideData.lesson.replace("{OBJECT_DESCRIPTION}", objectDescription)
         }
-
-        // Обновляем индикатор слайдов
-        slideIndicator.text = "${currentSlide + 1} / $totalSlides"
-
-        // Обновляем состояние кнопок
+        // Обновляем индикатор слайдов через строковый ресурс
+        slideIndicator.text = getString(R.string.slide_indicator_format, currentSlide + 1, totalSlides)
         prevButton.isEnabled = currentSlide > 0
-
-        // Логика для кнопки "Далее/В начало"
         if (currentSlide < totalSlides - 1) {
-            // Обычные слайды - показываем "Далее"
-            nextButton.text = "Далее →"
+            nextButton.text = getString(R.string.training_next_with_arrow)
             nextButton.isEnabled = true
             nextButton.alpha = 1.0f
         } else {
-            // Последний слайд - показываем "В начало"
-            nextButton.text = "В начало ↺"
+            nextButton.text = getString(R.string.training_to_start_with_arrow)
             nextButton.isEnabled = true
             nextButton.alpha = 1.0f
         }
-
-        // Меняем цвет кнопки "Назад" в зависимости от состояния
         prevButton.alpha = if (currentSlide > 0) 1.0f else 0.5f
     }
 
     private fun speakCurrentLesson() {
+        if (!isTtsEnabled) return
         val slideData = numberData[currentSlide]
-
+        val numberNameRes = when (slideData.number) {
+            0 -> R.string.number_name_0
+            1 -> R.string.number_name_1
+            2 -> R.string.number_name_2
+            3 -> R.string.number_name_3
+            4 -> R.string.number_name_4
+            5 -> R.string.number_name_5
+            6 -> R.string.number_name_6
+            7 -> R.string.number_name_7
+            8 -> R.string.number_name_8
+            9 -> R.string.number_name_9
+            else -> R.string.number_name_0
+        }
+        val digitIntro = getString(R.string.digit_phrase, getString(numberNameRes))
         val textToSpeak = if (slideData.number == 0) {
-            "Цифра ${slideData.number}. ${slideData.lesson}"
+            "$digitIntro. ${slideData.lesson}"
         } else {
             val objectDescription = getObjectNameWithCount(slideData.number, currentObjectType)
             val lessonWithObject = slideData.lesson.replace("{OBJECT_DESCRIPTION}", objectDescription)
-            "Цифра ${slideData.number}. $lessonWithObject"
+            "$digitIntro. $lessonWithObject"
         }
-
         speakText(textToSpeak)
-
-        // Анимация кнопки озвучивания
         animateSpeakButton()
     }
 
-    private fun getNumberWord(number: Int): String {
-        return when (number) {
-            1 -> "один"
-            2 -> "два"
-            3 -> "три"
-            4 -> "четыре"
-            5 -> "пять"
-            6 -> "шесть"
-            7 -> "семь"
-            8 -> "восемь"
-            9 -> "девять"
-            else -> number.toString()
-        }
-    }
-
     private fun speakText(text: String) {
+        if (!isTtsEnabled || tts == null) return
         tts?.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
     }
 
     private fun animateSlideTransition() {
-        // Анимация появления контента
         val fadeIn = ObjectAnimator.ofFloat(numberDisplay, "alpha", 0f, 1f)
         val scaleX = ObjectAnimator.ofFloat(numberDisplay, "scaleX", 0.8f, 1f)
         val scaleY = ObjectAnimator.ofFloat(numberDisplay, "scaleY", 0.8f, 1f)
-
         val animatorSet = AnimatorSet()
         animatorSet.playTogether(fadeIn, scaleX, scaleY)
         animatorSet.duration = 300
@@ -457,30 +383,74 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
     }
 
     private fun animateSpeakButton() {
-        // Анимация пульсации кнопки озвучивания
         val scaleX = ObjectAnimator.ofFloat(speakButton, "scaleX", 1f, 1.2f, 1f)
         val scaleY = ObjectAnimator.ofFloat(speakButton, "scaleY", 1f, 1.2f, 1f)
-
         val animatorSet = AnimatorSet()
         animatorSet.playTogether(scaleX, scaleY)
         animatorSet.duration = 300
         animatorSet.start()
     }
 
-    override fun onInit(status: Int) {
-        if (status == TextToSpeech.SUCCESS) {
-            val result = tts!!.setLanguage(Locale("ru", "RU"))
-            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                tts!!.setLanguage(Locale.getDefault())
+    private fun chooseBestAvailableLocale(candidates: List<Locale>): Locale? {
+        var best: Locale? = null
+        var bestScore = 0
+        candidates.forEach { loc ->
+            val availability = tts?.isLanguageAvailable(loc) ?: TextToSpeech.LANG_NOT_SUPPORTED
+            val score = when (availability) {
+                TextToSpeech.LANG_COUNTRY_VAR_AVAILABLE -> 3
+                TextToSpeech.LANG_COUNTRY_AVAILABLE -> 2
+                TextToSpeech.LANG_AVAILABLE -> 1
+                else -> 0
             }
-            // Озвучиваем первый слайд после инициализации TTS
+            if (score > bestScore) {
+                bestScore = score
+                best = loc
+            }
+        }
+        return best
+    }
+
+    private fun setTtsLanguageForApp() {
+        val cfgLocales = resources.configuration.locales
+        val appLocale: Locale = if (cfgLocales.isEmpty) Locale.getDefault() else cfgLocales[0]
+        val lang = appLocale.language
+        val candidates: List<Locale> = when (lang) {
+            "kk" -> listOf(
+                Locale.forLanguageTag("kk-KZ"),
+                Locale.forLanguageTag("kk"),
+                Locale.forLanguageTag("ru-RU")
+            )
+            "ru" -> listOf(
+                Locale.forLanguageTag("ru-RU"),
+                Locale.forLanguageTag("ru")
+            )
+            "en" -> listOf(
+                Locale.forLanguageTag("en-US"),
+                Locale.forLanguageTag("en-GB"),
+                Locale.forLanguageTag("en")
+            )
+            else -> listOf(appLocale, Locale.getDefault(), Locale.forLanguageTag("en-US"))
+        }
+        val best = chooseBestAvailableLocale(candidates)
+        if (best != null) {
+            tts?.language = best
+        } else {
+            tts?.language = Locale.getDefault()
+        }
+    }
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS && isTtsEnabled) {
+            setTtsLanguageForApp()
             speakCurrentLesson()
         }
     }
 
     override fun onDestroy() {
-        tts?.stop()
-        tts?.shutdown()
+        if (isTtsEnabled) {
+            tts?.stop()
+            tts?.shutdown()
+        }
         super.onDestroy()
     }
 }

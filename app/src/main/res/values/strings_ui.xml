@@ -84,4 +84,13 @@
     <string name="main_game_sorter_desc">Разложи цифры по колонкам</string>
     <string name="main_game_sudoku_title">Простой судоку</string>
     <string name="main_game_sudoku_desc">Цифры без повторов в строках и столбцах</string>
+
+    <!-- Новые строки -->
+    <string name="initial_slide_indicator">1 / 10</string>
+    <string name="empty_set_symbol">∅</string>
+    <string name="speak_lesson">Озвучить урок</string>
+    <string name="training_prev_with_arrow">← Назад</string>
+    <string name="training_next_with_arrow">Далее →</string>
+    <string name="training_to_start_with_arrow">В начало ↺</string>
+    <string name="slide_indicator_format">%1$d / %2$d</string>
 </resources>

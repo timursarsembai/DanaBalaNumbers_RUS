@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Объекты для тренировки "Знакомство с цифрами" -->
+    <string-array name="number_intro_object_emojis">
+        <item>🎈</item><item>🎁</item><item>🎂</item><item>🎨</item><item>🎲</item><item>🎭</item>
+        <item>🍎</item><item>🍌</item><item>🍇</item><item>🍓</item><item>🍒</item><item>🥕</item><item>🥒</item><item>🍅</item>
+        <item>⚽</item><item>🏀</item><item>🎾</item><item>🏐</item>
+        <item>🌟</item><item>⭐</item><item>✨</item><item>☀️</item><item>🌙</item>
+        <item>🦋</item><item>🐝</item><item>🐞</item><item>🐸</item><item>🐢</item><item>🐠</item><item>🐛</item>
+        <item>🚗</item><item>🚌</item><item>🚓</item><item>🚑</item><item>🚒</item>
+        <item>📖</item><item>⏰</item><item>👓</item><item>👑</item>
+        <item>🌺</item><item>🌸</item><item>🌼</item><item>🌻</item><item>🌹</item><item>🌷</item><item>💐</item>
+    </string-array>
+
+    <!-- Формы слов: именительный (для 1), род. ед. (для 2-4), род. мн. (для 5-9) -->
+    <string-array name="number_intro_object_nominative">
+        <item>шарик</item><item>подарок</item><item>торт</item><item>краска</item><item>кубик</item><item>маска</item>
+        <item>яблоко</item><item>банан</item><item>виноград</item><item>клубника</item><item>вишня</item><item>морковка</item><item>огурец</item><item>помидор</item>
+        <item>мяч</item><item>мяч</item><item>мячик</item><item>мяч</item>
+        <item>звезда</item><item>звездочка</item><item>искорка</item><item>солнце</item><item>луна</item>
+        <item>бабочка</item><item>пчела</item><item>божья коровка</item><item>лягушка</item><item>черепаха</item><item>рыбка</item><item>гусеница</item>
+        <item>машина</item><item>автобус</item><item>машина</item><item>машина</item><item>машина</item>
+        <item>книга</item><item>часы</item><item>очки</item><item>корона</item>
+        <item>цветок</item><item>цветок</item><item>ромашка</item><item>подсолнух</item><item>роза</item><item>тюльпан</item><item>букет</item>
+    </string-array>
+
+    <string-array name="number_intro_object_gen_singular">
+        <item>шарика</item><item>подарка</item><item>торта</item><item>краски</item><item>кубика</item><item>маски</item>
+        <item>яблока</item><item>банана</item><item>винограда</item><item>клубники</item><item>вишни</item><item>морковки</item><item>огурца</item><item>помидора</item>
+        <item>мяча</item><item>мяча</item><item>мячика</item><item>мяча</item>
+        <item>звезды</item><item>звездочки</item><item>искорки</item><item>солнца</item><item>луны</item>
+        <item>бабочки</item><item>пчелы</item><item>божьей коровки</item><item>лягушки</item><item>черепахи</item><item>рыбки</item><item>гусеницы</item>
+        <item>машины</item><item>автобуса</item><item>машины</item><item>машины</item><item>машины</item>
+        <item>книги</item><item>часов</item><item>очков</item><item>короны</item>
+        <item>цветка</item><item>цветка</item><item>ромашки</item><item>подсолнуха</item><item>розы</item><item>тюльпана</item><item>букета</item>
+    </string-array>
+
+    <string-array name="number_intro_object_gen_plural">
+        <item>шариков</item><item>подарков</item><item>тортов</item><item>красок</item><item>кубиков</item><item>масок</item>
+        <item>яблок</item><item>бананов</item><item>виноградов</item><item>клубники</item><item>вишень</item><item>морковок</item><item>огурцов</item><item>помидоров</item>
+        <item>мячей</item><item>мячей</item><item>мячиков</item><item>мячей</item>
+        <item>звезд</item><item>звездочек</item><item>искорок</item><item>солнц</item><item>лун</item>
+        <item>бабочек</item><item>пчел</item><item>божьих коровок</item><item>лягушек</item><item>черепах</item><item>рыбок</item><item>гусениц</item>
+        <item>машин</item><item>автобусов</item><item>машин</item><item>машин</item><item>машин</item>
+        <item>книг</item><item>часов</item><item>очков</item><item>корон</item>
+        <item>цветков</item><item>цветков</item><item>ромашек</item><item>подсолнухов</item><item>роз</item><item>тюльпанов</item><item>букетов</item>
+    </string-array>
+
+    <string-array name="number_intro_object_genders">
+        <item>masculine</item><item>masculine</item><item>masculine</item><item>feminine</item><item>masculine</item><item>feminine</item>
+        <item>neuter</item><item>masculine</item><item>masculine</item><item>feminine</item><item>feminine</item><item>feminine</item><item>masculine</item><item>masculine</item>
+        <item>masculine</item><item>masculine</item><item>masculine</item><item>masculine</item>
+        <item>feminine</item><item>feminine</item><item>feminine</item><item>neuter</item><item>feminine</item>
+        <item>feminine</item><item>feminine</item><item>feminine</item><item>feminine</item><item>feminine</item><item>feminine</item><item>feminine</item>
+        <item>feminine</item><item>masculine</item><item>feminine</item><item>feminine</item><item>feminine</item>
+        <item>feminine</item><item>masculine</item><item>masculine</item><item>feminine</item>
+        <item>masculine</item><item>masculine</item><item>feminine</item><item>masculine</item><item>feminine</item><item>masculine</item><item>masculine</item>
+    </string-array>
+</resources>
+

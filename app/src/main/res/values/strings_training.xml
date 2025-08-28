@@ -59,4 +59,28 @@
     <string name="training_next_exercise">Следующее упражнение</string>
     <string name="training_repeat_exercise">Повторить упражнение</string>
     <string name="training_progress">Прогресс: %1$d из %2$d</string>
+
+    <!-- Уроки: Знакомство с цифрами -->
+    <string name="training_number_intro_lesson_0">Это цифра НОЛЬ. Она означает, что предметов совсем нет, ничего. Ноль - это пустота, отсутствие количества.</string>
+    <string name="training_number_intro_lesson_1">Это цифра ОДИН. Она означает один предмет, что-то одно. Посмотри - здесь {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_2">Это цифра ДВА. Она означает два предмета, пару. Посмотри - здесь {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_3">Это цифра ТРИ. Она означает три предмета. Посмотри - здесь {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_4">Это цифра ЧЕТЫРЕ. Она означает четыре предмета. Посмотри - здесь {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_5">Это цифра ПЯТЬ. Она означает пять предметов. Посмотри - здесь {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_6">Это цифра ШЕСТЬ. Она означает шесть предметов. Посмотри - здесь {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_7">Это цифра СЕМЬ. Она означает семь предметов. Посмотри - здесь {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_8">Это цифра ВОСЕМЬ. Она означает восемь предметов. Посмотри - здесь {OBJECT_DESCRIPTION}.</string>
+    <string name="training_number_intro_lesson_9">Это цифра ДЕВЯТЬ. Она означает девять предметов. Посмотри - здесь {OBJECT_DESCRIPTION}.</string>
+
+    <!-- Варианты для числа один по роду -->
+    <string name="number_name_1_masc">один</string>
+    <string name="number_name_1_fem">одна</string>
+    <string name="number_name_1_neut">одно</string>
+
+    <plurals name="objects_count">
+        <item quantity="one">%d предмет</item>
+        <item quantity="few">%d предмета</item>
+        <item quantity="many">%d предметов</item>
+        <item quantity="other">%d предмета</item>
+    </plurals>
 </resources>
