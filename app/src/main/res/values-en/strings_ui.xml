@@ -91,4 +91,9 @@
     <string name="training_next_with_arrow">Next →</string>
     <string name="training_to_start_with_arrow">Back to start ↺</string>
     <string name="slide_indicator_format">%1$d / %2$d</string>
+
+    <!-- Find the Digit: UI strings -->
+    <string name="number_recognition_header_with_emoji">🔢 Find the Digit</string>
+    <string name="preparing_task">Preparing the task…</string>
+    <string name="repeat_question">Repeat question</string>
 </resources>

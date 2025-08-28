@@ -38,6 +38,11 @@
     <string name="results_levels_completed">Пройдено уровней: %1$d</string>
     <string name="results_total_score">Общий счет: %1$d</string>
 
+    <!-- Результаты: Найди цифру -->
+    <string name="results_number_recognition_title">🔢 Результаты: Найди цифру</string>
+    <string name="results_score_of_total">%1$d из %2$d</string>
+    <string name="results_correct_answers_only">Правильных ответов: %1$d</string>
+
     <!-- Статистика -->
     <string name="results_time_spent">Времени потрачено: %1$s</string>
     <string name="results_mistakes_made">Ошибок допущено: %1$d</string>
@@ -49,4 +54,3 @@
     <string name="results_achievement_persistent">💪 Упорство!</string>
     <string name="results_achievement_first_try">🎯 С первого раза!</string>
 </resources>
-

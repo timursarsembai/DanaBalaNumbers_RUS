@@ -38,6 +38,11 @@
     <string name="results_levels_completed">Levels completed: %1$d</string>
     <string name="results_total_score">Total score: %1$d</string>
 
+    <!-- Results: Find the Digit -->
+    <string name="results_number_recognition_title">🔢 Results: Find the Digit</string>
+    <string name="results_score_of_total">%1$d of %2$d</string>
+    <string name="results_correct_answers_only">Correct answers: %1$d</string>
+
     <!-- Statistics -->
     <string name="results_time_spent">Time spent: %1$s</string>
     <string name="results_mistakes_made">Mistakes made: %1$d</string>
@@ -49,4 +54,3 @@
     <string name="results_achievement_persistent">💪 Persistent!</string>
     <string name="results_achievement_first_try">🎯 First Try!</string>
 </resources>
-

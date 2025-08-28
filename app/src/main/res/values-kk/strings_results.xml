@@ -38,6 +38,11 @@
     <string name="results_levels_completed">Өтілген деңгейлер: %1$d</string>
     <string name="results_total_score">Жалпы ұпай: %1$d</string>
 
+    <!-- Нәтижелер: Цифрды табу -->
+    <string name="results_number_recognition_title">🔢 Нәтижелер: Цифрды табу</string>
+    <string name="results_score_of_total">%2$d-ден %1$d</string>
+    <string name="results_correct_answers_only">Дұрыс жауаптар: %1$d</string>
+
     <!-- Статистика -->
     <string name="results_time_spent">Жұмсалған уақыт: %1$s</string>
     <string name="results_mistakes_made">Жіберілген қателер: %1$d</string>
@@ -49,4 +54,3 @@
     <string name="results_achievement_persistent">💪 Табанды!</string>
     <string name="results_achievement_first_try">🎯 Бірінші көрсетуден!</string>
 </resources>
-

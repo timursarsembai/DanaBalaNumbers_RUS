@@ -2,6 +2,7 @@ package com.timursarsembayev.danabalanumbers
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -27,16 +28,11 @@ class NumberRecognitionActivity : AppCompatActivity(), TextToSpeech.OnInitListen
     private var tts: TextToSpeech? = null
     private var isFirstInit = true // Флаг для первой инициализации
     private var hasTriedCurrentQuestion = false // Флаг для отслеживания попыток на текущем вопросе
+    private var isTtsAllowed = true // Для kk отключаем озвучку
 
     // Список всех вопросов (каждая цифра от 0 до 9 по 2 раза)
     private val questionNumbers = mutableListOf<Int>()
     private var currentQuestionIndex = 0
-
-    // Массив прописных чисел
-    private val numberWords = arrayOf(
-        "ноль", "один", "два", "три", "четыре", "пять",
-        "шесть", "семь", "восемь", "девять"
-    )
 
     // Варианты похвалы за правильные ответы
     private val correctPhrases = listOf(
@@ -76,16 +72,42 @@ class NumberRecognitionActivity : AppCompatActivity(), TextToSpeech.OnInitListen
             insets
         }
 
-        // Инициализация TTS
-        tts = TextToSpeech(this, this)
+        // Выбираем, разрешена ли озвучка (для kk — нет)
+        val langCode = LocaleManager.getCurrentLanguage(this)
+        isTtsAllowed = langCode != LocaleManager.LANGUAGE_KAZAKH
+
+        // Инициализация/отключение TTS и кнопки динамика
+        if (isTtsAllowed) {
+            tts = TextToSpeech(this, this)
+        } else {
+            findViewById<View>(R.id.speakerButton)?.visibility = View.GONE
+            // При отключенном TTS запускаем тренировку сразу
+            generateQuestionSequence()
+            startNewQuestion()
+            isFirstInit = false
+        }
 
         setupBackButton()
-        // Убираем startNewQuestion() отсюда - перенесено в onInit()
+        // Убираем startNewQuestion() отсюда - перенесено в onInit() для случаев с TTS
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.applyLanguage(it) })
     }
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            tts?.language = Locale("ru", "RU")
+            // используем язык из настроек приложения
+            val langCode = LocaleManager.getCurrentLanguage(this)
+            val ttsLocale = when (langCode) {
+                LocaleManager.LANGUAGE_KAZAKH -> Locale("kk", "KZ")
+                LocaleManager.LANGUAGE_ENGLISH -> Locale("en", "US")
+                else -> Locale("ru", "RU")
+            }
+            val result = tts?.setLanguage(ttsLocale)
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                tts?.setLanguage(Locale("ru", "RU"))
+            }
             // Запускаем первый вопрос только при первой инициализации TTS
             if (isFirstInit) {
                 generateQuestionSequence()
@@ -120,16 +142,26 @@ class NumberRecognitionActivity : AppCompatActivity(), TextToSpeech.OnInitListen
         targetNumber = questionNumbers[currentQuestionIndex]
         currentQuestionIndex++
 
-        // Обновляем вопрос с прописным числом
-        val questionText = "Найди цифру ${numberWords[targetNumber]}"
+        // Обновляем вопрос с прописным числом через ресурсы локализации
+        val numberWord = getString(getNumberNameResId(targetNumber))
+        val questionText = getString(R.string.find_digit_instruction, numberWord)
         findViewById<TextView>(R.id.questionText).text = questionText
 
-        // Озвучиваем вопрос
-        tts?.speak(questionText, TextToSpeech.QUEUE_FLUSH, null, "question")
+        // Озвучиваем вопрос (только если разрешено)
+        if (isTtsAllowed) {
+            tts?.speak(questionText, TextToSpeech.QUEUE_FLUSH, null, "question")
+        }
 
         // Настраиваем кнопку динамика для повторного озвучивания
-        findViewById<View>(R.id.speakerButton).setOnClickListener {
-            tts?.speak(questionText, TextToSpeech.QUEUE_FLUSH, null, "repeat_question")
+        val speaker = findViewById<View>(R.id.speakerButton)
+        if (isTtsAllowed) {
+            speaker?.visibility = View.VISIBLE
+            speaker?.setOnClickListener {
+                tts?.speak(questionText, TextToSpeech.QUEUE_FLUSH, null, "repeat_question")
+            }
+        } else {
+            speaker?.visibility = View.GONE
+            speaker?.setOnClickListener(null)
         }
 
         // Обновляем прогресс-бар
@@ -167,6 +199,22 @@ class NumberRecognitionActivity : AppCompatActivity(), TextToSpeech.OnInitListen
             cards[i].setOnClickListener {
                 checkAnswer(numbers[i], cards[i])
             }
+        }
+    }
+
+    private fun getNumberNameResId(digit: Int): Int {
+        return when (digit) {
+            0 -> R.string.number_name_0
+            1 -> R.string.number_name_1
+            2 -> R.string.number_name_2
+            3 -> R.string.number_name_3
+            4 -> R.string.number_name_4
+            5 -> R.string.number_name_5
+            6 -> R.string.number_name_6
+            7 -> R.string.number_name_7
+            8 -> R.string.number_name_8
+            9 -> R.string.number_name_9
+            else -> R.string.number_name_0
         }
     }
 
@@ -215,7 +263,9 @@ class NumberRecognitionActivity : AppCompatActivity(), TextToSpeech.OnInitListen
 
             // Выбираем случайную фразу похвалы
             val randomPraise = correctPhrases.random()
-            tts?.speak(randomPraise, TextToSpeech.QUEUE_FLUSH, null, "correct")
+            if (isTtsAllowed) {
+                tts?.speak(randomPraise, TextToSpeech.QUEUE_FLUSH, null, "correct")
+            }
 
             // Переходим к следующему вопросу через 2 секунды
             findViewById<View>(R.id.card1).postDelayed({
@@ -229,7 +279,9 @@ class NumberRecognitionActivity : AppCompatActivity(), TextToSpeech.OnInitListen
 
             // Выбираем случайную фразу подбадривания
             val randomEncouragement = incorrectPhrases.random()
-            tts?.speak(randomEncouragement, TextToSpeech.QUEUE_FLUSH, null, "wrong")
+            if (isTtsAllowed) {
+                tts?.speak(randomEncouragement, TextToSpeech.QUEUE_FLUSH, null, "wrong")
+            }
 
             // Через 2 секунды включаем карточки обратно
             findViewById<View>(R.id.card1).postDelayed({

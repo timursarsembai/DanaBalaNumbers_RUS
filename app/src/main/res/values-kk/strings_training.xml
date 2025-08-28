@@ -81,4 +81,7 @@
         <item quantity="one">%d зат</item>
         <item quantity="other">%d зат</item>
     </plurals>
+
+    <!-- Үлгілер: жаттығулар сұрақтары -->
+    <string name="find_digit_instruction">Цифрды %1$s тап</string>
 </resources>

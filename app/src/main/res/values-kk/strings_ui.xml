@@ -84,4 +84,18 @@
     <string name="main_game_sorter_desc">Цифрларды бағандар бойынша сұрыптау</string>
     <string name="main_game_sudoku_title">Қарапайым судоку</string>
     <string name="main_game_sudoku_desc">Жолдар мен бағандарда қайталанбайтын цифрлар</string>
+
+    <!-- Қосымша UI жолдары -->
+    <string name="initial_slide_indicator">1 / 10</string>
+    <string name="empty_set_symbol">∅</string>
+    <string name="speak_lesson">Сабақты айту</string>
+    <string name="training_prev_with_arrow">← Артқа</string>
+    <string name="training_next_with_arrow">Әрі қарай →</string>
+    <string name="training_to_start_with_arrow">Басына ↺</string>
+    <string name="slide_indicator_format">%1$d / %2$d</string>
+
+    <!-- Цифрды табу: UI -->
+    <string name="number_recognition_header_with_emoji">🔢 Цифрды табу</string>
+    <string name="preparing_task">Тапсырма дайындалуда…</string>
+    <string name="repeat_question">Сұрақты қайталау</string>
 </resources>

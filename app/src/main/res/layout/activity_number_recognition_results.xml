@@ -27,13 +27,13 @@
             android:padding="4dp"
             android:clickable="true"
             android:focusable="true"
-            android:contentDescription="Назад" />
+            android:contentDescription="@string/back" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="🔢 Результаты: Найди цифру"
+            android:text="@string/results_number_recognition_title"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#2E7D32"
@@ -54,7 +54,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🎉"
+            android:text="@string/celebration_emoji"
             android:textSize="80sp"
             android:layout_marginBottom="24dp" />
 
@@ -63,23 +63,23 @@
             android:id="@+id/resultMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Превосходно! 🏆"
             android:textSize="28sp"
             android:textStyle="bold"
             android:textColor="#2E7D32"
             android:gravity="center"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            tools:text="Превосходно! 🏆" />
 
         <!-- Подбадривающий текст -->
         <TextView
             android:id="@+id/encouragementText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ты настоящий мастер цифр!"
             android:textSize="18sp"
             android:textColor="#4CAF50"
             android:gravity="center"
-            android:layout_marginBottom="32dp" />
+            android:layout_marginBottom="32dp"
+            tools:text="Ты настоящий мастер цифр!" />
 
         <!-- Счет -->
         <androidx.cardview.widget.CardView
@@ -100,7 +100,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Твой результат"
+                    android:text="@string/your_result"
                     android:textSize="16sp"
                     android:textColor="#666666"
                     android:layout_marginBottom="8dp" />
@@ -109,19 +109,20 @@
                     android:id="@+id/scoreText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="15 из 20"
                     android:textSize="32sp"
                     android:textStyle="bold"
                     android:textColor="#2E7D32"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginBottom="8dp"
+                    tools:text="15 из 20" />
 
                 <TextView
                     android:id="@+id/correctAnswersText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Правильных ответов: 18"
+                    android:text="@string/results_correct_answers_only"
                     android:textSize="14sp"
-                    android:textColor="#666666" />
+                    android:textColor="#666666"
+                    tools:text="Правильных ответов: 18" />
 
             </LinearLayout>
 
@@ -150,7 +151,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="🔄 Играть снова"
+                android:text="@string/play_again"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
@@ -172,7 +173,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="🏠 Главное меню"
+                android:text="@string/main_menu"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"

@@ -83,4 +83,7 @@
         <item quantity="many">%d предметов</item>
         <item quantity="other">%d предмета</item>
     </plurals>
+
+    <!-- Шаблоны вопросов для тренировок -->
+    <string name="find_digit_instruction">Найди цифру %1$s</string>
 </resources>

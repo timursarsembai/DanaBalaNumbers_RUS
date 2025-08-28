@@ -36,8 +36,12 @@ class  NumberRecognitionResultsActivity : AppCompatActivity(), TextToSpeech.OnIn
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            val result = tts?.setLanguage(Locale("ru"))
-            isTtsReady = result != TextToSpeech.LANG_MISSING_DATA && result != TextToSpeech.LANG_NOT_SUPPORTED
+            val locale = Locale.getDefault()
+            val result = tts?.setLanguage(locale)
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                tts?.language = Locale("ru")
+            }
+            isTtsReady = true
 
             // Если TTS готов, озвучиваем поздравление
             if (isTtsReady) {
@@ -53,8 +57,8 @@ class  NumberRecognitionResultsActivity : AppCompatActivity(), TextToSpeech.OnIn
         val totalCorrect = intent.getIntExtra("TOTAL_CORRECT", 0)
 
         // Обновляем UI с результатами
-        findViewById<TextView>(R.id.scoreText).text = "$score из $totalQuestions"
-        findViewById<TextView>(R.id.correctAnswersText).text = "Правильных ответов: $totalCorrect"
+        findViewById<TextView>(R.id.scoreText).text = getString(R.string.results_score_of_total, score, totalQuestions)
+        findViewById<TextView>(R.id.correctAnswersText).text = getString(R.string.results_correct_answers_only, totalCorrect)
 
         // Определяем сообщение в зависимости от результата
         val percentage = (score * 100) / totalQuestions
