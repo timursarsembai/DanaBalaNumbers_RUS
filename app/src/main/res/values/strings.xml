@@ -29,5 +29,13 @@
     <string name="snake_math_title">🐍 Змейка в математике</string>
     <string name="snake_math_results_title">Итоги: Змейка в математике</string>
     <string name="levels_completed">Пройдено уровней: %1$d</string>
+
+    <!-- Настройки языка -->
+    <string name="language_settings_title">Настройки языка</string>
+    <string name="choose_language_description">Выберите язык приложения. Изменение языка перезапустит приложение.</string>
+    <string name="language_restart_note">Примечание: При смене языка приложение будет перезапущено для применения изменений.</string>
+    <string name="settings">Настройки</string>
+    <string name="language">Язык</string>
+
     <!-- Удалены дубли paywall_*; они определены в strings_paywall.xml -->
 </resources>

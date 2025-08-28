@@ -99,6 +99,13 @@
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="landscape" />
 
+        <!-- Настройки языка -->
+        <activity
+            android:name=".LanguageSettingsActivity"
+            android:exported="false"
+            android:parentActivityName=".MathExercisesActivity"
+            android:screenOrientation="portrait" />
+
         <!-- Новая упрощённая тренировка сравнения (детская) -->
         <activity
             android:name=".KidsComparisonActivity"

@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">DanaBala: Сандарды үйренеміз</string>
+
+    <!-- Тіл параметрлері -->
+    <string name="language_settings_title">Тіл параметрлері</string>
+    <string name="choose_language_description">Қолданба тілін таңдаңыз. Тілді өзгерту қолданбаны қайта іске қосады.</string>
+    <string name="language_restart_note">Ескерту: Тілді өзгерткенде, өзгерістерді қолдану үшін қолданба қайта іске қосылады.</string>
+    <string name="settings">Параметрлер</string>
+    <string name="language">Тіл</string>
+
+    <!-- Негізгі интерфейс -->
+    <string name="next">Әрі қарай</string>
+    <string name="done">Дайын</string>
+    <string name="back">Артқа</string>
+    <string name="retry">Қайталау</string>
+    <string name="to_home">Басты бетке</string>
+    <string name="main_menu">🏠 Басты мәзір</string>
+    <string name="play_again">🔄 Қайта ойнау</string>
+
+    <!-- Ойын элементтері -->
+    <string name="score">Ұпай</string>
+    <string name="level">Деңгей</string>
+    <string name="score_label">Ұпай:</string>
+    <string name="time_label">Уақыт:</string>
+    <string name="your_result">Сіздің нәтижеңіз</string>
+    <string name="initial_time">02:00</string>
+    <string name="celebration_emoji">🎉</string>
+    <string name="zero_digit">0</string>
+
+    <!-- Сурет салу жаттығуы -->
+    <string name="draw_number">%1$d санын бояңыз</string>
+
+    <!-- Көпіршік ауалау ойыны -->
+    <string name="bubble_catch_title">Сандармен көпіршіктер</string>
+    <string name="results_bubble_catch_title">🎈 Нәтижелер: Сандармен көпіршіктер</string>
+    <string name="speak_target">Мақсатты айту</string>
+    <string name="find_label">Іздеңіз:</string>
+
+    <!-- Блок сәйкестендіру ойыны -->
+    <string name="block_match_title">💎 Сандар қатары</string>
+    <string name="defeat_title">Ойын аяқталды</string>
+    <string name="defeat_message">Сіз %1$d ұпай жинадыңыз</string>
+    <string name="block_match_end_title">Керемет ойын!</string>
+    <string name="block_match_end_message">Сіз %1$d ұпай тапқансыз</string>
+
+    <!-- Жылан математика ойыны -->
+    <string name="snake_math_title">🐍 Математикалық жылан</string>
+    <string name="snake_math_results_title">Нәтижелер: Математикалық жылан</string>
+    <string name="levels_completed">Өтілген деңгейлер: %1$d</string>
+</resources>
+

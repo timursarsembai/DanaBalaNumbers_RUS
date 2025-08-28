@@ -24,6 +24,11 @@ class MathExercisesActivity : AppCompatActivity() {
 
         setupTabs()
         setupExerciseCards()
+        setupLanguageButton()
+    }
+
+    override fun attachBaseContext(newBase: android.content.Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.applyLanguage(it) })
     }
 
     private fun setupTabs() {
@@ -151,6 +156,15 @@ class MathExercisesActivity : AppCompatActivity() {
         }
         findViewById<CardView>(R.id.cardSudokuKids)?.setOnClickListener {
             openOrPaywall(SudokuKidsActivity::class.java)
+        }
+    }
+
+    private fun setupLanguageButton() {
+        // Добавим кнопку настроек языка в правый верхний угол
+        val languageButton = findViewById<View>(R.id.languageButton)
+        languageButton?.setOnClickListener {
+            val intent = Intent(this, LanguageSettingsActivity::class.java)
+            startActivity(intent)
         }
     }
 }

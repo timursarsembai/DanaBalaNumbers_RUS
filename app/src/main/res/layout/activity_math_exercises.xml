@@ -30,12 +30,24 @@
                 android:layout_marginEnd="12dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="DanaBala:\nУчим цифры и числа"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#1565C0" />
+
+            <!-- Кнопка настроек языка -->
+            <ImageButton
+                android:id="@+id/languageButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_language"
+                android:contentDescription="@string/language_settings_title"
+                android:scaleType="centerInside"
+                android:padding="8dp" />
 
         </LinearLayout>
 
