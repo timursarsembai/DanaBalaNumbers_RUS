@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Purchase screen -->
+    <string name="paywall_title">Full Version</string>
+    <string name="paywall_description">Unlock all games and exercises. One-time purchase, no subscription.</string>
+    <string name="paywall_buy">Buy Full Version</string>
+    <string name="paywall_restore">Restore Purchases</string>
+    <string name="paywall_unavailable">Purchase currently unavailable. Please try later.</string>
+    <string name="paywall_restore_requested">Restore request sent</string>
+    <string name="paywall_thanks">Purchase activated. Thank you!</string>
+
+    <!-- Full version benefits -->
+    <string name="paywall_feature_all_games">✅ All games and trainings</string>
+    <string name="paywall_feature_no_ads">✅ No ads</string>
+    <string name="paywall_feature_unlimited">✅ Unlimited access</string>
+    <string name="paywall_feature_updates">✅ Future updates</string>
+
+    <!-- Error messages -->
+    <string name="paywall_error_purchase">Purchase error</string>
+    <string name="paywall_error_network">Check internet connection</string>
+    <string name="paywall_error_cancelled">Purchase cancelled</string>
+</resources>
+

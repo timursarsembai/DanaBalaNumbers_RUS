@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ойындар: Цифрларды сурет салу -->
+    <string name="game_number_drawing_title">Цифрларды сурет салу</string>
+    <string name="game_number_drawing_description">Цифрларды сызып, бояймыз</string>
+
+    <!-- Ойындар: Сандармен көпіршіктер -->
+    <string name="game_bubble_catch_title">Сандармен көпіршіктер</string>
+    <string name="game_bubble_catch_description">Дұрыс цифрлармен көпіршіктерді жарамыз</string>
+
+    <!-- Ойындар: Сандар қатары -->
+    <string name="game_block_match_title">💎 Сандар қатары</string>
+    <string name="game_block_match_description">Сандарды қатарға жинаймыз</string>
+
+    <!-- Ойындар: Шульте кестелері -->
+    <string name="game_schulte_numbers_title">Шульте кестелері</string>
+    <string name="game_schulte_numbers_description">Сандарды ретпен табамыз</string>
+
+    <!-- Ойындар: Балалар судокусы -->
+    <string name="game_sudoku_kids_title">Балалар судокусы</string>
+    <string name="game_sudoku_kids_description">Сандармен қарапайым судоку</string>
+
+    <!-- Ойындар: Математикалық жылан -->
+    <string name="game_snake_math_title">🐍 Математикалық жылан</string>
+    <string name="game_snake_math_description">Жылан дұрыс жауаптарды жинайды</string>
+
+    <!-- Ойындар: Сұрыптаушы -->
+    <string name="game_sorter_title">Сұрыптаушы</string>
+    <string name="game_sorter_description">Сандарды ережелер бойынша сұрыптаймыз</string>
+
+    <!-- Ойындар: Қатардағы қате -->
+    <string name="game_row_error_title">Қатардағы қате</string>
+    <string name="game_row_error_description">Дұрыс емес санды табамыз</string>
+
+    <!-- Ойындар үшін жалпы жолдар -->
+    <string name="game_start">Ойынды бастау</string>
+    <string name="game_pause">Кідіру</string>
+    <string name="game_resume">Жалғастыру</string>
+    <string name="game_over">Ойын аяқталды</string>
+    <string name="game_win">Жеңіс!</string>
+    <string name="game_new_record">Жаңа рекорд!</string>
+    <string name="game_best_score">Ең жақсы нәтиже: %1$d</string>
+    <string name="game_current_score">Ағымдағы ұпай: %1$d</string>
+</resources>
+

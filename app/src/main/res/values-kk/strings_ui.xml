@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Жалпы интерфейс элементтері -->
+    <string name="next">Әрі қарай</string>
+    <string name="done">Дайын</string>
+    <string name="back">Артқа</string>
+    <string name="retry">Қайталау</string>
+    <string name="to_home">Басты бетке</string>
+    <string name="main_menu">🏠 Басты мәзір</string>
+    <string name="play_again">🔄 Қайта ойнау</string>
+    <string name="cancel">Болдырмау</string>
+    <string name="ok">Жақсы</string>
+    <string name="yes">Ия</string>
+    <string name="no">Жоқ</string>
+
+    <!-- Ойын элементтері -->
+    <string name="score">Ұпай</string>
+    <string name="level">Деңгей</string>
+    <string name="score_label">Ұпай:</string>
+    <string name="time_label">Уақыт:</string>
+    <string name="your_result">Сіздің нәтижеңіз</string>
+    <string name="initial_time">02:00</string>
+    <string name="celebration_emoji">🎉</string>
+    <string name="zero_digit">0</string>
+
+    <!-- Басқару элементтері -->
+    <string name="speak_target">Мақсатты айту</string>
+    <string name="find_label">Іздеңіз:</string>
+    <string name="hint">Кеңес</string>
+    <string name="help">Көмек</string>
+    <string name="pause">Кідіру</string>
+    <string name="resume">Жалғастыру</string>
+
+    <!-- Хабарламалар -->
+    <string name="please_wait">Күте тұрыңыз</string>
+    <string name="connection_error">Байланыс қатесі</string>
+
+    <!-- Тіл параметрлері -->
+    <string name="language_settings_title">Тіл параметрлері</string>
+    <string name="choose_language_description">Қолданба тілін таңдаңыз. Тілді өзгерту қолданбаны қайта іске қосады.</string>
+    <string name="language_restart_note">Ескерту: Тілді өзгерткенде, өзгерістерді қолдану үшін қолданба қайта іске қосылады.</string>
+    <string name="settings">Параметрлер</string>
+    <string name="language">Тіл</string>
+
+    <!-- Қойындылар -->
+    <string name="tab_trainings">Жаттығулар</string>
+    <string name="tab_games">Ойындар</string>
+</resources>

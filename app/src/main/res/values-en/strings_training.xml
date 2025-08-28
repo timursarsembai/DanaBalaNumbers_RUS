@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Training: Number Introduction -->
+    <string name="training_number_introduction_title">Number Introduction</string>
+    <string name="training_number_introduction_description">Learning digits from 0 to 9</string>
+
+    <!-- Training: Number Recognition -->
+    <string name="training_number_recognition_title">Number Recognition</string>
+    <string name="training_number_recognition_description">Learning to recognize digits</string>
+
+    <!-- Training: Counting -->
+    <string name="training_counting_title">Counting</string>
+    <string name="training_counting_description">Counting objects</string>
+
+    <!-- Training: Object Counting -->
+    <string name="training_object_counting_title">Object Counting</string>
+    <string name="training_object_counting_description">Counting different objects</string>
+
+    <!-- Training: Matching -->
+    <string name="training_matching_title">Matching</string>
+    <string name="training_matching_description">Match numbers with quantities</string>
+
+    <!-- Training: Audio Matching -->
+    <string name="training_audio_matching_title">Audio Matching</string>
+    <string name="training_audio_matching_description">Listen and find numbers</string>
+
+    <!-- Training: Ascending Sequence -->
+    <string name="training_ascending_sequence_title">Ascending Order</string>
+    <string name="training_ascending_sequence_description">Arrange numbers in order</string>
+
+    <!-- Training: Descending Sequence -->
+    <string name="training_descending_sequence_title">Descending Order</string>
+    <string name="training_descending_sequence_description">Arrange numbers in reverse order</string>
+
+    <!-- Training: Number Comparison -->
+    <string name="training_number_comparison_title">Number Comparison</string>
+    <string name="training_number_comparison_description">Learning to compare numbers</string>
+
+    <!-- Training: Number Drawing -->
+    <string name="training_number_drawing_title">Number Drawing</string>
+    <string name="training_number_drawing_description">Trace and color digits</string>
+    <string name="draw_number">Color the number %1$d</string>
+
+    <!-- Number names for speech -->
+    <string name="number_name_0">zero</string>
+    <string name="number_name_1">one</string>
+    <string name="number_name_2">two</string>
+    <string name="number_name_3">three</string>
+    <string name="number_name_4">four</string>
+    <string name="number_name_5">five</string>
+    <string name="number_name_6">six</string>
+    <string name="number_name_7">seven</string>
+    <string name="number_name_8">eight</string>
+    <string name="number_name_9">nine</string>
+    <string name="digit_phrase">Digit %1$s</string>
+
+    <!-- Common training strings -->
+    <string name="training_complete">Training completed!</string>
+    <string name="training_next_exercise">Next Exercise</string>
+    <string name="training_repeat_exercise">Repeat Exercise</string>
+    <string name="training_progress">Progress: %1$d of %2$d</string>
+</resources>

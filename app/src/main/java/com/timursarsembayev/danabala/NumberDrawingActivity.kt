@@ -208,11 +208,23 @@ class NumberDrawingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     private fun speakNumber(number: Int) {
-        val numberNames = arrayOf(
-            "ноль", "один", "два", "три", "четыре",
-            "пять", "шесть", "семь", "восемь", "девять"
-        )
-        tts?.speak("Цифра ${numberNames[number]}", TextToSpeech.QUEUE_FLUSH, null, null)
+        val numberNameResourceId = when (number) {
+            0 -> R.string.number_name_0
+            1 -> R.string.number_name_1
+            2 -> R.string.number_name_2
+            3 -> R.string.number_name_3
+            4 -> R.string.number_name_4
+            5 -> R.string.number_name_5
+            6 -> R.string.number_name_6
+            7 -> R.string.number_name_7
+            8 -> R.string.number_name_8
+            9 -> R.string.number_name_9
+            else -> R.string.number_name_0
+        }
+
+        val numberName = getString(numberNameResourceId)
+        val phrase = getString(R.string.digit_phrase, numberName)
+        tts?.speak(phrase, TextToSpeech.QUEUE_FLUSH, null, null)
     }
 
     private fun showCompletionAnimation() { /* опционально */ }

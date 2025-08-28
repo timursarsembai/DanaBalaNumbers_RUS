@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Общие элементы интерфейса -->
+    <string name="next">Далее</string>
+    <string name="done">Готово</string>
+    <string name="back">Назад</string>
+    <string name="retry">Повторить</string>
+    <string name="to_home">На главную</string>
+    <string name="main_menu">🏠 Главное меню</string>
+    <string name="play_again">🔄 Играть снова</string>
+    <string name="cancel">Отмена</string>
+    <string name="ok">ОК</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+
+    <!-- Игровые элементы -->
+    <string name="score">Очки</string>
+    <string name="level">Уровень</string>
+    <string name="score_label">Очки:</string>
+    <string name="time_label">Время:</string>
+    <string name="your_result">Твой результат</string>
+    <string name="initial_time">02:00</string>
+    <string name="celebration_emoji">🎉</string>
+    <string name="zero_digit">0</string>
+
+    <!-- Элементы управления -->
+    <string name="speak_target">Озвучить цель</string>
+    <string name="find_label">Ищи:</string>
+    <string name="hint">Подсказка</string>
+    <string name="help">Помощь</string>
+    <string name="pause">Пауза</string>
+    <string name="resume">Продолжить</string>
+
+    <!-- Сообщения -->
+    <string name="please_wait">Пожалуйста, подождите</string>
+    <string name="connection_error">Ошибка соединения</string>
+
+    <!-- Настройки языка -->
+    <string name="language_settings_title">Настройки языка</string>
+    <string name="choose_language_description">Выберите язык приложения. Изменение языка перезапустит приложение.</string>
+    <string name="language_restart_note">Примечание: При смене языка приложение будет перезапущено для применения изменений.</string>
+    <string name="settings">Настройки</string>
+    <string name="language">Язык</string>
+
+    <!-- Вкладки -->
+    <string name="tab_trainings">Тренировки</string>
+    <string name="tab_games">Игры</string>
+</resources>

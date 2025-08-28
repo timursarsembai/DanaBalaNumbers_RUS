@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Жаттығулар: Сандармен танысу -->
+    <string name="training_number_introduction_title">Сандармен танысу</string>
+    <string name="training_number_introduction_description">0-дан 9-ға дейінгі цифрларды үйренеміз</string>
+
+    <!-- Жаттығулар: Сандарды тану -->
+    <string name="training_number_recognition_title">Сандарды тану</string>
+    <string name="training_number_recognition_description">Цифрларды тануды үйренеміз</string>
+
+    <!-- Жаттығулар: Санау -->
+    <string name="training_counting_title">Санау</string>
+    <string name="training_counting_description">Заттарды санаймыз</string>
+
+    <!-- Жаттығулар: Объектілерді санау -->
+    <string name="training_object_counting_title">Объектілерді санау</string>
+    <string name="training_object_counting_description">Әртүрлі заттарды санаймыз</string>
+
+    <!-- Жаттығулар: Сәйкестендіру -->
+    <string name="training_matching_title">Сәйкестендіру</string>
+    <string name="training_matching_description">Сандарды санмен байланыстырамыз</string>
+
+    <!-- Жаттығулар: Аудио сәйкестендіру -->
+    <string name="training_audio_matching_title">Аудио сәйкестендіру</string>
+    <string name="training_audio_matching_description">Тыңдап, сандарды табамыз</string>
+
+    <!-- Жаттығулар: Өсу ретімен -->
+    <string name="training_ascending_sequence_title">Өсу ретімен</string>
+    <string name="training_ascending_sequence_description">Сандарды ретімен орналастырамыз</string>
+
+    <!-- Жаттығулар: Кему ретімен -->
+    <string name="training_descending_sequence_title">Кему ретімен</string>
+    <string name="training_descending_sequence_description">Сандарды кері ретпен орналастырамыз</string>
+
+    <!-- Жаттығулар: Сандарды салыстыру -->
+    <string name="training_number_comparison_title">Сандарды салыстыру</string>
+    <string name="training_number_comparison_description">Сандарды салыстыруды үйренеміз</string>
+
+    <!-- Жаттығулар: Цифрларды сурет салу -->
+    <string name="training_number_drawing_title">Цифрларды сурет салу</string>
+    <string name="training_number_drawing_description">Цифрларды сызып, бояймыз</string>
+    <string name="draw_number">%1$d цифрын бояңыз</string>
+
+    <!-- Сандардың атаулары дауыстандыру үшін -->
+    <string name="number_name_0">нөл</string>
+    <string name="number_name_1">бір</string>
+    <string name="number_name_2">екі</string>
+    <string name="number_name_3">үш</string>
+    <string name="number_name_4">төрт</string>
+    <string name="number_name_5">бес</string>
+    <string name="number_name_6">алты</string>
+    <string name="number_name_7">жеті</string>
+    <string name="number_name_8">сегіз</string>
+    <string name="number_name_9">тоғыз</string>
+    <string name="digit_phrase">%1$s цифры</string>
+
+    <!-- Жаттығулар үшін жалпы жолдар -->
+    <string name="training_complete">Жаттығу аяқталды!</string>
+    <string name="training_next_exercise">Келесі жаттығу</string>
+    <string name="training_repeat_exercise">Жаттығуды қайталау</string>
+    <string name="training_progress">Үрдіс: %2$d-ден %1$d</string>
+</resources>

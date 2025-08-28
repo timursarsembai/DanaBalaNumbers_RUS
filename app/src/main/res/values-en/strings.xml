@@ -1,51 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Основное название приложения -->
     <string name="app_name">DanaBala: Learn Numbers</string>
 
-    <!-- Language Settings -->
-    <string name="language_settings_title">Language Settings</string>
-    <string name="choose_language_description">Choose the app language. Changing the language will restart the app.</string>
-    <string name="language_restart_note">Note: When changing the language, the app will restart to apply the changes.</string>
-    <string name="settings">Settings</string>
-    <string name="language">Language</string>
+    <!-- Критически важные строки -->
+    <string name="error_occurred">An error occurred</string>
+    <string name="loading">Loading...</string>
 
-    <!-- Basic UI -->
-    <string name="next">Next</string>
-    <string name="done">Done</string>
-    <string name="back">Back</string>
-    <string name="retry">Retry</string>
-    <string name="to_home">Home</string>
-    <string name="main_menu">🏠 Main Menu</string>
-    <string name="play_again">🔄 Play Again</string>
-
-    <!-- Game Elements -->
-    <string name="score">Score</string>
-    <string name="level">Level</string>
-    <string name="score_label">Score:</string>
-    <string name="time_label">Time:</string>
-    <string name="your_result">Your Result</string>
-    <string name="initial_time">02:00</string>
-    <string name="celebration_emoji">🎉</string>
-    <string name="zero_digit">0</string>
-
-    <!-- Drawing Activity -->
-    <string name="draw_number">Color the number %1$d</string>
-
-    <!-- Bubble Catch Game -->
-    <string name="bubble_catch_title">Number Bubbles</string>
-    <string name="results_bubble_catch_title">🎈 Results: Number Bubbles</string>
-    <string name="speak_target">Speak Target</string>
-    <string name="find_label">Find:</string>
-
-    <!-- Block Match Game -->
-    <string name="block_match_title">💎 Number Row</string>
-    <string name="defeat_title">Game Over</string>
-    <string name="defeat_message">You scored %1$d points</string>
-    <string name="block_match_end_title">Great Game!</string>
-    <string name="block_match_end_message">You earned %1$d points</string>
-
-    <!-- Snake Math Game -->
-    <string name="snake_math_title">🐍 Math Snake</string>
-    <string name="snake_math_results_title">Results: Math Snake</string>
-    <string name="levels_completed">Levels completed: %1$d</string>
+    <!-- Остальные строки перенесены в модульные файлы:
+         - strings_ui.xml - общие элементы интерфейса
+         - strings_training.xml - тренировки
+         - strings_games.xml - игры
+         - strings_results.xml - результаты
+         - strings_paywall.xml - покупки -->
 </resources>
-

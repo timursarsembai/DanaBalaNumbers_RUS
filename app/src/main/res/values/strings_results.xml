@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Экраны результатов: Общие -->
+    <string name="results_title">Результаты</string>
+    <string name="results_congratulations">Поздравляем!</string>
+    <string name="results_well_done">Отлично!</string>
+    <string name="results_good_job">Хорошая работа!</string>
+    <string name="results_try_again">Попробуй еще раз!</string>
+
+    <!-- Результаты: Рисование цифр -->
+    <string name="results_number_drawing_title">🎨 Итоги: Рисование цифр</string>
+    <string name="results_numbers_completed">Цифр завершено: %1$d из %2$d</string>
+    <string name="results_drawing_accuracy">Точность рисования: %1$d%%</string>
+
+    <!-- Результаты: Шарики с цифрами -->
+    <string name="results_bubble_catch_title">🎈 Итоги: Шарики с цифрами</string>
+    <string name="results_bubbles_caught">Поймано шариков: %1$d</string>
+    <string name="results_bubbles_missed">Пропущено: %1$d</string>
+    <string name="results_accuracy">Точность: %1$d%%</string>
+
+    <!-- Результаты: Цифровой ряд -->
+    <string name="results_block_match_title">💎 Итоги: Цифровой ряд</string>
+    <string name="results_lines_cleared">Рядов убрано: %1$d</string>
+    <string name="results_blocks_placed">Блоков размещено: %1$d</string>
+
+    <!-- Результаты: Убывающая последовательность -->
+    <string name="results_descending_sequence_title">📉 Итоги: По убыванию</string>
+    <string name="results_sequences_completed">Последовательностей: %1$d</string>
+    <string name="results_average_time">Среднее время: %1$.1f сек</string>
+
+    <!-- Результаты: Сравнение чисел -->
+    <string name="results_number_comparison_title">⚖️ Итоги: Сравнение чисел</string>
+    <string name="results_correct_answers">Правильных ответов: %1$d из %2$d</string>
+    <string name="results_comparison_accuracy">Точность сравнения: %1$d%%</string>
+
+    <!-- Результаты: Змейка в математике -->
+    <string name="results_snake_math_title">🐍 Итоги: Змейка в математике</string>
+    <string name="results_levels_completed">Пройдено уровней: %1$d</string>
+    <string name="results_total_score">Общий счет: %1$d</string>
+
+    <!-- Статистика -->
+    <string name="results_time_spent">Времени потрачено: %1$s</string>
+    <string name="results_mistakes_made">Ошибок допущено: %1$d</string>
+    <string name="results_hints_used">Подсказок использовано: %1$d</string>
+
+    <!-- Достижения -->
+    <string name="results_achievement_perfect">🌟 Безупречно!</string>
+    <string name="results_achievement_fast">⚡ Быстро!</string>
+    <string name="results_achievement_persistent">💪 Упорство!</string>
+    <string name="results_achievement_first_try">🎯 С первого раза!</string>
+</resources>
+

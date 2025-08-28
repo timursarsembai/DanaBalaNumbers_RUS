@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Games: Number Drawing -->
+    <string name="game_number_drawing_title">Number Drawing</string>
+    <string name="game_number_drawing_description">Trace and color digits</string>
+
+    <!-- Games: Bubble Catch -->
+    <string name="game_bubble_catch_title">Number Bubbles</string>
+    <string name="game_bubble_catch_description">Pop bubbles with correct digits</string>
+
+    <!-- Games: Block Match -->
+    <string name="game_block_match_title">💎 Number Row</string>
+    <string name="game_block_match_description">Collect numbers in rows</string>
+
+    <!-- Games: Schulte Numbers -->
+    <string name="game_schulte_numbers_title">Schulte Tables</string>
+    <string name="game_schulte_numbers_description">Find numbers in order</string>
+
+    <!-- Games: Kids Sudoku -->
+    <string name="game_sudoku_kids_title">Kids Sudoku</string>
+    <string name="game_sudoku_kids_description">Simple sudoku with numbers</string>
+
+    <!-- Games: Math Snake -->
+    <string name="game_snake_math_title">🐍 Math Snake</string>
+    <string name="game_snake_math_description">Snake collects correct answers</string>
+
+    <!-- Games: Sorter -->
+    <string name="game_sorter_title">Sorter</string>
+    <string name="game_sorter_description">Sort numbers by rules</string>
+
+    <!-- Games: Row Error -->
+    <string name="game_row_error_title">Row Error</string>
+    <string name="game_row_error_description">Find the wrong number</string>
+
+    <!-- Common game strings -->
+    <string name="game_start">Start Game</string>
+    <string name="game_pause">Pause</string>
+    <string name="game_resume">Resume</string>
+    <string name="game_over">Game Over</string>
+    <string name="game_win">Victory!</string>
+    <string name="game_new_record">New Record!</string>
+    <string name="game_best_score">Best Score: %1$d</string>
+    <string name="game_current_score">Current Score: %1$d</string>
+</resources>
+

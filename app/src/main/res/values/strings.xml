@@ -1,41 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Основное название приложения -->
     <string name="app_name">DanaBala: Учим цифры и числа</string>
-    <!-- Новые строки для упражнения рисования цифр -->
-    <string name="next">Далее</string>
-    <string name="done">Готово</string>
-    <string name="draw_number">Закрась цифру %1$d</string>
-    <string name="bubble_catch_title">Шарики с цифрами</string>
-    <string name="back">Назад</string>
-    <string name="speak_target">Озвучить цель</string>
-    <string name="find_label">Ищи:</string>
-    <string name="score_label">Очки:</string>
-    <string name="time_label">Время:</string>
-    <string name="initial_time">02:00</string>
-    <string name="results_bubble_catch_title">🎈 Итоги: Шарики с цифрами</string>
-    <string name="your_result">Твой результат</string>
-    <string name="play_again">🔄 Играть снова</string>
-    <string name="main_menu">🏠 Главное меню</string>
-    <string name="celebration_emoji">🎉</string>
-    <string name="zero_digit">0</string>
-    <string name="block_match_title">💎 Цифровой ряд</string>
-    <string name="score">Очки</string>
-    <string name="level">Уровень</string>
-    <string name="defeat_title">Конец игры</string>
-    <string name="defeat_message">Вы набрали %1$d очков</string>
-    <string name="retry">Повторить</string>
-    <string name="to_home">На главную</string>
-    <string name="block_match_end_title">Отличная игра!</string>
-    <string name="block_match_end_message">Ты заработал(а) %1$d очков</string>
-    <string name="snake_math_title">🐍 Змейка в математике</string>
-    <string name="snake_math_results_title">Итоги: Змейка в математике</string>
-    <string name="levels_completed">Пройдено уровней: %1$d</string>
 
-    <!-- Настройки языка -->
-    <string name="language_settings_title">Настройки языка</string>
-    <string name="choose_language_description">Выберите язык приложения. Изменение языка перезапустит приложение.</string>
-    <string name="language_restart_note">Примечание: При смене языка приложение будет перезапущено для применения изменений.</string>
-    <string name="settings">Настройки</string>
-    <string name="language">Язык</string>
+    <!-- Критически важные строки, которые должны быть доступны везде -->
+    <string name="error_occurred">Произошла ошибка</string>
+    <string name="loading">Загрузка...</string>
 
-    <!-- Удалены дубли paywall_*; они определены в strings_paywall.xml -->
+    <!-- Остальные строки перенесены в модульные файлы:
+         - strings_ui.xml - общие элементы интерфейса
+         - strings_training.xml - тренировки
+         - strings_games.xml - игры
+         - strings_results.xml - результаты
+         - strings_paywall.xml - покупки -->
 </resources>
+

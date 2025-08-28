@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common UI elements -->
+    <string name="next">Next</string>
+    <string name="done">Done</string>
+    <string name="back">Back</string>
+    <string name="retry">Retry</string>
+    <string name="to_home">Home</string>
+    <string name="main_menu">🏠 Main Menu</string>
+    <string name="play_again">🔄 Play Again</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <!-- Game elements -->
+    <string name="score">Score</string>
+    <string name="level">Level</string>
+    <string name="score_label">Score:</string>
+    <string name="time_label">Time:</string>
+    <string name="your_result">Your Result</string>
+    <string name="initial_time">02:00</string>
+    <string name="celebration_emoji">🎉</string>
+    <string name="zero_digit">0</string>
+
+    <!-- Control elements -->
+    <string name="speak_target">Speak Target</string>
+    <string name="find_label">Find:</string>
+    <string name="hint">Hint</string>
+    <string name="help">Help</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+
+    <!-- Messages -->
+    <string name="please_wait">Please wait</string>
+    <string name="connection_error">Connection error</string>
+
+    <!-- Language settings -->
+    <string name="language_settings_title">Language Settings</string>
+    <string name="choose_language_description">Choose the app language. Changing the language will restart the app.</string>
+    <string name="language_restart_note">Note: When changing the language, the app will restart to apply the changes.</string>
+    <string name="settings">Settings</string>
+    <string name="language">Language</string>
+
+    <!-- Tabs -->
+    <string name="tab_trainings">Trainings</string>
+    <string name="tab_games">Games</string>
+</resources>

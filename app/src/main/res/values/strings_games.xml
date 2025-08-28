@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Игры: Рисование цифр -->
+    <string name="game_number_drawing_title">Рисование цифр</string>
+    <string name="game_number_drawing_description">Обводим и раскрашиваем цифры</string>
+
+    <!-- Игры: Шарики с цифрами -->
+    <string name="game_bubble_catch_title">Шарики с цифрами</string>
+    <string name="game_bubble_catch_description">Лопаем шарики с нужными цифрами</string>
+
+    <!-- Игры: Цифровой ряд -->
+    <string name="game_block_match_title">💎 Цифровой ряд</string>
+    <string name="game_block_match_description">Собираем числа в ряды</string>
+
+    <!-- Игры: Таблицы Шульте -->
+    <string name="game_schulte_numbers_title">Таблицы Шульте</string>
+    <string name="game_schulte_numbers_description">Находим числа по порядку</string>
+
+    <!-- Игры: Детское судоку -->
+    <string name="game_sudoku_kids_title">Детское судоку</string>
+    <string name="game_sudoku_kids_description">Простое судоку с числами</string>
+
+    <!-- Игры: Математическая змейка -->
+    <string name="game_snake_math_title">🐍 Змейка в математике</string>
+    <string name="game_snake_math_description">Змейка собирает правильные ответы</string>
+
+    <!-- Игры: Сортировщик -->
+    <string name="game_sorter_title">Сортировщик</string>
+    <string name="game_sorter_description">Сортируем числа по правилам</string>
+
+    <!-- Игры: Ошибка в ряду -->
+    <string name="game_row_error_title">Ошибка в ряду</string>
+    <string name="game_row_error_description">Находим неправильное число</string>
+
+    <!-- Общие строки для игр -->
+    <string name="game_start">Начать игру</string>
+    <string name="game_pause">Пауза</string>
+    <string name="game_resume">Продолжить</string>
+    <string name="game_over">Игра окончена</string>
+    <string name="game_win">Победа!</string>
+    <string name="game_new_record">Новый рекорд!</string>
+    <string name="game_best_score">Лучший результат: %1$d</string>
+    <string name="game_current_score">Текущий счет: %1$d</string>
+</resources>
+

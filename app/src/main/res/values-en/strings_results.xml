@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Results screens: General -->
+    <string name="results_title">Results</string>
+    <string name="results_congratulations">Congratulations!</string>
+    <string name="results_well_done">Well Done!</string>
+    <string name="results_good_job">Good Job!</string>
+    <string name="results_try_again">Try Again!</string>
+
+    <!-- Results: Number Drawing -->
+    <string name="results_number_drawing_title">🎨 Results: Number Drawing</string>
+    <string name="results_numbers_completed">Numbers completed: %1$d of %2$d</string>
+    <string name="results_drawing_accuracy">Drawing accuracy: %1$d%%</string>
+
+    <!-- Results: Bubble Catch -->
+    <string name="results_bubble_catch_title">🎈 Results: Number Bubbles</string>
+    <string name="results_bubbles_caught">Bubbles caught: %1$d</string>
+    <string name="results_bubbles_missed">Missed: %1$d</string>
+    <string name="results_accuracy">Accuracy: %1$d%%</string>
+
+    <!-- Results: Block Match -->
+    <string name="results_block_match_title">💎 Results: Number Row</string>
+    <string name="results_lines_cleared">Lines cleared: %1$d</string>
+    <string name="results_blocks_placed">Blocks placed: %1$d</string>
+
+    <!-- Results: Descending Sequence -->
+    <string name="results_descending_sequence_title">📉 Results: Descending Order</string>
+    <string name="results_sequences_completed">Sequences: %1$d</string>
+    <string name="results_average_time">Average time: %1$.1f sec</string>
+
+    <!-- Results: Number Comparison -->
+    <string name="results_number_comparison_title">⚖️ Results: Number Comparison</string>
+    <string name="results_correct_answers">Correct answers: %1$d of %2$d</string>
+    <string name="results_comparison_accuracy">Comparison accuracy: %1$d%%</string>
+
+    <!-- Results: Snake Math -->
+    <string name="results_snake_math_title">🐍 Results: Math Snake</string>
+    <string name="results_levels_completed">Levels completed: %1$d</string>
+    <string name="results_total_score">Total score: %1$d</string>
+
+    <!-- Statistics -->
+    <string name="results_time_spent">Time spent: %1$s</string>
+    <string name="results_mistakes_made">Mistakes made: %1$d</string>
+    <string name="results_hints_used">Hints used: %1$d</string>
+
+    <!-- Achievements -->
+    <string name="results_achievement_perfect">🌟 Perfect!</string>
+    <string name="results_achievement_fast">⚡ Fast!</string>
+    <string name="results_achievement_persistent">💪 Persistent!</string>
+    <string name="results_achievement_first_try">🎯 First Try!</string>
+</resources>
+

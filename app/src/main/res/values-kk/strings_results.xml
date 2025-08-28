@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Нәтижелер экрандары: Жалпы -->
+    <string name="results_title">Нәтижелер</string>
+    <string name="results_congratulations">Құттықтаймыз!</string>
+    <string name="results_well_done">Керемет!</string>
+    <string name="results_good_job">Жақсы жұмыс!</string>
+    <string name="results_try_again">Тағы көріңіз!</string>
+
+    <!-- Нәтижелер: Цифрларды сурет салу -->
+    <string name="results_number_drawing_title">🎨 Нәтижелер: Цифрларды сурет салу</string>
+    <string name="results_numbers_completed">Аяқталған цифрлар: %2$d-ден %1$d</string>
+    <string name="results_drawing_accuracy">Сурет салу дәлдігі: %1$d%%</string>
+
+    <!-- Нәтижелер: Сандармен көпіршіктер -->
+    <string name="results_bubble_catch_title">🎈 Нәтижелер: Сандармен көпіршіктер</string>
+    <string name="results_bubbles_caught">Ұсталған көпіршіктер: %1$d</string>
+    <string name="results_bubbles_missed">Өткізілген: %1$d</string>
+    <string name="results_accuracy">Дәлдік: %1$d%%</string>
+
+    <!-- Нәтижелер: Сандар қатары -->
+    <string name="results_block_match_title">💎 Нәтижелер: Сандар қатары</string>
+    <string name="results_lines_cleared">Жойылған қатарлар: %1$d</string>
+    <string name="results_blocks_placed">Орналастырылған блоктар: %1$d</string>
+
+    <!-- Нәтижелер: Кему ретімен -->
+    <string name="results_descending_sequence_title">📉 Нәтижелер: Кему ретімен</string>
+    <string name="results_sequences_completed">Тізбектер: %1$d</string>
+    <string name="results_average_time">Орташа уақыт: %1$.1f сек</string>
+
+    <!-- Нәтижелер: Сандарды салыстыру -->
+    <string name="results_number_comparison_title">⚖️ Нәтижелер: Сандарды салыстыру</string>
+    <string name="results_correct_answers">Дұрыс жауаптар: %2$d-ден %1$d</string>
+    <string name="results_comparison_accuracy">Салыстыру дәлдігі: %1$d%%</string>
+
+    <!-- Нәтижелер: Математикалық жылан -->
+    <string name="results_snake_math_title">🐍 Нәтижелер: Математикалық жылан</string>
+    <string name="results_levels_completed">Өтілген деңгейлер: %1$d</string>
+    <string name="results_total_score">Жалпы ұпай: %1$d</string>
+
+    <!-- Статистика -->
+    <string name="results_time_spent">Жұмсалған уақыт: %1$s</string>
+    <string name="results_mistakes_made">Жіберілген қателер: %1$d</string>
+    <string name="results_hints_used">Пайдаланылған кеңестер: %1$d</string>
+
+    <!-- Жетістіктер -->
+    <string name="results_achievement_perfect">🌟 Мінсіз!</string>
+    <string name="results_achievement_fast">⚡ Жылдам!</string>
+    <string name="results_achievement_persistent">💪 Табанды!</string>
+    <string name="results_achievement_first_try">🎯 Бірінші көрсетуден!</string>
+</resources>
+
