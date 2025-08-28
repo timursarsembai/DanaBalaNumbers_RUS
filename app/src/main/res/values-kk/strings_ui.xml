@@ -98,4 +98,7 @@
     <string name="number_recognition_header_with_emoji">🔢 Цифрды табу</string>
     <string name="preparing_task">Тапсырма дайындалуда…</string>
     <string name="repeat_question">Сұрақты қайталау</string>
+
+    <!-- Ұпай пішімі X / Y -->
+    <string name="score_of_format">%1$d / %2$d</string>
 </resources>

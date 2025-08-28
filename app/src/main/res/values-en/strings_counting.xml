@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Headers and labels for "Find the Quantity" training -->
+    <string name="counting_header_with_emoji">🔍 Find the Quantity</string>
+    <string name="counting_results_header_with_emoji">🔍 Results: Find the Quantity</string>
+    <string name="counting_question_label">How many objects?</string>
+
+    <!-- Default encouragement on results screen -->
+    <string name="counting_encouragement_default">You count objects very well!</string>
+
+    <!-- Formats and captions -->
+    <string name="correct_answers_format">Correct answers: %1$d</string>
+
+    <!-- Feedback phrases during training -->
+    <string-array name="counting_correct_phrases">
+        <item>Well done!</item>
+        <item>Keep it up!</item>
+        <item>Excellent!</item>
+        <item>Great!</item>
+        <item>Awesome!</item>
+        <item>You are super!</item>
+        <item>Wonderful!</item>
+        <item>Bravo!</item>
+        <item>Smart!</item>
+        <item>Cool!</item>
+    </string-array>
+
+    <string-array name="counting_incorrect_phrases">
+        <item>Try again! You can do it!</item>
+        <item>Do not give up! You can!</item>
+        <item>Think a bit more!</item>
+        <item>Almost right! Try again!</item>
+        <item>Let us try again! You can do it!</item>
+        <item>Do not worry! Try another option!</item>
+        <item>You are on the right track! Try more!</item>
+        <item>Think more carefully! You can do it!</item>
+        <item>Do not be upset! Try another card!</item>
+        <item>You are smart! Try again!</item>
+    </string-array>
+
+    <!-- Results screen messages depending on percentage -->
+    <string name="counting_result_title_perfect">Perfect! 🏆</string>
+    <string name="counting_result_title_excellent">Excellent! 🌟</string>
+    <string name="counting_result_title_good">Good! 👍</string>
+    <string name="counting_result_title_try_again">Do not give up! 💪</string>
+
+    <string name="counting_result_encouragement_perfect">You count perfectly!</string>
+    <string name="counting_result_encouragement_excellent">You determine the quantity well!</string>
+    <string name="counting_result_encouragement_good">Keep practicing!</string>
+    <string name="counting_result_encouragement_try_again">It will get better every time!</string>
+
+    <!-- Localizable phrases for TTS results -->
+    <string-array name="counting_results_phrases_perfect">
+        <item>Excellent result! All answers are correct!</item>
+        <item>You scored one hundred percent! Bravo!</item>
+        <item>Perfect! Not a single mistake!</item>
+    </string-array>
+    <string-array name="counting_results_phrases_excellent">
+        <item>Super! Almost everything is correct!</item>
+        <item>Great job! Very few mistakes!</item>
+        <item>Very good! Keep it up!</item>
+    </string-array>
+    <string-array name="counting_results_phrases_good">
+        <item>Not bad! There are mistakes, but well done!</item>
+        <item>Good result! Keep training!</item>
+        <item>You are on the right track! Continue!</item>
+    </string-array>
+    <string-array name="counting_results_phrases_encouragement">
+        <item>Do not give up! Next time will be better!</item>
+        <item>You can do it! Keep practicing!</item>
+        <item>Well done for trying! Let us go again!</item>
+    </string-array>
+</resources>

@@ -2,6 +2,7 @@ package com.timursarsembayev.danabalanumbers
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -36,33 +37,10 @@ class CountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private val allCategories = listOf(fruits, vegetables, animals, objects)
 
-    // Варианты похвалы за правильные ответы
-    private val correctPhrases = listOf(
-        "Молодец!",
-        "Так держать!",
-        "Превосходно!",
-        "Отлично!",
-        "Замечательно!",
-        "Ты супер!",
-        "Великолепно!",
-        "Браво!",
-        "Умница!",
-        "Здорово!"
-    )
-
-    // Варианты подбадривания для неправильных ответов
-    private val incorrectPhrases = listOf(
-        "Попробуй ещё раз! У тебя получится!",
-        "Не сдавайся! Ты можешь!",
-        "Подумай ещё немножко!",
-        "Почти правильно! Попробуй снова!",
-        "Давай ещё раз! Всё получится!",
-        "Не переживай! Попробуй другой вариант!",
-        "Ты на верном пути! Попробуй ещё!",
-        "Думай внимательнее! У тебя всё получится!",
-        "Не расстраивайся! Попробуй другую карточку!",
-        "Ты умный! Попробуй ещё раз!"
-    )
+    // Фразы обратной связи – из ресурсов
+    private lateinit var correctPhrases: Array<String>
+    private lateinit var incorrectPhrases: Array<String>
+    private var allowTts: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,8 +52,22 @@ class CountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             insets
         }
 
-        // Инициализация TTS
-        tts = TextToSpeech(this, this)
+        // Определяем текущую локаль и запрещаем TTS для казахского языка
+        val currentLocale = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            resources.configuration.locales[0]
+        } else {
+            @Suppress("DEPRECATION") resources.configuration.locale
+        }
+        allowTts = currentLocale.language.lowercase(Locale.ROOT) != "kk"
+
+        // Инициализация TTS только если разрешено
+        if (allowTts) {
+            tts = TextToSpeech(this, this)
+        }
+
+        // Инициализация локализованных фраз
+        correctPhrases = resources.getStringArray(R.array.counting_correct_phrases)
+        incorrectPhrases = resources.getStringArray(R.array.counting_incorrect_phrases)
 
         setupBackButton()
 
@@ -84,8 +76,14 @@ class CountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     override fun onInit(status: Int) {
+        if (!allowTts) return
         if (status == TextToSpeech.SUCCESS) {
-            tts?.language = Locale.forLanguageTag("ru-RU")
+            val locale = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                resources.configuration.locales[0]
+            } else {
+                @Suppress("DEPRECATION") resources.configuration.locale
+            }
+            tts?.language = locale
         }
     }
 
@@ -227,7 +225,7 @@ class CountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
             // Выбираем случайную фразу похвалы
             val randomPraise = correctPhrases.random()
-            tts?.speak(randomPraise, TextToSpeech.QUEUE_FLUSH, null, "correct")
+            if (allowTts) tts?.speak(randomPraise, TextToSpeech.QUEUE_FLUSH, null, "correct")
 
             // Переходим к следующему вопросу через 2 секунды
             selectedCard.postDelayed({
@@ -242,7 +240,7 @@ class CountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
             // Выбираем случайную фразу подбадривания
             val randomEncouragement = incorrectPhrases.random()
-            tts?.speak(randomEncouragement, TextToSpeech.QUEUE_FLUSH, null, "wrong")
+            if (allowTts) tts?.speak(randomEncouragement, TextToSpeech.QUEUE_FLUSH, null, "wrong")
 
             // Через 2 секунды включаем карточки обратно
             selectedCard.postDelayed({
@@ -324,8 +322,14 @@ class CountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     override fun onDestroy() {
-        tts?.stop()
-        tts?.shutdown()
+        if (allowTts) {
+            tts?.stop()
+            tts?.shutdown()
+        }
         super.onDestroy()
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.applyLanguage(it) })
     }
 }

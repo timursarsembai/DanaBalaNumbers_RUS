@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- "Санды табу" жаттығуы үшін тақырыптар мен белгілер -->
+    <string name="counting_header_with_emoji">🔍 Санды табу</string>
+    <string name="counting_results_header_with_emoji">🔍 Нәтижелер: Санды табу</string>
+    <string name="counting_question_label">Неше зат?</string>
+
+    <!-- Нәтижелер экранында әдепкі мадақтау -->
+    <string name="counting_encouragement_default">Сен заттарды өте жақсы санайсың!</string>
+
+    <!-- Пішімдер мен жазулар -->
+    <string name="correct_answers_format">Дұрыс жауаптар: %1$d</string>
+
+    <!-- Жаттығу кезіндегі кері байланыс фразалары -->
+    <string-array name="counting_correct_phrases">
+        <item>Жарайсың!</item>
+        <item>Осымен жүр!</item>
+        <item>Тамаша!</item>
+        <item>Керемет!</item>
+        <item>Ғажап!</item>
+        <item>Сен мықтысың!</item>
+        <item>Өте жақсы!</item>
+        <item>Браво!</item>
+        <item>Ақылдысың!</item>
+        <item>Күшті!</item>
+    </string-array>
+
+    <string-array name="counting_incorrect_phrases">
+        <item>Қайта байқап көр! Қолыңнан келеді!</item>
+        <item>Берілме! Сен жасай аласың!</item>
+        <item>Тағы сәл ойлан!</item>
+        <item>Дерлік дұрыс! Қайта көрейік!</item>
+        <item>Қайта көрейік! Бәрі болады!</item>
+        <item>Уайымдама! Басқа нұсқаны көр!</item>
+        <item>Дұрыс жолдасың! Тағы көр!</item>
+        <item>Мұқият ойлан! Қолыңнан келеді!</item>
+        <item>Мораль түспе! Басқа карточканы көр!</item>
+        <item>Ақылдысың! Тағы бір рет!</item>
+    </string-array>
+
+    <!-- Пайызға байланысты нәтижелер экранындағы хабарламалар -->
+    <string name="counting_result_title_perfect">Тамаша! 🏆</string>
+    <string name="counting_result_title_excellent">Өте жақсы! 🌟</string>
+    <string name="counting_result_title_good">Жақсы! 👍</string>
+    <string name="counting_result_title_try_again">Берілме! 💪</string>
+
+    <string name="counting_result_encouragement_perfect">Сен өте керемет санайсың!</string>
+    <string name="counting_result_encouragement_excellent">Сан мөлшерін жақсы анықтайсың!</string>
+    <string name="counting_result_encouragement_good">Жаттыға бер!</string>
+    <string name="counting_result_encouragement_try_again">Әр жолы жақсырақ болады!</string>
+
+    <!-- Нәтижелерді дыбыстауға арналған жергілікті массивтер -->
+    <string-array name="counting_results_phrases_perfect">
+        <item>Керемет нәтиже! Барлық жауап дұрыс!</item>
+        <item>Жүз пайыз! Браво!</item>
+        <item>Идеал! Ешқандай қате жоқ!</item>
+    </string-array>
+    <string-array name="counting_results_phrases_excellent">
+        <item>Жақсы! Дерлік бәрі дұрыс!</item>
+        <item>Тамаша жұмыс! Аз ғана қателер!</item>
+        <item>Өте жақсы! Осымен жүр!</item>
+    </string-array>
+    <string-array name="counting_results_phrases_good">
+        <item>Жаман емес! Қателер бар, бірақ жарайсың!</item>
+        <item>Жақсы нәтиже! Жаттыға бер!</item>
+        <item>Дұрыс бағыттасың! Жалғастыр!</item>
+    </string-array>
+    <string-array name="counting_results_phrases_encouragement">
+        <item>Берілме! Келесіде жақсырақ болады!</item>
+        <item>Бәрі болады! Жаттыға бер!</item>
+        <item>Тырысқаның жақсы! Қайтадан бастайық!</item>
+    </string-array>
+</resources>
+

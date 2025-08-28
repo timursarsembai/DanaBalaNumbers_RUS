@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Заголовки и метки для тренировки "Найди количество" -->
+    <string name="counting_header_with_emoji">🔍 Найди количество</string>
+    <string name="counting_results_header_with_emoji">🔍 Результаты: Найди количество</string>
+    <string name="counting_question_label">Сколько предметов?</string>
+
+    <!-- Подбадривание по умолчанию на экране результатов -->
+    <string name="counting_encouragement_default">Ты отлично считаешь предметы!</string>
+
+    <!-- Форматы и подписи -->
+    <string name="correct_answers_format">Правильных ответов: %1$d</string>
+
+    <!-- Фразы обратной связи в процессе тренировки -->
+    <string-array name="counting_correct_phrases">
+        <item>Молодец!</item>
+        <item>Так держать!</item>
+        <item>Превосходно!</item>
+        <item>Отлично!</item>
+        <item>Замечательно!</item>
+        <item>Ты супер!</item>
+        <item>Великолепно!</item>
+        <item>Браво!</item>
+        <item>Умница!</item>
+        <item>Здорово!</item>
+    </string-array>
+
+    <string-array name="counting_incorrect_phrases">
+        <item>Попробуй ещё раз! У тебя получится!</item>
+        <item>Не сдавайся! Ты можешь!</item>
+        <item>Подумай ещё немножко!</item>
+        <item>Почти правильно! Попробуй снова!</item>
+        <item>Давай ещё раз! Всё получится!</item>
+        <item>Не переживай! Попробуй другой вариант!</item>
+        <item>Ты на верном пути! Попробуй ещё!</item>
+        <item>Думай внимательнее! У тебя всё получится!</item>
+        <item>Не расстраивайся! Попробуй другую карточку!</item>
+        <item>Ты умный! Попробуй ещё раз!</item>
+    </string-array>
+
+    <!-- Сообщения экрана результатов в зависимости от процента -->
+    <string name="counting_result_title_perfect">Превосходно! 🏆</string>
+    <string name="counting_result_title_excellent">Отлично! 🌟</string>
+    <string name="counting_result_title_good">Хорошо! 👍</string>
+    <string name="counting_result_title_try_again">Не сдавайся! 💪</string>
+
+    <string name="counting_result_encouragement_perfect">Ты отлично считаешь!</string>
+    <string name="counting_result_encouragement_excellent">Ты хорошо определяешь количество!</string>
+    <string name="counting_result_encouragement_good">Продолжай тренироваться!</string>
+    <string name="counting_result_encouragement_try_again">С каждым разом будет лучше!</string>
+
+    <!-- Озвучивание итогов (локализуемые массивы) -->
+    <string-array name="counting_results_phrases_perfect">
+        <item>Отличный результат! Все ответы верны!</item>
+        <item>Ты справился на 100 процентов! Браво!</item>
+        <item>Идеально! Ни одной ошибки!</item>
+    </string-array>
+    <string-array name="counting_results_phrases_excellent">
+        <item>Супер! Почти все правильно!</item>
+        <item>Отличная работа! Совсем немного ошибок!</item>
+        <item>Очень хорошо! Продолжай в том же духе!</item>
+    </string-array>
+    <string-array name="counting_results_phrases_good">
+        <item>Неплохо! Есть ошибки, но ты молодец!</item>
+        <item>Хороший результат! Тренируйся дальше!</item>
+        <item>Ты на правильном пути! Продолжай!</item>
+    </string-array>
+    <string-array name="counting_results_phrases_encouragement">
+        <item>Не сдавайся! В следующий раз получится лучше!</item>
+        <item>Все получится! Продолжай тренироваться!</item>
+        <item>Молодец, что стараешься! Давай попробуем еще!</item>
+    </string-array>
+</resources>
