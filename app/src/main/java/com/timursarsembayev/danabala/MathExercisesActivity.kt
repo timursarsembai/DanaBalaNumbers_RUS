@@ -37,8 +37,8 @@ class MathExercisesActivity : AppCompatActivity() {
         val games = findViewById<View>(R.id.gamesContainer)
 
         // Добавляем вкладки
-        val tabTrainings = tabs.newTab().setText("Тренировки")
-        val tabGames = tabs.newTab().setText("Игры")
+        val tabTrainings = tabs.newTab().setText(getString(R.string.tab_trainings))
+        val tabGames = tabs.newTab().setText(getString(R.string.tab_games))
         tabs.addTab(tabTrainings)
         tabs.addTab(tabGames)
 

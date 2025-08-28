@@ -33,7 +33,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="DanaBala:\nУчим цифры и числа"
+                android:text="@string/app_name"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#1565C0" />
@@ -124,7 +124,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Знакомство с цифрами"
+                            android:text="@string/main_training_number_intro_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#0277BD" />
@@ -132,7 +132,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Первое знакомство с цифрами"
+                            android:text="@string/main_training_number_intro_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -179,7 +179,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Найди цифру"
+                            android:text="@string/main_training_number_recognition_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#2E7D32" />
@@ -187,7 +187,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Распознавание цифр"
+                            android:text="@string/main_training_number_recognition_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -234,7 +234,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Найди количество"
+                            android:text="@string/main_training_counting_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#7B1FA2" />
@@ -242,7 +242,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Счёт предметов"
+                            android:text="@string/main_training_counting_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -289,7 +289,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Посчитай предметы"
+                            android:text="@string/main_training_object_counting_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#E65100" />
@@ -297,7 +297,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Посчитай и выбери число"
+                            android:text="@string/main_training_object_counting_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -344,7 +344,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Сопоставление"
+                            android:text="@string/main_training_matching_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#1976D2" />
@@ -352,7 +352,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Сопоставь число и предметы"
+                            android:text="@string/main_training_matching_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -399,7 +399,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Сопоставление по звуку"
+                            android:text="@string/main_training_audio_matching_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#689F38" />
@@ -407,7 +407,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Слушай и выбирай"
+                            android:text="@string/main_training_audio_matching_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -454,7 +454,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Числа по возрастанию"
+                            android:text="@string/main_training_ascending_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#2E7D32" />
@@ -462,7 +462,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Последовательность чисел"
+                            android:text="@string/main_training_ascending_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -509,7 +509,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Числа по убыванию"
+                            android:text="@string/main_training_descending_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#D32F2F" />
@@ -517,7 +517,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Последовательность чисел"
+                            android:text="@string/main_training_descending_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -564,7 +564,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Ошибка в ряду"
+                            android:text="@string/main_training_row_error_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#00695C" />
@@ -572,7 +572,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Найди неправильную цифру"
+                            android:text="@string/main_training_row_error_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -619,7 +619,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Сравнение. У кого больше?"
+                            android:text="@string/main_training_kids_comparison_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#827717" />
@@ -627,7 +627,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="У кого предметов больше"
+                            android:text="@string/main_training_kids_comparison_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -674,7 +674,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Сравнение чисел"
+                            android:text="@string/main_training_number_comparison_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#827717" />
@@ -682,7 +682,6 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Больше или меньше"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -739,7 +738,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Рисование цифр"
+                            android:text="@string/main_game_number_drawing_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#F57C00" />
@@ -747,7 +746,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Творческая игра"
+                            android:text="@string/main_game_number_drawing_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -802,7 +801,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Весёлая ловля"
+                            android:text="@string/main_game_bubble_catch_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -849,7 +848,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Цифровой ряд"
+                            android:text="@string/main_game_block_match_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#00838F" />
@@ -857,7 +856,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Собери 4 одинаковые по горизонтали"
+                            android:text="@string/main_game_block_match_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -904,7 +903,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Скорочтение. Шульте"
+                            android:text="@string/main_game_schulte_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#3F51B5" />
@@ -912,7 +911,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Таблица Шульте для тренировки внимания"
+                            android:text="@string/main_game_schulte_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -959,7 +958,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Змейка в математике"
+                            android:text="@string/main_game_snake_math_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#2E7D32" />
@@ -967,7 +966,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Собирай цифры 0–9 по порядку"
+                            android:text="@string/main_game_snake_math_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -1014,7 +1013,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Сортер"
+                            android:text="@string/main_game_sorter_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#E65100" />
@@ -1022,7 +1021,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Разложи цифры по колонкам"
+                            android:text="@string/main_game_sorter_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />
@@ -1069,7 +1068,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Простой судоку"
+                            android:text="@string/main_game_sudoku_title"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textColor="#1976D2" />
@@ -1077,7 +1076,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Цифры без повторов в строках и столбцах"
+                            android:text="@string/main_game_sudoku_desc"
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:layout_marginTop="2dp" />

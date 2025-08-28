@@ -45,4 +45,43 @@
     <!-- Вкладки -->
     <string name="tab_trainings">Тренировки</string>
     <string name="tab_games">Игры</string>
+
+    <!-- Названия тренировок для главной страницы -->
+    <string name="main_training_number_intro_title">Знакомство с цифрами</string>
+    <string name="main_training_number_intro_desc">Первое знакомство с цифрами</string>
+    <string name="main_training_number_recognition_title">Найди цифру</string>
+    <string name="main_training_number_recognition_desc">Распознавание цифр</string>
+    <string name="main_training_counting_title">Найди количество</string>
+    <string name="main_training_counting_desc">Счёт предметов</string>
+    <string name="main_training_object_counting_title">Посчитай предметы</string>
+    <string name="main_training_object_counting_desc">Посчитай и выбери число</string>
+    <string name="main_training_matching_title">Сопоставление</string>
+    <string name="main_training_matching_desc">Сопоставь число и предметы</string>
+    <string name="main_training_audio_matching_title">Сопоставление по звуку</string>
+    <string name="main_training_audio_matching_desc">Слушай и выбирай</string>
+    <string name="main_training_ascending_title">Числа по возрастанию</string>
+    <string name="main_training_ascending_desc">Последовательность чисел</string>
+    <string name="main_training_descending_title">Числа по убыванию</string>
+    <string name="main_training_descending_desc">Последовательность чисел</string>
+    <string name="main_training_row_error_title">Ошибка в ряду</string>
+    <string name="main_training_row_error_desc">Найди неправильную цифру</string>
+    <string name="main_training_kids_comparison_title">Сравнение. У кого больше?</string>
+    <string name="main_training_kids_comparison_desc">У кого предметов больше</string>
+    <string name="main_training_number_comparison_title">Сравнение чисел</string>
+    <string name="main_training_number_comparison_desc">Больше или меньше</string>
+
+    <!-- Названия игр для главной страницы -->
+    <string name="main_game_number_drawing_title">Рисование цифр</string>
+    <string name="main_game_number_drawing_desc">Творческая игра</string>
+    <string name="main_game_bubble_catch_desc">Весёлая ловля</string>
+    <string name="main_game_block_match_title">Цифровой ряд</string>
+    <string name="main_game_block_match_desc">Собери 4 одинаковые по горизонтали</string>
+    <string name="main_game_schulte_title">Скорочтение. Шульте</string>
+    <string name="main_game_schulte_desc">Таблица Шульте для тренировки внимания</string>
+    <string name="main_game_snake_math_title">Змейка в математике</string>
+    <string name="main_game_snake_math_desc">Собирай цифры 0–9 по порядку</string>
+    <string name="main_game_sorter_title">Сортер</string>
+    <string name="main_game_sorter_desc">Разложи цифры по колонкам</string>
+    <string name="main_game_sudoku_title">Простой судоку</string>
+    <string name="main_game_sudoku_desc">Цифры без повторов в строках и столбцах</string>
 </resources>

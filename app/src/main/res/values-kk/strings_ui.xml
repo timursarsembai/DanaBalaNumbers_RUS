@@ -45,4 +45,43 @@
     <!-- Қойындылар -->
     <string name="tab_trainings">Жаттығулар</string>
     <string name="tab_games">Ойындар</string>
+
+    <!-- Басты бет үшін жаттығу атаулары -->
+    <string name="main_training_number_intro_title">Сандармен танысу</string>
+    <string name="main_training_number_intro_desc">Цифрлармен алғашқы танысу</string>
+    <string name="main_training_number_recognition_title">Цифрды табу</string>
+    <string name="main_training_number_recognition_desc">Цифрларды тану</string>
+    <string name="main_training_counting_title">Санды табу</string>
+    <string name="main_training_counting_desc">Заттарды санау</string>
+    <string name="main_training_object_counting_title">Заттарды санау</string>
+    <string name="main_training_object_counting_desc">Санап, санды таңдау</string>
+    <string name="main_training_matching_title">Сәйкестендіру</string>
+    <string name="main_training_matching_desc">Сандарды заттармен сәйкестендіру</string>
+    <string name="main_training_audio_matching_title">Аудио сәйкестендіру</string>
+    <string name="main_training_audio_matching_desc">Тыңдап таңдау</string>
+    <string name="main_training_ascending_title">Өсу ретімен сандар</string>
+    <string name="main_training_ascending_desc">Сандар тізбегі</string>
+    <string name="main_training_descending_title">Кему ретімен сандар</string>
+    <string name="main_training_descending_desc">Сандар тізбегі</string>
+    <string name="main_training_row_error_title">Қатардағы қате</string>
+    <string name="main_training_row_error_desc">Дұрыс емес цифрды табу</string>
+    <string name="main_training_kids_comparison_title">Салыстыру. Кімде көп?</string>
+    <string name="main_training_kids_comparison_desc">Кімде заттар көп</string>
+    <string name="main_training_number_comparison_title">Сандарды салыстыру</string>
+    <string name="main_training_number_comparison_desc">Үлкен немесе кіші</string>
+
+    <!-- Басты бет үшін ойын атаулары -->
+    <string name="main_game_number_drawing_title">Цифрларды сурет салу</string>
+    <string name="main_game_number_drawing_desc">Шығармашылық ойын</string>
+    <string name="main_game_bubble_catch_desc">Көңілді аулау</string>
+    <string name="main_game_block_match_title">Сандар қатары</string>
+    <string name="main_game_block_match_desc">4 бірдейді көлденеңінен жинау</string>
+    <string name="main_game_schulte_title">Жылдам оқу. Шульте</string>
+    <string name="main_game_schulte_desc">Назар аударуды жаттықтыруға арналған Шульте кестесі</string>
+    <string name="main_game_snake_math_title">Математикалық жылан</string>
+    <string name="main_game_snake_math_desc">0–9 цифрларын ретімен жинау</string>
+    <string name="main_game_sorter_title">Сұрыптаушы</string>
+    <string name="main_game_sorter_desc">Цифрларды бағандар бойынша сұрыптау</string>
+    <string name="main_game_sudoku_title">Қарапайым судоку</string>
+    <string name="main_game_sudoku_desc">Жолдар мен бағандарда қайталанбайтын цифрлар</string>
 </resources>

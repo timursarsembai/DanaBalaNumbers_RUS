@@ -45,4 +45,43 @@
     <!-- Tabs -->
     <string name="tab_trainings">Trainings</string>
     <string name="tab_games">Games</string>
+
+    <!-- Training names for main page -->
+    <string name="main_training_number_intro_title">Number Introduction</string>
+    <string name="main_training_number_intro_desc">First introduction to digits</string>
+    <string name="main_training_number_recognition_title">Find the Digit</string>
+    <string name="main_training_number_recognition_desc">Digit recognition</string>
+    <string name="main_training_counting_title">Find the Quantity</string>
+    <string name="main_training_counting_desc">Counting objects</string>
+    <string name="main_training_object_counting_title">Count the Objects</string>
+    <string name="main_training_object_counting_desc">Count and choose the number</string>
+    <string name="main_training_matching_title">Matching</string>
+    <string name="main_training_matching_desc">Match numbers with objects</string>
+    <string name="main_training_audio_matching_title">Audio Matching</string>
+    <string name="main_training_audio_matching_desc">Listen and choose</string>
+    <string name="main_training_ascending_title">Numbers in Ascending Order</string>
+    <string name="main_training_ascending_desc">Number sequence</string>
+    <string name="main_training_descending_title">Numbers in Descending Order</string>
+    <string name="main_training_descending_desc">Number sequence</string>
+    <string name="main_training_row_error_title">Error in Row</string>
+    <string name="main_training_row_error_desc">Find the wrong digit</string>
+    <string name="main_training_kids_comparison_title">Comparison. Who has more?</string>
+    <string name="main_training_kids_comparison_desc">Who has more objects</string>
+    <string name="main_training_number_comparison_title">Number Comparison</string>
+    <string name="main_training_number_comparison_desc">Greater or less</string>
+
+    <!-- Game names for main page -->
+    <string name="main_game_number_drawing_title">Number Drawing</string>
+    <string name="main_game_number_drawing_desc">Creative game</string>
+    <string name="main_game_bubble_catch_desc">Fun catching</string>
+    <string name="main_game_block_match_title">Number Row</string>
+    <string name="main_game_block_match_desc">Collect 4 same horizontally</string>
+    <string name="main_game_schulte_title">Speed Reading. Schulte</string>
+    <string name="main_game_schulte_desc">Schulte table for attention training</string>
+    <string name="main_game_snake_math_title">Math Snake</string>
+    <string name="main_game_snake_math_desc">Collect digits 0–9 in order</string>
+    <string name="main_game_sorter_title">Sorter</string>
+    <string name="main_game_sorter_desc">Sort digits by columns</string>
+    <string name="main_game_sudoku_title">Simple Sudoku</string>
+    <string name="main_game_sudoku_desc">Digits without repeats in rows and columns</string>
 </resources>
