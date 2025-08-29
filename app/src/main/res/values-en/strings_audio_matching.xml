@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="audio_matching_title">🔊 Audio Matching</string>
+    <string name="audio_matching_instruction">Tap the speaker to hear the number, then select the matching digit</string>
+    <string name="audio_matching_sounds_column">Sounds</string>
+    <string name="audio_matching_numbers_column">Numbers</string>
+    <string name="audio_matching_back_content_desc">Back</string>
+
+    <string name="audio_matching_completed_levels_format">Completed levels: %1$d</string>
+    <string name="audio_matching_correct_actions_format">Correct actions: %1$d</string>
+    <string name="audio_matching_incorrect_actions_format">Mistakes: %1$d</string>
+    <string name="audio_matching_final_score_format">Final score: %1$d</string>
+
+    <string name="audio_matching_result_excellent">Excellent! 🏆</string>
+    <string name="audio_matching_result_good">Great! 🌟</string>
+    <string name="audio_matching_result_ok">Good! 👍</string>
+    <string name="audio_matching_result_try">Keep trying! 💪</string>
+
+    <string name="audio_matching_result_excellent_desc">You hear and recognize numbers very well!</string>
+    <string name="audio_matching_result_good_desc">You match sounds with digits well!</string>
+    <string name="audio_matching_result_ok_desc">Keep practicing!</string>
+    <string name="audio_matching_result_try_desc">It will get better every time!</string>
+
+    <string name="audio_matching_play_again">🔄 Play again</string>
+    <string name="audio_matching_back_to_menu">🏠 Main menu</string>
+
+    <string-array name="number_names_1_9">
+        <item>one</item>
+        <item>two</item>
+        <item>three</item>
+        <item>four</item>
+        <item>five</item>
+        <item>six</item>
+        <item>seven</item>
+        <item>eight</item>
+        <item>nine</item>
+    </string-array>
+</resources>
+

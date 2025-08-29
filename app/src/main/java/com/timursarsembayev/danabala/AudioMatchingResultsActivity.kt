@@ -1,5 +1,6 @@
 package com.timursarsembayev.danabalanumbers
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -10,12 +11,16 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.util.*
-import kotlin.random.Random
 
 class AudioMatchingResultsActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private var tts: TextToSpeech? = null
     private var isTtsReady = false
+    private var allowTts = true
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.applyLanguage(it) })
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,21 +32,28 @@ class AudioMatchingResultsActivity : AppCompatActivity(), TextToSpeech.OnInitLis
             insets
         }
 
-        // Инициализация TTS
-        tts = TextToSpeech(this, this)
+        // Определяем язык и отключаем TTS для казахского
+        val currentLang = LocaleManager.getCurrentLanguage(this).lowercase(Locale.ROOT)
+        allowTts = currentLang != LocaleManager.LANGUAGE_KAZAKH
+
+        if (allowTts) tts = TextToSpeech(this, this)
 
         setupViews()
         setupButtons()
     }
 
     override fun onInit(status: Int) {
+        if (!allowTts) return
         if (status == TextToSpeech.SUCCESS) {
-            val result = tts?.setLanguage(Locale("ru"))
-            isTtsReady = result != TextToSpeech.LANG_MISSING_DATA && result != TextToSpeech.LANG_NOT_SUPPORTED
-
-            if (isTtsReady) {
-                speakCongratulation()
+            val langCode = LocaleManager.getCurrentLanguage(this)
+            val locale = when (langCode) {
+                LocaleManager.LANGUAGE_RUSSIAN -> Locale.forLanguageTag("ru-RU")
+                LocaleManager.LANGUAGE_ENGLISH -> Locale.forLanguageTag("en-US")
+                else -> Locale.forLanguageTag("en-US")
             }
+            val result = tts?.setLanguage(locale)
+            isTtsReady = result != TextToSpeech.LANG_MISSING_DATA && result != TextToSpeech.LANG_NOT_SUPPORTED
+            if (isTtsReady) speakCongratulation()
         }
     }
 
@@ -51,51 +63,36 @@ class AudioMatchingResultsActivity : AppCompatActivity(), TextToSpeech.OnInitLis
         val incorrectActions = intent.getIntExtra("incorrect_actions", 0)
         val finalScore = intent.getIntExtra("final_score", 0)
 
-        // Обновляем UI с результатами
-        findViewById<TextView>(R.id.completedLevelsText).text = "Пройдено уровней: $completedLevels"
-        findViewById<TextView>(R.id.correctActionsText).text = "Правильных действий: $correctActions"
-        findViewById<TextView>(R.id.incorrectActionsText).text = "Ошибок: $incorrectActions"
-        findViewById<TextView>(R.id.finalScoreText).text = "Итоговые очки: $finalScore"
+        findViewById<TextView>(R.id.completedLevelsText).text =
+            getString(R.string.audio_matching_completed_levels_format, completedLevels)
+        findViewById<TextView>(R.id.correctActionsText).text =
+            getString(R.string.audio_matching_correct_actions_format, correctActions)
+        findViewById<TextView>(R.id.incorrectActionsText).text =
+            getString(R.string.audio_matching_incorrect_actions_format, incorrectActions)
+        findViewById<TextView>(R.id.finalScoreText).text =
+            getString(R.string.audio_matching_final_score_format, finalScore)
 
-        // Определяем сообщение в зависимости от результата
         val accuracy = if (correctActions + incorrectActions > 0) {
             (correctActions * 100) / (correctActions + incorrectActions)
         } else {
             100
         }
 
-        val (message, encouragement) = when {
-            accuracy >= 90 -> Pair("Превосходно! 🏆", "Ты отлично слышишь и различаешь числа!")
-            accuracy >= 70 -> Pair("Отлично! 🌟", "Ты хорошо сопоставляешь звуки с цифрами!")
-            accuracy >= 50 -> Pair("Хорошо! 👍", "Продолжай тренироваться!")
-            else -> Pair("Не сдавайся! 💪", "С каждым разом будет лучше!")
+        val (messageRes, encouragementRes) = when {
+            accuracy >= 90 -> R.string.audio_matching_result_excellent to R.string.audio_matching_result_excellent_desc
+            accuracy >= 70 -> R.string.audio_matching_result_good to R.string.audio_matching_result_good_desc
+            accuracy >= 50 -> R.string.audio_matching_result_ok to R.string.audio_matching_result_ok_desc
+            else -> R.string.audio_matching_result_try to R.string.audio_matching_result_try_desc
         }
 
-        findViewById<TextView>(R.id.resultMessage).text = message
-        findViewById<TextView>(R.id.encouragementText).text = encouragement
+        findViewById<TextView>(R.id.resultMessage).setText(messageRes)
+        findViewById<TextView>(R.id.encouragementText).setText(encouragementRes)
     }
 
     private fun speakCongratulation() {
-        if (isTtsReady) {
-            val correctActions = intent.getIntExtra("correct_actions", 0)
-            val incorrectActions = intent.getIntExtra("incorrect_actions", 0)
-
-            val accuracy = if (correctActions + incorrectActions > 0) {
-                (correctActions * 100) / (correctActions + incorrectActions)
-            } else {
-                100
-            }
-
-            val phrases = when {
-                accuracy == 100 -> DifferentiatedCongratulationPhrases.perfect100Phrases
-                accuracy >= 90 -> DifferentiatedCongratulationPhrases.excellent90Phrases
-                accuracy >= 80 -> DifferentiatedCongratulationPhrases.good80Phrases
-                else -> DifferentiatedCongratulationPhrases.encouragement80Phrases
-            }
-
-            val randomPhrase = phrases[Random.nextInt(phrases.size)]
-            tts?.speak(randomPhrase, TextToSpeech.QUEUE_FLUSH, null, "congratulation")
-        }
+        if (!allowTts || !isTtsReady) return
+        val message = findViewById<TextView>(R.id.resultMessage).text.toString()
+        tts?.speak(message, TextToSpeech.QUEUE_FLUSH, null, "audio_matching_results")
     }
 
     private fun setupButtons() {
@@ -120,12 +117,14 @@ class AudioMatchingResultsActivity : AppCompatActivity(), TextToSpeech.OnInitLis
     }
 
     private fun stopTTS() {
-        tts?.stop()
+        if (allowTts) tts?.stop()
     }
 
     override fun onDestroy() {
-        tts?.stop()
-        tts?.shutdown()
+        if (allowTts) {
+            tts?.stop()
+            tts?.shutdown()
+        }
         super.onDestroy()
     }
 }

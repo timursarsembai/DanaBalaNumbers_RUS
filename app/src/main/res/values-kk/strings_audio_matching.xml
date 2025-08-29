@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="audio_matching_title">🔊 Аудио сәйкестендіру</string>
+    <string name="audio_matching_instruction">Дыбысты тыңдау үшін динамикке түртіңіз, сосын сәйкес цифраны таңдаңыз</string>
+    <string name="audio_matching_sounds_column">Дыбыстар</string>
+    <string name="audio_matching_numbers_column">Сандар</string>
+    <string name="audio_matching_back_content_desc">Артқа</string>
+
+    <string name="audio_matching_completed_levels_format">Өтілген деңгейлер: %1$d</string>
+    <string name="audio_matching_correct_actions_format">Дұрыс әрекеттер: %1$d</string>
+    <string name="audio_matching_incorrect_actions_format">Қателер: %1$d</string>
+    <string name="audio_matching_final_score_format">Қорытынды ұпай: %1$d</string>
+
+    <string name="audio_matching_result_excellent">Керемет! 🏆</string>
+    <string name="audio_matching_result_good">Өте жақсы! 🌟</string>
+    <string name="audio_matching_result_ok">Жақсы! 👍</string>
+    <string name="audio_matching_result_try">Талпына бер! 💪</string>
+
+    <string name="audio_matching_result_excellent_desc">Сен сандарды тамаша естіп, ажырата аласың!</string>
+    <string name="audio_matching_result_good_desc">Дыбыстарды цифрлармен жақсы сәйкестендіресің!</string>
+    <string name="audio_matching_result_ok_desc">Жаттыға бер!</string>
+    <string name="audio_matching_result_try_desc">Әр жолы жақсырақ болады!</string>
+
+    <string name="audio_matching_play_again">🔄 Қайта ойнау</string>
+    <string name="audio_matching_back_to_menu">🏠 Басты мәзір</string>
+
+    <string-array name="number_names_1_9">
+        <item>бір</item>
+        <item>екі</item>
+        <item>үш</item>
+        <item>төрт</item>
+        <item>бес</item>
+        <item>алты</item>
+        <item>жеты</item>
+        <item>сегіз</item>
+        <item>тоғыз</item>
+    </string-array>
+</resources>
+

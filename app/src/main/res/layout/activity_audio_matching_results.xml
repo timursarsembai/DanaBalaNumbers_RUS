@@ -20,14 +20,14 @@
         android:padding="8dp"
         android:clickable="true"
         android:focusable="true"
-        android:contentDescription="Назад"
+        android:contentDescription="@string/audio_matching_back_content_desc"
         android:layout_marginBottom="20dp" />
 
     <!-- Заголовок -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="🔊 Сопоставление по звуку"
+        android:text="@string/audio_matching_title"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#2E7D32"
@@ -53,7 +53,7 @@
                 android:id="@+id/resultMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Превосходно! 🏆"
+                android:text="@string/audio_matching_result_excellent"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 android:textColor="#4CAF50"
@@ -64,7 +64,7 @@
                 android:id="@+id/encouragementText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ты отлично слышишь и различаешь числа!"
+                android:text="@string/audio_matching_result_excellent_desc"
                 android:textSize="18sp"
                 android:textColor="#666666"
                 android:gravity="center"
@@ -74,7 +74,7 @@
                 android:id="@+id/completedLevelsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Пройдено уровней: 10"
+                android:text="@string/audio_matching_completed_levels_format"
                 android:textSize="16sp"
                 android:textColor="#2E7D32"
                 android:layout_marginBottom="8dp" />
@@ -83,7 +83,7 @@
                 android:id="@+id/correctActionsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Правильных действий: 45"
+                android:text="@string/audio_matching_correct_actions_format"
                 android:textSize="16sp"
                 android:textColor="#2E7D32"
                 android:layout_marginBottom="8dp" />
@@ -92,7 +92,7 @@
                 android:id="@+id/incorrectActionsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ошибок: 5"
+                android:text="@string/audio_matching_incorrect_actions_format"
                 android:textSize="16sp"
                 android:textColor="#2E7D32"
                 android:layout_marginBottom="8dp" />
@@ -101,7 +101,7 @@
                 android:id="@+id/finalScoreText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Итоговые очки: 425"
+                android:text="@string/audio_matching_final_score_format"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#4CAF50"
@@ -134,7 +134,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="🔄 Играть снова"
+                android:text="@string/audio_matching_play_again"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
@@ -157,7 +157,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="🏠 В главное меню"
+                android:text="@string/audio_matching_back_to_menu"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"

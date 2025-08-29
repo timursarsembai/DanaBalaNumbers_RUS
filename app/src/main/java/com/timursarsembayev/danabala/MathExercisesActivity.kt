@@ -96,6 +96,11 @@ class MathExercisesActivity : AppCompatActivity() {
     }
 
     private fun setupExerciseCards() {
+        // Скрываем аудио-сопоставление для казахского языка
+        val audioCard = findViewById<CardView>(R.id.cardAudioMatching)
+        val currentLang = LocaleManager.getCurrentLanguage(this)
+        audioCard.visibility = if (currentLang == LocaleManager.LANGUAGE_KAZAKH) View.GONE else View.VISIBLE
+
         // Бесплатно: первые 4 тренировки
         findViewById<CardView>(R.id.cardNumberIntroduction).setOnClickListener {
             startActivity(Intent(this, NumberIntroductionActivity::class.java))

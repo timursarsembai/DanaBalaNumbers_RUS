@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="audio_matching_title">🔊 Сопоставление по звуку</string>
+    <string name="audio_matching_instruction">Нажми на динамик, чтобы услышать число, затем выбери соответствующую цифру</string>
+    <string name="audio_matching_sounds_column">Звуки</string>
+    <string name="audio_matching_numbers_column">Числа</string>
+    <string name="audio_matching_back_content_desc">Назад</string>
+
+    <string name="audio_matching_completed_levels_format">Пройдено уровней: %1$d</string>
+    <string name="audio_matching_correct_actions_format">Правильных действий: %1$d</string>
+    <string name="audio_matching_incorrect_actions_format">Ошибок: %1$d</string>
+    <string name="audio_matching_final_score_format">Итоговые очки: %1$d</string>
+
+    <string name="audio_matching_result_excellent">Превосходно! 🏆</string>
+    <string name="audio_matching_result_good">Отлично! 🌟</string>
+    <string name="audio_matching_result_ok">Хорошо! 👍</string>
+    <string name="audio_matching_result_try">Не сдавайся! 💪</string>
+
+    <string name="audio_matching_result_excellent_desc">Ты отлично слышишь и различаешь числа!</string>
+    <string name="audio_matching_result_good_desc">Ты хорошо сопоставляешь звуки с цифрами!</string>
+    <string name="audio_matching_result_ok_desc">Продолжай тренироваться!</string>
+    <string name="audio_matching_result_try_desc">С каждым разом будет лучше!</string>
+
+    <string name="audio_matching_play_again">🔄 Играть снова</string>
+    <string name="audio_matching_back_to_menu">🏠 В главное меню</string>
+
+    <string-array name="number_names_1_9">
+        <item>один</item>
+        <item>два</item>
+        <item>три</item>
+        <item>четыре</item>
+        <item>пять</item>
+        <item>шесть</item>
+        <item>семь</item>
+        <item>восемь</item>
+        <item>девять</item>
+    </string-array>
+</resources>
+
