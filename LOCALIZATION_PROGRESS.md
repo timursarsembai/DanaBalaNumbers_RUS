@@ -72,68 +72,6 @@
 - Поддержка 3 языков (ru, en, kk) работает ✅
 - **ИСПРАВЛЕНО: Все ошибки линковки ресурсов устранены** ✅
 
-### ❌ НЕ ВЫПОЛНЕНО:
-
-*Все задачи Этапа 1 успешно завершены!*
-
----
-
-## Этап 2: Локализация контента (Планируется)
-
-### Тренировки (Training Activities)
-- [ ] NumberIntroductionActivity
-- [ ] NumberRecognitionActivity  
-- [ ] CountingActivity
-- [ ] ObjectCountingActivity
-- [ ] MatchingActivity
-- [ ] AudioMatchingActivity
-- [ ] AscendingSequenceActivity
-- [ ] DescendingSequenceActivity
-- [ ] NumberComparisonActivity
-
-### Игры (Game Activities)
-- [ ] NumberDrawingActivity
-- [ ] BubbleCatchActivity
-- [ ] BlockMatchActivity
-- [ ] SchulteNumbersActivity
-- [ ] SudokuKidsActivity
-- [ ] SnakeMathActivity
-
-### Экраны результатов (Results Activities)
-- [ ] NumberDrawingResultsActivity
-- [ ] BlockMatchResultsActivity
-- [ ] DescendingSequenceResultsActivity
-- [ ] NumberComparisonResultsActivity
-
----
-
-## Этап 3: Тестирование и полировка (Планируется)
-
-- [ ] Тестирование переключения языков
-- [ ] Проверка корректности переводов
-- [ ] Тестирование на разных устройствах
-- [ ] Проверка сохранения настроек языка
-
----
-
-## Следующие задачи:
-
-1. **Завершить рефакторинг строковых ресурсов:**
-   - Создать модульные файлы строк
-   - Добавить переводы paywall на все языки
-   - Логически сгруппировать строки
-
-2. **Локализовать весь контент:**
-   - Перевести все строки в активностях
-   - Локализовать игровой контент
-   - Перевести сообщения об ошибках
-
-3. **Протестировать систему:**
-   - Проверить работу на всех языках
-   - Убедиться в корректности переводов
-
----
-
 ## Лог изменений — 29 августа 2025
 
 - Локализован макет activity_math_exercises.xml (экран списка тренировок и игр):
@@ -203,6 +141,27 @@
 Проверка:
 - RU: интерфейс и озвучка работают на русском.
 - KK: интерфейс на казахском, озвучка отключена по требованию.
+- EN: интерфейс и озвучка работают на английском.
+
+*Последнее обновление: 29 августа 2025*
+
+## Лог изменений — 29 августа 2025 (продолжение — «Посчитай предметы»)
+
+- Локализована тренировка «Посчитай предметы» (ObjectCountingActivity + ObjectCountingResultsActivity):
+  - Строки вынесены в модульные ресурсы и переведены: values/strings_object_counting.xml (ru), values-en/strings_object_counting.xml (en), values-kk/strings_object_counting.xml (kk).
+  - Переиспользованы массивы фраз из strings_counting.xml для похвалы/подбадривания и TTS на экране результатов.
+  - Макеты activity_object_counting.xml и activity_object_counting_results.xml переведены на строковые ресурсы; эмодзи вынесено в @string/object_counting_emoji; убраны хардкоды (примерные значения перенесены в tools:text).
+- Локализация и TTS:
+  - Обе активности применяют локаль через attachBaseContext(LocaleManager.applyLanguage(...)).
+  - Для kk озвучка полностью отключена по требованию. Для ru/en TTS включён, язык выбирается через Locale.forLanguageTag("ru-RU"/"en-US").
+  - Текст вопроса формируется по шаблону: для ru/en используется локализованный словарь названий эмодзи и шаблон "object_counting_question_template"; для kk — общий вопрос без TTS.
+- Технические правки:
+  - Заменены устаревшие конструкторы Locale(...) на Locale.forLanguageTag(...).
+  - Устранены lint-предупреждения о жёстко заданных строках в макетах.
+
+Проверка:
+- RU: интерфейс и озвучка работают на русском.
+- KK: интерфейс на казахском, озвучка отключена полностью.
 - EN: интерфейс и озвучка работают на английском.
 
 *Последнее обновление: 29 августа 2025*

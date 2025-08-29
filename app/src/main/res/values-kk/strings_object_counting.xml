@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Заттарды санау: тақырыптар мен мәтіндер -->
+    <string name="object_counting_header_with_emoji">🧮 Заттарды санау</string>
+    <string name="object_counting_results_header_with_emoji">🧮 Нәтижелер: Заттарды санау</string>
+
+    <!-- Сұрақ мәтіні -->
+    <string name="object_counting_question_template">Сен қанша %1$s көріп тұрсың?</string>
+    <string name="object_counting_question_default">Қанша зат көріп тұрсың?</string>
+
+    <!-- Жалпы атау (fallback) -->
+    <string name="object_counting_items_generic">зат</string>
+
+    <!-- Эмодзи белгісі -->
+    <string name="object_counting_emoji">🧮</string>
+</resources>
+

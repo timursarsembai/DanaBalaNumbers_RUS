@@ -27,13 +27,13 @@
             android:padding="4dp"
             android:clickable="true"
             android:focusable="true"
-            android:contentDescription="Назад" />
+            android:contentDescription="@string/back" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="🧮 Результаты: Посчитай предметы"
+            android:text="@string/object_counting_results_header_with_emoji"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#E65100"
@@ -54,7 +54,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🧮"
+            android:text="@string/object_counting_emoji"
             android:textSize="80sp"
             android:layout_marginBottom="24dp" />
 
@@ -63,7 +63,7 @@
             android:id="@+id/resultMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Превосходно! 🏆"
+            tools:text="@string/counting_result_title_perfect"
             android:textSize="28sp"
             android:textStyle="bold"
             android:textColor="#E65100"
@@ -75,7 +75,7 @@
             android:id="@+id/encouragementText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ты мастер подсчета!"
+            tools:text="@string/counting_encouragement_default"
             android:textSize="18sp"
             android:textColor="#FF9800"
             android:gravity="center"
@@ -100,7 +100,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Твой результат"
+                    android:text="@string/your_result"
                     android:textSize="16sp"
                     android:textColor="#666666"
                     android:layout_marginBottom="8dp" />
@@ -109,7 +109,7 @@
                     android:id="@+id/scoreText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="15 из 20"
+                    tools:text="15 / 20"
                     android:textSize="32sp"
                     android:textStyle="bold"
                     android:textColor="#E65100"
@@ -119,7 +119,7 @@
                     android:id="@+id/correctAnswersText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Правильных ответов: 18"
+                    tools:text="@string/correct_answers_format"
                     android:textSize="14sp"
                     android:textColor="#666666" />
 
@@ -150,7 +150,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="🔄 Играть снова"
+                android:text="@string/play_again"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
@@ -172,7 +172,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="🏠 Главное меню"
+                android:text="@string/main_menu"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Посчитай предметы: заголовки и тексты -->
+    <string name="object_counting_header_with_emoji">🧮 Посчитай предметы</string>
+    <string name="object_counting_results_header_with_emoji">🧮 Результаты: Посчитай предметы</string>
+
+    <!-- Текст вопроса -->
+    <string name="object_counting_question_template">Сколько ты видишь %1$s?</string>
+    <string name="object_counting_question_default">Сколько предметов ты видишь?</string>
+
+    <!-- Общая подстановка для названия предметов (fallback) -->
+    <string name="object_counting_items_generic">предметов</string>
+
+    <!-- Эмодзи-иконка -->
+    <string name="object_counting_emoji">🧮</string>
+</resources>

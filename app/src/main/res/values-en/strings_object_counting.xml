@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Object Counting: headers and texts -->
+    <string name="object_counting_header_with_emoji">🧮 Count the Objects</string>
+    <string name="object_counting_results_header_with_emoji">🧮 Results: Count the Objects</string>
+
+    <!-- Question text -->
+    <string name="object_counting_question_template">How many %1$s do you see?</string>
+    <string name="object_counting_question_default">How many objects do you see?</string>
+
+    <!-- Fallback item name -->
+    <string name="object_counting_items_generic">objects</string>
+
+    <!-- Emoji icon -->
+    <string name="object_counting_emoji">🧮</string>
+</resources>
+

@@ -2,6 +2,7 @@ package com.timursarsembayev.danabalanumbers
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -20,6 +21,7 @@ import kotlin.random.Random
 class ObjectCountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private var tts: TextToSpeech? = null
+    private var allowTts: Boolean = true
     private var currentQuestion = 0
     private var score = 0
     private var totalCorrectAnswers = 0
@@ -36,8 +38,8 @@ class ObjectCountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
 
     private val allCategories = listOf(fruits, vegetables, animals, objects)
 
-    // Словарь названий предметов с ударениями для правильного озвучивания
-    private val emojiNames = mapOf(
+    // Локализованные словари названий предметов для вопроса
+    private val emojiNamesRu = mapOf(
         // Фрукты
         "🍎" to "я́блок",
         "🍌" to "бана́нов",
@@ -79,33 +81,53 @@ class ObjectCountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         "✈️" to "самолё́тиков"
     )
 
-    // Варианты похвалы за правильные ответы
-    private val correctPhrases = listOf(
-        "Молодец!",
-        "Так держать!",
-        "Превосходно!",
-        "Отлично!",
-        "Замечательно!",
-        "Ты супер!",
-        "Великолепно!",
-        "Браво!",
-        "Умница!",
-        "Здорово!"
+    private val emojiNamesEn = mapOf(
+        // Fruits
+        "🍎" to "apples",
+        "🍌" to "bananas",
+        "🍊" to "oranges",
+        "🍇" to "grapes",
+        "🍓" to "strawberries",
+        "🥝" to "kiwis",
+        "🍑" to "peaches",
+        "🍒" to "cherries",
+
+        // Vegetables
+        "🥕" to "carrots",
+        "🥒" to "cucumbers",
+        "🌶️" to "peppers",
+        "🌽" to "corn kernels",
+        "🥔" to "potatoes",
+        "🧄" to "garlic cloves",
+        "🧅" to "onions",
+        "🥬" to "lettuce leaves",
+
+        // Animals
+        "🐶" to "puppies",
+        "🐱" to "kittens",
+        "🐭" to "mice",
+        "🐹" to "hamsters",
+        "🐰" to "bunnies",
+        "🦊" to "foxes",
+        "🐻" to "bears",
+        "🐼" to "pandas",
+
+        // Objects
+        "⚽" to "soccer balls",
+        "🏀" to "basketballs",
+        "🎈" to "balloons",
+        "🎁" to "gifts",
+        "🎂" to "cakes",
+        "🧸" to "teddy bears",
+        "🚗" to "cars",
+        "✈️" to "planes"
     )
 
-    // Варианты подбадривания для неправильных ответов
-    private val incorrectPhrases = listOf(
-        "Попробуй ещё раз! У тебя получится!",
-        "Не сдавайся! Ты можешь!",
-        "Подумай ещё немножко!",
-        "Почти правильно! Попробуй снова!",
-        "Давай ещё раз! Всё получится!",
-        "Не переживай! Попробуй другой вариант!",
-        "Ты на верном пути! Попробуй ещё!",
-        "Думай внимательнее! У тебя всё получится!",
-        "Не расстраивайся! Попробуй другую карточку!",
-        "Ты умный! Попробуй ещё раз!"
-    )
+    // Для казахского будем использовать общий вопрос без перечисления предметов, т.к. TTS выключен
+
+    // Фразы обратной связи – из ресурсов
+    private lateinit var correctPhrases: Array<String>
+    private lateinit var incorrectPhrases: Array<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,8 +139,18 @@ class ObjectCountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
             insets
         }
 
-        // Инициализация TTS
-        tts = TextToSpeech(this, this)
+        // Определяем язык и отключаем TTS для казахского
+        val langCode = LocaleManager.getCurrentLanguage(this)
+        allowTts = langCode.lowercase(Locale.ROOT) != LocaleManager.LANGUAGE_KAZAKH
+
+        // Инициализация TTS только если разрешено
+        if (allowTts) {
+            tts = TextToSpeech(this, this)
+        }
+
+        // Инициализация локализованных фраз
+        correctPhrases = resources.getStringArray(R.array.counting_correct_phrases)
+        incorrectPhrases = resources.getStringArray(R.array.counting_incorrect_phrases)
 
         setupBackButton()
 
@@ -127,8 +159,15 @@ class ObjectCountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
     }
 
     override fun onInit(status: Int) {
+        if (!allowTts) return
         if (status == TextToSpeech.SUCCESS) {
-            tts?.language = Locale.forLanguageTag("ru-RU")
+            val langCode = LocaleManager.getCurrentLanguage(this)
+            val locale = when (langCode) {
+                LocaleManager.LANGUAGE_RUSSIAN -> Locale("ru", "RU")
+                LocaleManager.LANGUAGE_ENGLISH -> Locale("en", "US")
+                else -> Locale("ru", "RU")
+            }
+            tts?.language = locale
         }
     }
 
@@ -179,13 +218,28 @@ class ObjectCountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         val emojiString = selectedEmoji.repeat(targetNumber)
         findViewById<TextView>(R.id.questionObjects).text = emojiString
 
-        // Обновляем текст вопроса с названием предмета и ударениями
-        val itemName = emojiNames[selectedEmoji] ?: "предме́тов"
-        val questionText = "Ско́лько ты ви́дишь $itemName?"
+        // Обновляем текст вопроса
+        val langCode = LocaleManager.getCurrentLanguage(this)
+        val questionText: String = when (langCode) {
+            LocaleManager.LANGUAGE_RUSSIAN -> {
+                val itemName = emojiNamesRu[selectedEmoji] ?: getString(R.string.object_counting_items_generic)
+                getString(R.string.object_counting_question_template, itemName)
+            }
+            LocaleManager.LANGUAGE_ENGLISH -> {
+                val itemName = emojiNamesEn[selectedEmoji] ?: getString(R.string.object_counting_items_generic)
+                getString(R.string.object_counting_question_template, itemName)
+            }
+            else -> {
+                // Казахский: используем общий вопрос
+                getString(R.string.object_counting_question_default)
+            }
+        }
         findViewById<TextView>(R.id.questionText).text = questionText
 
-        // Озвучиваем вопрос через TTS
-        tts?.speak(questionText, TextToSpeech.QUEUE_FLUSH, null, "question")
+        // Озвучиваем вопрос через TTS (кроме казахского)
+        if (allowTts) {
+            tts?.speak(questionText, TextToSpeech.QUEUE_FLUSH, null, "question")
+        }
 
         // Генерируем варианты ответов (числа)
         val answers = generateAnswerOptions(targetNumber)
@@ -278,7 +332,7 @@ class ObjectCountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
 
             // Выбираем случайную фразу похвалы
             val randomPraise = correctPhrases.random()
-            tts?.speak(randomPraise, TextToSpeech.QUEUE_FLUSH, null, "correct")
+            if (allowTts) tts?.speak(randomPraise, TextToSpeech.QUEUE_FLUSH, null, "correct")
 
             // Переходим к следующему вопросу через 2 секунды
             selectedCard.postDelayed({
@@ -293,7 +347,7 @@ class ObjectCountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
 
             // Выбираем случайную фразу подбадривания
             val randomEncouragement = incorrectPhrases.random()
-            tts?.speak(randomEncouragement, TextToSpeech.QUEUE_FLUSH, null, "wrong")
+            if (allowTts) tts?.speak(randomEncouragement, TextToSpeech.QUEUE_FLUSH, null, "wrong")
 
             // Через 2 секунды включаем карточки обратно
             selectedCard.postDelayed({
@@ -375,8 +429,14 @@ class ObjectCountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
     }
 
     override fun onDestroy() {
-        tts?.stop()
-        tts?.shutdown()
+        if (allowTts) {
+            tts?.stop()
+            tts?.shutdown()
+        }
         super.onDestroy()
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.applyLanguage(it) })
     }
 }
