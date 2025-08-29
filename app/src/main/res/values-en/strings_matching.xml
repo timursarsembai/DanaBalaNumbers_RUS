@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Training "Matching" -->
+    <string name="matching_title">🔗 Matching</string>
+    <string name="matching_back">Back</string>
+    <string name="matching_instruction">Match the numbers with the corresponding number of items</string>
+    <string name="matching_numbers_column">Numbers</string>
+    <string name="matching_objects_column">Items</string>
+
+    <!-- Results screen -->
+    <string name="matching_results_title">🎉 Results 🎉</string>
+    <string name="matching_score_format">Final score: %1$d</string>
+    <string name="matching_levels_format">Levels completed: %1$d of %2$d</string>
+    <string name="matching_correct_actions_format">✅ Correct actions: %1$d (+%2$d points)</string>
+    <string name="matching_incorrect_actions_format">❌ Mistakes: %1$d (-%2$d points)</string>
+    <string name="matching_stats_title">📊 Statistics</string>
+    <string name="matching_play_again">Play again</string>
+    <string name="matching_home">Home</string>
+
+    <!-- Feedback text -->
+    <string name="matching_feedback_450">Excellent! You are a real master! 🌟</string>
+    <string name="matching_feedback_350">Great! Wonderful work! 👏</string>
+    <string name="matching_feedback_250">Good! You did well! 👍</string>
+    <string name="matching_feedback_150">Not bad! Keep practicing! 📚</string>
+    <string name="matching_feedback_50">Try again! You can do it! 💪</string>
+    <string name="matching_feedback_else">Do not worry! Try again! 🎯</string>
+
+    <!-- In-game phrases -->
+    <string-array name="matching_correct_phrases">
+        <item>Well done!</item>
+        <item>Excellent!</item>
+        <item>Great!</item>
+        <item>Correct!</item>
+        <item>Super!</item>
+        <item>Bravo!</item>
+        <item>Perfect!</item>
+        <item>Wonderful!</item>
+        <item>Smart!</item>
+        <item>Nice!</item>
+    </string-array>
+
+    <string-array name="matching_incorrect_phrases">
+        <item>Try again!</item>
+        <item>Think a little more!</item>
+        <item>Do not give up!</item>
+        <item>Try one more time!</item>
+        <item>You can do better!</item>
+        <item>One more try!</item>
+        <item>Let us try again!</item>
+        <item>Do not worry!</item>
+        <item>Let us try once more!</item>
+        <item>You will succeed!</item>
+    </string-array>
+
+    <!-- TTS phrases on results screen -->
+    <string-array name="matching_results_tts_perfect">
+        <item>Incredible! All matches without mistakes!</item>
+        <item>Amazing! Perfect work!</item>
+        <item>Fantastic! No mistakes at all!</item>
+    </string-array>
+    <string-array name="matching_results_tts_excellent">
+        <item>Great result! Almost no mistakes!</item>
+        <item>Wonderful! Very high accuracy!</item>
+        <item>Super! Keep it up!</item>
+    </string-array>
+    <string-array name="matching_results_tts_good">
+        <item>Good! A few mistakes, but well done!</item>
+        <item>Not bad! Keep practicing!</item>
+        <item>You are on the right track!</item>
+    </string-array>
+    <string-array name="matching_results_tts_encouragement">
+        <item>Do not give up! Next time will be better!</item>
+        <item>Keep practicing! You can do it!</item>
+        <item>Good effort! Let us try again!</item>
+    </string-array>
+</resources>
+

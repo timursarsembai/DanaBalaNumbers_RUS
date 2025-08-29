@@ -165,3 +165,29 @@
 - EN: интерфейс и озвучка работают на английском.
 
 *Последнее обновление: 29 августа 2025*
+
+## Лог изменений — 29 августа 2025 (продолжение — «Сопоставление»)
+
+- Локализована тренировка «Сопоставление» (MatchingActivity + MatchingResultsActivity):
+  - Все жёстко заданные строки вынесены в модульные ресурсы:
+    - ru: values/strings_matching.xml
+    - en: values-en/strings_matching.xml
+    - kk: values-kk/strings_matching.xml
+  - Макеты activity_matching.xml и activity_matching_results.xml переведены на использование @string; добавлены contentDescription.
+- Озвучка (TTS):
+  - Язык TTS выбирается по LocaleManager (ru-RU/en-US).
+  - Для казахского языка (kk) TTS полностью отключён в тренинге и на экране результатов согласно требованию.
+- Локаль и инициализация:
+  - В MatchingActivity и MatchingResultsActivity добавлен attachBaseContext(LocaleManager.applyLanguage(...)).
+  - Устаревшие конструкторы Locale("..", "..") заменены на Locale.forLanguageTag("..").
+- Текстовая обратная связь:
+  - Фразы похвалы/подбадривания и TTS-фразы экрана результатов вынесены в строковые массивы (matching_*).
+- Дополнительно:
+  - Устранены хардкоды в макетах; добавлено tools:ignore="MissingTranslation" в ru-файл для устойчивости сборки (переводы en/kk присутствуют).
+
+Проверка:
+- RU: интерфейс и TTS работают на русском.
+- KK: интерфейс на казахском, TTS отключён полностью.
+- EN: интерфейс и TTS работают на английском.
+
+*Последнее обновление: 29 августа 2025*

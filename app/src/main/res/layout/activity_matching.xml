@@ -26,14 +26,14 @@
             android:padding="4dp"
             android:clickable="true"
             android:focusable="true"
-            android:contentDescription="Назад" />
+            android:contentDescription="@string/matching_back" />
 
         <!-- Заголовок -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="🔗 Сопоставление"
+            android:text="@string/matching_title"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#2E7D32"
@@ -58,7 +58,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Соедини числа с соответствующим количеством предметов"
+        android:text="@string/matching_instruction"
         android:textSize="16sp"
         android:textColor="#2E7D32"
         android:gravity="center"
@@ -83,7 +83,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Числа"
+                android:text="@string/matching_numbers_column"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#2E7D32"
@@ -110,7 +110,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Предметы"
+                android:text="@string/matching_objects_column"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#2E7D32"

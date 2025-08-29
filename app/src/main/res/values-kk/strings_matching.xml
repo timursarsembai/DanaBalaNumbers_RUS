@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Жаттығу "Сәйкестендіру" -->
+    <string name="matching_title">🔗 Сәйкестендіру</string>
+    <string name="matching_back">Артқа</string>
+    <string name="matching_instruction">Сандарды сәйкес заттар санымен сәйкестендір</string>
+    <string name="matching_numbers_column">Сандар</string>
+    <string name="matching_objects_column">Заттар</string>
+
+    <!-- Нәтижелер экраны -->
+    <string name="matching_results_title">🎉 Нәтижелер 🎉</string>
+    <string name="matching_score_format">Қорытынды ұпай: %1$d</string>
+    <string name="matching_levels_format">Өткен деңгейлер: %1$d / %2$d</string>
+    <string name="matching_correct_actions_format">✅ Дұрыс әрекеттер: %1$d (+%2$d ұпай)</string>
+    <string name="matching_incorrect_actions_format">❌ Қателер: %1$d (-%2$d ұпай)</string>
+    <string name="matching_stats_title">📊 Статистика</string>
+    <string name="matching_play_again">Қайта ойнау</string>
+    <string name="matching_home">Басты бет</string>
+
+    <!-- Мәтіндік пікір -->
+    <string name="matching_feedback_450">Тамаша! Сен нағыз шеберсің! 🌟</string>
+    <string name="matching_feedback_350">Керемет! Жұмысың өте жақсы! 👏</string>
+    <string name="matching_feedback_250">Жақсы! Жақсы орындадың! 👍</string>
+    <string name="matching_feedback_150">Жаман емес! Жаттығуды жалғастыр! 📚</string>
+    <string name="matching_feedback_50">Қайтадан көр! Қолыңнан келеді! 💪</string>
+    <string name="matching_feedback_else">Уайымдама! Тағы да байқап көр! 🎯</string>
+
+    <!-- Ойын барысындағы фразалар (TTS KK үшін өшірілген, бірақ аудармалар берілген) -->
+    <string-array name="matching_correct_phrases">
+        <item>Жарайсың!</item>
+        <item>Өте жақсы!</item>
+        <item>Керемет!</item>
+        <item>Дұрыс!</item>
+        <item>Супер!</item>
+        <item>Браво!</item>
+        <item>Тамаша!</item>
+        <item>Ғажап!</item>
+        <item>Ақылдысың!</item>
+        <item>Күшті!</item>
+    </string-array>
+
+    <string-array name="matching_incorrect_phrases">
+        <item>Қайтадан көр!</item>
+        <item>Тағы ойланып көр!</item>
+        <item>Берілме!</item>
+        <item>Тағы да байқап көр!</item>
+        <item>Одан да жақсы жасай аласың!</item>
+        <item>Тағы бір рет көрейік!</item>
+        <item>Қайтадан жасап көрейік!</item>
+        <item>Уайымдама!</item>
+        <item>Тағы да тырысып көр!</item>
+        <item>Сәттілік! Сенің қолыңнан келеді!</item>
+    </string-array>
+
+    <!-- Нәтиже экранындағы TTS фразалары (KK үшін қолданылмайды) -->
+    <string-array name="matching_results_tts_perfect">
+        <item>Таңғаларлық! Барлық сәйкестіктер қателіксіз!</item>
+        <item>Керемет! Мінсіз жұмыс!</item>
+        <item>Ғажап! Ешқандай қате жоқ!</item>
+    </string-array>
+    <string-array name="matching_results_tts_excellent">
+        <item>Тамаша нәтиже! Дерлік қате жоқ!</item>
+        <item>Өте жақсы! Дәлдігің жоғары!</item>
+        <item>Супер! Осындай қарқынмен жалғастыр!</item>
+    </string-array>
+    <string-array name="matching_results_tts_good">
+        <item>Жақсы! Аздап қателер бар, бірақ сен жарайсың!</item>
+        <item>Жаман емес! Жаттығуды жалғастыр!</item>
+        <item>Дұрыс бағыттасың!</item>
+    </string-array>
+    <string-array name="matching_results_tts_encouragement">
+        <item>Берілме! Келесі жолы жақсырақ болады!</item>
+        <item>Жаттыға бер! Қолыңнан келеді!</item>
+        <item>Тамаша талпыныс! Тағы да байқап көрейік!</item>
+    </string-array>
+</resources>
+

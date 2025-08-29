@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- Тренировка "Сопоставление" -->
+    <string name="matching_title">🔗 Сопоставление</string>
+    <string name="matching_back">Назад</string>
+    <string name="matching_instruction">Соедини числа с соответствующим количеством предметов</string>
+    <string name="matching_numbers_column">Числа</string>
+    <string name="matching_objects_column">Предметы</string>
+
+    <!-- Экран результатов -->
+    <string name="matching_results_title">🎉 Результаты 🎉</string>
+    <string name="matching_score_format">Итоговые очки: %1$d</string>
+    <string name="matching_levels_format">Пройдено уровней: %1$d из %2$d</string>
+    <string name="matching_correct_actions_format">✅ Правильных действий: %1$d (+%2$d очков)</string>
+    <string name="matching_incorrect_actions_format">❌ Ошибок: %1$d (-%2$d очков)</string>
+    <string name="matching_stats_title">📊 Статистика</string>
+    <string name="matching_play_again">Играть еще раз</string>
+    <string name="matching_home">На главную</string>
+
+    <!-- Текстовая обратная связь -->
+    <string name="matching_feedback_450">Превосходно! Ты настоящий мастер! 🌟</string>
+    <string name="matching_feedback_350">Отлично! Великолепная работа! 👏</string>
+    <string name="matching_feedback_250">Хорошо! Ты хорошо справился! 👍</string>
+    <string name="matching_feedback_150">Неплохо! Продолжай практиковаться! 📚</string>
+    <string name="matching_feedback_50">Попробуй еще раз! У тебя получится! 💪</string>
+    <string name="matching_feedback_else">Не расстраивайся! Попробуй снова! 🎯</string>
+
+    <!-- Фразы во время тренировки (для TTS и подсказок) -->
+    <string-array name="matching_correct_phrases">
+        <item>Молодец!</item>
+        <item>Отлично!</item>
+        <item>Великолепно!</item>
+        <item>Правильно!</item>
+        <item>Супер!</item>
+        <item>Браво!</item>
+        <item>Прекрасно!</item>
+        <item>Замечательно!</item>
+        <item>Умница!</item>
+        <item>Здорово!</item>
+    </string-array>
+
+    <string-array name="matching_incorrect_phrases">
+        <item>Попробуй еще раз!</item>
+        <item>Подумай еще немного!</item>
+        <item>Не сдавайся!</item>
+        <item>Попробуй снова!</item>
+        <item>Ты можешь лучше!</item>
+        <item>Еще одну попытку!</item>
+        <item>Давай еще раз!</item>
+        <item>Не расстраивайся!</item>
+        <item>Попробуем снова!</item>
+        <item>У тебя обязательно получится!</item>
+    </string-array>
+
+    <!-- Фразы TTS на экране результатов -->
+    <string-array name="matching_results_tts_perfect">
+        <item>Невероятно! Все совпадения без ошибок!</item>
+        <item>Потрясающе! Идеальная работа!</item>
+        <item>Фантастика! Ни одной ошибки!</item>
+    </string-array>
+    <string-array name="matching_results_tts_excellent">
+        <item>Отличный результат! Почти без ошибок!</item>
+        <item>Замечательно! Очень высокая точность!</item>
+        <item>Супер! Продолжай в том же духе!</item>
+    </string-array>
+    <string-array name="matching_results_tts_good">
+        <item>Хорошо! Есть небольшие ошибки, но ты молодец!</item>
+        <item>Неплохо! Тренируйся дальше!</item>
+        <item>Ты на правильном пути!</item>
+    </string-array>
+    <string-array name="matching_results_tts_encouragement">
+        <item>Не сдавайся! В следующий раз будет лучше!</item>
+        <item>Продолжай тренироваться! У тебя все получится!</item>
+        <item>Молодец, что стараешься! Попробуем еще!</item>
+    </string-array>
+</resources>

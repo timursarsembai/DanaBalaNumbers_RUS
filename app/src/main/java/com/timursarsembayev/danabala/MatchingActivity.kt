@@ -3,11 +3,11 @@ package com.timursarsembayev.danabalanumbers
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
@@ -42,34 +42,61 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var correctActions = 0
     private var incorrectActions = 0
 
-    private lateinit var tts: TextToSpeech
+    private var tts: TextToSpeech? = null
     private var isTtsReady = false
+    private var allowTts = true
+
+    private lateinit var correctPhrases: Array<String>
+    private lateinit var incorrectPhrases: Array<String>
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.applyLanguage(it) })
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_matching)
 
+        // Определяем текущий язык и отключаем TTS для казахского
+        val currentLang = LocaleManager.getCurrentLanguage(this).lowercase(Locale.ROOT)
+        allowTts = currentLang != LocaleManager.LANGUAGE_KAZAKH
+
         initTTS()
         initViews()
         initData()
         setupRecyclerViews()
+
+        // Инициализация локализованных фраз из ресурсов
+        correctPhrases = resources.getStringArray(R.array.matching_correct_phrases)
+        incorrectPhrases = resources.getStringArray(R.array.matching_incorrect_phrases)
+
         loadLevel(currentLevel)
     }
 
     private fun initTTS() {
-        tts = TextToSpeech(this, this)
+        if (allowTts) {
+            tts = TextToSpeech(this, this)
+        }
     }
 
     override fun onInit(status: Int) {
+        if (!allowTts) return
         if (status == TextToSpeech.SUCCESS) {
-            val result = tts.setLanguage(Locale("ru"))
+            val langCode = LocaleManager.getCurrentLanguage(this)
+            val locale = when (langCode) {
+                LocaleManager.LANGUAGE_RUSSIAN -> Locale.forLanguageTag("ru-RU")
+                LocaleManager.LANGUAGE_ENGLISH -> Locale.forLanguageTag("en-US")
+                // Для казахского TTS отключен по allowTts
+                else -> Locale.forLanguageTag("en-US")
+            }
+            val result = tts?.setLanguage(locale)
             isTtsReady = result != TextToSpeech.LANG_MISSING_DATA && result != TextToSpeech.LANG_NOT_SUPPORTED
         }
     }
 
     private fun speakText(text: String) {
-        if (isTtsReady) {
-            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+        if (allowTts && isTtsReady) {
+            tts?.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
         }
     }
 
@@ -211,24 +238,20 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         if (numberItem != null && objectItem != null) {
             if (numberItem.value == objectItem.value) {
-                // Правильное совпадение!
                 onCorrectMatch(numberItem, objectItem)
             } else {
-                // Неправильное совпадение
                 onIncorrectMatch()
             }
         }
     }
 
     private fun onCorrectMatch(numberItem: MatchingItem, objectItem: MatchingItem) {
-        // Увеличиваем счетчик правильных действий
         correctActions++
 
-        // Озвучиваем поощрение
-        val randomPhrase = MatchingFeedbackPhrases.correctPhrases[Random.nextInt(MatchingFeedbackPhrases.correctPhrases.size)]
+        // Озвучиваем поощрение (локализовано)
+        val randomPhrase = correctPhrases[Random.nextInt(correctPhrases.size)]
         speakText(randomPhrase)
 
-        // Отмечаем элементы как сопоставленные
         numberItem.isMatched = true
         objectItem.isMatched = true
 
@@ -250,11 +273,10 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     private fun onIncorrectMatch() {
-        // Увеличиваем счетчик неправильных действий
         incorrectActions++
 
-        // Озвучиваем подбадривание
-        val randomPhrase = MatchingFeedbackPhrases.incorrectPhrases[Random.nextInt(MatchingFeedbackPhrases.incorrectPhrases.size)]
+        // Озвучиваем подбадривание (локализовано)
+        val randomPhrase = incorrectPhrases[Random.nextInt(incorrectPhrases.size)]
         speakText(randomPhrase)
 
         // Выделяем обе карточки красным цветом на полсекунды
@@ -382,9 +404,9 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     override fun onDestroy() {
-        if (::tts.isInitialized) {
-            tts.stop()
-            tts.shutdown()
+        if (allowTts) {
+            tts?.stop()
+            tts?.shutdown()
         }
         super.onDestroy()
     }
