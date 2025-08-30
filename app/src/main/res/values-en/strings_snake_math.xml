@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- UI -->
+    <string name="snake_math_level_format">Level %1$d</string>
+    <string name="snake_math_speak_level">Level %1$d</string>
+    <string name="snake_math_correct_template">Correct: %1$s</string>
+    <string name="snake_math_wrong">Wrong digit</string>
+
+    <!-- Results screen -->
+    <string name="snake_math_results_win_title">Victory!</string>
+    <string name="snake_math_results_level_reached_format">You reached level %1$d</string>
+    <string name="snake_math_results_win_motivation">Fantastic! The snake has grown to the goal.</string>
+    <string name="snake_math_results_lose_motivation">Great try! Try again and you will go further.</string>
+
+    <!-- TTS templates -->
+    <string name="snake_math_results_speak_win_template">Congratulations! Victory! You reached level %1$d. Well done!</string>
+    <string name="snake_math_results_speak_lose_template">Good game! You reached level %1$d. Keep it up!</string>
+</resources>
+

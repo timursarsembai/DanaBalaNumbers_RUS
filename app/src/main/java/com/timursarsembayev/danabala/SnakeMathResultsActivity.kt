@@ -7,10 +7,16 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import java.util.Locale
+import android.content.Context
 
 class SnakeMathResultsActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var tts: TextToSpeech? = null
     private var ttsReady = false
+    private var ttsEnabled = false
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LocaleManager.applyLanguage(newBase))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,13 +32,13 @@ class SnakeMathResultsActivity : AppCompatActivity(), TextToSpeech.OnInitListene
         val motView = if (motId != 0) findViewById<TextView>(motId) else null
 
         if (won) {
-            titleView.text = "Победа!"
-            infoView.text = "Ты дошёл до уровня $levelReached"
-            motView?.text = "Фантастически! Змейка выросла до цели."
+            titleView.text = getString(R.string.snake_math_results_win_title)
+            infoView.text = getString(R.string.snake_math_results_level_reached_format, levelReached)
+            motView?.text = getString(R.string.snake_math_results_win_motivation)
         } else {
-            titleView.text = "Итоги: Змейка в математике"
-            infoView.text = "Ты дошёл до уровня $levelReached"
-            motView?.text = "Отличная попытка! Попробуешь ещё и пройдёшь дальше."
+            titleView.text = getString(R.string.results_snake_math_title)
+            infoView.text = getString(R.string.snake_math_results_level_reached_format, levelReached)
+            motView?.text = getString(R.string.snake_math_results_lose_motivation)
         }
 
         findViewById<Button>(R.id.playAgainButton).setOnClickListener {
@@ -44,14 +50,27 @@ class SnakeMathResultsActivity : AppCompatActivity(), TextToSpeech.OnInitListene
             finish()
         }
 
-        tts = TextToSpeech(this, this)
+        val lang = LocaleManager.getCurrentLanguage(this)
+        ttsEnabled = lang != LocaleManager.LANGUAGE_KAZAKH
+        if (ttsEnabled) {
+            tts = TextToSpeech(this, this)
+        }
     }
 
     override fun onInit(status: Int) {
+        if (!ttsEnabled) return
         if (status == TextToSpeech.SUCCESS) {
-            val res = tts?.setLanguage(Locale("ru", "RU"))
-            if (res == TextToSpeech.LANG_MISSING_DATA || res == TextToSpeech.LANG_NOT_SUPPORTED) {
-                tts?.language = Locale.getDefault()
+            val langCode = LocaleManager.getCurrentLanguage(this)
+            val tag = when (langCode) {
+                LocaleManager.LANGUAGE_RUSSIAN -> "ru-RU"
+                LocaleManager.LANGUAGE_ENGLISH -> "en-US"
+                else -> null
+            }
+            if (tag != null) {
+                val res = tts?.setLanguage(Locale.forLanguageTag(tag))
+                if (res == TextToSpeech.LANG_MISSING_DATA || res == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    tts?.language = Locale.getDefault()
+                }
             }
             ttsReady = true
             speakResults()
@@ -59,13 +78,13 @@ class SnakeMathResultsActivity : AppCompatActivity(), TextToSpeech.OnInitListene
     }
 
     private fun speakResults() {
-        if (!ttsReady) return
+        if (!ttsEnabled || !ttsReady) return
         val won = intent.getBooleanExtra("won", false)
         val levelReached = intent.getIntExtra("level", 1)
         val phrase = if (won) {
-            "Поздравляю! Победа! Ты дошёл до уровня $levelReached. Молодец!"
+            getString(R.string.snake_math_results_speak_win_template, levelReached)
         } else {
-            "Хорошая игра! Ты дошёл до уровня $levelReached. Так держать!"
+            getString(R.string.snake_math_results_speak_lose_template, levelReached)
         }
         tts?.speak(phrase, TextToSpeech.QUEUE_FLUSH, null, "snake_results")
     }

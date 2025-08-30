@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- UI -->
+    <string name="snake_math_level_format">Уровень %1$d</string>
+    <string name="snake_math_speak_level">Уровень %1$d</string>
+    <string name="snake_math_correct_template">Правильно: %1$s</string>
+    <string name="snake_math_wrong">Не та цифра</string>
+
+    <!-- Results screen -->
+    <string name="snake_math_results_win_title">Победа!</string>
+    <string name="snake_math_results_level_reached_format">Ты дошёл до уровня %1$d</string>
+    <string name="snake_math_results_win_motivation">Фантастически! Змейка выросла до цели.</string>
+    <string name="snake_math_results_lose_motivation">Отличная попытка! Попробуешь ещё и пройдёшь дальше.</string>
+
+    <!-- TTS templates -->
+    <string name="snake_math_results_speak_win_template">Поздравляю! Победа! Ты дошёл до уровня %1$d. Молодец!</string>
+    <string name="snake_math_results_speak_lose_template">Хорошая игра! Ты дошёл до уровня %1$d. Так держать!</string>
+</resources>
+

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -65,7 +66,7 @@
                 android:id="@+id/textLevel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Уровень 1"
+                tools:text="Уровень 1"
                 android:textStyle="bold"
                 android:textColor="#2E7D32"
                 android:textSize="18sp"/>
@@ -79,7 +80,7 @@
                 android:id="@+id/timerView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00:00.0"
+                tools:text="00:00.0"
                 android:textStyle="bold"
                 android:textColor="#00695C"
                 android:textSize="18sp"/>

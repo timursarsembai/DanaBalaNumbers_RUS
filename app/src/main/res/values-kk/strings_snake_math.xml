@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- UI -->
+    <string name="snake_math_level_format">Деңгей %1$d</string>
+    <string name="snake_math_speak_level">Деңгей %1$d</string>
+    <string name="snake_math_correct_template">Дұрыс: %1$s</string>
+    <string name="snake_math_wrong">Қате сан</string>
+
+    <!-- Results screen -->
+    <string name="snake_math_results_win_title">Жеңіс!</string>
+    <string name="snake_math_results_level_reached_format">Сен %1$d деңгейге жеттің</string>
+    <string name="snake_math_results_win_motivation">Тамаша! Жылан мақсатқа дейін өсті.</string>
+    <string name="snake_math_results_lose_motivation">Жақсы тырыстың! Қайта байқап, алға жылжисың.</string>
+
+    <!-- TTS templates (kk: озвучка отключена, но храним на будущее) -->
+    <string name="snake_math_results_speak_win_template">Құттықтаймыз! Жеңіс! Сен %1$d деңгейге жеттің. Жарайсың!</string>
+    <string name="snake_math_results_speak_lose_template">Жақсы ойын! Сен %1$d деңгейге жеттің. Осылай жалғастыр!</string>
+</resources>
+

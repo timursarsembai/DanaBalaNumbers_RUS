@@ -12,6 +12,7 @@ import android.view.HapticFeedbackConstants
 import android.view.View
 import android.os.Handler
 import android.os.Looper
+import android.content.Context
 
 class SnakeMathActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var gameView: SnakeMathGameView
@@ -21,6 +22,7 @@ class SnakeMathActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private var tts: TextToSpeech? = null
     private var ttsReady = false
+    private var ttsEnabled = false
 
     // Секундомер
     private val handler = Handler(Looper.getMainLooper())
@@ -33,6 +35,11 @@ class SnakeMathActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             timerView.text = formatTime(elapsed)
             handler.postDelayed(this, 100)
         }
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        // Применяем выбранный язык ко всем вью этой активности
+        super.attachBaseContext(LocaleManager.applyLanguage(newBase))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,8 +64,8 @@ class SnakeMathActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         btnRight?.setOnClickListener { v -> hapticTap(v); gameView.moveOnceRight() }
 
         gameView.onLevelChanged = { level: Int ->
-            levelView.text = "Уровень $level"
-            if (level > lastLevel) speak("Уровень $level")
+            levelView.text = getString(R.string.snake_math_level_format, level)
+            if (level > lastLevel) speak(getString(R.string.snake_math_speak_level, level))
             lastLevel = level
         }
         gameView.onGameOver = { levelsCompleted: Int ->
@@ -77,14 +84,24 @@ class SnakeMathActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             startActivity(intent)
             finish()
         }
-        gameView.onCorrectPickup = { digit: Int -> speak("Правильно: $digit") }
-        gameView.onWrongPickup = { _: Int -> speak("Не та цифра") }
+        gameView.onCorrectPickup = { digit: Int ->
+            val name = getNumberName(digit)
+            speak(getString(R.string.snake_math_correct_template, name))
+        }
+        gameView.onWrongPickup = { _: Int -> speak(getString(R.string.snake_math_wrong)) }
 
-        tts = TextToSpeech(this, this)
+        // Инициализация TTS в зависимости от языка (kk — отключено полностью)
+        val lang = LocaleManager.getCurrentLanguage(this)
+        ttsEnabled = lang != LocaleManager.LANGUAGE_KAZAKH
+        if (ttsEnabled) {
+            tts = TextToSpeech(this, this)
+        }
 
         // Инициализация секундомера
         if (startTimeMs == 0L) startTimeMs = System.currentTimeMillis()
         timerView.text = formatTime(0)
+        // Инициализация стартового текста уровня
+        levelView.text = getString(R.string.snake_math_level_format, 1)
     }
 
     private fun hapticTap(v: View) {
@@ -100,18 +117,43 @@ class SnakeMathActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     override fun onInit(status: Int) {
+        if (!ttsEnabled) return
         if (status == TextToSpeech.SUCCESS) {
-            val res = tts?.setLanguage(Locale("ru", "RU"))
-            if (res == TextToSpeech.LANG_MISSING_DATA || res == TextToSpeech.LANG_NOT_SUPPORTED) {
-                tts?.language = Locale.getDefault()
+            val langCode = LocaleManager.getCurrentLanguage(this)
+            val tag = when (langCode) {
+                LocaleManager.LANGUAGE_RUSSIAN -> "ru-RU"
+                LocaleManager.LANGUAGE_ENGLISH -> "en-US"
+                else -> null
+            }
+            if (tag != null) {
+                val res = tts?.setLanguage(Locale.forLanguageTag(tag))
+                if (res == TextToSpeech.LANG_MISSING_DATA || res == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    tts?.language = Locale.getDefault()
+                }
             }
             ttsReady = true
         }
     }
 
     private fun speak(text: String) {
-        if (!ttsReady) return
+        if (!ttsEnabled || !ttsReady) return
         tts?.speak(text, TextToSpeech.QUEUE_FLUSH, null, "snake_say")
+    }
+
+    private fun getNumberName(d: Int): String {
+        return when (d) {
+            0 -> getString(R.string.number_name_0)
+            1 -> getString(R.string.number_name_1)
+            2 -> getString(R.string.number_name_2)
+            3 -> getString(R.string.number_name_3)
+            4 -> getString(R.string.number_name_4)
+            5 -> getString(R.string.number_name_5)
+            6 -> getString(R.string.number_name_6)
+            7 -> getString(R.string.number_name_7)
+            8 -> getString(R.string.number_name_8)
+            9 -> getString(R.string.number_name_9)
+            else -> d.toString()
+        }
     }
 
     override fun onResume() {
