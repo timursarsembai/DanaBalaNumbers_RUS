@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Descending Sequence: UI strings -->
+    <string name="descending_question">Сандарды кему ретімен толтыр</string>
+    <string name="descending_hint_drag">Сандарды дұрыс ретпен апар</string>
+    <string name="descending_more_label">үлкен</string>
+    <string name="descending_less_label">кіші</string>
+    <string name="descending_choose_numbers">Сандарды таңда:</string>
+    <string name="descending_incorrect_try_again">Қайтадан көр! Сандар кему ретімен тұруы тиіс.</string>
+    <string name="descending_incorrect_try_again_short">Қайтадан көр</string>
+    <string name="descending_speak_question_template">Сандарды кему ретімен толтыр. Көрсетілген сан %1$d</string>
+
+    <!-- Positive feedback phrases -->
+    <string-array name="descending_positive_feedback">
+        <item>Жарайсың!</item>
+        <item>Осылай жалғастыр!</item>
+        <item>Керемет!</item>
+        <item>Өте жақсы!</item>
+        <item>Тамаша!</item>
+        <item>Супер!</item>
+        <item>Ғажап!</item>
+        <item>Браво!</item>
+        <item>Ақылдысың!</item>
+        <item>Жақсы!</item>
+    </string-array>
+
+    <!-- Results screen -->
+    <string name="descending_results_exercise_title">Кему ретімен тапсырма</string>
+    <string name="descending_results_accuracy_line">Дұрыс жауаптар: %1$d / %2$d (%3$d%%)</string>
+    <string name="descending_results_congrats_excellent">🌟 Керемет! 🌟</string>
+    <string name="descending_results_congrats_good">👏 Жақсы! 👏</string>
+    <string name="descending_results_congrats_ok">👍 Жаман емес! 👍</string>
+    <string name="descending_results_congrats_try">💪 Қайтадан көр! 💪</string>
+
+    <string name="descending_results_message_excellent">Тамаша жұмыс! Кему ретімен тапсырманы өте жақсы орындадың!</string>
+    <string name="descending_results_message_good">Жақсы жұмыс! Жаттыға бер!</string>
+    <string name="descending_results_message_ok">Жаман емес нәтиже! Тағы бір көр!</string>
+    <string name="descending_results_message_try">Уайымдама! Қайтадан көрсең, міндетті түрде болады!</string>
+</resources>
+

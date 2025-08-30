@@ -238,3 +238,19 @@
 - KK: интерфейс переведён, TTS отключён по требованию.
 
 *Последнее обновление: 30 августа 2025*
+
+## Лог изменений — 30 августа 2025 (продолжение — «Числа по убыванию»)
+
+- Полная локализация тренировки «Числа по убыванию» (DescendingSequenceActivity + DescendingSequenceResultsActivity):
+  - Вынесены все жёсткие строки в модульные ресурсы: values/strings_descending.xml (ru), values-en/strings_descending.xml (en), values-kk/strings_descending.xml (kk).
+  - Макеты activity_descending_sequence.xml и activity_descending_sequence_results.xml переведены на @string; добавлены contentDescription для кнопок «Назад»; убраны хардкоды.
+  - Активности применяют локаль через attachBaseContext(LocaleManager.applyLanguage(...)).
+  - TTS: ru/en — включён с выбором Locale через LocaleManager; kk — отключён полностью по требованию.
+  - Фразы похвалы/подсказки и шаблоны озвучки вынесены в строковые массивы и шаблоны (descending_*). 
+  - Заменены устаревшие конструкторы Locale(...) на Locale.forLanguageTag(...); очищены предупреждения о жёстко заданных строках.
+
+Проверка:
+- RU/EN: интерфейс и TTS корректны.
+- KK: интерфейс переведён, TTS отключён.
+
+*Последнее обновление: 30 августа 2025*

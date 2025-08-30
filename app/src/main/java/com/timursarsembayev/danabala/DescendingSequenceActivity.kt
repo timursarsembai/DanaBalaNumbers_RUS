@@ -3,6 +3,7 @@ package com.timursarsembayev.danabalanumbers
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.ClipData
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -47,12 +48,14 @@ class DescendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListe
     private var availableNumbers = mutableListOf<Int>()
     private var userAnswers = IntArray(5) { -1 } // -1 означает пустое место
 
-    // Варианты похвалы за правильные ответы
-    private val correctPhrases = listOf(
-        "Молодец!", "Так держать!", "Превосходно!", "Отлично!",
-        "Замечательно!", "Ты супер!", "Великолепно!", "Браво!",
-        "Умница!", "Здорово!"
-    )
+    // Варианты похвалы за правильные ответы (из ресурсов)
+    private val correctPhrases: List<String> by lazy {
+        resources.getStringArray(R.array.descending_positive_feedback).toList()
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LocaleManager.applyLanguage(newBase))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +67,14 @@ class DescendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListe
             insets
         }
 
-        tts = TextToSpeech(this, this)
+        // Инициализируем TTS только для ru/en; для kk — отключаем
+        when (LocaleManager.getCurrentLanguage(this)) {
+            LocaleManager.LANGUAGE_ENGLISH, LocaleManager.LANGUAGE_RUSSIAN -> {
+                tts = TextToSpeech(this, this)
+            }
+            else -> tts = null
+        }
+
         initializeViews()
         setupDragAndDrop()
         generateNewQuestion()
@@ -262,10 +272,10 @@ class DescendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListe
             gravity = android.view.Gravity.CENTER
             setPadding(24, 16, 24, 16)
 
-            // Используем фиксированные размеры вместо app_icon_size
+            // Используем фиксированные размеры
             val layoutParams = LinearLayout.LayoutParams(
-                120, // ширина в пикселях (примерно 60dp)
-                120  // высота в пикселях (примерно 60dp)
+                120,
+                120
             ).apply {
                 setMargins(8, 8, 8, 8)
             }
@@ -352,7 +362,7 @@ class DescendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         availableNumbers.clear()
         for (i in 0 until sequenceSize) {
             val number = startNumber - i
-            if (number != shownNumber) { // Исключаем показанное число, а не позицию
+            if (number != shownNumber) {
                 availableNumbers.add(number)
             }
         }
@@ -394,8 +404,8 @@ class DescendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListe
     }
 
     private fun updateQuestionText() {
-        questionText.text = "Заполни чи́сла по убыванию"
-        hintText.text = "Перетащи чи́сла в правильном порядке"
+        questionText.text = getString(R.string.descending_question)
+        hintText.text = getString(R.string.descending_hint_drag)
     }
 
     private fun updateProgress() {
@@ -443,9 +453,9 @@ class DescendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListe
     }
 
     private fun showIncorrectFeedback() {
-        hintText.text = "Попробуй еще раз! Числа должны уменьшаться по порядку."
+        hintText.text = getString(R.string.descending_incorrect_try_again)
         hintText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
-        speakText("Попробуй еще раз")
+        speakText(getString(R.string.descending_incorrect_try_again_short))
     }
 
     private fun nextQuestion() {
@@ -483,7 +493,9 @@ class DescendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListe
     }
 
     private fun speakQuestion() {
-        speakText("Заполни числа по убыванию. Показано число ${shownNumber}")
+        if (tts == null) return
+        val template = getString(R.string.descending_speak_question_template)
+        speakText(String.format(template, shownNumber))
     }
 
     private fun speakText(text: String) {
@@ -492,7 +504,11 @@ class DescendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListe
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            val result = tts!!.setLanguage(Locale("ru", "RU"))
+            val locale = when (LocaleManager.getCurrentLanguage(this)) {
+                LocaleManager.LANGUAGE_ENGLISH -> Locale.forLanguageTag("en-US")
+                else -> Locale.forLanguageTag("ru-RU")
+            }
+            val result = tts!!.setLanguage(locale)
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 tts!!.setLanguage(Locale.getDefault())
             }

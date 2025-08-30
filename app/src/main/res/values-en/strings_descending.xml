@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Descending Sequence: UI strings -->
+    <string name="descending_question">Fill the numbers in descending order</string>
+    <string name="descending_hint_drag">Drag the numbers in the correct order</string>
+    <string name="descending_more_label">greater</string>
+    <string name="descending_less_label">less</string>
+    <string name="descending_choose_numbers">Choose numbers:</string>
+    <string name="descending_incorrect_try_again">Try again! Numbers must go in decreasing order.</string>
+    <string name="descending_incorrect_try_again_short">Try again</string>
+    <string name="descending_speak_question_template">Fill numbers in descending order. Shown number %1$d</string>
+
+    <!-- Positive feedback phrases -->
+    <string-array name="descending_positive_feedback">
+        <item>Well done!</item>
+        <item>Keep it up!</item>
+        <item>Excellent!</item>
+        <item>Great!</item>
+        <item>Awesome!</item>
+        <item>Super!</item>
+        <item>Fantastic!</item>
+        <item>Bravo!</item>
+        <item>Smart!</item>
+        <item>Nice!</item>
+    </string-array>
+
+    <!-- Results screen -->
+    <string name="descending_results_exercise_title">Descending exercise</string>
+    <string name="descending_results_accuracy_line">Correct answers: %1$d of %2$d (%3$d%%)</string>
+    <string name="descending_results_congrats_excellent">🌟 Excellent! 🌟</string>
+    <string name="descending_results_congrats_good">👏 Good! 👏</string>
+    <string name="descending_results_congrats_ok">👍 Not bad! 👍</string>
+    <string name="descending_results_congrats_try">💪 Try again! 💪</string>
+
+    <string name="descending_results_message_excellent">Great job! You did the descending exercise perfectly!</string>
+    <string name="descending_results_message_good">Good job! Keep practicing!</string>
+    <string name="descending_results_message_ok">Not bad! Try once more!</string>
+    <string name="descending_results_message_try">Don\'t worry! Try again, you will definitely succeed!</string>
+</resources>
+
