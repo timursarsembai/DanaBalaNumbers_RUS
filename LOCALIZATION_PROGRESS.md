@@ -241,7 +241,7 @@
 
 ## Лог изменений — 30 августа 2025 (продолжение — «Числа по убыванию»)
 
-- Полная локализация тренировки «Числа по убыванию» (DescendingSequenceActivity + DescendingSequenceResultsActivity):
+- Полная локализация тренировки «Числа по убыванию» (DescendingSequenceActivity + DescendingSequenceResultsActivity) и макетов:
   - Вынесены все жёсткие строки в модульные ресурсы: values/strings_descending.xml (ru), values-en/strings_descending.xml (en), values-kk/strings_descending.xml (kk).
   - Макеты activity_descending_sequence.xml и activity_descending_sequence_results.xml переведены на @string; добавлены contentDescription для кнопок «Назад»; убраны хардкоды.
   - Активности применяют локаль через attachBaseContext(LocaleManager.applyLanguage(...)).
@@ -252,5 +252,28 @@
 Проверка:
 - RU/EN: интерфейс и TTS корректны.
 - KK: интерфейс переведён, TTS отключён.
+
+*Последнее обновление: 30 августа 2025*
+
+## Лог изменений — 30 августа 2025 (продолжение — «Выбор языка и флаги»)
+
+- Главная страница (MathExercisesActivity):
+  - Иконка языка заменена на флаг выбранного языка (RU/KZ/EN). Флаг обновляется при возвращении на экран (onResume).
+  - contentDescription кнопки языка теперь соответствует названию текущего языка (для доступности).
+- Ресурсы флагов:
+  - Добавлены векторные drawable: ic_flag_ru, ic_flag_kz, ic_flag_us.
+  - В LocaleManager добавлен метод getLanguageFlagRes(languageCode) для получения ресурса флага.
+- Экран «Настройки языка» (LanguageSettingsActivity + activity_language_settings.xml):
+  - Полный редизайн списка языков — минималистичный стиль в духе iOS: без чекбоксов и радиокнопок.
+  - Каждый язык — это MaterialCardView c флагом и названием; выбранный элемент подсвечивается мягким цветом фона.
+  - Убраны рамки; выделение реализовано цветом фона и акцентом текста.
+  - В макете RadioGroup заменён на LinearLayout-контейнер для динамического списка карточек.
+  - Добавлены цвета: language_selected_bg (фон выбранного), language_unselected_bg (фон обычного).
+- Дополнительно:
+  - Цвет текста выбранного элемента — акцентный (primaryColor), для остальных — text_color.
+
+Проверка:
+- Сборка assembleDebug — успешна; критичных ошибок нет.
+- Предупреждения: onBackPressed() устаревший (не критично; поведение сохранено), предупреждения об устаревших конструкторах Locale в других местах не затронуты этим изменением.
 
 *Последнее обновление: 30 августа 2025*

@@ -41,12 +41,12 @@
                 app:cardElevation="4dp"
                 android:layout_marginBottom="16dp">
 
-                <RadioGroup
-                    android:id="@+id/languageRadioGroup"
+                <LinearLayout
+                    android:id="@+id/languageListContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp" />
+                    android:padding="8dp" />
 
             </androidx.cardview.widget.CardView>
 

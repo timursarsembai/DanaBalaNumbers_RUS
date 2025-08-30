@@ -83,6 +83,18 @@ object LocaleManager {
     }
 
     /**
+     * Получить ресурс иконки-флага по коду языка
+     */
+    fun getLanguageFlagRes(languageCode: String): Int {
+        return when (languageCode) {
+            LANGUAGE_RUSSIAN -> R.drawable.ic_flag_ru
+            LANGUAGE_ENGLISH -> R.drawable.ic_flag_us
+            LANGUAGE_KAZAKH -> R.drawable.ic_flag_kz
+            else -> R.drawable.ic_language
+        }
+    }
+
+    /**
      * Проверить, нужно ли перезапустить активность при смене языка
      */
     fun shouldRecreateActivity(context: Context, newLanguage: String): Boolean {

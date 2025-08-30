@@ -17,4 +17,8 @@
     <!-- Цвета для вкладок -->
     <color name="tab_text_unselected">#803F51B5</color>
     <color name="tab_text_color_unselected">#1565C0</color>
+
+    <!-- Языки: выделение выбранного -->
+    <color name="language_selected_bg">#E3F2FD</color>
+    <color name="language_unselected_bg">#FFFFFFFF</color>
 </resources>

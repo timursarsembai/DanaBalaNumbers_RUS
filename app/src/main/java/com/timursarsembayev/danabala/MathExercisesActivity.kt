@@ -3,6 +3,7 @@ package com.timursarsembayev.danabalanumbers
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
@@ -29,6 +30,12 @@ class MathExercisesActivity : AppCompatActivity() {
 
     override fun attachBaseContext(newBase: android.content.Context?) {
         super.attachBaseContext(newBase?.let { LocaleManager.applyLanguage(it) })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Обновляем иконку флага при возврате на экран
+        updateLanguageButtonFlag()
     }
 
     private fun setupTabs() {
@@ -165,11 +172,22 @@ class MathExercisesActivity : AppCompatActivity() {
     }
 
     private fun setupLanguageButton() {
-        // Добавим кнопку настроек языка в правый верхний угол
-        val languageButton = findViewById<View>(R.id.languageButton)
+        // Кнопка настроек языка в правом верхнем углу
+        val languageButton = findViewById<ImageButton>(R.id.languageButton)
+        updateLanguageButtonFlag()
         languageButton?.setOnClickListener {
             val intent = Intent(this, LanguageSettingsActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun updateLanguageButtonFlag() {
+        val languageButton = findViewById<ImageButton>(R.id.languageButton)
+        languageButton?.let {
+            val currentLang = LocaleManager.getCurrentLanguage(this)
+            val flagRes = LocaleManager.getLanguageFlagRes(currentLang)
+            it.setImageResource(flagRes)
+            it.contentDescription = LocaleManager.getLanguageDisplayName(currentLang)
         }
     }
 }
