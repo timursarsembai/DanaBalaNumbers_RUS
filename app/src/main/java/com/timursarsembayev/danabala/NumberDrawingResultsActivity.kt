@@ -13,35 +13,29 @@ class NumberDrawingResultsActivity : AppCompatActivity(), TextToSpeech.OnInitLis
 
     private var tts: TextToSpeech? = null
 
-    // Фразы похвалы и мотивации
-    private val praisePhrases = listOf(
-        "Отлично! Ты замечательно закрасил(а) все цифры!",
-        "Браво! У тебя получилось очень аккуратно!",
-        "Здорово! Прекрасная работа!",
-        "Молодец! Так держать!"
-    )
-
-    private val motivationPhrases = listOf(
-        "Продолжай тренироваться, и будет ещё лучше!",
-        "Хочешь попробовать ещё раз и сделать ещё красивее?",
-        "Ты большой молодец! Переходи к следующему заданию!",
-        "С каждым разом у тебя получается всё лучше!"
-    )
+    override fun attachBaseContext(newBase: android.content.Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.applyLanguage(it) })
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_number_drawing_results)
 
-        tts = TextToSpeech(this, this)
+        val lang = LocaleManager.getCurrentLanguage(this)
+        if (lang != LocaleManager.LANGUAGE_KAZAKH) {
+            tts = TextToSpeech(this, this)
+        } else {
+            tts = null // Отключаем TTS для казахского языка
+        }
 
         setupViews()
     }
 
     private fun setupViews() {
-        // Тексты
-        findViewById<TextView>(R.id.messageDisplay)?.text = "Отлично! 🏆"
-        findViewById<TextView>(R.id.motivationalMessage)?.text = "Ты замечательно справился(ась)!"
-        findViewById<TextView>(R.id.congratulationsIcon)?.text = "🎉"
+        // Тексты из ресурсов
+        findViewById<TextView>(R.id.messageDisplay)?.text = getString(R.string.number_drawing_results_main_message)
+        findViewById<TextView>(R.id.motivationalMessage)?.text = getString(R.string.number_drawing_results_secondary_message)
+        findViewById<TextView>(R.id.congratulationsIcon)?.text = getString(R.string.celebration_emoji)
 
         findViewById<ImageButton>(R.id.backButton)?.setOnClickListener { finish() }
 
@@ -63,14 +57,22 @@ class NumberDrawingResultsActivity : AppCompatActivity(), TextToSpeech.OnInitLis
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            val result = tts?.setLanguage(Locale("ru", "RU"))
+            val lang = LocaleManager.getCurrentLanguage(this)
+            val locale = when (lang) {
+                LocaleManager.LANGUAGE_RUSSIAN -> Locale.forLanguageTag("ru-RU")
+                LocaleManager.LANGUAGE_ENGLISH -> Locale.forLanguageTag("en-US")
+                else -> Locale.getDefault()
+            }
+            val result = tts?.setLanguage(locale)
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 tts?.setLanguage(Locale.getDefault())
             }
             // Небольшая задержка, чтобы не перебивать системные звуки
             android.os.Handler(mainLooper).postDelayed({
-                speak(praisePhrases.random())
-                speak(motivationPhrases.random())
+                val praise = resources.getStringArray(R.array.number_drawing_results_praise_phrases).random()
+                val motivation = resources.getStringArray(R.array.number_drawing_results_motivation_phrases).random()
+                speak(praise)
+                speak(motivation)
             }, 600)
         }
     }

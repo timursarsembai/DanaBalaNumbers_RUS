@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Цифрларды сурет салу -->
+    <string name="number_drawing_title">🎨 Цифрларды сурет салу</string>
+    <string name="eraser">Өшіргіш</string>
+
+    <!-- Нәтижелер экраны -->
+    <string name="number_drawing_results_title">🎨 Нәтижелер: Цифрларды сурет салу</string>
+    <string name="number_drawing_results_main_message">Тамаша! 🏆</string>
+    <string name="number_drawing_results_secondary_message">Сен өте жақсы орындадың!</string>
+
+    <!-- TTS фразалар (kk тілінде TTS өшірілген, бірақ ресурстар бар болсын) -->
+    <string-array name="number_drawing_success_phrases">
+        <item>Тамаша! Өте жақсы!</item>
+        <item>Керемет! Жарайсың!</item>
+        <item>Ғажап! Осылай жалғастыр!</item>
+        <item>Жақсы жұмыс!</item>
+    </string-array>
+    <string-array name="number_drawing_encouragement_phrases">
+        <item>Әлі сәл бояу керек</item>
+        <item>Жалғастыр!</item>
+        <item>Дайын болуға таяу!</item>
+    </string-array>
+
+    <!-- Нәтижелер экранына арналған фразалар -->
+    <string-array name="number_drawing_results_praise_phrases">
+        <item>Тамаша! Сен барлық цифрларды әдемі боядың!</item>
+        <item>Керемет! Өте ұқыпты болды!</item>
+        <item>Жақсы! Керемет жұмыс!</item>
+        <item>Жарайсың! Осындай қарқында!</item>
+    </string-array>
+    <string-array name="number_drawing_results_motivation_phrases">
+        <item>Жаттыға бер, одан да жақсы болады!</item>
+        <item>Қайта байқап, одан да әдемі қылайық па?</item>
+        <item>Сен үлкен жарайсың! Келесі тапсырмаға өт!</item>
+        <item>Әр жолы бәрі жақсарып келеді!</item>
+    </string-array>
+</resources>
+

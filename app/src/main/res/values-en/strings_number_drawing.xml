@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Number Drawing -->
+    <string name="number_drawing_title">🎨 Number Drawing</string>
+    <string name="eraser">Eraser</string>
+
+    <!-- Results screen -->
+    <string name="number_drawing_results_title">🎨 Results: Number Drawing</string>
+    <string name="number_drawing_results_main_message">Great! 🏆</string>
+    <string name="number_drawing_results_secondary_message">You did a wonderful job!</string>
+
+    <!-- TTS phrases -->
+    <string-array name="number_drawing_success_phrases">
+        <item>Excellent! Very good!</item>
+        <item>Wonderful! Well done!</item>
+        <item>Awesome! Keep going!</item>
+        <item>Good job!</item>
+    </string-array>
+    <string-array name="number_drawing_encouragement_phrases">
+        <item>Fill a little more</item>
+        <item>Keep going!</item>
+        <item>Almost done!</item>
+    </string-array>
+
+    <!-- Results TTS phrases -->
+    <string-array name="number_drawing_results_praise_phrases">
+        <item>Great! You colored all the numbers wonderfully!</item>
+        <item>Bravo! It turned out very neat!</item>
+        <item>Nice! Excellent work!</item>
+        <item>Well done! Keep it up!</item>
+    </string-array>
+    <string-array name="number_drawing_results_motivation_phrases">
+        <item>Keep practicing and it will get even better!</item>
+        <item>Want to try again and make it even more beautiful?</item>
+        <item>You are doing great! Move on to the next task!</item>
+        <item>Each time you are getting better!</item>
+    </string-array>
+</resources>
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Рисование цифр -->
+    <string name="number_drawing_title">🎨 Рисование цифр</string>
+    <string name="eraser">Ластик</string>
+
+    <!-- Экран результатов -->
+    <string name="number_drawing_results_title">🎨 Результаты: Рисование цифр</string>
+    <string name="number_drawing_results_main_message">Отлично! 🏆</string>
+    <string name="number_drawing_results_secondary_message">Ты замечательно справился(ась)!</string>
+
+    <!-- Фразы TTS -->
+    <string-array name="number_drawing_success_phrases">
+        <item>Отлично! Очень хорошо!</item>
+        <item>Замечательно! Молодец!</item>
+        <item>Превосходно! Продолжай!</item>
+        <item>Хорошая работа!</item>
+    </string-array>
+    <string-array name="number_drawing_encouragement_phrases">
+        <item>Нужно ещё немного закрасить</item>
+        <item>Продолжай!</item>
+        <item>Почти готово!</item>
+    </string-array>
+
+    <!-- Фразы для экрана результатов (TTS) -->
+    <string-array name="number_drawing_results_praise_phrases">
+        <item>Отлично! Ты замечательно закрасил(а) все цифры!</item>
+        <item>Браво! У тебя получилось очень аккуратно!</item>
+        <item>Здорово! Прекрасная работа!</item>
+        <item>Молодец! Так держать!</item>
+    </string-array>
+    <string-array name="number_drawing_results_motivation_phrases">
+        <item>Продолжай тренироваться, и будет ещё лучше!</item>
+        <item>Хочешь попробовать ещё раз и сделать ещё красивее?</item>
+        <item>Ты большой молодец! Переходи к следующему заданию!</item>
+        <item>С каждым разом у тебя получается всё лучше!</item>
+    </string-array>
+</resources>
+

@@ -30,14 +30,14 @@
             android:padding="4dp"
             android:clickable="true"
             android:focusable="true"
-            android:contentDescription="Назад" />
+            android:contentDescription="@string/back" />
 
         <TextView
             android:id="@+id/screenTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="🎨 Рисование цифр"
+            android:text="@string/number_drawing_title"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#1565C0"
@@ -89,7 +89,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Закрась цифру 0"
+            android:text=""
+            tools:text="@string/draw_number"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#2C3E50"
@@ -147,7 +148,7 @@
                 android:src="@drawable/ic_eraser"
                 android:scaleType="centerInside"
                 android:tint="@android:color/white"
-                android:contentDescription="Ластик" />
+                android:contentDescription="@string/eraser" />
 
             <ImageView
                 android:id="@+id/eraserSelectionRing"
@@ -164,7 +165,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:text="Готово"
+            android:text="@string/done"
             android:textSize="14sp"
             android:background="@drawable/button_primary"
             android:textColor="@android:color/white" />

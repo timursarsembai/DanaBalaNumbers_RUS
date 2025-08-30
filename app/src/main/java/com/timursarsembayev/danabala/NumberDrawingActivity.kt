@@ -22,6 +22,7 @@ class NumberDrawingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private var tts: TextToSpeech? = null
     private var currentNumber = 0
+    private var isNextMode = false
 
     // UI элементы
     private lateinit var drawingView: DrawingView
@@ -35,6 +36,10 @@ class NumberDrawingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private lateinit var colorAdapter: ColorPaletteAdapter
     private var selectedColor = 0xFF4CAF50.toInt() // Зеленый по умолчанию
+
+    override fun attachBaseContext(newBase: android.content.Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.applyLanguage(it) })
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +61,8 @@ class NumberDrawingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         // Начинаем с цифры 0
         setCurrentNumber(0)
+        updateDoneButtonStyle(false)
+        isNextMode = false
     }
 
     private fun initializeViews() {
@@ -70,7 +77,12 @@ class NumberDrawingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     private fun setupTextToSpeech() {
-        tts = TextToSpeech(this, this)
+        val lang = LocaleManager.getCurrentLanguage(this)
+        if (lang != LocaleManager.LANGUAGE_KAZAKH) {
+            tts = TextToSpeech(this, this)
+        } else {
+            tts = null // отключаем озвучку для казахского языка
+        }
     }
 
     private fun setupColorPalette() {
@@ -133,6 +145,7 @@ class NumberDrawingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         fadeOut.addListener(object : android.animation.AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: android.animation.Animator) {
                 updateDoneButtonStyle(true)
+                isNextMode = true
             }
         })
 
@@ -166,7 +179,7 @@ class NumberDrawingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         doneButton.setOnClickListener {
             if (drawingView.isCompleted()) {
-                if (doneButton.text.toString() == "Готово") {
+                if (!isNextMode) {
                     // Принятие результата: голосовое поздравление + анимация перехода к «Далее»
                     showSuccessMessage()
                     animateDoneToNextTransition()
@@ -183,6 +196,7 @@ class NumberDrawingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         if (currentNumber < 9) {
             setCurrentNumber(currentNumber + 1)
             updateDoneButtonStyle(false)
+            isNextMode = false
             drawingView.setEraserMode(false)
             eraserButton.isSelected = false
             eraserSelectionRing.visibility = android.view.View.GONE
@@ -205,6 +219,7 @@ class NumberDrawingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         speakNumber(number)
         updateDoneButtonStyle(false)
+        isNextMode = false
     }
 
     private fun speakNumber(number: Int) {
@@ -230,27 +245,24 @@ class NumberDrawingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private fun showCompletionAnimation() { /* опционально */ }
 
     private fun showSuccessMessage() {
-        val phrases = arrayOf(
-            "Отлично! Очень хорошо!",
-            "Замечательно! Молодец!",
-            "Превосходно! Продолжай!",
-            "Хорошая работа!"
-        )
+        val phrases = resources.getStringArray(R.array.number_drawing_success_phrases)
         tts?.speak(phrases.random(), TextToSpeech.QUEUE_FLUSH, null, null)
     }
 
     private fun showEncouragementMessage() {
-        val phrases = arrayOf(
-            "Нужно ещё немного закрасить",
-            "Продолжай!",
-            "Почти готово!"
-        )
+        val phrases = resources.getStringArray(R.array.number_drawing_encouragement_phrases)
         tts?.speak(phrases.random(), TextToSpeech.QUEUE_FLUSH, null, null)
     }
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            val result = tts?.setLanguage(Locale.forLanguageTag("ru-RU"))
+            val lang = LocaleManager.getCurrentLanguage(this)
+            val locale = when (lang) {
+                LocaleManager.LANGUAGE_RUSSIAN -> Locale.forLanguageTag("ru-RU")
+                LocaleManager.LANGUAGE_ENGLISH -> Locale.forLanguageTag("en-US")
+                else -> Locale.getDefault()
+            }
+            val result = tts?.setLanguage(locale)
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 tts?.setLanguage(Locale.getDefault())
             }

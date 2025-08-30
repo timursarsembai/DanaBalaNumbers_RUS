@@ -24,13 +24,13 @@
             android:layout_height="32dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_arrow_back"
-            android:contentDescription="Назад" />
+            android:contentDescription="@string/back" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="🎨 Результаты: Рисование цифр"
+            android:text="@string/number_drawing_results_title"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#F57C00"
@@ -52,7 +52,7 @@
             android:id="@+id/congratulationsIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🎉"
+            android:text="@string/celebration_emoji"
             android:textSize="80sp"
             android:layout_marginBottom="24dp" />
 
@@ -61,7 +61,7 @@
             android:id="@+id/messageDisplay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Отлично! 🏆"
+            android:text="@string/number_drawing_results_main_message"
             android:textSize="28sp"
             android:textStyle="bold"
             android:textColor="#F57C00"
@@ -73,7 +73,7 @@
             android:id="@+id/motivationalMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ты замечательно справился(ась)!"
+            android:text="@string/number_drawing_results_secondary_message"
             android:textSize="18sp"
             android:textColor="#FF9800"
             android:gravity="center"
@@ -94,7 +94,7 @@
             android:layout_height="56dp"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
-            android:text="🔄 Играть снова"
+            android:text="@string/play_again"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
@@ -107,7 +107,7 @@
             android:layout_height="56dp"
             android:layout_weight="1"
             android:layout_marginStart="8dp"
-            android:text="🏠 Главное меню"
+            android:text="@string/main_menu"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"

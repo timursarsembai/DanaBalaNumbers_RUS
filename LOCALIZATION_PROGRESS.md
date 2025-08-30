@@ -333,3 +333,40 @@
 - Для проверки «первого запуска» очистите данные приложения или переустановите APK: интерфейс стартует на языке системы; после ручного выбора фиксируется выбранный язык.
 
 *Последнее обновление: 30 августа 2025*
+
+## Лог изменений — 30 августа 2025 (продолжение — «Рисование цифр»)
+
+- Полная локализация игры «Рисование цифр» (NumberDrawingActivity + NumberDrawingResultsActivity) и макетов:
+  - Устранены все жёстко заданные строки в activity_number_drawing.xml и activity_number_drawing_results.xml; добавлены ресурсы: number_drawing_title, eraser, number_drawing_results_* и др.
+  - Созданы модульные файлы строк: values/strings_number_drawing.xml (ru), values-en/strings_number_drawing.xml (en), values-kk/strings_number_drawing.xml (kk).
+  - Фразы похвалы и подсказки вынесены в строковые массивы (number_drawing_success_phrases, number_drawing_encouragement_phrases; для экрана результатов — number_drawing_results_praise_phrases/…_motivation_phrases) и локализованы на ru/en/kk.
+- Локаль и TTS:
+  - Обе активности применяют локаль приложения через attachBaseContext(LocaleManager.applyLanguage(...)).
+  - TTS выбирает язык по LocaleManager: ru → ru-RU, en → en-US (Locale.forLanguageTag). Для казахского языка (kk) TTS полностью отключён (не инициализируется и не вызывается).
+- Логика UI:
+  - Логика кнопки «Готово/Далее» переписана на булев флаг isNextMode вместо сравнения текста, предотвращая завязку на конкретную локализацию.
+  - Добавлены/уточнены contentDescription для кнопок «Назад» и «Ластик» через ресурсы.
+- Проверка:
+  - Сборка assembleDebug — успешна; ошибок компиляции нет.
+
+*Последнее обновление: 30 августа 2025*
+
+## Лог изменений — 30 августа 2025 (исправления: ресурсы EN и синтаксис)
+
+- Исправлена ошибка сборки mergeDebugResources (NPE в aapt2 при мердже values-en):
+  - В файле `values-en/strings_number_drawing.xml` экранированы апострофы в строках с You\'re/you\'re и т. п., устранён краш компилятора ресурсов.
+  - Проверены другие файлы `values-en/*.xml` на наличие битых тегов и спецсимволов — критичных проблем не обнаружено.
+- Замена устаревших конструкторов Locale("..", "..") → `Locale.forLanguageTag(...)` в:
+  - `NumberDrawingActivity.kt`
+  - `NumberDrawingResultsActivity.kt`
+- Устранены синтаксические ошибки Kotlin (Unexpected tokens):
+  - `NumberDrawingActivity.kt`: корректно завершены выражения и блоки, логика кнопки «Готово/Далее» переведена на флаг `isNextMode`.
+  - `NumberDrawingResultsActivity.kt`: исправлен метод `onInit(...)`, вынесена инициализация TTS, корректно оформлен отложенный вызов `Handler.postDelayed { ... }`.
+- Локализация «Рисование цифр» подтверждена:
+  - Макеты `activity_number_drawing*.xml` переведены на @string (ru/en/kk), добавлены недостающие ключи.
+  - Добавлены модульные строки: `values/strings_number_drawing.xml`, `values-en/strings_number_drawing.xml`, `values-kk/strings_number_drawing.xml` (заголовки, кнопки, фразы успеха/поддержки, фразы результата).
+  - Для языка `kk` TTS полностью отключён в тренировке и на экране результатов; для `ru/en` TTS включает соответствующую локаль (`ru-RU`/`en-US`).
+- Проверка сборки:
+  - `./gradlew assembleDebug` — успешно; ошибок Kotlin и ресурсов нет.
+
+*Последнее обновление: 30 августа 2025*
