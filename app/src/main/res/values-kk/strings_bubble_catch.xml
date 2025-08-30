@@ -1,0 +1,32 @@
+<resources>
+    <string name="bubble_catch_tts_target_template">Қажетті санды ұста: %1$s</string>
+    <string-array name="bubble_catch_correct_phrases">
+        <item>Жарайсың!</item>
+        <item>Дұрыс!</item>
+        <item>Дәл сол!</item>
+        <item>Осылай жалғастыр!</item>
+        <item>Өте жақсы!</item>
+    </string-array>
+    <string-array name="bubble_catch_wrong_phrases">
+        <item>Бұл сан емес.</item>
+        <item>Мүлт кеттің.</item>
+        <item>Қате.</item>
+        <item>Қайта көр.</item>
+        <item>Бұл ол емес.</item>
+    </string-array>
+    <string-array name="bubble_catch_missed_phrases">
+        <item>Қажетті көпіршік ұшып кетті.</item>
+        <item>Мақсат көпіршігі жоғалды.</item>
+        <item>Мақсат кетті.</item>
+        <item>Зейінді бол.</item>
+    </string-array>
+    <string-array name="bubble_catch_game_over_messages">
+        <item>Бұл жолы болмады — уайымдама, тағы байқап көр!</item>
+        <item>Бүгін жолың болмады, ертең жақсырақ болады!</item>
+        <item>Бас тартпа! Әр талпыныс сені күштірек қылады!</item>
+        <item>Керемет жаттығу! Тағы бір рет сынап көр — міндетті түрде шығарасың!</item>
+    </string-array>
+    <string name="bubble_catch_results_tts_score_template">Сен %1$d ұпай жинадың!</string>
+    <string name="bubble_catch_results_tts_game_over_template">Ойын аяқталды. %1$s Тағы байқап көр!</string>
+</resources>
+

@@ -97,11 +97,11 @@ class LanguageSettingsActivity : AppCompatActivity() {
             val selectedLanguage = it.tag as String
             if (LocaleManager.shouldRecreateActivity(this, selectedLanguage)) {
                 LocaleManager.setLanguage(this, selectedLanguage)
-                // Перезапускаем приложение с новым языком
+                // Полный перезапуск приложения с очисткой стека
                 val intent = Intent(this, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
-                finish()
+                finishAffinity()
             } else {
                 updateSelectionUI(selectedLanguage)
             }

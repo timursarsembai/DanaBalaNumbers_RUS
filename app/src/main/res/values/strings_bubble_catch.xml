@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="bubble_catch_tts_target_template">Лови цифру %1$s</string>
+    <string-array name="bubble_catch_correct_phrases">
+        <item>Отлично!</item>
+        <item>Верно!</item>
+        <item>Правильно!</item>
+        <item>Так держать!</item>
+        <item>Молодец!</item>
+    </string-array>
+    <string-array name="bubble_catch_wrong_phrases">
+        <item>Не та цифра.</item>
+        <item>Промах.</item>
+        <item>Неверно.</item>
+        <item>Попробуй ещё.</item>
+        <item>Это не она.</item>
+    </string-array>
+    <string-array name="bubble_catch_missed_phrases">
+        <item>Ты упустил нужный шарик.</item>
+        <item>Нужный шарик улетел.</item>
+        <item>Цель улетела.</item>
+        <item>Будь внимательнее.</item>
+    </string-array>
+    <string-array name="bubble_catch_game_over_messages">
+        <item>Ты проиграл. Ничего страшного — попробуй ещё раз!</item>
+        <item>Сегодня не повезло, но завтра будет лучше!</item>
+        <item>Не сдавайся! С каждой попыткой ты становишься сильнее!</item>
+        <item>Отличная тренировка! Давай ещё раз, и у тебя получится!</item>
+    </string-array>
+    <string name="bubble_catch_results_tts_score_template">Ты набрал %1$d баллов!</string>
+    <string name="bubble_catch_results_tts_game_over_template">Игра окончена. %1$s Попробуй ещё раз!</string>
+    <string-array name="bubble_catch_results_praise_high">
+        <item>Отличная работа!</item>
+        <item>Потрясающе!</item>
+        <item>Великолепный результат!</item>
+        <item>Ты молодец!</item>
+    </string-array>
+    <string-array name="bubble_catch_results_praise_medium">
+        <item>Хороший результат!</item>
+        <item>Так держать!</item>
+        <item>Очень неплохо!</item>
+        <item>Продолжай в том же духе!</item>
+    </string-array>
+    <string-array name="bubble_catch_results_encouragement">
+        <item>Не сдавайся, у тебя всё получится!</item>
+        <item>Отличная тренировка!</item>
+        <item>Каждая попытка делает тебя сильнее!</item>
+        <item>Продолжай, следующий раз будет лучше!</item>
+    </string-array>
+</resources>

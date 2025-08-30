@@ -1,0 +1,50 @@
+<resources>
+    <string name="bubble_catch_tts_target_template">Catch number %1$s</string>
+    <string-array name="bubble_catch_correct_phrases">
+        <item>Great!</item>
+        <item>Correct!</item>
+        <item>Right!</item>
+        <item>Keep it up!</item>
+        <item>Well done!</item>
+    </string-array>
+    <string-array name="bubble_catch_wrong_phrases">
+        <item>Not that number.</item>
+        <item>Miss.</item>
+        <item>Incorrect.</item>
+        <item>Try again.</item>
+        <item>That’s not it.</item>
+    </string-array>
+    <string-array name="bubble_catch_missed_phrases">
+        <item>You missed the target bubble.</item>
+        <item>The target bubble flew away.</item>
+        <item>The target escaped.</item>
+        <item>Be more attentive.</item>
+    </string-array>
+    <string-array name="bubble_catch_game_over_messages">
+        <item>You lost this time — no worries, try again!</item>
+        <item>Not your day today, tomorrow will be better!</item>
+        <item>Don’t give up! Each try makes you stronger!</item>
+        <item>Great practice! Give it another go — you’ll nail it!</item>
+    </string-array>
+    <string name="bubble_catch_results_tts_score_template">You scored %1$d points!</string>
+    <string name="bubble_catch_results_tts_game_over_template">Game over. %1$s Try again!</string>
+    <string-array name="bubble_catch_results_praise_high">
+        <item>Excellent work!</item>
+        <item>Amazing!</item>
+        <item>Fantastic result!</item>
+        <item>Well done!</item>
+    </string-array>
+    <string-array name="bubble_catch_results_praise_medium">
+        <item>Good result!</item>
+        <item>Keep it up!</item>
+        <item>Nice job!</item>
+        <item>You\'re doing great!</item>
+    </string-array>
+    <string-array name="bubble_catch_results_encouragement">
+        <item>Don’t give up, you can do it!</item>
+        <item>Great practice!</item>
+        <item>Each try makes you stronger!</item>
+        <item>Keep going, next time will be better!</item>
+    </string-array>
+</resources>
+

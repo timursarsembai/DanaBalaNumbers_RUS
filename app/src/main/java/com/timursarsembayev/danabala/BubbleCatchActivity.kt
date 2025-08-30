@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.graphics.Paint
@@ -64,6 +65,15 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var spawnRunnable: Runnable? = null
     private val scheduledIncrements = mutableListOf<Runnable>()
 
+    // Текущая локаль и флаги TTS
+    private lateinit var languageCode: String
+    private var isTtsEnabled: Boolean = false
+
+    // Локализованные фразы (инициализируются в onCreate по языку)
+    private lateinit var correctHitPhrasesLoc: List<String>
+    private lateinit var wrongHitPhrasesLoc: List<String>
+    private lateinit var missedPhrasesLoc: List<String>
+
     // Градиентный фон
     private lateinit var rootView: View
     private val gradientHandler = Handler(Looper.getMainLooper())
@@ -120,10 +130,30 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private val minSpawnIntervalMs = 300L
     private val scheduledSpawnReductions = mutableListOf<Runnable>()
 
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LocaleManager.applyLanguage(newBase))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bubble_catch)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        // Определяем язык и поведение TTS
+        languageCode = LocaleManager.getCurrentLanguage(this)
+        isTtsEnabled = languageCode != LocaleManager.LANGUAGE_KAZAKH
+
+        // Настраиваем локализованные фразы (в коде, чтобы не зависеть от битых ресурсов)
+        if (languageCode == LocaleManager.LANGUAGE_ENGLISH) {
+            correctHitPhrasesLoc = listOf("Great!", "Correct!", "Right!", "Keep it up!", "Well done!")
+            wrongHitPhrasesLoc = listOf("Not that number.", "Miss.", "Incorrect.", "Try again.", "That’s not it.")
+            missedPhrasesLoc = listOf("You missed the target bubble.", "The target bubble flew away.", "The target escaped.", "Be more attentive.")
+        } else {
+            // По умолчанию RU
+            correctHitPhrasesLoc = listOf("Отлично!", "Верно!", "Правильно!", "Так держать!", "Молодец!")
+            wrongHitPhrasesLoc = listOf("Не та цифра.", "Промах.", "Неверно.", "Попробуй ещё.", "Это не она.")
+            missedPhrasesLoc = listOf("Ты упустил нужный шарик.", "Нужный шарик улетел.", "Цель улетела.", "Будь внимательнее.")
+        }
 
         rootView = findViewById(R.id.main)
         ViewCompat.setOnApplyWindowInsetsListener(rootView) { v, insets ->
@@ -133,9 +163,17 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
         startGradientAnimation()
 
-        tts = TextToSpeech(this, this)
+        // Инициализируем TTS только для ru/en
+        if (isTtsEnabled) {
+            tts = TextToSpeech(this, this)
+        }
         setupViews()
         setupBackButton()
+
+        if (!isTtsEnabled) {
+            // Если TTS отключён (kk) — сразу стартуем уровень
+            startNextLevel()
+        }
     }
 
     // Градиент фона
@@ -174,7 +212,13 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         progressBar.max = LEVEL_DURATION_MS.toInt()
         progressBar.progress = LEVEL_DURATION_MS.toInt()
 
-        findViewById<ImageView>(R.id.speakerButton).setOnClickListener { speakTarget() }
+        val speaker = findViewById<ImageView>(R.id.speakerButton)
+        if (isTtsEnabled) {
+            speaker.visibility = View.VISIBLE
+            speaker.setOnClickListener { speakTarget() }
+        } else {
+            speaker.visibility = View.GONE
+        }
     }
 
     private fun setupBackButton() {
@@ -182,8 +226,16 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     override fun onInit(status: Int) {
+        if (!isTtsEnabled) return
         if (status == TextToSpeech.SUCCESS) {
-            tts?.language = Locale.forLanguageTag("ru-RU")
+            val ttsLocale = when (languageCode) {
+                LocaleManager.LANGUAGE_ENGLISH -> Locale.forLanguageTag("en-US")
+                LocaleManager.LANGUAGE_RUSSIAN -> Locale.forLanguageTag("ru-RU")
+                else -> Locale.forLanguageTag("ru-RU")
+            }
+            tts?.language = ttsLocale
+            startNextLevel()
+        } else {
             startNextLevel()
         }
     }
@@ -362,12 +414,12 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                     if (score < 0) {
                         score = 0
                         scoreText.text = "0"
-                        tts?.speak(missedPhrases.random(), TextToSpeech.QUEUE_ADD, null, "missed")
+                        if (isTtsEnabled) tts?.speak(missedPhrasesLoc.random(), TextToSpeech.QUEUE_ADD, null, "missed")
                         triggerGameOver()
                         return
                     } else {
                         scoreText.text = score.toString()
-                        tts?.speak(missedPhrases.random(), TextToSpeech.QUEUE_ADD, null, "missed")
+                        if (isTtsEnabled) tts?.speak(missedPhrasesLoc.random(), TextToSpeech.QUEUE_ADD, null, "missed")
                     }
                 }
                 (b.view.parent as? ViewGroup)?.removeView(b.view)
@@ -440,7 +492,7 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                     if (model.value == targetDigit) {
                         score += 2
                         scoreText.text = score.toString()
-                        tts?.speak(correctHitPhrases.random(), TextToSpeech.QUEUE_ADD, null, "hit_ok")
+                        if (isTtsEnabled) tts?.speak(correctHitPhrasesLoc.random(), TextToSpeech.QUEUE_ADD, null, "hit_ok")
                         model.clickable = false
                         bubbles.remove(model)
                         animateCorrectBubbleAndRemove(bubbleView)
@@ -451,13 +503,13 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                             scoreText.text = "0"
                             bubbleView.performHapticFeedback(android.view.HapticFeedbackConstants.KEYBOARD_TAP)
                             animateWrongBubble(bubbleView)
-                            tts?.speak(wrongHitPhrases.random(), TextToSpeech.QUEUE_ADD, null, "hit_bad")
+                            if (isTtsEnabled) tts?.speak(wrongHitPhrasesLoc.random(), TextToSpeech.QUEUE_ADD, null, "hit_bad")
                             triggerGameOver()
                         } else {
                             scoreText.text = score.toString()
                             bubbleView.performHapticFeedback(android.view.HapticFeedbackConstants.KEYBOARD_TAP)
                             animateWrongBubble(bubbleView)
-                            tts?.speak(wrongHitPhrases.random(), TextToSpeech.QUEUE_ADD, null, "hit_bad")
+                            if (isTtsEnabled) tts?.speak(wrongHitPhrasesLoc.random(), TextToSpeech.QUEUE_ADD, null, "hit_bad")
                         }
                     }
                 }
@@ -536,7 +588,28 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     private fun speakTarget() {
-        tts?.speak("Лови цифру ${numberWords[targetDigit]}", TextToSpeech.QUEUE_FLUSH, null, "catch_target")
+        if (!isTtsEnabled) return
+        // Название числа берём из локализованных ресурсов number_name_0..9
+        val numberNameRes = when (targetDigit) {
+            0 -> R.string.number_name_0
+            1 -> R.string.number_name_1
+            2 -> R.string.number_name_2
+            3 -> R.string.number_name_3
+            4 -> R.string.number_name_4
+            5 -> R.string.number_name_5
+            6 -> R.string.number_name_6
+            7 -> R.string.number_name_7
+            8 -> R.string.number_name_8
+            9 -> R.string.number_name_9
+            else -> R.string.number_name_0
+        }
+        val numberWord = getString(numberNameRes)
+        val phrase = if (languageCode == LocaleManager.LANGUAGE_ENGLISH) {
+            "Catch number $numberWord"
+        } else {
+            "Лови цифру $numberWord"
+        }
+        tts?.speak(phrase, TextToSpeech.QUEUE_FLUSH, null, "catch_target")
     }
 
     private fun randomBubbleColor(): Int {

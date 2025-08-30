@@ -1,5 +1,6 @@
 package com.timursarsembayev.danabalanumbers
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -17,6 +18,14 @@ class BubbleCatchResultsActivity : AppCompatActivity(), TextToSpeech.OnInitListe
     private var totalScore: Int = 0
     private var isGameOver: Boolean = false
 
+    private lateinit var languageCode: String
+    private var isTtsEnabled: Boolean = false
+
+    override fun attachBaseContext(newBase: Context) {
+        val applied = LocaleManager.applyLanguage(newBase, LocaleManager.getCurrentLanguage(newBase))
+        super.attachBaseContext(applied)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bubble_catch_results)
@@ -29,10 +38,18 @@ class BubbleCatchResultsActivity : AppCompatActivity(), TextToSpeech.OnInitListe
 
         totalScore = intent.getIntExtra("SCORE", 0)
         isGameOver = intent.getBooleanExtra("GAME_OVER", false)
-        tts = TextToSpeech(this, this)
+
+        languageCode = LocaleManager.getCurrentLanguage(this)
+        isTtsEnabled = languageCode != LocaleManager.LANGUAGE_KAZAKH
+        if (isTtsEnabled) {
+            tts = TextToSpeech(this, this)
+        }
 
         setupViews()
         setupButtons()
+
+        // Если TTS отключён (kk), не озвучиваем
+        if (!isTtsEnabled) return
     }
 
     private fun setupViews() {
@@ -46,14 +63,9 @@ class BubbleCatchResultsActivity : AppCompatActivity(), TextToSpeech.OnInitListe
         if (isGameOver) {
             // UI для проигрыша
             emojiText.text = "😔"
-            titleText.text = "Игра окончена"
+            titleText.text = getString(R.string.game_over)
             gameOverMsg.apply {
-                text = listOf(
-                    "Ты проиграл. Ничего страшного — попробуй ещё раз!",
-                    "Сегодня не повезло, но завтра будет лучше!",
-                    "Не сдавайся! С каждой попыткой ты становишься сильнее!",
-                    "Отличная тренировка! Давай ещё раз и у тебя получится!"
-                ).random()
+                text = resources.getStringArray(R.array.bubble_catch_game_over_messages).random()
                 visibility = android.view.View.VISIBLE
             }
         } else {
@@ -82,26 +94,33 @@ class BubbleCatchResultsActivity : AppCompatActivity(), TextToSpeech.OnInitListe
     }
 
     override fun onInit(status: Int) {
+        if (!isTtsEnabled) return
         if (status == TextToSpeech.SUCCESS) {
-            tts?.language = Locale.forLanguageTag("ru-RU")
+            val ttsLocale = when (languageCode) {
+                LocaleManager.LANGUAGE_RUSSIAN -> Locale.forLanguageTag("ru-RU")
+                LocaleManager.LANGUAGE_ENGLISH -> Locale.forLanguageTag("en-US")
+                else -> Locale.getDefault()
+            }
+            tts?.language = ttsLocale
             if (isGameOver) speakGameOver() else speakCongrats()
         }
     }
 
     private fun speakCongrats() {
-        // Простейшая дифференциация фраз по порогам очков
+        if (!isTtsEnabled) return
         val phrase = when {
-            totalScore >= 150 -> DifferentiatedCongratulationPhrases.excellent90Phrases.random()
-            totalScore >= 80 -> DifferentiatedCongratulationPhrases.good80Phrases.random()
-            else -> DifferentiatedCongratulationPhrases.encouragement80Phrases.random()
+            totalScore >= 150 -> resources.getStringArray(R.array.bubble_catch_results_praise_high).random()
+            totalScore >= 80 -> resources.getStringArray(R.array.bubble_catch_results_praise_medium).random()
+            else -> resources.getStringArray(R.array.bubble_catch_results_encouragement).random()
         }
-        val text = "$phrase Ты набрал $totalScore баллов!"
+        val text = "$phrase ${getString(R.string.bubble_catch_results_tts_score_template, totalScore)}"
         tts?.speak(text, TextToSpeech.QUEUE_FLUSH, null, "bubble_catch_result")
     }
 
     private fun speakGameOver() {
-        val phrase = DifferentiatedCongratulationPhrases.encouragement80Phrases.random()
-        val text = "Игра окончена. $phrase Попробуй ещё раз!"
+        if (!isTtsEnabled) return
+        val phrase = resources.getStringArray(R.array.bubble_catch_results_encouragement).random()
+        val text = getString(R.string.bubble_catch_results_tts_game_over_template, phrase)
         tts?.speak(text, TextToSpeech.QUEUE_FLUSH, null, "bubble_catch_game_over")
     }
 
