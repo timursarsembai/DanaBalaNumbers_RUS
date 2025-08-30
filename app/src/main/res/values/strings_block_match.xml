@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Игра: Цифровой ряд — объявления уровней -->
+    <string name="block_match_announce_level_2">Уровень 2. Соберись!</string>
+    <string name="block_match_announce_level_3">Уровень 3. Продолжаем!</string>
+    <string name="block_match_announce_level_4">Уровень 4. Ускоряйся!</string>
+    <string name="block_match_announce_level_5">Отлично! Уже уровень 5!</string>
+    <string name="block_match_announce_level_6">Ого! Уже уровень 6, молодец!</string>
+    <string name="block_match_announce_level_7">Уровень 7. Держи темп!</string>
+    <string name="block_match_announce_level_8">Уровень 8. Почти там!</string>
+    <string name="block_match_announce_level_9">Уровень 9. Вперёд!</string>
+    <string name="block_match_announce_level_10">Уровень 10. Супер скорость!</string>
+    <string name="block_match_announce_level_generic">Уровень %1$d</string>
+
+    <!-- Результаты: текст и фразы -->
+    <string name="block_match_results_score_format">Ты заработал(а) %1$d очков</string>
+
+    <string-array name="block_match_results_congrats_phrases">
+        <item>Отличная игра!</item>
+        <item>Здорово! Прекрасный результат!</item>
+        <item>Молодец! Так держать!</item>
+        <item>Супер! Ты отлично справился(ась)!</item>
+    </string-array>
+
+    <string-array name="block_match_results_motivation_phrases">
+        <item>Продолжай в том же духе!</item>
+        <item>Хочешь попробовать ещё раз и набрать больше очков?</item>
+        <item>Каждый раз у тебя получается всё лучше!</item>
+        <item>Ещё немного практики — и будет ещё круче!</item>
+    </string-array>
+</resources>
+

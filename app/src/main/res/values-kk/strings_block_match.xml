@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ойын: Сандық қатар — деңгей хабарламалары -->
+    <string name="block_match_announce_level_2">2-деңгей. Жинақтал!</string>
+    <string name="block_match_announce_level_3">3-деңгей. Жалғастыр!</string>
+    <string name="block_match_announce_level_4">4-деңгей. Жылдамда!</string>
+    <string name="block_match_announce_level_5">Өте жақсы! Қазір 5-деңгей!</string>
+    <string name="block_match_announce_level_6">Қара! 6-деңгей, жарайсың!</string>
+    <string name="block_match_announce_level_7">7-деңгей. Қарқыныңды сақта!</string>
+    <string name="block_match_announce_level_8">8-деңгей. Аз қалды!</string>
+    <string name="block_match_announce_level_9">9-деңгей. Алға!</string>
+    <string name="block_match_announce_level_10">10-деңгей. Супер жылдамдық!</string>
+    <string name="block_match_announce_level_generic">%1$d-деңгей</string>
+
+    <!-- Нәтижелер: мәтін және тіркестер -->
+    <string name="block_match_results_score_format">%1$d ұпай жинадың</string>
+
+    <string-array name="block_match_results_congrats_phrases">
+        <item>Тамаша ойын!</item>
+        <item>Керемет! Нәтиже өте жақсы!</item>
+        <item>Жарайсың! Осылай жалғастыр!</item>
+        <item>Өте жақсы! Өте жақсы ойнадың!</item>
+    </string-array>
+
+    <string-array name="block_match_results_motivation_phrases">
+        <item>Осы қарқында жалғастыр!</item>
+        <item>Қайта ойнап, одан да көп ұпай жинағың келе ме?</item>
+        <item>Әр жолы жақсарып жатырсың!</item>
+        <item>Аздап жаттығу — және одан да жақсы болады!</item>
+    </string-array>
+</resources>
+

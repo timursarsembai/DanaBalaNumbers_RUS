@@ -1,5 +1,6 @@
 package com.timursarsembayev.danabalanumbers
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -7,7 +8,6 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import java.util.Locale
-
 class BlockMatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var gameView: BlockMatchGameView
     private lateinit var scoreView: TextView
@@ -18,6 +18,11 @@ class BlockMatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private var tts: TextToSpeech? = null
     private var ttsReady = false
+    private var allowTts = false
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.applyLanguage(it) })
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +34,11 @@ class BlockMatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         findViewById<ImageButton>(R.id.buttonBack).setOnClickListener { finish() }
 
-        tts = TextToSpeech(this, this)
+        val lang = LocaleManager.getCurrentLanguage(this).lowercase(Locale.ROOT)
+        allowTts = lang != LocaleManager.LANGUAGE_KAZAKH
+        if (allowTts) {
+            tts = TextToSpeech(this, this)
+        }
 
         gameView.onScoreLevelChanged = { score: Int, level: Int ->
             lastScore = score
@@ -59,28 +68,38 @@ class BlockMatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     override fun onInit(status: Int) {
+        if (!allowTts) return
         if (status == TextToSpeech.SUCCESS) {
-            val res = tts?.setLanguage(Locale("ru", "RU"))
-            if (res == TextToSpeech.LANG_MISSING_DATA || res == TextToSpeech.LANG_NOT_SUPPORTED) {
-                tts?.language = Locale.getDefault()
+            val locale = when (LocaleManager.getCurrentLanguage(this).lowercase(Locale.ROOT)) {
+                LocaleManager.LANGUAGE_RUSSIAN -> Locale.forLanguageTag("ru-RU")
+                LocaleManager.LANGUAGE_ENGLISH -> Locale.forLanguageTag("en-US")
+                else -> null
             }
-            ttsReady = true
+            if (locale != null) {
+                val res = tts?.setLanguage(locale)
+                if (res == TextToSpeech.LANG_MISSING_DATA || res == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    tts?.language = Locale.getDefault()
+                }
+                ttsReady = true
+            } else {
+                ttsReady = false
+            }
         }
     }
 
     private fun announceLevel(level: Int) {
-        if (!ttsReady) return
+        if (!allowTts || !ttsReady) return
         val phrase = when (level) {
-            2 -> "Уровень 2. Соберись!"
-            3 -> "Уровень 3. Продолжаем!"
-            4 -> "Уровень 4. Ускоряйся!"
-            5 -> "Отлично! Уже уровень 5!"
-            6 -> "Ого! Уже уровень 6, молодец!"
-            7 -> "Уровень 7. Держи темп!"
-            8 -> "Уровень 8. Почти там!"
-            9 -> "Уровень 9. Вперед!"
-            10 -> "Уровень 10. Супер скорость!"
-            else -> "Уровень $level"
+            2 -> getString(R.string.block_match_announce_level_2)
+            3 -> getString(R.string.block_match_announce_level_3)
+            4 -> getString(R.string.block_match_announce_level_4)
+            5 -> getString(R.string.block_match_announce_level_5)
+            6 -> getString(R.string.block_match_announce_level_6)
+            7 -> getString(R.string.block_match_announce_level_7)
+            8 -> getString(R.string.block_match_announce_level_8)
+            9 -> getString(R.string.block_match_announce_level_9)
+            10 -> getString(R.string.block_match_announce_level_10)
+            else -> getString(R.string.block_match_announce_level_generic, level)
         }
         tts?.speak(phrase, TextToSpeech.QUEUE_FLUSH, null, "bm_level_$level")
     }

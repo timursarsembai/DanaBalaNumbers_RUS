@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Game: Number Row — level announcements -->
+    <string name="block_match_announce_level_2">Level 2. Focus!</string>
+    <string name="block_match_announce_level_3">Level 3. Keep going!</string>
+    <string name="block_match_announce_level_4">Level 4. Speed up!</string>
+    <string name="block_match_announce_level_5">Great! Level 5 already!</string>
+    <string name="block_match_announce_level_6">Wow! Level 6, well done!</string>
+    <string name="block_match_announce_level_7">Level 7. Keep the pace!</string>
+    <string name="block_match_announce_level_8">Level 8. Almost there!</string>
+    <string name="block_match_announce_level_9">Level 9. Let is go!</string>
+    <string name="block_match_announce_level_10">Level 10. Super speed!</string>
+    <string name="block_match_announce_level_generic">Level %1$d</string>
+
+    <!-- Results: text and phrases -->
+    <string name="block_match_results_score_format">You scored %1$d points</string>
+
+    <string-array name="block_match_results_congrats_phrases">
+        <item>Great game!</item>
+        <item>Awesome! Excellent result!</item>
+        <item>Well done! Keep it up!</item>
+        <item>Super! You did a great job!</item>
+    </string-array>
+
+    <string-array name="block_match_results_motivation_phrases">
+        <item>Keep it up!</item>
+        <item>Want to try again and score even more points?</item>
+        <item>You are getting better every time!</item>
+        <item>A bit more practice — and it will be even better!</item>
+    </string-array>
+</resources>
+
