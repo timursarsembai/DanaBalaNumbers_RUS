@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Сортер: заголовок и тексты -->
+    <string name="sorter_title_with_emoji">🧱 Сортер</string>
+    <string name="sorter_moves_count_format">Количество ходов: %1$d</string>
+
+    <!-- Сортер: TTS -->
+    <string name="sorter_speak_instruction_prefix">Разложи кубики по цифрам:</string>
+
+    <!-- Время 0:00.0 (для tools:text или инициализации) -->
+    <string name="time_zero_tenth">00:00.0</string>
+</resources>
+

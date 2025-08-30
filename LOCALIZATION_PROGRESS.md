@@ -451,3 +451,19 @@
   - Сборка assembleDebug — успешна; ошибок ресурсов/линковки не выявлено.
 
 *Последнее обновление: 31 августа 2025*
+
+## Лог изменений — 31 августа 2025 (продолжение — «Сортер»)
+
+- Полная локализация тренировки/игры «Сортер» (SorterActivity + SorterResultsActivity):
+  - Ресурсы: добавлены values/strings_sorter.xml (ru), values-en/strings_sorter.xml (en), values-kk/strings_sorter.xml (kk): заголовок, формат «Количество ходов: %1$d», префикс TTS-инструкции, «00:00.0».
+  - Общие ключи: в strings_ui добавлены time/moves/restart для ru/en/kk.
+  - Макеты: activity_sorter.xml и activity_sorter_results.xml переведены на @string, убраны хардкоды; исправлены ошибки XML; добавлен baselineAligned=false.
+- Локаль и озвучка:
+  - В SorterActivity/SorterResultsActivity добавлен attachBaseContext(LocaleManager.applyLanguage(...)).
+  - TTS: включён для ru/en (Locale.forLanguageTag("ru-RU"/"en-US")), полностью отключён для kk; при старте раунда озвучивается список целевых цифр (number_name_0..9).
+  - EN-строки без апострофов/сокращений (You are / You will / It is).
+- Исправления стабильности и UI:
+  - Устранён краш при открытии (NPE в getSharedPreferences): инициализация languageCode перенесена в onCreate после attachBaseContext; восстановлен корректный Runnable таймера.
+  - Исправлено неотображение «1» в «Уровень» при первом открытии: стартовые значения level=1 и moves=0 выставляются до первых колбэков.
+- Проверка:
+  - assembleDebug — успешно; RU/EN: UI+TTS корректны; KK: UI переведён, TTS отключён.

@@ -99,4 +99,9 @@
     <string name="number_recognition_header_with_emoji">🔢 Find the Digit</string>
     <string name="preparing_task">Preparing the task…</string>
     <string name="repeat_question">Repeat question</string>
+
+    <!-- Additional strings for Sorter layouts -->
+    <string name="time">Time</string>
+    <string name="moves">Moves</string>
+    <string name="restart">Restart</string>
 </resources>

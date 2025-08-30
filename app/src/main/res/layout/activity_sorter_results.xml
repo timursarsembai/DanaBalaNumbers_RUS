@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,7 +16,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#2E7D32"
-        android:text="Поздравляем!"
+        android:text="@string/results_congratulations"
+        tools:text="Поздравляем!"
         android:layout_marginBottom="12dp"/>
 
     <TextView
@@ -24,14 +26,14 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textColor="#424242"
-        android:text="Количество ходов: 0"
+        tools:text="Количество ходов: 0"
         android:layout_marginBottom="24dp"/>
 
     <Button
         android:id="@+id/playAgainButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Играть снова"
+        android:text="@string/play_again"
         android:layout_marginBottom="12dp"
         android:backgroundTint="#4CAF50"
         android:textColor="#FFFFFF"/>
@@ -40,9 +42,8 @@
         android:id="@+id/backToMenuButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="В меню"
+        android:text="@string/main_menu"
         android:backgroundTint="#2196F3"
         android:textColor="#FFFFFF"/>
 
 </LinearLayout>
-

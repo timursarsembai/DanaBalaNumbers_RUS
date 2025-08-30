@@ -101,4 +101,9 @@
     <string name="number_recognition_header_with_emoji">🔢 Найди цифру</string>
     <string name="preparing_task">Подготовка задания...</string>
     <string name="repeat_question">Повторить вопрос</string>
+
+    <!-- Дополнительные строки для Сортера -->
+    <string name="time">Время</string>
+    <string name="moves">Ходы</string>
+    <string name="restart">Перезапуск</string>
 </resources>
