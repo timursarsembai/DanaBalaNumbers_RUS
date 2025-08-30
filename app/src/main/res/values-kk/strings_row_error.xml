@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Жаттығу: Қатардағы қате (KK) -->
+    <string name="row_error_question_label">Тізбектегі қате қай жерде?</string>
+    <string name="row_error_hint_find_error">Қатардағы қате тап</string>
+    <string name="row_error_hint_press_check">«Тексеру» түймесін бас</string>
+    <string name="row_error_hint_select_wrong">Қатесі бар текшені таңда</string>
+
+    <string name="row_error_check_button">Тексеру</string>
+
+    <string name="row_error_feedback_correct">Дұрыс! Жарайсың!</string>
+    <string name="row_error_feedback_incorrect_mark">Дұрыс емес. Қате осында</string>
+    <string name="row_error_feedback_incorrect_continue">Дұрыс емес. Келесісін көрейік</string>
+
+    <!-- Эмодзи -->
+    <string name="row_error_emoji">🧩</string>
+
+    <!-- TTS фразалары (kk үшін қолданылмайды) -->
+    <string name="row_error_tts_intro">Қатардағы қате тап</string>
+    <string name="row_error_tts_find_wrong_block">Қате тұрған текшені тап</string>
+    <string name="row_error_tts_select_wrong">Қатесі бар текшені таңда</string>
+    <string name="row_error_tts_correct">Дұрыс! Жарайсың!</string>
+    <string name="row_error_tts_incorrect_continue">Дұрыс емес. Келесісін көрейік</string>
+
+    <!-- Нәтижелер -->
+    <string name="row_error_results_title_excellent">Тамаша! 🏆</string>
+    <string name="row_error_results_title_great">Өте жақсы! 🌟</string>
+    <string name="row_error_results_title_good">Жақсы! 👍</string>
+    <string name="row_error_results_title_keep_trying">Талпынып көр! 💪</string>
+    <string name="row_error_correct_answers_with_percent_format">Дұрыс жауаптар: %1$d / %2$d (%3$d%%)</string>
+</resources>

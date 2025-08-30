@@ -1,5 +1,6 @@
 package com.timursarsembayev.danabalanumbers
 
+import android.content.Context
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.view.View
@@ -12,8 +13,8 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import kotlin.random.Random
 import java.util.Locale
+import kotlin.random.Random
 
 class RowErrorActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
@@ -38,6 +39,11 @@ class RowErrorActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var tts: TextToSpeech? = null
     private var isTtsReady = false
 
+    override fun attachBaseContext(newBase: Context) {
+        val ctx = LocaleManager.applyLanguage(newBase)
+        super.attachBaseContext(ctx)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_row_error)
@@ -48,8 +54,11 @@ class RowErrorActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             insets
         }
 
-        // init TTS
-        tts = TextToSpeech(this, this)
+        // init TTS только для ru/en; для kk — отключено
+        val lang = LocaleManager.getCurrentLanguage(this)
+        if (lang != LocaleManager.LANGUAGE_KAZAKH) {
+            tts = TextToSpeech(this, this)
+        }
 
         initViews()
         generateQuestion()
@@ -57,9 +66,15 @@ class RowErrorActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            val res = tts?.setLanguage(Locale("ru"))
+            val current = LocaleManager.getCurrentLanguage(this)
+            val localeTag = when (current) {
+                LocaleManager.LANGUAGE_ENGLISH -> "en-US"
+                LocaleManager.LANGUAGE_RUSSIAN -> "ru-RU"
+                else -> "" // kk — TTS не используется
+            }
+            val res = if (localeTag.isNotEmpty()) tts?.setLanguage(Locale.forLanguageTag(localeTag)) else TextToSpeech.LANG_NOT_SUPPORTED
             isTtsReady = res != TextToSpeech.LANG_MISSING_DATA && res != TextToSpeech.LANG_NOT_SUPPORTED
-            if (isTtsReady) speak("Найди ошибку в ряду")
+            if (isTtsReady) speak(getString(R.string.row_error_tts_intro))
         }
     }
 
@@ -101,15 +116,15 @@ class RowErrorActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             tv.background = ContextCompat.getDrawable(this, R.drawable.draggable_number_card)
         }
         cells[index].background = ContextCompat.getDrawable(this, R.drawable.number_drop_zone_highlight)
-        hintText.text = "Нажми \"Проверить\""
+        hintText.text = getString(R.string.row_error_hint_press_check)
     }
 
     private fun generateQuestion() {
         checkButton.isEnabled = true
         nextButton.visibility = View.GONE
         selectedIndex = -1
-        hintText.text = "Найди ошибку в ряду"
-        questionText.text = "Где ошибка в последовательности?"
+        hintText.text = getString(R.string.row_error_hint_find_error)
+        questionText.text = getString(R.string.row_error_question_label)
 
         // reset styles
         cells.forEach { cell ->
@@ -132,8 +147,8 @@ class RowErrorActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             wrongValue = Random.nextInt(0, 10)
             // Условия:
             // 1) не равен ожидаемому
-            // 2) не равен соседя�� (чтобы не было двух одинаковых подряд)
-            // 3) не образует локальную пару подряд с левым или правым (чтобы ошибка ��ыла очевиднее)
+            // 2) не равен соседям
+            // 3) не образует локальную пару подряд с левым или правым
         } while (
             wrongValue == base[wrongIndex] ||
             (left != null && wrongValue == left) ||
@@ -150,27 +165,27 @@ class RowErrorActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
 
         updateProgress()
-        speak("Найди неправильный кубик")
+        speak(getString(R.string.row_error_tts_find_wrong_block))
     }
 
     private fun checkAnswer() {
         if (selectedIndex == -1) {
-            hintText.text = "Выбери кубик с ошибкой"
-            speak("Выбери кубик с ошибкой")
+            hintText.text = getString(R.string.row_error_hint_select_wrong)
+            speak(getString(R.string.row_error_tts_select_wrong))
             return
         }
         checkButton.isEnabled = false
 
         if (selectedIndex == wrongIndex) {
             totalCorrect++
-            hintText.text = "Верно! Молодец!"
+            hintText.text = getString(R.string.row_error_feedback_correct)
             cells[selectedIndex].background = ContextCompat.getDrawable(this, R.drawable.number_drop_zone_filled)
-            speak("Верно! Молодец!")
+            speak(getString(R.string.row_error_tts_correct))
         } else {
-            hintText.text = "Неверно. Ошибка здесь"
+            hintText.text = getString(R.string.row_error_feedback_incorrect_mark)
             cells[selectedIndex].background = ContextCompat.getDrawable(this, R.drawable.number_drop_zone)
             cells[wrongIndex].background = ContextCompat.getDrawable(this, R.drawable.number_input_shown)
-            speak("Неверно. Попробуем дальше")
+            speak(getString(R.string.row_error_tts_incorrect_continue))
         }
 
         nextButton.visibility = View.VISIBLE

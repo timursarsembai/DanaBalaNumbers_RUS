@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Kids comparison strings (RU) -->
+    <string name="kids_comparison_question_template">У кого %1$s больше, у мальчика или девочки?</string>
+    <string name="kids_comparison_question_template_tts">У кого %1$s больше, у мальчика или девочки?</string>
+    <string name="kids_comparison_hint_tap_card">Нажми на карточку</string>
+    <string name="kids_comparison_correct">Отлично!</string>
+    <string name="kids_comparison_try_again">Попробуй ещё раз</string>
+    <string name="kids_comparison_equal_tts">Поровну %1$s? %2$s</string>
+    <string name="kids_comparison_equal_correct">Верно!</string>
+
+    <string name="kids_boy_genitive">мальчика</string>
+    <string name="kids_girl_genitive">девочки</string>
+
+    <string name="kids_comparison_selection_tts_template">У %1$s %2$s больше, чем у %3$s? %4$s</string>
+
+    <string name="kids_items_generic">предметов</string>
+
+    <string-array name="kids_emoji_names">
+        <item>яблок</item>
+        <item>бананов</item>
+        <item>виноградин</item>
+        <item>клубничек</item>
+        <item>вишенок</item>
+        <item>морковок</item>
+        <item>огурцов</item>
+        <item>помидоров</item>
+        <item>мячей</item>
+        <item>мячей</item>
+        <item>мячиков</item>
+        <item>мячей</item>
+        <item>шариков</item>
+        <item>подарков</item>
+        <item>тортиков</item>
+        <item>красок</item>
+        <item>звёзд</item>
+        <item>звёздочек</item>
+        <item>искорок</item>
+        <item>цветков</item>
+        <item>цветков</item>
+        <item>ромашек</item>
+        <item>подсолнухов</item>
+        <item>роз</item>
+    </string-array>
+
+    <string-array name="kids_comparison_confirmation_endings">
+        <item>Ты уверен?</item>
+        <item>Верно?</item>
+        <item>Как думаешь, это правильно?</item>
+        <item>Проверь внимательно!</item>
+        <item>Давай проверим!</item>
+    </string-array>
+</resources>
+

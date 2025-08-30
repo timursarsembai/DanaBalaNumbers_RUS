@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Kids comparison strings (EN) -->
+    <string name="kids_comparison_question_template">Who has more %1$s, the boy or the girl?</string>
+    <string name="kids_comparison_question_template_tts">Who has more %1$s, the boy or the girl?</string>
+    <string name="kids_comparison_hint_tap_card">Tap a card</string>
+    <string name="kids_comparison_correct">Great!</string>
+    <string name="kids_comparison_try_again">Try again</string>
+    <string name="kids_comparison_equal_tts">The same number of %1$s? %2$s</string>
+    <string name="kids_comparison_equal_correct">Correct!</string>
+
+    <string name="kids_boy_genitive">the boy</string>
+    <string name="kids_girl_genitive">the girl</string>
+
+    <string name="kids_comparison_selection_tts_template">Does %1$s have more %2$s than %3$s? %4$s</string>
+
+    <string name="kids_items_generic">items</string>
+
+    <string-array name="kids_emoji_names">
+        <item>apples</item>
+        <item>bananas</item>
+        <item>grapes</item>
+        <item>strawberries</item>
+        <item>cherries</item>
+        <item>carrots</item>
+        <item>cucumbers</item>
+        <item>tomatoes</item>
+        <item>balls</item>
+        <item>balls</item>
+        <item>balls</item>
+        <item>balls</item>
+        <item>balloons</item>
+        <item>gifts</item>
+        <item>cakes</item>
+        <item>paints</item>
+        <item>stars</item>
+        <item>little stars</item>
+        <item>sparks</item>
+        <item>flowers</item>
+        <item>flowers</item>
+        <item>daisies</item>
+        <item>sunflowers</item>
+        <item>roses</item>
+    </string-array>
+
+    <string-array name="kids_comparison_confirmation_endings">
+        <item>Are you sure?</item>
+        <item>Right?</item>
+        <item>Do you think it’s correct?</item>
+        <item>Look carefully!</item>
+        <item>Let’s check!</item>
+    </string-array>
+</resources>
+

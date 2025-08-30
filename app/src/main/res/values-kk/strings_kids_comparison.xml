@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Kids comparison strings (KK) -->
+    <string name="kids_comparison_question_template">Кімде %1$s көбірек: ұлда ма, әлде қызда ма?</string>
+    <string name="kids_comparison_question_template_tts">Кімде %1$s көбірек: ұлда ма, әлде қызда ма?</string>
+    <string name="kids_comparison_hint_tap_card">Картаға түртіңіз</string>
+    <string name="kids_comparison_correct">Жарайсың!</string>
+    <string name="kids_comparison_try_again">Қайтадан көр</string>
+    <string name="kids_comparison_equal_tts">%1$s бірдей ме? %2$s</string>
+    <string name="kids_comparison_equal_correct">Дұрыс!</string>
+
+    <string name="kids_boy_genitive">ұлда</string>
+    <string name="kids_girl_genitive">қызда</string>
+
+    <string name="kids_comparison_selection_tts_template">%1$s %2$s көбірек пе, %3$s қарағанда? %4$s</string>
+
+    <string name="kids_items_generic">зат</string>
+
+    <string-array name="kids_emoji_names">
+        <item>алма</item>
+        <item>банан</item>
+        <item>жүзім</item>
+        <item>құлпынай</item>
+        <item>шие</item>
+        <item>сәбіз</item>
+        <item>қияр</item>
+        <item>қызанақ</item>
+        <item>доп</item>
+        <item>доп</item>
+        <item>доп</item>
+        <item>доп</item>
+        <item>шар</item>
+        <item>сыйлық</item>
+        <item>торт</item>
+        <item>бояу</item>
+        <item>жұлдыз</item>
+        <item>жұлдызша</item>
+        <item>ұшқын</item>
+        <item>гүл</item>
+        <item>гүл</item>
+        <item>түймедағы</item>
+        <item>күнбағыс</item>
+        <item>раушан</item>
+    </string-array>
+
+    <string-array name="kids_comparison_confirmation_endings">
+        <item>Сенімдісің бе?</item>
+        <item>Дұрыс па?</item>
+        <item>Осылай ма деп ойлайсың ба?</item>
+        <item>Мұқият қара!</item>
+        <item>Тексеріп көрейік!</item>
+    </string-array>
+</resources>
+

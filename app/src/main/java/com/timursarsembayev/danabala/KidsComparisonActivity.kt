@@ -17,7 +17,6 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.timursarsembayev.danabalanumbers.R
 import java.util.Locale
 import kotlin.random.Random
 
@@ -54,56 +53,30 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
     private var currentObjectEmoji = ""
     private var leftIsBoy = true // the other will be girl
 
-    // Словарь названий предметов (род. падеж множественного числа)
-    private val emojiNames: Map<String, String> = mapOf(
-        "🍎" to "яблок",
-        "🍌" to "бананов",
-        "🍇" to "виноградин",
-        "🍓" to "клубничек",
-        "🍒" to "вишенок",
-        "🥕" to "морковок",
-        "🥒" to "огурцов",
-        "🍅" to "помидоров",
-        "⚽" to "мячей",
-        "🏀" to "мячей",
-        "🎾" to "мячиков",
-        "🏐" to "мячей",
-        "🎈" to "шариков",
-        "🎁" to "подарков",
-        "🎂" to "тортиков",
-        "🎨" to "красок",
-        "🌟" to "звёзд",
-        "⭐" to "звёздочек",
-        "✨" to "искорок",
-        "🌺" to "цветков",
-        "🌸" to "цветков",
-        "🌼" to "ромашек",
-        "🌻" to "подсолнухов",
-        "🌹" to "роз"
-    )
-
-    private val confirmationEndings = listOf(
-        "Ты уверен?",
-        "Верно?",
-        "Как думаешь, это правильно?",
-        "Проверь внимательно!",
-        "Давай проверим!"
-    )
-
-    // Эмодзи предметов для выбора
+    // Эмодзи предметов для выбора (порядок важен для соответствия массиву названий из ресурсов)
     private val objectEmojis = arrayOf(
         "🍎", "🍌", "🍇", "🍓", "🍒", "🥕", "🥒", "🍅",
         "⚽", "🏀", "🎾", "🏐", "🎈", "🎁", "🎂", "🎨",
         "🌟", "⭐", "✨", "🌺", "🌸", "🌼", "🌻", "🌹"
     )
 
-    // Текущее выделение пользователя
-    private enum class Selected { NONE, LEFT, RIGHT }
-    private var selected: Selected = Selected.NONE
+    // Локализованные названия предметов (мн. число), порядок совпадает с objectEmojis
+    private val emojiNames: List<String> by lazy {
+        resources.getStringArray(R.array.kids_emoji_names).toList()
+    }
+
+    // Подтверждающие фразы для TTS
+    private val confirmationEndings: List<String> by lazy {
+        resources.getStringArray(R.array.kids_comparison_confirmation_endings).toList()
+    }
+
+    override fun attachBaseContext(newBase: android.content.Context?) {
+        super.attachBaseContext(newBase?.let { LocaleManager.applyLanguage(it) })
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Keep landscape like original comparison
+        // Альбомная ориентация
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         setContentView(R.layout.activity_kids_comparison)
 
@@ -113,7 +86,12 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
             insets
         }
 
-        tts = TextToSpeech(this, this)
+        // Инициализируем TTS только для ru/en; для kk — отключаем полностью
+        val lang = LocaleManager.getCurrentLanguage(this)
+        if (lang != LocaleManager.LANGUAGE_KAZAKH) {
+            tts = TextToSpeech(this, this)
+        }
+
         initViews()
         setupClicks()
         generateNewQuestion()
@@ -138,7 +116,6 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         nextButton = findViewById(R.id.nextButton)
         equalButton = findViewById(R.id.equalButton)
 
-        // back button
         findViewById<ImageButton>(R.id.backButton).setOnClickListener { finish() }
 
         nextButton.visibility = View.GONE
@@ -148,21 +125,20 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         leftCard.setOnClickListener { onSideSelected(isLeft = true) }
         rightCard.setOnClickListener { onSideSelected(isLeft = false) }
         equalButton.setOnClickListener { onEqualSelected() }
-
         nextButton.setOnClickListener { nextQuestion() }
     }
 
     private fun onSideSelected(isLeft: Boolean) {
         if (nextButton.visibility == View.VISIBLE) return
 
-        // Устанавливаем выбранную сторону и обновляем UI выделения
+        // Выделяем сторону
         selected = if (isLeft) Selected.LEFT else Selected.RIGHT
         updateSelectionUI()
 
-        // Озвучиваем выбранный вариант с корректным определением пола
+        // Озвучиваем выбранный вариант
         speakSelectionQuestion(isLeft)
 
-        // Показать в центре символ выбора пользователя: слева выбирают «больше», значит '>'
+        // Символ выбора пользователя в центре
         showCenterSymbol(if (isLeft) ">" else "<")
 
         val correctLeft = leftCount > rightCount
@@ -172,19 +148,15 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         if (isCorrect) {
             score += 100
             totalCorrectAnswers++
-            hintText.text = "Отлично!"
+            hintText.text = getString(R.string.kids_comparison_correct)
             hintText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark))
             centerSymbol.setBackgroundResource(R.drawable.number_input_correct)
             animatePulse(centerSymbol)
             nextButton.visibility = View.VISIBLE
         } else {
-            hintText.text = "Попробуй ещё раз"
+            hintText.text = getString(R.string.kids_comparison_try_again)
             hintText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
-            // временная красная подсветка на нажатой карточке
             val card = if (isLeft) leftCard else rightCard
-            val originalColor = (if (selected == (if (isLeft) Selected.LEFT else Selected.RIGHT))
-                ContextCompat.getColor(this, android.R.color.holo_blue_light)
-            else ContextCompat.getColor(this, android.R.color.white))
             card.setCardBackgroundColor(ContextCompat.getColor(this, android.R.color.holo_red_light))
             card.postDelayed({ updateSelectionUI() }, 500)
             centerSymbol.setBackgroundResource(R.drawable.number_drop_zone)
@@ -194,30 +166,28 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
 
     private fun onEqualSelected() {
         if (nextButton.visibility == View.VISIBLE) return
-        // Сброс выделения при выборе равенства
         selected = Selected.NONE
         updateSelectionUI()
 
         // Озвучка равенства
         val item = getItemNamePlural()
         val ending = confirmationEndings.random()
-        val phrase = "Поровну ${item}? $ending"
+        val phrase = getString(R.string.kids_comparison_equal_tts, item, ending)
         tts?.speak(phrase, TextToSpeech.QUEUE_FLUSH, null, null)
 
-        // Показать символ '=' в центре
         showCenterSymbol("=")
 
         val isCorrect = leftCount == rightCount
         if (isCorrect) {
             score += 100
             totalCorrectAnswers++
-            hintText.text = "Верно!"
+            hintText.text = getString(R.string.kids_comparison_equal_correct)
             hintText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_green_dark))
             centerSymbol.setBackgroundResource(R.drawable.number_input_correct)
             animatePulse(centerSymbol)
             nextButton.visibility = View.VISIBLE
         } else {
-            hintText.text = "Попробуй ещё раз"
+            hintText.text = getString(R.string.kids_comparison_try_again)
             hintText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
             centerSymbol.setBackgroundResource(R.drawable.number_input_incorrect)
             centerSymbol.postDelayed({ centerSymbol.setBackgroundResource(R.drawable.number_drop_zone) }, 500)
@@ -227,7 +197,6 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
 
     private fun showCenterSymbol(symbol: String) { centerSymbol.text = symbol }
 
-    // Пульсация (успех)
     private fun animatePulse(view: View) {
         val sx = ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.15f, 1f)
         val sy = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.15f, 1f)
@@ -238,30 +207,22 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         }
     }
 
-    // Тряска (ошибка)
     private fun animateShake(view: View) {
         val anim = ObjectAnimator.ofFloat(view, "translationX", 0f, -10f, 10f, -5f, 5f, 0f)
         anim.duration = 500
         anim.start()
     }
 
-    // Обновляет визуальное выделение выбранной карточки
+    private enum class Selected { NONE, LEFT, RIGHT }
+    private var selected: Selected = Selected.NONE
+
     private fun updateSelectionUI() {
         val blue = ContextCompat.getColor(this, android.R.color.holo_blue_light)
         val white = ContextCompat.getColor(this, android.R.color.white)
         when (selected) {
-            Selected.LEFT -> {
-                leftCard.setCardBackgroundColor(blue)
-                rightCard.setCardBackgroundColor(white)
-            }
-            Selected.RIGHT -> {
-                leftCard.setCardBackgroundColor(white)
-                rightCard.setCardBackgroundColor(blue)
-            }
-            Selected.NONE -> {
-                leftCard.setCardBackgroundColor(white)
-                rightCard.setCardBackgroundColor(white)
-            }
+            Selected.LEFT -> { leftCard.setCardBackgroundColor(blue); rightCard.setCardBackgroundColor(white) }
+            Selected.RIGHT -> { leftCard.setCardBackgroundColor(white); rightCard.setCardBackgroundColor(blue) }
+            Selected.NONE -> { leftCard.setCardBackgroundColor(white); rightCard.setCardBackgroundColor(white) }
         }
     }
 
@@ -283,17 +244,15 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         if (Random.nextFloat() < 0.3f) {
             rightCount = leftCount
         } else {
-            // гарантируем неравенство
             if (rightCount == leftCount) {
                 rightCount = (leftCount + 1) % 10
             }
         }
-        // Исключаем случай одновременного нуля с обеих сторон
         if (leftCount == 0 && rightCount == 0) {
             if (Random.nextBoolean()) rightCount = 1 else leftCount = 1
         }
 
-        // Choose object
+        // Выбор предмета
         currentObjectEmoji = objectEmojis.random()
 
         leftObjectsDisplay.text = currentObjectEmoji.repeat(leftCount)
@@ -301,17 +260,21 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         leftNumberDisplay.text = leftCount.toString()
         rightNumberDisplay.text = rightCount.toString()
 
-        // Текст вопроса на экране и TTS
-        val itemName = emojiNames[currentObjectEmoji] ?: "предметов"
-        questionText.text = "У кого $itemName больше, у мальчика или девочки?"
-        hintText.text = "Нажми на карточку"
+        // Текст вопроса и подсказка
+        val itemName = getItemNamePlural()
+        questionText.text = getString(R.string.kids_comparison_question_template, itemName)
+        hintText.text = getString(R.string.kids_comparison_hint_tap_card)
         hintText.setTextColor(ContextCompat.getColor(this, android.R.color.darker_gray))
 
         updateProgress()
         speakQuestion()
     }
 
-    private fun getItemNamePlural(): String = emojiNames[currentObjectEmoji] ?: "предметов"
+    private fun getItemNamePlural(): String {
+        val index = objectEmojis.indexOf(currentObjectEmoji)
+        return if (index in emojiNames.indices) emojiNames[index]
+        else getString(R.string.kids_items_generic)
+    }
 
     private fun updateProgress() {
         progressBar.progress = ((currentQuestion.toFloat() / totalQuestions) * 100).toInt()
@@ -319,11 +282,7 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
 
     private fun nextQuestion() {
         currentQuestion++
-        if (currentQuestion >= totalQuestions) {
-            finishGame()
-        } else {
-            generateNewQuestion()
-        }
+        if (currentQuestion >= totalQuestions) finishGame() else generateNewQuestion()
     }
 
     private fun finishGame() {
@@ -337,23 +296,31 @@ class KidsComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
     }
 
     private fun speakQuestion() {
-        val text = "У кого ${getItemNamePlural()} больше, у мальчика или девочки?"
-        tts?.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+        if (tts == null) return
+        val item = getItemNamePlural()
+        val phrase = getString(R.string.kids_comparison_question_template_tts, item)
+        tts?.speak(phrase, TextToSpeech.QUEUE_FLUSH, null, null)
     }
 
     private fun speakSelectionQuestion(isLeft: Boolean) {
+        if (tts == null) return
         val item = getItemNamePlural()
         val ending = confirmationEndings.random()
         val selectedIsBoy = if (isLeft) leftIsBoy else !leftIsBoy
-        val subject = if (selectedIsBoy) "мальчика" else "девочки"
-        val other = if (selectedIsBoy) "девочки" else "мальчика"
-        val phrase = "У $subject $item больше, чем у $other? $ending"
+        val subject = if (selectedIsBoy) getString(R.string.kids_boy_genitive) else getString(R.string.kids_girl_genitive)
+        val other = if (selectedIsBoy) getString(R.string.kids_girl_genitive) else getString(R.string.kids_boy_genitive)
+        val phrase = getString(R.string.kids_comparison_selection_tts_template, subject, item, other, ending)
         tts?.speak(phrase, TextToSpeech.QUEUE_FLUSH, null, null)
     }
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            val res = tts!!.setLanguage(Locale("ru", "RU"))
+            val lang = LocaleManager.getCurrentLanguage(this)
+            val locale = when (lang) {
+                LocaleManager.LANGUAGE_ENGLISH -> Locale.forLanguageTag("en-US")
+                else -> Locale.forLanguageTag("ru-RU")
+            }
+            val res = tts!!.setLanguage(locale)
             if (res == TextToSpeech.LANG_MISSING_DATA || res == TextToSpeech.LANG_NOT_SUPPORTED) {
                 tts!!.setLanguage(Locale.getDefault())
             }

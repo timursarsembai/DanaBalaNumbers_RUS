@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Тренировка: Ошибка в ряду (RU) -->
+    <string name="row_error_question_label">Где ошибка в последовательности?</string>
+    <string name="row_error_hint_find_error">Найди ошибку в ряду</string>
+    <string name="row_error_hint_press_check">Нажми «Проверить»</string>
+    <string name="row_error_hint_select_wrong">Выбери кубик с ошибкой</string>
+
+    <string name="row_error_check_button">Проверить</string>
+
+    <string name="row_error_feedback_correct">Верно! Молодец!</string>
+    <string name="row_error_feedback_incorrect_mark">Неверно. Ошибка здесь</string>
+    <string name="row_error_feedback_incorrect_continue">Неверно. Попробуем дальше</string>
+
+    <!-- Эмодзи тренировки -->
+    <string name="row_error_emoji">🧩</string>
+
+    <!-- TTS фразы -->
+    <string name="row_error_tts_intro">Найди ошибку в ряду</string>
+    <string name="row_error_tts_find_wrong_block">Найди неправильный кубик</string>
+    <string name="row_error_tts_select_wrong">Выбери кубик с ошибкой</string>
+    <string name="row_error_tts_correct">Верно! Молодец!</string>
+    <string name="row_error_tts_incorrect_continue">Неверно. Попробуем дальше</string>
+
+    <!-- Результаты -->
+    <string name="row_error_results_title_excellent">Превосходно! 🏆</string>
+    <string name="row_error_results_title_great">Отлично! 🌟</string>
+    <string name="row_error_results_title_good">Хорошо! 👍</string>
+    <string name="row_error_results_title_keep_trying">Не сдавайся! 💪</string>
+    <string name="row_error_correct_answers_with_percent_format">Правильных ответов: %1$d из %2$d (%3$d%%)</string>
+</resources>

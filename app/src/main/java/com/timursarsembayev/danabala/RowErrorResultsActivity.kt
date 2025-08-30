@@ -1,5 +1,6 @@
 package com.timursarsembayev.danabalanumbers
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -9,6 +10,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class RowErrorResultsActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context) {
+        val ctx = LocaleManager.applyLanguage(newBase)
+        super.attachBaseContext(ctx)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_row_error_results)
@@ -23,8 +30,20 @@ class RowErrorResultsActivity : AppCompatActivity() {
         val correct = intent.getIntExtra("CORRECT", 0)
         val percent = if (total > 0) (correct * 100) / total else 0
 
-        findViewById<TextView>(R.id.resultTitle).text = if (percent >= 90) "Превосходно! 🏆" else if (percent >= 70) "Отлично! 🌟" else if (percent >= 50) "Хорошо! 👍" else "Не сдавайся! 💪"
-        findViewById<TextView>(R.id.scoreText).text = "Правильных ответов: $correct из $total ($percent%)"
+        val titleRes = when {
+            percent >= 90 -> R.string.row_error_results_title_excellent
+            percent >= 70 -> R.string.row_error_results_title_great
+            percent >= 50 -> R.string.row_error_results_title_good
+            else -> R.string.row_error_results_title_keep_trying
+        }
+
+        findViewById<TextView>(R.id.resultTitle).text = getString(titleRes)
+        findViewById<TextView>(R.id.scoreText).text = getString(
+            R.string.row_error_correct_answers_with_percent_format,
+            correct,
+            total,
+            percent
+        )
 
         findViewById<Button>(R.id.playAgainButton).setOnClickListener {
             startActivity(Intent(this, RowErrorActivity::class.java))
