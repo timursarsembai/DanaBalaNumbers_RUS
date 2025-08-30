@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Заголовок игры -->
+    <string name="schulte_header_with_emoji">🔢 Скорочтение. Таблица Шульте</string>
+
+    <!-- Шаблон цели (в UI) -->
+    <string name="schulte_target_text_template">Найди цифру %1$d</string>
+
+    <!-- Фразы похвалы (в игре) -->
+    <string-array name="schulte_praise_phrases">
+        <item>Молодец!</item>
+        <item>Отлично!</item>
+        <item>Так держать!</item>
+        <item>Здорово!</item>
+        <item>Супер!</item>
+    </string-array>
+
+    <!-- Фразы для TTS на экране результатов -->
+    <string-array name="schulte_results_tts_phrases">
+        <item>Молодец! Отличная работа!</item>
+        <item>Здорово! Ты отлично справился!</item>
+        <item>Супер! Продолжай в том же духе!</item>
+        <item>Отлично! Ты справился!</item>
+    </string-array>
+
+    <!-- Шаблоны для построения речи про время (для EN используются напрямую; в RU код формирует вручную) -->
+    <string name="schulte_tts_base_template">Ты справился %1$s!</string>
+    <string name="schulte_tts_time_mins_secs">за %1$d %2$s и %3$d %4$s</string>
+    <string name="schulte_tts_time_only_mins">за %1$d %2$s</string>
+    <string name="schulte_tts_time_only_secs">за %1$d %2$s</string>
+    <string name="schulte_tts_minute_one">минута</string>
+    <string name="schulte_tts_minute_other">минуты</string>
+    <string name="schulte_tts_second_one">секунда</string>
+    <string name="schulte_tts_second_other">секунд</string>
+</resources>

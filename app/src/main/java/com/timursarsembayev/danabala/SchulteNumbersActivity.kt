@@ -1,5 +1,6 @@
 package com.timursarsembayev.danabalanumbers
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -27,6 +28,7 @@ class SchulteNumbersActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
 
     private var tts: TextToSpeech? = null
     private var ttsReady = false
+    private var allowTts = false
 
     private val updateTimer = object : Runnable {
         override fun run() {
@@ -37,13 +39,18 @@ class SchulteNumbersActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         }
     }
 
+    override fun attachBaseContext(newBase: Context?) {
+        // Применяем выбранную локаль приложения
+        super.attachBaseContext(newBase?.let { LocaleManager.applyLanguage(it) })
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schulte_numbers)
 
-        timerView = findViewById<TextView>(R.id.timerView)
-        targetView = findViewById<TextView>(R.id.targetView)
-        gameView = findViewById<SchulteNumbersView>(R.id.schulteGameView)
+        timerView = findViewById(R.id.timerView)
+        targetView = findViewById(R.id.targetView)
+        gameView = findViewById(R.id.schulteGameView)
         progressBar = findViewById(R.id.progressBar)
 
         // Стандартная кнопка Назад
@@ -53,7 +60,12 @@ class SchulteNumbersActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         progressBar.max = 10
         progressBar.progress = 0
 
-        tts = TextToSpeech(this, this)
+        // Настройка TTS в зависимости от языка
+        val lang = LocaleManager.getCurrentLanguage(this).lowercase(Locale.ROOT)
+        allowTts = lang != LocaleManager.LANGUAGE_KAZAKH
+        if (allowTts) {
+            tts = TextToSpeech(this, this)
+        }
 
         gameView.onTileTap = { digit ->
             if (digit == targetDigit) {
@@ -93,7 +105,8 @@ class SchulteNumbersActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
     }
 
     private fun updateTargetText() {
-        targetView.text = "Найди цифру $targetDigit"
+        // Показываем числовую цель в UI по шаблону
+        targetView.text = getString(R.string.schulte_target_text_template, targetDigit)
     }
 
     private fun finishGame() {
@@ -107,17 +120,31 @@ class SchulteNumbersActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
     }
 
     private fun speakPraise() {
-        if (!ttsReady) return
-        val phrase = listOf(
-            "Молодец!", "Отлично!", "Так держать!", "Здорово!", "Супер!"
-        ).random()
+        if (!allowTts || !ttsReady) return
+        // Локализованный массив фраз похвалы
+        val phrases = resources.getStringArray(R.array.schulte_praise_phrases)
+        val phrase = phrases.random()
         // Не перекрываем последующее задание, добавляем в очередь
         tts?.speak(phrase, TextToSpeech.QUEUE_FLUSH, null, "schulte_praise")
     }
 
     private fun speakTarget() {
-        if (!ttsReady) return
-        val text = "Найди цифру $targetDigit"
+        if (!allowTts || !ttsReady) return
+        // Используем шаблон из ресурсов с словесным названием числа
+        val numberNameResId = when (targetDigit) {
+            0 -> R.string.number_name_0
+            1 -> R.string.number_name_1
+            2 -> R.string.number_name_2
+            3 -> R.string.number_name_3
+            4 -> R.string.number_name_4
+            5 -> R.string.number_name_5
+            6 -> R.string.number_name_6
+            7 -> R.string.number_name_7
+            8 -> R.string.number_name_8
+            else -> R.string.number_name_9
+        }
+        val numberWord = getString(numberNameResId)
+        val text = getString(R.string.find_digit_instruction, numberWord)
         tts?.speak(text, TextToSpeech.QUEUE_ADD, null, "schulte_target_$targetDigit")
     }
 
@@ -131,13 +158,23 @@ class SchulteNumbersActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            val res = tts?.setLanguage(Locale("ru", "RU"))
-            if (res == TextToSpeech.LANG_MISSING_DATA || res == TextToSpeech.LANG_NOT_SUPPORTED) {
-                tts?.language = Locale.getDefault()
+            // Выбираем язык озвучки по текущей локали
+            val locale = when (LocaleManager.getCurrentLanguage(this).lowercase(Locale.ROOT)) {
+                LocaleManager.LANGUAGE_RUSSIAN -> Locale.forLanguageTag("ru-RU")
+                LocaleManager.LANGUAGE_ENGLISH -> Locale.forLanguageTag("en-US")
+                else -> null // kk — TTS отключён
             }
-            ttsReady = true
-            // Озвучим текущее задание при готовности TTS
-            speakTarget()
+            if (locale != null) {
+                val res = tts?.setLanguage(locale)
+                if (res == TextToSpeech.LANG_MISSING_DATA || res == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    tts?.language = Locale.getDefault()
+                }
+                ttsReady = true
+                // Озвучим текущее задание при готовности TTS
+                speakTarget()
+            } else {
+                ttsReady = false
+            }
         }
     }
 

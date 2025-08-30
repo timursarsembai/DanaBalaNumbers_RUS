@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Game header -->
+    <string name="schulte_header_with_emoji">🔢 Speed Reading. Schulte Table</string>
+
+    <!-- UI target template (with number) -->
+    <string name="schulte_target_text_template">Find the digit %1$d</string>
+
+    <!-- Praise phrases (in-game) -->
+    <string-array name="schulte_praise_phrases">
+        <item>Well done!</item>
+        <item>Excellent!</item>
+        <item>Keep it up!</item>
+        <item>Great!</item>
+        <item>Super!</item>
+    </string-array>
+
+    <!-- Result screen TTS -->
+    <string-array name="schulte_results_tts_phrases">
+        <item>Well done! Great job!</item>
+        <item>Awesome! You did great!</item>
+        <item>Super! Keep it up!</item>
+        <item>Excellent! You made it!</item>
+    </string-array>
+
+    <!-- Time speech building -->
+    <string name="schulte_tts_base_template">You did it %1$s!</string>
+    <string name="schulte_tts_time_mins_secs">in %1$d %2$s and %3$d %4$s</string>
+    <string name="schulte_tts_time_only_mins">in %1$d %2$s</string>
+    <string name="schulte_tts_time_only_secs">in %1$d %2$s</string>
+    <string name="schulte_tts_minute_one">minute</string>
+    <string name="schulte_tts_minute_other">minutes</string>
+    <string name="schulte_tts_second_one">second</string>
+    <string name="schulte_tts_second_other">seconds</string>
+</resources>
+

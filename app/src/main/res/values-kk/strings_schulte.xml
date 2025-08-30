@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ойынның тақырыбы -->
+    <string name="schulte_header_with_emoji">🔢 Жылдам оқу. Шульте кестесі</string>
+
+    <!-- UI мақсаттың шаблоны (санмен) -->
+    <string name="schulte_target_text_template">Цифрды %1$d тап</string>
+
+    <!-- Ойындағы мадақ сөздер -->
+    <string-array name="schulte_praise_phrases">
+        <item>Жарайсың!</item>
+        <item>Өте жақсы!</item>
+        <item>Осылай жалғастыр!</item>
+        <item>Керемет!</item>
+        <item>Супер!</item>
+    </string-array>
+
+    <!-- Нәтиже экраны үшін TTS фразалары (kk тілінде TTS өшірулі, бірақ ресурстар бар) -->
+    <string-array name="schulte_results_tts_phrases">
+        <item>Жарайсың! Керемет жұмыс!</item>
+        <item>Тамаша! Өте жақсы орындадың!</item>
+        <item>Супер! Осылай жалғастыр!</item>
+        <item>Өте жақсы! Сен орындадың!</item>
+    </string-array>
+</resources>
+

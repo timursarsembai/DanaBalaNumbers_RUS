@@ -412,3 +412,21 @@
 Проверка:
 - RU/EN/KK: UI локализован корректно; TTS работает на ru/en и отключён на kk.
 - TODO: устранить «замерзание» игрового цикла.
+
+*Последнее обновление: 31 августа 2025*
+
+# Лог изменений — 31 августа 2025 (продолжение — «Скорочтение. Шульте»)
+
+- Полная локализация игры «Скорочтение. Шульте» (SchulteNumbersActivity + SchulteNumbersResultsActivity) и их макетов:
+  - Вынесены строки в модульные ресурсы: values/strings_schulte.xml (ru), values-en/strings_schulte.xml (en), values-kk/strings_schulte.xml (kk).
+  - Исправлен пустой base-файл values/strings_schulte.xml (ошибка mergeDebugResources: EOF) — восстановлен корректным содержимым.
+  - Макет activity_schulte_numbers_results.xml переведён на @string: заголовок (@string/results_title), «Назад» (@string/back), подзаголовок (@string/your_result), кнопки (@string/play_again, @string/main_menu).
+- Применение локали и TTS:
+  - Обе активности применяют локаль через attachBaseContext(LocaleManager.applyLanguage(...)).
+  - TTS: включён для ru/en (Locale.forLanguageTag("ru-RU"/"en-US")); для kk — полностью отключён (tts не создаётся и не вызывается), в соответствии с требованием.
+  - Озвучка цели в самой игре формируется из локализованных шаблонов: find_digit_instruction + number_name_0..9.
+  - Экран результатов: фразы похвалы и шаблоны времени локализованы; для kk озвучка отключена.
+- Проверка:
+  - ./gradlew assembleDebug — успешно; UI локализован; поведение TTS соответствует языку (ru/en — включён; kk — отключён).
+
+*Последнее обновление: 31 августа 2025*
