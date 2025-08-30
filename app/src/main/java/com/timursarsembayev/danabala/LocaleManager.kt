@@ -32,11 +32,43 @@ object LocaleManager {
     fun getSupportedLanguages(): List<String> = supportedLanguages
 
     /**
+     * Определить язык системы с маппингом на поддерживаемые
+     */
+    private fun resolveSystemLanguage(context: Context): String {
+        val sysLang = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            context.resources.configuration.locales.get(0)?.language
+        } else {
+            @Suppress("DEPRECATION")
+            context.resources.configuration.locale.language
+        }?.lowercase(Locale.ROOT)
+
+        return when {
+            sysLang == null -> LANGUAGE_ENGLISH
+            sysLang in supportedLanguages -> sysLang
+            sysLang.startsWith("ru") -> LANGUAGE_RUSSIAN
+            sysLang.startsWith("en") -> LANGUAGE_ENGLISH
+            sysLang.startsWith("kk") || sysLang.startsWith("kz") -> LANGUAGE_KAZAKH
+            else -> LANGUAGE_ENGLISH
+        }
+    }
+
+    /**
+     * Проверить, выбран ли язык пользователем явно
+     */
+    fun isLanguageSetByUser(context: Context): Boolean {
+        val prefs = getPreferences(context)
+        return prefs.contains(KEY_LANGUAGE)
+    }
+
+    /**
      * Получить текущий выбранный язык
      */
     fun getCurrentLanguage(context: Context): String {
         val prefs = getPreferences(context)
-        return prefs.getString(KEY_LANGUAGE, LANGUAGE_RUSSIAN) ?: LANGUAGE_RUSSIAN
+        val saved = prefs.getString(KEY_LANGUAGE, null)
+        if (!saved.isNullOrBlank() && saved in supportedLanguages) return saved
+        // Возвращаем язык системы по умолчанию (без сохранения), пока пользователь не выберет язык явно
+        return resolveSystemLanguage(context)
     }
 
     /**
