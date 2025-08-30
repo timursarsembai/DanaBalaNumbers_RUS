@@ -3,6 +3,7 @@ package com.timursarsembayev.danabalanumbers
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.ClipData
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -51,12 +52,10 @@ class NumberComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListene
     private var currentObjectType = ""
     private var selectedSymbol = ""
 
-    // Варианты похвалы за правильные ответы
-    private val correctPhrases = listOf(
-        "Молодец!", "Так держать!", "Превосходно!", "Отлично!",
-        "Замечательно!", "Ты супер!", "Великолепно!", "Браво!",
-        "Умница!", "Здорово!"
-    )
+    // Варианты похвалы за правильные ответы (из ресурсов)
+    private val correctPhrases: List<String> by lazy {
+        resources.getStringArray(R.array.number_comparison_praise).toList()
+    }
 
     // Эмодзи для предметов
     private val objectEmojis = arrayOf(
@@ -65,19 +64,15 @@ class NumberComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListene
         "🌟", "⭐", "✨", "🌺", "🌸", "🌼", "🌻", "🌹"
     )
 
-    // Варианты побуждающих фраз для озвучки
-    private val encouragementPhrases = listOf(
-        "Ты уверен? Проверь!",
-        "Правильно ли это? Подумай еще раз!",
-        "Точно так? Давай проверим!",
-        "Уверен в ответе? Нажми проверить!",
-        "Все верно? Посмотри внимательно!",
-        "Правильный выбор? Давай узнаем!",
-        "Так ли это? Проверяем вместе!",
-        "Согласен с ответом? Жми проверить!",
-        "Думаешь, это правильно? Попробуем!",
-        "Готов проверить? Нажимай кнопку!"
-    )
+    // Варианты побуждающих фраз для озвучки (из ресурсов)
+    private val encouragementPhrases: List<String> by lazy {
+        resources.getStringArray(R.array.number_comparison_tts_encouragement).toList()
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        val ctx = LocaleManager.applyLanguage(newBase)
+        super.attachBaseContext(ctx)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,7 +88,12 @@ class NumberComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListene
             insets
         }
 
-        tts = TextToSpeech(this, this)
+        // Инициализируем TTS только для ru/en; для kk — отключаем полностью
+        val lang = LocaleManager.getCurrentLanguage(this)
+        if (lang != LocaleManager.LANGUAGE_KAZAKH) {
+            tts = TextToSpeech(this, this)
+        }
+
         initializeViews()
         setupDragAndDrop()
         generateNewQuestion()
@@ -363,8 +363,8 @@ class NumberComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListene
     }
 
     private fun updateQuestionText() {
-        questionText.text = "Сравни числа"
-        hintText.text = "Перетащи символ сравнения в центр"
+        questionText.text = getString(R.string.number_comparison_question)
+        hintText.text = getString(R.string.number_comparison_hint_drag_symbol)
     }
 
     private fun updateProgress() {
@@ -402,9 +402,9 @@ class NumberComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListene
     }
 
     private fun showIncorrectFeedback() {
-        hintText.text = "Попробуй еще раз! Сравни количество предметов."
+        hintText.text = getString(R.string.number_comparison_try_again)
         hintText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
-        speakText("Попробуй еще раз")
+        speakText(getString(R.string.number_comparison_try_again_short))
     }
 
     private fun nextQuestion() {
@@ -442,39 +442,43 @@ class NumberComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListene
     }
 
     private fun speakQuestion() {
-        val leftDescription = if (leftNumber == 0) "ноль" else "$leftNumber"
-        val rightDescription = if (rightNumber == 0) "ноль" else "$rightNumber"
-        speakText("Сравни числа $leftDescription и $rightDescription")
+        if (tts == null) return
+        val leftDescription = getNumberDescription(leftNumber)
+        val rightDescription = getNumberDescription(rightNumber)
+        val template = getString(R.string.number_comparison_tts_compare_template)
+        speakText(String.format(template, leftDescription, rightDescription))
     }
 
     private fun speakComparisonQuestion(symbol: String) {
+        if (tts == null) return
         val leftDescription = getNumberDescription(leftNumber)
         val rightDescription = getNumberDescription(rightNumber)
 
         val symbolDescription = when (symbol) {
-            "<" -> "меньше"
-            ">" -> "больше"
-            "=" -> "равно"
+            "<" -> getString(R.string.less_than_word)
+            ">" -> getString(R.string.greater_than_word)
+            "=" -> getString(R.string.equals_word)
             else -> symbol
         }
 
         val encouragement = encouragementPhrases.random()
-        val questionText = "$leftDescription $symbolDescription $rightDescription? $encouragement"
-        speakText(questionText)
+        val template = getString(R.string.number_comparison_tts_compare_with_symbol_template)
+        val question = String.format(template, leftDescription, symbolDescription, rightDescription, encouragement)
+        speakText(question)
     }
 
     private fun getNumberDescription(number: Int): String {
         return when (number) {
-            0 -> "ноль"
-            1 -> "один"
-            2 -> "два"
-            3 -> "три"
-            4 -> "четыре"
-            5 -> "пять"
-            6 -> "шесть"
-            7 -> "семь"
-            8 -> "восемь"
-            9 -> "девять"
+            0 -> getString(R.string.number_name_0)
+            1 -> getString(R.string.number_name_1)
+            2 -> getString(R.string.number_name_2)
+            3 -> getString(R.string.number_name_3)
+            4 -> getString(R.string.number_name_4)
+            5 -> getString(R.string.number_name_5)
+            6 -> getString(R.string.number_name_6)
+            7 -> getString(R.string.number_name_7)
+            8 -> getString(R.string.number_name_8)
+            9 -> getString(R.string.number_name_9)
             else -> number.toString()
         }
     }
@@ -485,7 +489,12 @@ class NumberComparisonActivity : AppCompatActivity(), TextToSpeech.OnInitListene
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            val result = tts!!.setLanguage(Locale("ru", "RU"))
+            val lang = LocaleManager.getCurrentLanguage(this)
+            val locale = when (lang) {
+                LocaleManager.LANGUAGE_ENGLISH -> Locale.forLanguageTag("en-US")
+                else -> Locale.forLanguageTag("ru-RU")
+            }
+            val result = tts!!.setLanguage(locale)
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 tts!!.setLanguage(Locale.getDefault())
             }

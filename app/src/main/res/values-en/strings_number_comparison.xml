@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- UI -->
+    <string name="number_comparison_question">Compare the numbers</string>
+    <string name="number_comparison_hint_drag_symbol">Drag the comparison symbol to the center</string>
+    <string name="number_comparison_try_again">Try again! Compare the quantities.</string>
+    <string name="number_comparison_try_again_short">Try again</string>
+    <string name="number_comparison_check_button_label">Check</string>
+
+    <!-- Words for symbols -->
+    <string name="less_than_word">less than</string>
+    <string name="greater_than_word">greater than</string>
+    <string name="equals_word">equals</string>
+
+    <!-- TTS templates -->
+    <string name="number_comparison_tts_compare_template">Compare %1$s and %2$s</string>
+    <string name="number_comparison_tts_compare_with_symbol_template">%1$s is %2$s %3$s? %4$s</string>
+
+    <!-- Praise/encouragement -->
+    <string-array name="number_comparison_praise">
+        <item>Well done!</item>
+        <item>Keep it up!</item>
+        <item>Excellent!</item>
+        <item>Great!</item>
+        <item>Awesome!</item>
+        <item>Super!</item>
+        <item>Fantastic!</item>
+        <item>Bravo!</item>
+        <item>Smart!</item>
+        <item>Nice!</item>
+    </string-array>
+
+    <string-array name="number_comparison_tts_encouragement">
+        <item>Are you sure? Check!</item>
+        <item>Is it correct? Think again!</item>
+        <item>Really? Let\'s check!</item>
+        <item>Confident in your answer? Press check!</item>
+        <item>All correct? Look carefully!</item>
+        <item>Right choice? Let\'s find out!</item>
+        <item>Is it so? Let\'s verify!</item>
+        <item>Agree with your answer? Tap check!</item>
+        <item>Think it\'s right? Try it!</item>
+        <item>Ready to check? Press the button!</item>
+    </string-array>
+
+    <!-- Results screen formats -->
+    <string name="number_comparison_score_points">Score: %1$d</string>
+    <string name="number_comparison_correct_answers_format">Correct answers: %1$d of %2$d</string>
+    <string name="number_comparison_accuracy_format">Accuracy: %1$d%%</string>
+
+    <!-- Results screen static text -->
+    <string name="number_comparison_results_header_title">Comparison results</string>
+    <string name="number_comparison_results_stats_title">Your results</string>
+    <string name="number_comparison_restart">🔄 Play again</string>
+    <string name="number_comparison_home">🏠 Home</string>
+
+    <!-- Results screen messages -->
+    <string name="number_comparison_results_title_excellent">🌟 Congratulations! You\'re a champion!</string>
+    <string name="number_comparison_results_message_excellent">You know perfectly how to compare numbers! Keep learning math!</string>
+    <string name="number_comparison_results_badge_excellent">🏆 EXCELLENT!</string>
+
+    <string name="number_comparison_results_title_good">👍 Great! Very good!</string>
+    <string name="number_comparison_results_message_good">You understand number comparison well! Keep it up!</string>
+    <string name="number_comparison_results_badge_good">🌟 GREAT!</string>
+
+    <string name="number_comparison_results_title_okay">📈 Good attempt!</string>
+    <string name="number_comparison_results_message_okay">You\'re on the right track! Keep practicing!</string>
+    <string name="number_comparison_results_badge_okay">👍 GOOD!</string>
+
+    <string name="number_comparison_results_title_try_again">💪 Try again!</string>
+    <string name="number_comparison_results_message_try_again">Don\'t worry! Everyone learns step by step. You can do it!</string>
+    <string name="number_comparison_results_badge_try_again">💪 KEEP TRYING!</string>
+
+    <!-- TTS result phrases -->
+    <string-array name="number_comparison_results_excellent_phrases">
+        <item>Congratulations! You\'re a true number comparison champion!</item>
+        <item>Incredible! You know which numbers are greater or less!</item>
+        <item>Bravo! You did a fantastic job!</item>
+        <item>Super! You\'re becoming a real mathematician!</item>
+    </string-array>
+    <string-array name="number_comparison_results_good_phrases">
+        <item>Well done! You understand number comparison well!</item>
+        <item>Great! Keep going!</item>
+        <item>Nice! You\'re making great progress!</item>
+        <item>Smart! You did very well!</item>
+    </string-array>
+    <string-array name="number_comparison_results_okay_phrases">
+        <item>Not bad! Keep practicing and you\'ll succeed!</item>
+        <item>Good try! You\'re on the right path!</item>
+        <item>Keep it up! You\'re doing better each time!</item>
+        <item>Well done for trying! Keep learning numbers!</item>
+    </string-array>
+    <string-array name="number_comparison_results_encouragement_phrases">
+        <item>Don\'t be upset! Everyone learns gradually. Try again!</item>
+        <item>No worries! Every mathematician starts with simple tasks!</item>
+        <item>Don\'t give up! You\'ll learn to compare numbers!</item>
+        <item>Try again! You can do it!</item>
+    </string-array>
+</resources>

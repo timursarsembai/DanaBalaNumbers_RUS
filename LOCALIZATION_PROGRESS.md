@@ -213,3 +213,28 @@
   - KK: интерфейс переведён; карточка тренировки скрыта; TTS отключён.
 
 *Последнее обновление: 29 августа 2025*
+
+## Лог изменений — 30 августа 2025
+
+- Полная локализация тренировки «Сравнение чисел» (NumberComparisonActivity + NumberComparisonResultsActivity) и макетов:
+  - Вынесены все жёсткие строки в модульные ресурсы: values/strings_number_comparison.xml (ru), values-en/strings_number_comparison.xml (en), values-kk/strings_number_comparison.xml (kk).
+  - Макеты activity_number_comparison.xml и activity_number_comparison_results.xml переведены на @string; добавлены contentDescription для кнопок «Назад».
+  - Включён TTS для ru/en, отключён для kk; выбор Locale через LocaleManager; заменён устаревший Locale("..", "..") на Locale.forLanguageTag("..").
+  - Добавлены фразы поощрения и шаблоны TTS; интерфейс и озвучка соответствуют выбранному языку.
+
+- Локализация «Числа по возрастанию» (AscendingSequenceActivity + AscendingSequenceResultsActivity):
+  - Вынесены все строки в ресурсы: values/strings_ascending.xml (ru), values-en/strings_ascending.xml (en), values-kk/strings_ascending.xml (kk).
+  - Макеты activity_ascending_sequence.xml и activity_ascending_sequence_results.xml переведены на @string; заменены жёсткие тексты кнопок и подсказок.
+  - Активности применяют локаль через attachBaseContext(LocaleManager.applyLanguage(...)).
+  - TTS: ru/en — включён с соответствующей локалью; kk — отключён по требованию.
+  - Исправлено: добавлен отсутствующий ресурс ascending_score_points (values/strings_ascending_additions.xml), устранена ошибка компиляции Unresolved reference.
+
+- Общие правки:
+  - Подавлены MissingTranslation в ru-файле strings_number_comparison.xml для устойчивости сборки (переводы en/kk присутствуют).
+  - Проверены XML-ресурсы на пустые/повреждённые файлы; критичных проблем не обнаружено.
+
+Проверка:
+- RU/EN: интерфейс и TTS корректны.
+- KK: интерфейс переведён, TTS отключён по требованию.
+
+*Последнее обновление: 30 августа 2025*

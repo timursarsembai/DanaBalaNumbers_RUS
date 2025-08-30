@@ -28,7 +28,7 @@
                 android:layout_height="48dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_arrow_back"
-                android:contentDescription="Наз��д"
+                android:contentDescription="@string/back"
                 android:layout_marginEnd="16dp" />
 
             <TextView
@@ -43,7 +43,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Заполни числа по возрастанию"
+                android:text="@string/ascending_question"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#1565C0" />
@@ -157,7 +157,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="меньше"
+                android:text="@string/ascending_less_label"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="#FF5722"
@@ -177,7 +177,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="больше"
+                android:text="@string/ascending_more_label"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="#4CAF50"
@@ -191,7 +191,7 @@
             android:id="@+id/hintText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Перетащи числа в правильном порядке"
+            android:text="@string/ascending_hint_drag"
             android:textSize="16sp"
             android:textColor="#666666"
             android:gravity="center"
@@ -203,7 +203,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Выбери числа:"
+            android:text="@string/ascending_choose_numbers"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#1565C0"
@@ -262,7 +262,7 @@
                 android:layout_height="56dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                android:text="Проверить"
+                android:text="@string/number_comparison_check_button_label"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
@@ -275,7 +275,7 @@
                 android:layout_height="56dp"
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
-                android:text="Далее"
+                android:text="@string/next"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"

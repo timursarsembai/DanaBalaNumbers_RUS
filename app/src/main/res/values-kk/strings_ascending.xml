@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ascending Sequence: UI strings -->
+    <string name="ascending_question">Сандарды өсу ретімен толтыр</string>
+    <string name="ascending_hint_drag">Сандарды дұрыс ретпен апар</string>
+    <string name="ascending_less_label">кіші</string>
+    <string name="ascending_more_label">үлкен</string>
+    <string name="ascending_choose_numbers">Сандарды таңда:</string>
+    <string name="ascending_incorrect_try_again">Қайтадан көр! Сандар ретімен тұруы тиіс.</string>
+    <string name="ascending_incorrect_try_again_short">Қайтадан көр</string>
+    <string name="ascending_speak_question_template">Сандарды өсу ретімен толтыр. Көрсетілген сан %1$d</string>
+
+    <!-- Positive feedback phrases -->
+    <string-array name="ascending_positive_feedback">
+        <item>Жарайсың!</item>
+        <item>Осылай жалғастыр!</item>
+        <item>Керемет!</item>
+        <item>Өте жақсы!</item>
+        <item>Тамаша!</item>
+        <item>Супер!</item>
+        <item>Ғажап!</item>
+        <item>Браво!</item>
+        <item>Ақылдысың!</item>
+        <item>Жақсы!</item>
+    </string-array>
+
+    <!-- Results screen -->
+    <string name="ascending_results_exercise_title">Өсу ретімен тапсырма</string>
+    <string name="ascending_results_accuracy_line">Дұрыс жауаптар: %1$d / %2$d (%3$d%%)</string>
+    <string name="ascending_score_points">Ұпай: %1$d</string>
+
+    <string name="ascending_results_congrats_excellent">🌟 Керемет! 🌟</string>
+    <string name="ascending_results_congrats_good">👏 Жақсы! 👏</string>
+    <string name="ascending_results_congrats_ok">👍 Жаман емес! 👍</string>
+    <string name="ascending_results_congrats_try">💪 Қайтадан көр! 💪</string>
+
+    <string name="ascending_results_message_excellent">Тамаша жұмыс! Өсу ретімен тапсырманы өте жақсы орындадың!</string>
+    <string name="ascending_results_message_good">Жақсы жұмыс! Жаттыға бер!</string>
+    <string name="ascending_results_message_ok">Жаман емес нәтиже! Тағы бір көр!</string>
+    <string name="ascending_results_message_try">Уайымдама! Қайтадан көрсең, міндетті түрде болады!</string>
+
+    <!-- Buttons -->
+    <string name="ascending_restart">🔄 Қайта ойнау</string>
+    <string name="ascending_back_to_menu">🏠 Басты бетке</string>
+</resources>
+

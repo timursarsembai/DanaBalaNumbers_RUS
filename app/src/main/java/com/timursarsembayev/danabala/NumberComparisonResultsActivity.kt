@@ -1,5 +1,6 @@
 package com.timursarsembayev.danabalanumbers
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -9,7 +10,6 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.util.*
@@ -18,34 +18,16 @@ class NumberComparisonResultsActivity : AppCompatActivity(), TextToSpeech.OnInit
 
     private var tts: TextToSpeech? = null
 
-    // Варианты поздравлений для разных уровней успеха
-    private val excellentPhrases = listOf(
-        "Поздравляю! Ты настоящий чемпион по сравнению чисел!",
-        "Невероятно! Ты отлично знаешь, какие числа больше, а какие меньше!",
-        "Браво! Ты справился просто великолепно!",
-        "Супер! Ты становишься настоящим математиком!"
-    )
+    // Фразы для TTS берем из ресурсов
+    private val excellentPhrases by lazy { resources.getStringArray(R.array.number_comparison_results_excellent_phrases).toList() }
+    private val goodPhrases by lazy { resources.getStringArray(R.array.number_comparison_results_good_phrases).toList() }
+    private val okayPhrases by lazy { resources.getStringArray(R.array.number_comparison_results_okay_phrases).toList() }
+    private val encouragementPhrases by lazy { resources.getStringArray(R.array.number_comparison_results_encouragement_phrases).toList() }
 
-    private val goodPhrases = listOf(
-        "Молодец! Ты хорошо понимаешь сравнение чисел!",
-        "Отлично! Продолжай в том же духе!",
-        "Здорово! Ты делаешь большие успехи!",
-        "Умница! Ты очень хорошо справился!"
-    )
-
-    private val okayPhrases = listOf(
-        "Неплохо! Продолжай тренироваться, и у тебя все получится!",
-        "Хорошая попытка! Ты на правильном пути!",
-        "Так держать! С каждым разом у тебя получается лучше!",
-        "Молодец, что стараешься! Продолжай изучать числа!"
-    )
-
-    private val encouragementPhrases = listOf(
-        "Не расстраивайся! Все учатся постепенно. Попробуй еще раз!",
-        "Ничего страшного! Каждый математик начинал с простых заданий!",
-        "Не сдавайся! Ты обязательно научишься сравнивать числа!",
-        "Попробуй снова! У тебя все получится!"
-    )
+    override fun attachBaseContext(newBase: Context) {
+        val ctx = LocaleManager.applyLanguage(newBase)
+        super.attachBaseContext(ctx)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +43,12 @@ class NumberComparisonResultsActivity : AppCompatActivity(), TextToSpeech.OnInit
             insets
         }
 
-        tts = TextToSpeech(this, this)
+        // Инициализируем TTS только для ru/en; для kk — отключаем полностью
+        val lang = LocaleManager.getCurrentLanguage(this)
+        if (lang != LocaleManager.LANGUAGE_KAZAKH) {
+            tts = TextToSpeech(this, this)
+        }
+
         setupViews()
     }
 
@@ -80,42 +67,42 @@ class NumberComparisonResultsActivity : AppCompatActivity(), TextToSpeech.OnInit
         val congratulationsIcon = findViewById<TextView>(R.id.congratulationsIcon)
         val achievementStars = findViewById<LinearLayout>(R.id.achievementStars)
 
-        scoreDisplay.text = "Очки: $score"
-        correctAnswersDisplay.text = "Правильных ответов: $totalCorrectAnswers из $totalQuestions"
+        scoreDisplay.text = getString(R.string.number_comparison_score_points, score)
+        correctAnswersDisplay.text = getString(R.string.number_comparison_correct_answers_format, totalCorrectAnswers, totalQuestions)
 
         val accuracy = if (totalQuestions > 0) {
             (totalCorrectAnswers.toFloat() / totalQuestions * 100).toInt()
         } else 0
 
-        accuracyDisplay.text = "Точность: $accuracy%"
+        accuracyDisplay.text = getString(R.string.number_comparison_accuracy_format, accuracy)
 
         // Настройка сообщений и внешнего вида в зависимости от результата
         when {
             accuracy >= 90 -> {
-                messageDisplay.text = "🌟 Поздравляем! Ты чемпион!"
-                motivationalMessage.text = "Ты отлично знаешь, как сравнивать числа! Продолжай изучать математику!"
-                performanceBadge.text = "🏆 ПРЕВОСХОДНО!"
+                messageDisplay.text = getString(R.string.number_comparison_results_title_excellent)
+                motivationalMessage.text = getString(R.string.number_comparison_results_message_excellent)
+                performanceBadge.text = getString(R.string.number_comparison_results_badge_excellent)
                 congratulationsIcon.text = "🎉"
                 createStars(achievementStars, 5)
             }
             accuracy >= 75 -> {
-                messageDisplay.text = "👍 Отлично! Очень хорошо!"
-                motivationalMessage.text = "Ты хорошо понимаешь сравнение чисел! Так держать!"
-                performanceBadge.text = "🌟 ОТЛИЧНО!"
+                messageDisplay.text = getString(R.string.number_comparison_results_title_good)
+                motivationalMessage.text = getString(R.string.number_comparison_results_message_good)
+                performanceBadge.text = getString(R.string.number_comparison_results_badge_good)
                 congratulationsIcon.text = "😊"
                 createStars(achievementStars, 4)
             }
             accuracy >= 50 -> {
-                messageDisplay.text = "📈 Хорошая попытка!"
-                motivationalMessage.text = "Ты на правильном пути! Продолжай тренироваться!"
-                performanceBadge.text = "👍 ХОРОШО!"
+                messageDisplay.text = getString(R.string.number_comparison_results_title_okay)
+                motivationalMessage.text = getString(R.string.number_comparison_results_message_okay)
+                performanceBadge.text = getString(R.string.number_comparison_results_badge_okay)
                 congratulationsIcon.text = "🙂"
                 createStars(achievementStars, 3)
             }
             else -> {
-                messageDisplay.text = "💪 Попробуй еще раз!"
-                motivationalMessage.text = "Не расстраивайся! Все учатся постепенно. Ты обязательно справишься!"
-                performanceBadge.text = "💪 СТАРАЙСЯ!"
+                messageDisplay.text = getString(R.string.number_comparison_results_title_try_again)
+                motivationalMessage.text = getString(R.string.number_comparison_results_message_try_again)
+                performanceBadge.text = getString(R.string.number_comparison_results_badge_try_again)
                 congratulationsIcon.text = "🤗"
                 createStars(achievementStars, 2)
             }
@@ -170,7 +157,12 @@ class NumberComparisonResultsActivity : AppCompatActivity(), TextToSpeech.OnInit
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            val result = tts!!.setLanguage(Locale("ru", "RU"))
+            val lang = LocaleManager.getCurrentLanguage(this)
+            val locale = when (lang) {
+                LocaleManager.LANGUAGE_ENGLISH -> Locale.forLanguageTag("en-US")
+                else -> Locale.forLanguageTag("ru-RU")
+            }
+            val result = tts!!.setLanguage(locale)
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 tts!!.setLanguage(Locale.getDefault())
             }

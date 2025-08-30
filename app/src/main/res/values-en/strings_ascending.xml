@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ascending Sequence: UI strings -->
+    <string name="ascending_question">Fill the numbers in ascending order</string>
+    <string name="ascending_hint_drag">Drag the numbers in the correct order</string>
+    <string name="ascending_less_label">less</string>
+    <string name="ascending_more_label">greater</string>
+    <string name="ascending_choose_numbers">Choose numbers:</string>
+    <string name="ascending_incorrect_try_again">Try again! Numbers must be in order.</string>
+    <string name="ascending_incorrect_try_again_short">Try again</string>
+    <string name="ascending_speak_question_template">Fill numbers in ascending order. Shown number %1$d</string>
+
+    <!-- Positive feedback phrases -->
+    <string-array name="ascending_positive_feedback">
+        <item>Well done!</item>
+        <item>Keep it up!</item>
+        <item>Excellent!</item>
+        <item>Great!</item>
+        <item>Awesome!</item>
+        <item>Super!</item>
+        <item>Fantastic!</item>
+        <item>Bravo!</item>
+        <item>Smart!</item>
+        <item>Nice!</item>
+    </string-array>
+
+    <!-- Results screen -->
+    <string name="ascending_results_exercise_title">Ascending exercise</string>
+    <string name="ascending_results_accuracy_line">Correct answers: %1$d of %2$d (%3$d%%)</string>
+
+    <string name="ascending_results_congrats_excellent">🌟 Excellent! 🌟</string>
+    <string name="ascending_results_congrats_good">👏 Good! 👏</string>
+    <string name="ascending_results_congrats_ok">👍 Not bad! 👍</string>
+    <string name="ascending_results_congrats_try">💪 Try again! 💪</string>
+
+    <string name="ascending_results_message_excellent">Great job! You did the ascending exercise perfectly!</string>
+    <string name="ascending_results_message_good">Good job! Keep practicing!</string>
+    <string name="ascending_results_message_ok">Not bad! Try once more!</string>
+    <string name="ascending_results_message_try">Don\'t worry! Try again, you will definitely succeed!</string>
+</resources>
+

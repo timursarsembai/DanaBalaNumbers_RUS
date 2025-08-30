@@ -1,5 +1,6 @@
 package com.timursarsembayev.danabalanumbers
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -15,6 +16,10 @@ class AscendingSequenceResultsActivity : AppCompatActivity(), TextToSpeech.OnIni
 
     private var tts: TextToSpeech? = null
 
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LocaleManager.applyLanguage(newBase))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ascending_sequence_results)
@@ -25,7 +30,13 @@ class AscendingSequenceResultsActivity : AppCompatActivity(), TextToSpeech.OnIni
             insets
         }
 
-        tts = TextToSpeech(this, this)
+        // Инициализируем TTS только для ru/en; для kk — отключаем
+        when (LocaleManager.getCurrentLanguage(this)) {
+            LocaleManager.LANGUAGE_ENGLISH, LocaleManager.LANGUAGE_RUSSIAN -> {
+                tts = TextToSpeech(this, this)
+            }
+            else -> tts = null
+        }
 
         val score = intent.getIntExtra("score", 0)
         val totalCorrectAnswers = intent.getIntExtra("totalCorrectAnswers", 0)
@@ -41,28 +52,28 @@ class AscendingSequenceResultsActivity : AppCompatActivity(), TextToSpeech.OnIni
         val progressBar = findViewById<ProgressBar>(R.id.accuracyProgressBar)
         val congratsText = findViewById<TextView>(R.id.congratsText)
 
-        scoreText.text = "Очки: $score"
-        
+        scoreText.text = getString(R.string.ascending_score_points, score)
+
         val accuracy = (correctAnswers.toFloat() / totalQuestions * 100).toInt()
-        accuracyText.text = "Правильных ответов: $correctAnswers из $totalQuestions ($accuracy%)"
+        accuracyText.text = getString(R.string.ascending_results_accuracy_line, correctAnswers, totalQuestions, accuracy)
         progressBar.progress = accuracy
 
         val message = when {
             accuracy >= 90 -> {
-                congratsText.text = "🌟 Превосходно! 🌟"
-                "Отличная работа! Ты великолепно справился с упражнением по возрастанию!"
+                congratsText.text = getString(R.string.ascending_results_congrats_excellent)
+                getString(R.string.ascending_results_message_excellent)
             }
             accuracy >= 70 -> {
-                congratsText.text = "👏 Хорошо! 👏"
-                "Хорошая работа! Продолжай тренироваться!"
+                congratsText.text = getString(R.string.ascending_results_congrats_good)
+                getString(R.string.ascending_results_message_good)
             }
             accuracy >= 50 -> {
-                congratsText.text = "👍 Неплохо! 👍"
-                "Неплохой результат! Попробуй еще раз!"
+                congratsText.text = getString(R.string.ascending_results_congrats_ok)
+                getString(R.string.ascending_results_message_ok)
             }
             else -> {
-                congratsText.text = "💪 Попробуй еще! 💪"
-                "Не расстраивайся! Попробуй еще раз, и у тебя обязательно получится!"
+                congratsText.text = getString(R.string.ascending_results_congrats_try)
+                getString(R.string.ascending_results_message_try)
             }
         }
 
@@ -89,7 +100,11 @@ class AscendingSequenceResultsActivity : AppCompatActivity(), TextToSpeech.OnIni
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            val result = tts!!.setLanguage(Locale("ru", "RU"))
+            val locale = when (LocaleManager.getCurrentLanguage(this)) {
+                LocaleManager.LANGUAGE_ENGLISH -> Locale.forLanguageTag("en-US")
+                else -> Locale.forLanguageTag("ru-RU")
+            }
+            val result = tts!!.setLanguage(locale)
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 tts!!.setLanguage(Locale.getDefault())
             }

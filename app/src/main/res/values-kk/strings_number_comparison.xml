@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- UI -->
+    <string name="number_comparison_question">Сандарды салыстыр</string>
+    <string name="number_comparison_hint_drag_symbol">Салыстыру таңбасын ортаға апар</string>
+    <string name="number_comparison_try_again">Қайтадан көр! Санын салыстыр.</string>
+    <string name="number_comparison_try_again_short">Қайтадан көр</string>
+    <string name="number_comparison_check_button_label">Тексеру</string>
+
+    <!-- Words for symbols -->
+    <string name="less_than_word">кіші</string>
+    <string name="greater_than_word">үлкен</string>
+    <string name="equals_word">тең</string>
+
+    <!-- TTS templates -->
+    <string name="number_comparison_tts_compare_template">%1$s және %2$s салыстыр</string>
+    <string name="number_comparison_tts_compare_with_symbol_template">%1$s %2$s %3$s? %4$s</string>
+
+    <!-- Praise/encouragement -->
+    <string-array name="number_comparison_praise">
+        <item>Жарайсың!</item>
+        <item>Осылай жалғастыр!</item>
+        <item>Керемет!</item>
+        <item>Өте жақсы!</item>
+        <item>Тамаша!</item>
+        <item>Сен суперсің!</item>
+        <item>Ғажап!</item>
+        <item>Браво!</item>
+        <item>Ақылдысың!</item>
+        <item>Жақсы!</item>
+    </string-array>
+
+    <string-array name="number_comparison_tts_encouragement">
+        <item>Сен сенімдісің бе? Тексер!</item>
+        <item>Дұрыс па? Тағы ойлан!</item>
+        <item>Расында ма? Тексерейік!</item>
+        <item>Жауабыңа сенімдісің бе? Тексер түймесін бас!</item>
+        <item>Барлығы дұрыс па? Мұқият қара!</item>
+        <item>Дұрыс таңдау ма? Біліп көрейік!</item>
+        <item>Солай ма? Тексеріп көрейік!</item>
+        <item>Жауабыңмен келісесің бе? Тексерді бас!</item>
+        <item>Дұрыс деп ойлайсың ба? Байқап көр!</item>
+        <item>Тексеруге дайынсың ба? Түймені бас!</item>
+    </string-array>
+
+    <!-- Results screen formats -->
+    <string name="number_comparison_score_points">Ұпай: %1$d</string>
+    <string name="number_comparison_correct_answers_format">Дұрыс жауаптар: %1$d / %2$d</string>
+    <string name="number_comparison_accuracy_format">Дәлдік: %1$d%%</string>
+
+    <!-- Results screen static text -->
+    <string name="number_comparison_results_header_title">Салыстыру нәтижелері</string>
+    <string name="number_comparison_results_stats_title">Нәтижелерің</string>
+    <string name="number_comparison_restart">🔄 Қайта ойнау</string>
+    <string name="number_comparison_home">🏠 Басты бет</string>
+
+    <!-- Results screen messages -->
+    <string name="number_comparison_results_title_excellent">🌟 Құттықтаймыз! Сен чемпионсың!</string>
+    <string name="number_comparison_results_message_excellent">Сен сандарды салыстыруды өте жақсы білесің! Математиканы жалғастыра үйрен!</string>
+    <string name="number_comparison_results_badge_excellent">🏆 КЕРЕМЕТ!</string>
+
+    <string name="number_comparison_results_title_good">👍 Жақсы! Өте жақсы!</string>
+    <string name="number_comparison_results_message_good">Сен сандарды салыстыруды жақсы түсінесің! Осылай жалғастыр!</string>
+    <string name="number_comparison_results_badge_good">🌟 ӨТЕ ЖАҚСЫ!</string>
+
+    <string name="number_comparison_results_title_okay">📈 Жақсы талпыныс!</string>
+    <string name="number_comparison_results_message_okay">Дұрыс жолдасың! Жаттыға бер!</string>
+    <string name="number_comparison_results_badge_okay">👍 ЖАҚСЫ!</string>
+
+    <string name="number_comparison_results_title_try_again">💪 Қайтадан көр!</string>
+    <string name="number_comparison_results_message_try_again">Уайымдама! Бәрі біртіндеп үйренеді. Сен міндетті түрде орындайсың!</string>
+    <string name="number_comparison_results_badge_try_again">💪 ТЫРЫС!</string>
+
+    <!-- TTS result phrases -->
+    <string-array name="number_comparison_results_excellent_phrases">
+        <item>Құттықтаймыз! Сен нағыз салыстыру чемпионысың!</item>
+        <item>Тамаша! Қай сан үлкен, қайсысы кіші екенін жақсы білесің!</item>
+        <item>Браво! Өте керемет орындадың!</item>
+        <item>Супер! Нағыз математик болып келесің!</item>
+    </string-array>
+    <string-array name="number_comparison_results_good_phrases">
+        <item>Жарайсың! Сандарды салыстыруды жақсы түсінесің!</item>
+        <item>Өте жақсы! Осылай жалғастыр!</item>
+        <item>Керемет! Үлкен прогресс жасап жатырсың!</item>
+        <item>Ақылдысың! Өте жақсы орындадың!</item>
+    </string-array>
+    <string-array name="number_comparison_results_okay_phrases">
+        <item>Жаман емес! Жаттыға бер, бәрі болады!</item>
+        <item>Жақсы талпыныс! Дұрыс жолдасың!</item>
+        <item>Осы қарқынмен! Әр жолы жақсырақ болып жатыр!</item>
+        <item>Тырысып жатырсың! Сандарды үйрене бер!</item>
+    </string-array>
+    <string-array name="number_comparison_results_encouragement_phrases">
+        <item>Мұңайма! Бәрі біртіндеп үйренеді. Қайтадан көр!</item>
+        <item>Уайымдама! Әр математик қарапайымнан бастайды!</item>
+        <item>Берілме! Сандарды салыстыруды үйренесің!</item>
+        <item>Тағы да көр! Қолыңнан келеді!</item>
+    </string-array>
+</resources>
+

@@ -3,6 +3,7 @@ package com.timursarsembayev.danabalanumbers
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.ClipData
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -47,12 +48,14 @@ class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListen
     private var availableNumbers = mutableListOf<Int>()
     private var userAnswers = IntArray(5) { -1 } // -1 означает пустое место
 
-    // Варианты похвалы за правильные ответы
-    private val correctPhrases = listOf(
-        "Молодец!", "Так держать!", "Превосходно!", "Отлично!",
-        "Замечательно!", "Ты супер!", "Великолепно!", "Браво!",
-        "Умница!", "Здорово!"
-    )
+    // Варианты похвалы за правильные ответы (из ресурсов)
+    private val correctPhrases: List<String> by lazy {
+        resources.getStringArray(R.array.ascending_positive_feedback).toList()
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LocaleManager.applyLanguage(newBase))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +67,14 @@ class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListen
             insets
         }
 
-        tts = TextToSpeech(this, this)
+        // Инициализируем TTS только для ru/en; для kk — отключаем
+        when (LocaleManager.getCurrentLanguage(this)) {
+            LocaleManager.LANGUAGE_ENGLISH, LocaleManager.LANGUAGE_RUSSIAN -> {
+                tts = TextToSpeech(this, this)
+            }
+            else -> tts = null
+        }
+
         initializeViews()
         setupDragAndDrop()
         generateNewQuestion()
@@ -393,8 +403,8 @@ class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListen
     }
 
     private fun updateQuestionText() {
-        questionText.text = "Заполни чи́сла по возрастанию"
-        hintText.text = "Перетащи чи́сла в правильном порядке"
+        questionText.text = getString(R.string.ascending_question)
+        hintText.text = getString(R.string.ascending_hint_drag)
     }
 
     private fun updateProgress() {
@@ -442,9 +452,9 @@ class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListen
     }
 
     private fun showIncorrectFeedback() {
-        hintText.text = "Попробуй еще раз! Числа должны идти по порядку."
+        hintText.text = getString(R.string.ascending_incorrect_try_again)
         hintText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
-        speakText("Попробуй еще раз")
+        speakText(getString(R.string.ascending_incorrect_try_again_short))
     }
 
     private fun nextQuestion() {
@@ -482,7 +492,9 @@ class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListen
     }
 
     private fun speakQuestion() {
-        speakText("Заполни числа по возрастанию. Показано число ${shownNumber}")
+        if (tts == null) return
+        val template = getString(R.string.ascending_speak_question_template)
+        speakText(String.format(template, shownNumber))
     }
 
     private fun speakText(text: String) {
@@ -491,7 +503,11 @@ class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListen
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            val result = tts!!.setLanguage(Locale("ru", "RU"))
+            val locale = when (LocaleManager.getCurrentLanguage(this)) {
+                LocaleManager.LANGUAGE_ENGLISH -> Locale.forLanguageTag("en-US")
+                else -> Locale.forLanguageTag("ru-RU")
+            }
+            val result = tts!!.setLanguage(locale)
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 tts!!.setLanguage(Locale.getDefault())
             }

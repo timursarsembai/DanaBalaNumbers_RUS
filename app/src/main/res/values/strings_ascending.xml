@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ascending Sequence: UI strings -->
+    <string name="ascending_question">Заполни числа по возрастанию</string>
+    <string name="ascending_hint_drag">Перетащи числа в правильном порядке</string>
+    <string name="ascending_less_label">меньше</string>
+    <string name="ascending_more_label">больше</string>
+    <string name="ascending_choose_numbers">Выбери числа:</string>
+    <string name="ascending_incorrect_try_again">Попробуй еще раз! Числа должны идти по порядку.</string>
+    <string name="ascending_incorrect_try_again_short">Попробуй еще раз</string>
+    <string name="ascending_speak_question_template">Заполни числа по возрастанию. Показано число %1$d</string>
+
+    <!-- Positive feedback phrases -->
+    <string-array name="ascending_positive_feedback">
+        <item>Молодец!</item>
+        <item>Так держать!</item>
+        <item>Превосходно!</item>
+        <item>Отлично!</item>
+        <item>Замечательно!</item>
+        <item>Ты супер!</item>
+        <item>Великолепно!</item>
+        <item>Браво!</item>
+        <item>Умница!</item>
+        <item>Здорово!</item>
+    </string-array>
+
+    <!-- Results screen -->
+    <string name="ascending_results_exercise_title">Упражнение по возрастанию</string>
+    <string name="ascending_results_accuracy_line">Правильных ответов: %1$d из %2$d (%3$d%%)</string>
+
+    <string name="ascending_results_congrats_excellent">🌟 Превосходно! 🌟</string>
+    <string name="ascending_results_congrats_good">👏 Хорошо! 👏</string>
+    <string name="ascending_results_congrats_ok">👍 Неплохо! 👍</string>
+    <string name="ascending_results_congrats_try">💪 Попробуй еще! 💪</string>
+
+    <string name="ascending_results_message_excellent">Отличная работа! Ты великолепно справился с упражнением по возрастанию!</string>
+    <string name="ascending_results_message_good">Хорошая работа! Продолжай тренироваться!</string>
+    <string name="ascending_results_message_ok">Неплохой результат! Попробуй еще раз!</string>
+    <string name="ascending_results_message_try">Не расстраивайся! Попробуй еще раз, и у тебя обязательно получится!</string>
+</resources>
+

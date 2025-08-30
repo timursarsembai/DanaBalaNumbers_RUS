@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- UI -->
+    <string name="number_comparison_question">Сравни числа</string>
+    <string name="number_comparison_hint_drag_symbol">Перетащи символ сравнения в центр</string>
+    <string name="number_comparison_try_again">Попробуй еще раз! Сравни количество предметов.</string>
+    <string name="number_comparison_try_again_short">Попробуй еще раз</string>
+    <string name="number_comparison_check_button_label">Проверить</string>
+
+    <!-- Words for symbols -->
+    <string name="less_than_word">меньше</string>
+    <string name="greater_than_word">больше</string>
+    <string name="equals_word">равно</string>
+
+    <!-- TTS templates -->
+    <string name="number_comparison_tts_compare_template">Сравни числа %1$s и %2$s</string>
+    <string name="number_comparison_tts_compare_with_symbol_template">%1$s %2$s %3$s? %4$s</string>
+
+    <!-- Praise/encouragement -->
+    <string-array name="number_comparison_praise">
+        <item>Молодец!</item>
+        <item>Так держать!</item>
+        <item>Превосходно!</item>
+        <item>Отлично!</item>
+        <item>Замечательно!</item>
+        <item>Ты супер!</item>
+        <item>Великолепно!</item>
+        <item>Браво!</item>
+        <item>Умница!</item>
+        <item>Здорово!</item>
+    </string-array>
+
+    <string-array name="number_comparison_tts_encouragement">
+        <item>Ты уверен? Проверь!</item>
+        <item>Правильно ли это? Подумай еще раз!</item>
+        <item>Точно так? Давай проверим!</item>
+        <item>Уверен в ответе? Нажми проверить!</item>
+        <item>Все верно? Посмотри внимательно!</item>
+        <item>Правильный выбор? Давай узнаем!</item>
+        <item>Так ли это? Проверяем вместе!</item>
+        <item>Согласен с ответом? Жми проверить!</item>
+        <item>Думаешь, это правильно? Попробуем!</item>
+        <item>Готов проверить? Нажимай кнопку!</item>
+    </string-array>
+
+    <!-- Results screen formats -->
+    <string name="number_comparison_score_points">Очки: %1$d</string>
+    <string name="number_comparison_correct_answers_format">Правильных ответов: %1$d из %2$d</string>
+    <string name="number_comparison_accuracy_format">Точность: %1$d%%</string>
+
+    <!-- Results screen static text -->
+    <string name="number_comparison_results_header_title">Результаты сравнения</string>
+    <string name="number_comparison_results_stats_title">Твои результаты</string>
+    <string name="number_comparison_restart">🔄 Играть снова</string>
+    <string name="number_comparison_home">🏠 На главную</string>
+
+    <!-- Results screen messages -->
+    <string name="number_comparison_results_title_excellent">🌟 Поздравляем! Ты чемпион!</string>
+    <string name="number_comparison_results_message_excellent">Ты отлично знаешь, как сравнивать числа! Продолжай изучать математику!</string>
+    <string name="number_comparison_results_badge_excellent">🏆 ПРЕВОСХОДНО!</string>
+
+    <string name="number_comparison_results_title_good">👍 Отлично! Очень хорошо!</string>
+    <string name="number_comparison_results_message_good">Ты хорошо понимаешь сравнение чисел! Так держать!</string>
+    <string name="number_comparison_results_badge_good">🌟 ОТЛИЧНО!</string>
+
+    <string name="number_comparison_results_title_okay">📈 Хорошая попытка!</string>
+    <string name="number_comparison_results_message_okay">Ты на правильном пути! Продолжай тренироваться!</string>
+    <string name="number_comparison_results_badge_okay">👍 ХОРОШО!</string>
+
+    <string name="number_comparison_results_title_try_again">💪 Попробуй еще раз!</string>
+    <string name="number_comparison_results_message_try_again">Не расстраивайся! Все учатся постепенно. Ты обязательно справишься!</string>
+    <string name="number_comparison_results_badge_try_again">💪 СТАРАЙСЯ!</string>
+
+    <!-- TTS result phrases -->
+    <string-array name="number_comparison_results_excellent_phrases">
+        <item>Поздравляю! Ты настоящий чемпион по сравнению чисел!</item>
+        <item>Невероятно! Ты отлично знаешь, какие числа больше, а какие меньше!</item>
+        <item>Браво! Ты справился просто великолепно!</item>
+        <item>Супер! Ты становишься настоящим математиком!</item>
+    </string-array>
+    <string-array name="number_comparison_results_good_phrases">
+        <item>Молодец! Ты хорошо понимаешь сравнение чисел!</item>
+        <item>Отлично! Продолжай в том же духе!</item>
+        <item>Здорово! Ты делаешь большие успехи!</item>
+        <item>Умница! Ты очень хорошо справился!</item>
+    </string-array>
+    <string-array name="number_comparison_results_okay_phrases">
+        <item>Неплохо! Продолжай тренироваться, и у тебя все получится!</item>
+        <item>Хорошая попытка! Ты на правильном пути!</item>
+        <item>Так держать! С каждым разом у тебя получается лучше!</item>
+        <item>Молодец, что стараешься! Продолжай изучать числа!</item>
+    </string-array>
+    <string-array name="number_comparison_results_encouragement_phrases">
+        <item>Не расстраивайся! Все учатся постепенно. Попробуй еще раз!</item>
+        <item>Ничего страшного! Каждый математик начинал с простых заданий!</item>
+        <item>Не сдавайся! Ты обязательно научишься сравнивать числа!</item>
+        <item>Попробуй снова! У тебя все получится!</item>
+    </string-array>
+</resources>
