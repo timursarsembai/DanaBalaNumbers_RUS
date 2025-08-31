@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Сатып алу экраны -->
-    <string name="paywall_title">Толық нұсқа</string>
-    <string name="paywall_description">Барлық ойындар мен жаттығуларды ашыңыз. Бір рет сатып алу, жазылусыз.</string>
-    <string name="paywall_buy">Толық нұсқаны сатып алу</string>
-    <string name="paywall_restore">Сатып алуларды қалпына келтіру</string>
-    <string name="paywall_unavailable">Сатып алу қазір қолжетімсіз. Кейінірек қайталаңыз.</string>
+    <!-- Премиум сатып алу экраны -->
+    <string name="paywall_title">Премиум нұсқасы</string>
+    <string name="paywall_description">Қосымшаның барлық мүмкіндіктерін ашыңыз және кеңейтілген жаттығуларға қол жеткізіңіз!</string>
+    <string name="paywall_features">• Жарнамасыз\n• Барлық жаттығулар ашық\n• Толық статистика\n• Қосымша ойындар\n• Басым қолдау</string>
+    <string name="paywall_buy_button">Премиум сатып алу - 1090₸</string>
+    <string name="paywall_restore_button">Сатып алуларды қалпына келтіру</string>
+
+    <!-- Хабарламалар -->
+    <string name="paywall_purchase_unavailable">Сатып алу қолжетімсіз</string>
     <string name="paywall_restore_requested">Қалпына келтіру сұранысы жіберілді</string>
-    <string name="paywall_thanks">Сатып алу белсендірілді. Рахмет!</string>
+    <string name="paywall_purchase_activated">Премиум нұсқасы белсендірілді!</string>
 
-    <!-- Толық нұсқаның артықшылықтары -->
-    <string name="paywall_feature_all_games">✅ Барлық ойындар мен жаттығулар</string>
-    <string name="paywall_feature_no_ads">✅ Жарнамасыз</string>
-    <string name="paywall_feature_unlimited">✅ Шектеусіз қол жеткізу</string>
-    <string name="paywall_feature_updates">✅ Болашақ жаңартулар</string>
-
-    <!-- Қате хабарлары -->
-    <string name="paywall_error_purchase">Сатып алу кезінде қате</string>
-    <string name="paywall_error_network">Интернет байланысын тексеріңіз</string>
-    <string name="paywall_error_cancelled">Сатып алу тоқтатылды</string>
+    <!-- Шолу үшін жасырын кіру -->
+    <string name="paywall_review_dialog_title">Шолу үшін кіру</string>
+    <string name="paywall_review_dialog_hint">Кодты енгізіңіз</string>
+    <string name="paywall_review_unlock">Ашу</string>
+    <string name="paywall_review_cancel">Болдырмау</string>
+    <string name="paywall_review_access_granted">Шолу үшін қол жеткізу берілді</string>
+    <string name="paywall_review_invalid_code">Қате код</string>
 </resources>
 

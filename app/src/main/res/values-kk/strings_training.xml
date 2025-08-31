@@ -24,11 +24,9 @@
     <string name="training_audio_matching_title">Аудио сәйкестендіру</string>
     <string name="training_audio_matching_description">Тыңдап, сандарды табамыз</string>
 
-    <!-- Жаттығулар: Өсу ретімен -->
+    <!-- Жаттығулар: Өсу ретімен тізбек -->
     <string name="training_ascending_sequence_title">Өсу ретімен</string>
-    <string name="training_ascending_sequence_description">Сандарды ретімен орналастырамыз</string>
-
-    <!-- Жаттығулар: Кему ретімен -->
+    <string name="training_ascending_sequence_description">Сандарды ретімен орналастыру</string>
     <string name="training_descending_sequence_title">Кему ретімен</string>
     <string name="training_descending_sequence_description">Сандарды кері ретпен орналастырамыз</string>
 

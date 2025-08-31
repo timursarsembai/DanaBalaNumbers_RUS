@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Purchase screen -->
-    <string name="paywall_title">Full Version</string>
-    <string name="paywall_description">Unlock all games and exercises. One-time purchase, no subscription.</string>
-    <string name="paywall_buy">Buy Full Version</string>
-    <string name="paywall_restore">Restore Purchases</string>
-    <string name="paywall_unavailable">Purchase currently unavailable. Please try later.</string>
+    <!-- Premium purchase screen -->
+    <string name="paywall_title">Premium Version</string>
+    <string name="paywall_description">Unlock all app features and get access to advanced training exercises!</string>
+    <string name="paywall_features">• Ad-free experience\n• All exercises unlocked\n• Detailed progress statistics\n• Additional games\n• Priority support</string>
+    <string name="paywall_buy_button">Buy Premium - $2.99</string>
+    <string name="paywall_restore_button">Restore Purchases</string>
+
+    <!-- Messages -->
+    <string name="paywall_purchase_unavailable">Purchase unavailable</string>
     <string name="paywall_restore_requested">Restore request sent</string>
-    <string name="paywall_thanks">Purchase activated. Thank you!</string>
+    <string name="paywall_purchase_activated">Premium version activated!</string>
 
-    <!-- Full version benefits -->
-    <string name="paywall_feature_all_games">✅ All games and trainings</string>
-    <string name="paywall_feature_no_ads">✅ No ads</string>
-    <string name="paywall_feature_unlimited">✅ Unlimited access</string>
-    <string name="paywall_feature_updates">✅ Future updates</string>
-
-    <!-- Error messages -->
-    <string name="paywall_error_purchase">Purchase error</string>
-    <string name="paywall_error_network">Check internet connection</string>
-    <string name="paywall_error_cancelled">Purchase cancelled</string>
+    <!-- Hidden review access -->
+    <string name="paywall_review_dialog_title">Review Access</string>
+    <string name="paywall_review_dialog_hint">Enter code</string>
+    <string name="paywall_review_unlock">Unlock</string>
+    <string name="paywall_review_cancel">Cancel</string>
+    <string name="paywall_review_access_granted">Review access granted</string>
+    <string name="paywall_review_invalid_code">Invalid code</string>
 </resources>
 

@@ -37,5 +37,8 @@
     <string name="ascending_results_message_good">Хорошая работа! Продолжай тренироваться!</string>
     <string name="ascending_results_message_ok">Неплохой результат! Попробуй еще раз!</string>
     <string name="ascending_results_message_try">Не расстраивайся! Попробуй еще раз, и у тебя обязательно получится!</string>
-</resources>
 
+    <!-- Buttons -->
+    <string name="ascending_restart">🔄 Играть снова</string>
+    <string name="ascending_back_to_menu">🏠 В главное меню</string>
+</resources>

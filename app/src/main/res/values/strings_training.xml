@@ -27,8 +27,6 @@
     <!-- Тренировки: Возрастающая последовательность -->
     <string name="training_ascending_sequence_title">По возрастанию</string>
     <string name="training_ascending_sequence_description">Расставляем числа по порядку</string>
-
-    <!-- Тренировки: Убывающая последовательность -->
     <string name="training_descending_sequence_title">По убыванию</string>
     <string name="training_descending_sequence_description">Расставляем числа в обратном порядке</string>
 

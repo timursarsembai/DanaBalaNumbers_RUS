@@ -11,6 +11,7 @@
 
     <!-- Цвета для игры рисования цифр -->
     <color name="primaryColor">#2196F3</color>
+    <color name="primary_color">#2196F3</color>
     <color name="successColor">#4CAF50</color>
     <color name="textColor">#333333</color>
 

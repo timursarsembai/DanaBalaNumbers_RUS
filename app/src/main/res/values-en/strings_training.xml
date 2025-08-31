@@ -27,8 +27,6 @@
     <!-- Training: Ascending Sequence -->
     <string name="training_ascending_sequence_title">Ascending Order</string>
     <string name="training_ascending_sequence_description">Arrange numbers in order</string>
-
-    <!-- Training: Descending Sequence -->
     <string name="training_descending_sequence_title">Descending Order</string>
     <string name="training_descending_sequence_description">Arrange numbers in reverse order</string>
 

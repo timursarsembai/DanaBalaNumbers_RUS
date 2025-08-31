@@ -37,5 +37,8 @@
     <string name="ascending_results_message_good">Good job! Keep practicing!</string>
     <string name="ascending_results_message_ok">Not bad! Try once more!</string>
     <string name="ascending_results_message_try">Don\'t worry! Try again, you will definitely succeed!</string>
-</resources>
 
+    <!-- Buttons -->
+    <string name="ascending_restart">🔄 Play Again</string>
+    <string name="ascending_back_to_menu">🏠 Back to Menu</string>
+</resources>
