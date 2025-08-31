@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -37,9 +38,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Простой судоку"
+                android:text="@string/main_game_sudoku_title"
                 android:textStyle="bold"
-                android:textColor="#1565C0"
                 android:textSize="20sp"
                 android:gravity="center" />
 
@@ -74,13 +74,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Размер"
+                    android:text="@string/sudoku_kids_size_label"
                     android:textColor="#666"/>
                 <TextView
                     android:id="@+id/textSize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3×3"
+                    tools:text="3×3"
                     android:textStyle="bold"
                     android:textColor="#2E7D32"
                     android:textSize="18sp"/>
@@ -92,7 +92,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="00:00.00"
+                tools:text="00:00.00"
                 android:textStyle="bold"
                 android:textColor="#1565C0"
                 android:textSize="20sp"
@@ -109,13 +109,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Уровень"
+                    android:text="@string/sudoku_kids_level_label"
                     android:textColor="#666"/>
                 <TextView
                     android:id="@+id/textLevel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1"
+                    tools:text="1"
                     android:textStyle="bold"
                     android:textColor="#00838F"
                     android:textSize="18sp"/>
@@ -136,11 +136,10 @@
         android:id="@+id/buttonNextLevel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Следующий уровень"
+        android:text="@string/sudoku_kids_next_level"
         android:visibility="gone"
         android:layout_marginTop="12dp"
         app:cornerRadius="16dp"
-        style="@style/Widget.MaterialComponents.Button"
-        />
+        style="@style/Widget.MaterialComponents.Button"/>
 
 </LinearLayout>

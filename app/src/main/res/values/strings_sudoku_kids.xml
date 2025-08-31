@@ -1,0 +1,12 @@
+<resources>
+    <!-- Sudoku (kids) -->
+    <string name="sudoku_kids_size_label">Размер</string>
+    <string name="sudoku_kids_level_label">Уровень</string>
+    <string name="sudoku_kids_next_level">Следующий уровень</string>
+    <string name="sudoku_kids_size_value_format">%1$d×%2$d</string>
+
+    <!-- TTS -->
+    <string name="sudoku_kids_tts_instruction">Заполните сетку так, чтобы цифры не повторялись в каждой строке и столбце.</string>
+    <string name="sudoku_kids_tts_grid_size_format">Размер сетки %1$d by %2$d.</string>
+    <string name="sudoku_kids_tts_solved">Отлично! Уровень пройден.</string>
+</resources>

@@ -1,0 +1,12 @@
+<resources>
+    <!-- Sudoku (kids) -->
+    <string name="sudoku_kids_size_label">Size</string>
+    <string name="sudoku_kids_level_label">Level</string>
+    <string name="sudoku_kids_next_level">Next level</string>
+    <string name="sudoku_kids_size_value_format">%1$d×%2$d</string>
+
+    <!-- TTS -->
+    <string name="sudoku_kids_tts_instruction">Fill the grid so that digits do not repeat in each row and column.</string>
+    <string name="sudoku_kids_tts_grid_size_format">Grid size %1$d by %2$d.</string>
+    <string name="sudoku_kids_tts_solved">Great! Level completed.</string>
+</resources>

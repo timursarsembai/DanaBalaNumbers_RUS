@@ -1,0 +1,12 @@
+<resources>
+    <!-- Судоку (балалар) -->
+    <string name="sudoku_kids_size_label">Өлшемі</string>
+    <string name="sudoku_kids_level_label">Деңгей</string>
+    <string name="sudoku_kids_next_level">Келесі деңгей</string>
+    <string name="sudoku_kids_size_value_format">%1$d×%2$d</string>
+
+    <!-- TTS (өшірулі, бірақ толықтық үшін аударма қалды) -->
+    <string name="sudoku_kids_tts_instruction">Әр жол мен бағанда цифрлар қайталанбайтындай етіп торды толтырыңыз.</string>
+    <string name="sudoku_kids_tts_grid_size_format">Тор өлшемі %1$d × %2$d.</string>
+    <string name="sudoku_kids_tts_solved">Тамаша! Деңгей аяқталды.</string>
+</resources>
