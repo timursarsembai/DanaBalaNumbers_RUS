@@ -16,3 +16,4 @@
     <string name="snake_math_results_speak_win_template">Congratulations! Victory! You reached level %1$d. Well done!</string>
     <string name="snake_math_results_speak_lose_template">Good game! You reached level %1$d. Keep it up!</string>
 </resources>
+

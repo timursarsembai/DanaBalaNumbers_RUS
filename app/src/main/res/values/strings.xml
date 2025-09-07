@@ -7,6 +7,17 @@
     <string name="error_occurred">Произошла ошибка</string>
     <string name="loading">Загрузка...</string>
 
+    <!-- Родительский контроль для семейных приложений -->
+    <string name="parental_control_title">Родительское согласие</string>
+    <string name="parental_control_message">Для совершения покупки требуется участие взрослого. Данное приложение предназначено для детей, и все покупки должны осуществляться под контролем родителей.</string>
+    <string name="parental_access">Родительский доступ</string>
+    <string name="parental_verification_title">Подтверждение взрослого</string>
+    <string name="parental_verification_message">Пожалуйста, решите пример:\n\n%1$d + %2$d = ?</string>
+    <string name="enter_answer">Введите ответ</string>
+    <string name="check_answer">Проверить</string>
+    <string name="incorrect_answer">Неверный ответ. Попробуйте еще раз.</string>
+    <string name="purchase_cancelled">Покупка отменена</string>
+
     <!-- Остальные строки перенесены в модульные файлы:
          - strings_ui.xml - общие элементы интерфейса
          - strings_training.xml - тренировки
@@ -14,4 +25,3 @@
          - strings_results.xml - результаты
          - strings_paywall.xml - покупки -->
 </resources>
-

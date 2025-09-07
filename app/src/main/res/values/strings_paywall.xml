@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Экран покупки премиум версии -->
-    <string name="paywall_title">Премиум версия</string>
+    <string name="paywall_title">Полная версия</string>
     <string name="paywall_description">Разблокируйте все возможности приложения и получите доступ к расширенным тренировкам!</string>
     <string name="paywall_features">• Без рекламы\n• Все упражнения разблокированы\n• Подробная статистика прогресса\n• Дополнительные игры\n• Приоритетная поддержка</string>
-    <string name="paywall_buy_button">Купить премиум - 199₽</string>
+    <string name="paywall_buy_button">Получить полную версию - 199₽</string>
     <string name="paywall_restore_button">Восстановить покупки</string>
 
     <!-- Сообщения -->
     <string name="paywall_purchase_unavailable">Покупка недоступна</string>
     <string name="paywall_restore_requested">Запрос на восстановление отправлен</string>
-    <string name="paywall_purchase_activated">Премиум версия активирована!</string>
+    <string name="paywall_purchase_activated">Полная версия активирована!</string>
 
     <!-- Скрытый доступ для ревью -->
     <string name="paywall_review_dialog_title">Доступ для ревью</string>
@@ -20,6 +20,3 @@
     <string name="paywall_review_access_granted">Доступ для ревью предоставлен</string>
     <string name="paywall_review_invalid_code">Неверный код</string>
 </resources>
-
-
-

@@ -77,14 +77,14 @@
     <string name="main_game_bubble_catch_desc">Весёлая ловля</string>
     <string name="main_game_block_match_title">Цифровой ряд</string>
     <string name="main_game_block_match_desc">Собери 4 одинаковые по горизонтали</string>
-    <string name="main_game_schulte_title">Скорочтение. Шульте</string>
+    <string name="main_game_schulte_title">Скорочтение</string>
     <string name="main_game_schulte_desc">Таблица Шульте для тренировки внимания</string>
     <string name="main_game_snake_math_title">Змейка в математике</string>
     <string name="main_game_snake_math_desc">Собирай цифры 0–9 по порядку</string>
     <string name="main_game_sorter_title">Сортер</string>
     <string name="main_game_sorter_desc">Разложи цифры по колонкам</string>
     <string name="main_game_sudoku_title">Простой судоку</string>
-    <string name="main_game_sudoku_desc">Цифры без повторов в строках и столбцах</string>
+    <string name="main_game_sudoku_desc">Цифры без повторов</string>
 
     <!-- Новые строки -->
     <string name="initial_slide_indicator">1 / 10</string>

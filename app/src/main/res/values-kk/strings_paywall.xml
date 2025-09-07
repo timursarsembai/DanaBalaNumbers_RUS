@@ -4,13 +4,13 @@
     <string name="paywall_title">Премиум нұсқасы</string>
     <string name="paywall_description">Қосымшаның барлық мүмкіндіктерін ашыңыз және кеңейтілген жаттығуларға қол жеткізіңіз!</string>
     <string name="paywall_features">• Жарнамасыз\n• Барлық жаттығулар ашық\n• Толық статистика\n• Қосымша ойындар\n• Басым қолдау</string>
-    <string name="paywall_buy_button">Премиум сатып алу - 1090₸</string>
+    <string name="paywall_buy_button">Толық нұсқасын алу - 1090₸</string>
     <string name="paywall_restore_button">Сатып алуларды қалпына келтіру</string>
 
     <!-- Хабарламалар -->
     <string name="paywall_purchase_unavailable">Сатып алу қолжетімсіз</string>
     <string name="paywall_restore_requested">Қалпына келтіру сұранысы жіберілді</string>
-    <string name="paywall_purchase_activated">Премиум нұсқасы белсендірілді!</string>
+    <string name="paywall_purchase_activated">Толық нұсқасы белсендірілді!</string>
 
     <!-- Шолу үшін жасырын кіру -->
     <string name="paywall_review_dialog_title">Шолу үшін кіру</string>
@@ -20,4 +20,3 @@
     <string name="paywall_review_access_granted">Шолу үшін қол жеткізу берілді</string>
     <string name="paywall_review_invalid_code">Қате код</string>
 </resources>
-

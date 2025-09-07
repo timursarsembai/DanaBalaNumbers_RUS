@@ -47,13 +47,14 @@ class ColorPaletteAdapter(
         }
 
         holder.itemView.setOnClickListener {
-            val oldPosition = selectedPosition
-            selectedPosition = position
-
-            notifyItemChanged(oldPosition)
-            notifyItemChanged(selectedPosition)
-
-            onColorSelected(color)
+            val adapterPos = holder.adapterPosition
+            if (adapterPos != RecyclerView.NO_POSITION) {
+                val oldPosition = selectedPosition
+                selectedPosition = adapterPos
+                notifyItemChanged(oldPosition)
+                notifyItemChanged(selectedPosition)
+                onColorSelected(colors[adapterPos])
+            }
         }
     }
 

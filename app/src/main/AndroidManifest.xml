@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Разрешения для биллинга -->
+    <uses-permission android:name="com.android.vending.BILLING" />
+
     <application
         android:name=".DanaBalApplication"
         android:allowBackup="true"
@@ -13,6 +16,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DanaBala">
 
+        <!-- Метаданные для семейных приложений -->
+        <meta-data
+            android:name="com.google.android.play.billingclient.version"
+            android:value="6.2.1"
+            tools:replace="android:value" />
+
+        <!-- Указываем что приложение семейное -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713" />
+
+        <!-- ГЛАВНАЯ АКТИВНОСТЬ -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -29,13 +44,14 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Экран оплаты (пейволл) -->
+        <!-- Экран оплаты (пейволл) с родительским контролем -->
         <activity
             android:name=".PaywallActivity"
             android:exported="false"
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
 
+        <!-- Базовые активности -->
         <activity
             android:name=".NumberIntroductionActivity"
             android:exported="false"
@@ -72,14 +88,12 @@
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Новая активность для рисования цифр -->
         <activity
             android:name=".NumberDrawingActivity"
             android:exported="false"
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Новые упражнения на последовательности -->
         <activity
             android:name=".AscendingSequenceActivity"
             android:exported="false"
@@ -92,28 +106,25 @@
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Упражнение на сравнение чисел -->
         <activity
             android:name=".NumberComparisonActivity"
             android:exported="false"
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="landscape" />
 
-        <!-- Настройки языка -->
         <activity
             android:name=".LanguageSettingsActivity"
             android:exported="false"
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Новая упрощённая тренировка сравнения (детская) -->
         <activity
             android:name=".KidsComparisonActivity"
             android:exported="false"
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="landscape" />
 
-        <!-- Отдельные страницы результатов для каждого упр��жнения -->
+        <!-- Страницы результатов -->
         <activity
             android:name=".NumberRecognitionResultsActivity"
             android:exported="false"
@@ -144,7 +155,6 @@
             android:parentActivityName=".AudioMatchingActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Страницы результатов для новых упражнений -->
         <activity
             android:name=".AscendingSequenceResultsActivity"
             android:exported="false"
@@ -157,61 +167,55 @@
             android:parentActivityName=".DescendingSequenceActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Страница результатов для упражнения сравнения чисел -->
         <activity
             android:name=".NumberComparisonResultsActivity"
             android:exported="false"
             android:parentActivityName=".NumberComparisonActivity"
             android:screenOrientation="landscape" />
 
-        <!-- Страница результатов для упражнения рисования цифр -->
         <activity
             android:name=".NumberDrawingResultsActivity"
             android:exported="false"
             android:parentActivityName=".NumberDrawingActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Новая игра: Лови цифру (теперь строго портретная ориентация) -->
+        <!-- Игры -->
         <activity
             android:name=".BubbleCatchActivity"
             android:exported="false"
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Результаты игры Лови цифру (портретная) -->
         <activity
             android:name=".BubbleCatchResultsActivity"
             android:exported="false"
             android:parentActivityName=".BubbleCatchActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Новая игра: Цифровой ряд -->
         <activity
             android:name=".BlockMatchActivity"
             android:exported="false"
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Страница результатов для игры Цифровой ряд -->
         <activity
             android:name=".BlockMatchResultsActivity"
             android:exported="false"
             android:parentActivityName=".BlockMatchActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Новая игра: Шульте (ц��фры) -->
         <activity
             android:name=".SchulteNumbersActivity"
             android:exported="false"
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".SchulteNumbersResultsActivity"
             android:exported="false"
             android:parentActivityName=".SchulteNumbersActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Новая тренировка: Ошибка в ряду (только альбомная ориентация) -->
         <activity
             android:name=".RowErrorActivity"
             android:exported="false"
@@ -224,36 +228,36 @@
             android:parentActivityName=".RowErrorActivity"
             android:screenOrientation="landscape" />
 
-        <!-- Новая игра: Змейка в математике -->
         <activity
             android:name=".SnakeMathActivity"
             android:exported="false"
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".SnakeMathResultsActivity"
             android:exported="false"
             android:parentActivityName=".SnakeMathActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Новая игра: Сортер -->
         <activity
             android:name=".SorterActivity"
             android:exported="false"
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".SorterResultsActivity"
             android:exported="false"
             android:parentActivityName=".SorterActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Новая игра: Судоку (детское) -->
         <activity
             android:name=".SudokuKidsActivity"
             android:exported="false"
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

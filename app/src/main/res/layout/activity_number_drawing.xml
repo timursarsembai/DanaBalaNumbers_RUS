@@ -147,7 +147,7 @@
                 android:background="@drawable/eraser_button_bg"
                 android:src="@drawable/ic_eraser"
                 android:scaleType="centerInside"
-                android:tint="@android:color/white"
+                app:tint="@android:color/white"
                 android:contentDescription="@string/eraser" />
 
             <ImageView

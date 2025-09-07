@@ -7,6 +7,17 @@
     <string name="error_occurred">Қате орын алды</string>
     <string name="loading">Жүктелуде...</string>
 
+    <!-- Ата-аналық бақылау отбасылық қосымшалар үшін -->
+    <string name="parental_control_title">Ата-аналық келісім</string>
+    <string name="parental_control_message">Сатып алу үшін ересек адамның қатысуы қажет. Бұл қосымша балаларға арналған және барлық сатып алулар ата-аналық бақылау астында жасалуы тиіс.</string>
+    <string name="parental_access">Ата-аналық қол жеткізу</string>
+    <string name="parental_verification_title">Ересек адамды тексеру</string>
+    <string name="parental_verification_message">Мысалды шешіңіз:\n\n%1$d + %2$d = ?</string>
+    <string name="enter_answer">Жауапты енгізіңіз</string>
+    <string name="check_answer">Тексеру</string>
+    <string name="incorrect_answer">Қате жауап. Қайта көріңіз.</string>
+    <string name="purchase_cancelled">Сатып алу болдырылды</string>
+
     <!-- Остальные строки перенесены в модульные файлы:
          - strings_ui.xml - жалпы интерфейс элементтері
          - strings_training.xml - жаттығулар

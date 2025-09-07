@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Цифрларды сурет салу -->
-    <string name="number_drawing_title">🎨 Цифрларды сурет салу</string>
+    <string name="number_drawing_title">🎨 Сандарды бояу</string>
     <string name="eraser">Өшіргіш</string>
 
     <!-- Нәтижелер экраны -->

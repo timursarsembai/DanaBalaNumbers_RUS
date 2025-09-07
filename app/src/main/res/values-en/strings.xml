@@ -7,6 +7,17 @@
     <string name="error_occurred">An error occurred</string>
     <string name="loading">Loading...</string>
 
+    <!-- Parental Control for Family Apps -->
+    <string name="parental_control_title">Parental Consent</string>
+    <string name="parental_control_message">Adult participation is required to make a purchase. This app is designed for children, and all purchases must be made under parental supervision.</string>
+    <string name="parental_access">Parental Access</string>
+    <string name="parental_verification_title">Adult Verification</string>
+    <string name="parental_verification_message">Please solve the example:\n\n%1$d + %2$d = ?</string>
+    <string name="enter_answer">Enter answer</string>
+    <string name="check_answer">Check</string>
+    <string name="incorrect_answer">Incorrect answer. Please try again.</string>
+    <string name="purchase_cancelled">Purchase cancelled</string>
+
     <!-- Остальные строки перенесены в модульные файлы:
          - strings_ui.xml - общие элементы интерфейса
          - strings_training.xml - тренировки

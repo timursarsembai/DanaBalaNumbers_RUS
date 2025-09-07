@@ -72,19 +72,19 @@
     <string name="main_training_number_comparison_desc">Үлкен немесе кіші</string>
 
     <!-- Басты бет үшін ойын атаулары -->
-    <string name="main_game_number_drawing_title">Цифрларды сурет салу</string>
+    <string name="main_game_number_drawing_title">Сандарды бояу</string>
     <string name="main_game_number_drawing_desc">Шығармашылық ойын</string>
     <string name="main_game_bubble_catch_desc">Көңілді аулау</string>
     <string name="main_game_block_match_title">Сандар қатары</string>
-    <string name="main_game_block_match_desc">4 бірдейді көлденеңінен жинау</string>
-    <string name="main_game_schulte_title">Жылдам оқу. Шульте</string>
-    <string name="main_game_schulte_desc">Назар аударуды жаттықтыруға арналған Шульте кестесі</string>
+    <string name="main_game_block_match_desc">4 сан қатарын көлденеңнен жинау</string>
+    <string name="main_game_schulte_title">Жылдам оқу</string>
+    <string name="main_game_schulte_desc">Шульте кестесі</string>
     <string name="main_game_snake_math_title">Математикалық жылан</string>
     <string name="main_game_snake_math_desc">0–9 цифрларын ретімен жинау</string>
     <string name="main_game_sorter_title">Сұрыптаушы</string>
     <string name="main_game_sorter_desc">Цифрларды бағандар бойынша сұрыптау</string>
     <string name="main_game_sudoku_title">Қарапайым судоку</string>
-    <string name="main_game_sudoku_desc">Жолдар мен бағандарда қайталанбайтын цифрлар</string>
+    <string name="main_game_sudoku_desc">Жолдар мен бағандар</string>
 
     <!-- Қосымша UI жолдары -->
     <string name="initial_slide_indicator">1 / 10</string>

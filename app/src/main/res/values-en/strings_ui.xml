@@ -77,14 +77,14 @@
     <string name="main_game_bubble_catch_desc">Fun catching</string>
     <string name="main_game_block_match_title">Number Row</string>
     <string name="main_game_block_match_desc">Collect 4 same horizontally</string>
-    <string name="main_game_schulte_title">Speed Reading. Schulte</string>
+    <string name="main_game_schulte_title">Speed Reading</string>
     <string name="main_game_schulte_desc">Schulte table for attention training</string>
     <string name="main_game_snake_math_title">Math Snake</string>
     <string name="main_game_snake_math_desc">Collect digits 0–9 in order</string>
     <string name="main_game_sorter_title">Sorter</string>
     <string name="main_game_sorter_desc">Sort digits by columns</string>
     <string name="main_game_sudoku_title">Simple Sudoku</string>
-    <string name="main_game_sudoku_desc">Digits without repeats in rows and columns</string>
+    <string name="main_game_sudoku_desc">Digits without repeats</string>
     <string name="initial_slide_indicator">1 / 10</string>
     <string name="empty_set_symbol">∅</string>
     <string name="speak_lesson">Speak lesson</string>
