@@ -12,6 +12,7 @@ class BillingManager(private val app: Application) : PurchasesUpdatedListener {
         const val PRODUCT_ID_FULL = "full_version"
         private const val PREFS = "billing_prefs"
         private const val KEY_PREMIUM = "is_premium"
+        private const val KEY_PENDING = "is_pending"
         private const val TAG = "BillingManager"
     }
 
@@ -47,6 +48,7 @@ class BillingManager(private val app: Application) : PurchasesUpdatedListener {
     }
 
     fun isPremium(): Boolean = prefs.getBoolean(KEY_PREMIUM, false)
+    fun isPending(): Boolean = prefs.getBoolean(KEY_PENDING, false)
 
     fun restorePurchases() {
         // Явный запрос существующих покупок
@@ -55,11 +57,16 @@ class BillingManager(private val app: Application) : PurchasesUpdatedListener {
 
     // Разблокировка для ревью без оплаты
     fun grantPremiumForReview() {
+        setPending(false)
         setPremium(true)
     }
 
     private fun setPremium(value: Boolean) {
         prefs.edit().putBoolean(KEY_PREMIUM, value).apply()
+    }
+
+    private fun setPending(value: Boolean) {
+        prefs.edit().putBoolean(KEY_PENDING, value).apply()
     }
 
     private fun queryProductDetails() {
@@ -90,12 +97,18 @@ class BillingManager(private val app: Application) : PurchasesUpdatedListener {
             .build()
         billingClient.queryPurchasesAsync(params) { billingResult, purchases ->
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                val has = purchases.any { it.products.contains(PRODUCT_ID_FULL) && it.purchaseState == Purchase.PurchaseState.PURCHASED }
-                if (has) {
+                val hasPurchased = purchases.any { it.products.contains(PRODUCT_ID_FULL) && it.purchaseState == Purchase.PurchaseState.PURCHASED }
+                val hasPending = purchases.any { it.products.contains(PRODUCT_ID_FULL) && it.purchaseState == Purchase.PurchaseState.PENDING }
+                if (hasPurchased) {
                     purchases.forEach { acknowledgeIfNeeded(it) }
+                    setPending(false)
                     setPremium(true)
+                } else if (hasPending) {
+                    setPremium(false)
+                    setPending(true)
                 } else {
                     setPremium(false)
+                    setPending(false)
                 }
             } else {
                 Log.w(TAG, "queryPurchases failed: ${billingResult.debugMessage}")
@@ -121,20 +134,32 @@ class BillingManager(private val app: Application) : PurchasesUpdatedListener {
     override fun onPurchasesUpdated(billingResult: BillingResult, purchases: MutableList<Purchase>?) {
         if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
             purchases.forEach { purchase ->
-                if (purchase.products.contains(PRODUCT_ID_FULL) && purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
-                    acknowledgeIfNeeded(purchase)
-                    setPremium(true)
+                if (purchase.products.contains(PRODUCT_ID_FULL)) {
+                    when (purchase.purchaseState) {
+                        Purchase.PurchaseState.PURCHASED -> {
+                            acknowledgeIfNeeded(purchase)
+                            setPending(false)
+                            setPremium(true)
+                        }
+                        Purchase.PurchaseState.PENDING -> {
+                            // Отложенная покупка: ждем одобрение родителя
+                            setPremium(false)
+                            setPending(true)
+                        }
+                        else -> { /* UNSPECIFIED_STATE */ }
+                    }
                 }
             }
         } else if (billingResult.responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
-            // Пользователь отменил
+            // Пользователь отменил: очищаем флаг ожидания
+            setPending(false)
         } else {
             Log.w(TAG, "Purchase failed: ${billingResult.debugMessage}")
         }
     }
 
     private fun acknowledgeIfNeeded(purchase: Purchase) {
-        if (!purchase.isAcknowledged) {
+        if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED && !purchase.isAcknowledged) {
             val params = AcknowledgePurchaseParams.newBuilder()
                 .setPurchaseToken(purchase.purchaseToken)
                 .build()

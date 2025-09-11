@@ -11,6 +11,7 @@
     <string name="paywall_purchase_unavailable">Покупка недоступна</string>
     <string name="paywall_restore_requested">Запрос на восстановление отправлен</string>
     <string name="paywall_purchase_activated">Полная версия активирована!</string>
+    <string name="paywall_purchase_pending">Ожидаем одобрения родителя…</string>
 
     <!-- Скрытый доступ для ревью -->
     <string name="paywall_review_dialog_title">Доступ для ревью</string>

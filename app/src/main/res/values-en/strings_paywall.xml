@@ -11,6 +11,7 @@
     <string name="paywall_purchase_unavailable">Purchase unavailable</string>
     <string name="paywall_restore_requested">Restore request sent</string>
     <string name="paywall_purchase_activated">Full version activated!</string>
+    <string name="paywall_purchase_pending">Awaiting parent approval…</string>
 
     <!-- Hidden review access -->
     <string name="paywall_review_dialog_title">Review Access</string>

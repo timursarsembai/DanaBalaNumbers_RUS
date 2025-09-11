@@ -11,6 +11,7 @@
     <string name="paywall_purchase_unavailable">Сатып алу қолжетімсіз</string>
     <string name="paywall_restore_requested">Қалпына келтіру сұранысы жіберілді</string>
     <string name="paywall_purchase_activated">Толық нұсқасы белсендірілді!</string>
+    <string name="paywall_purchase_pending">Ата-ананың растауын күту…</string>
 
     <!-- Шолу үшін жасырын кіру -->
     <string name="paywall_review_dialog_title">Шолу үшін кіру</string>

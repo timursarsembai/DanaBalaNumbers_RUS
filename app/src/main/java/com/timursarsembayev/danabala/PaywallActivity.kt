@@ -40,7 +40,7 @@ class PaywallActivity : AppCompatActivity() {
 
         btnRestore.setOnClickListener {
             billing.restorePurchases()
-            Toast.makeText(this, "Запрос на восстановление отправлен", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.paywall_restore_requested), Toast.LENGTH_SHORT).show()
         }
 
         btnClose.setOnClickListener { finish() }
@@ -118,9 +118,14 @@ class PaywallActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (billing.isPremium()) {
-            Toast.makeText(this, getString(R.string.paywall_purchase_activated), Toast.LENGTH_SHORT).show()
-            finish()
+        when {
+            billing.isPremium() -> {
+                Toast.makeText(this, getString(R.string.paywall_purchase_activated), Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            billing.isPending() -> {
+                Toast.makeText(this, getString(R.string.paywall_purchase_pending), Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
