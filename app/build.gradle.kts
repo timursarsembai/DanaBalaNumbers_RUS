@@ -27,11 +27,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        // Updated to Java 17 for Kotlin 2.1.x & modern AGP requirements
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 
     buildFeatures {
@@ -63,14 +64,14 @@ dependencies {
     // Fragment
     implementation("androidx.fragment:fragment-ktx:1.6.2")
 
-    // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    // Coroutines (updated for Kotlin 2.1.x compatibility)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
 
     // UI Components
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
-    // Google Play Billing (обновлено до 8.0.0 — дальнейшая адаптация к API будет выполнена на следующих шагах)
+    // Google Play Billing (обновлено до 8.0.0 — дальнейшая адаптация к API выполнена)
     implementation("com.android.billingclient:billing-ktx:8.0.0")
 
     // Testing
