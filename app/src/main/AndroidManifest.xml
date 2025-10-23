@@ -16,12 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DanaBala">
 
-        <!-- Метаданные для семейных приложений -->
-        <meta-data
-            android:name="com.google.android.play.billingclient.version"
-            android:value="6.2.1"
-            tools:replace="android:value" />
-
         <!-- Указываем что приложение семейное -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
