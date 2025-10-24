@@ -20,7 +20,12 @@ class BillingManager(private val app: Application) : PurchasesUpdatedListener {
 
     private var billingClient: BillingClient = BillingClient.newBuilder(app)
         .setListener(this)
-        .enablePendingPurchases()
+        // Updated for Play Billing Library 8: explicit PendingPurchasesParams enabling one-time products
+        .enablePendingPurchases(
+            PendingPurchasesParams.newBuilder()
+                .enableOneTimeProducts()
+                .build()
+        )
         .build()
 
     @Volatile
@@ -79,7 +84,8 @@ class BillingManager(private val app: Application) : PurchasesUpdatedListener {
         val params = QueryProductDetailsParams.newBuilder()
             .setProductList(products)
             .build()
-        billingClient.queryProductDetailsAsync(params) { billingResult, detailsList ->
+        billingClient.queryProductDetailsAsync(params) { billingResult, queryProductDetailsResult ->
+            val detailsList = queryProductDetailsResult.productDetailsList ?: emptyList()
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                 productDetails = detailsList.firstOrNull()
                 if (productDetails == null) {
