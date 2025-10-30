@@ -11,8 +11,8 @@ android {
         applicationId = "com.timursarsembayev.danabalanumbers"
         minSdk = 24
         targetSdk = 36
-        versionCode = 3
-        versionName = "1.1.0"
+        versionCode = 5
+        versionName = "1.5.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

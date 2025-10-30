@@ -98,7 +98,8 @@ class MathExercisesActivity : AppCompatActivity() {
     }
 
     private fun openOrPaywall(clazz: Class<*>) {
-        val intent = if (billing.isPremium()) Intent(this, clazz) else Intent(this, PaywallActivity::class.java)
+        // Разблокировано: всегда открываем целевую активити, без перехода на Paywall
+        val intent = Intent(this, clazz)
         startActivity(intent)
     }
 
@@ -122,7 +123,7 @@ class MathExercisesActivity : AppCompatActivity() {
             startActivity(Intent(this, ObjectCountingActivity::class.java))
         }
 
-        // Остальные тренировки — только в полной версии
+        // Остальные тренировки — теперь тоже доступны бесплатно
         findViewById<CardView>(R.id.cardMatching).setOnClickListener {
             openOrPaywall(MatchingActivity::class.java)
         }
@@ -142,15 +143,13 @@ class MathExercisesActivity : AppCompatActivity() {
             openOrPaywall(NumberComparisonActivity::class.java)
         }
 
-        // Игры: бесплатно первые 2 (Рисование цифр, Шарики с цифрами)
+        // Игры: теперь все доступны бесплатно
         findViewById<CardView>(R.id.cardNumberDrawing).setOnClickListener {
             startActivity(Intent(this, NumberDrawingActivity::class.java))
         }
         findViewById<CardView>(R.id.cardBubbleCatch)?.setOnClickListener {
             startActivity(Intent(this, BubbleCatchActivity::class.java))
         }
-
-        // Остальные игры — только в полной версии
         findViewById<CardView>(R.id.cardBlockMatch)?.setOnClickListener {
             openOrPaywall(BlockMatchActivity::class.java)
         }

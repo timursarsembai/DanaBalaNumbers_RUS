@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Premium purchase screen -->
-    <string name="paywall_title">Premium Version</string>
-    <string name="paywall_description">Unlock all app features and get access to advanced training exercises!</string>
-    <string name="paywall_features">• Ad-free experience\n• All exercises unlocked\n• Detailed progress statistics\n• Additional games\n• Priority support</string>
-    <string name="paywall_buy_button">Get Full Version - $2.99</string>
-    <string name="paywall_restore_button">Restore Purchases</string>
+    <!-- Info screen instead of purchase -->
+    <string name="paywall_title">All features available</string>
+    <string name="paywall_description">The app is currently completely free. Later, there may be a one-time purchase to remove ads.</string>
+    <string name="paywall_features">• All exercises are open\n• Additional games available\n• No content restrictions\n• User support</string>
+    <string name="paywall_buy_button">Purchases temporarily disabled</string>
+    <string name="paywall_restore_button">Restore purchases</string>
 
     <!-- Messages -->
     <string name="paywall_purchase_unavailable">Purchase unavailable</string>

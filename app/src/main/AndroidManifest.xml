@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -38,10 +37,11 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
 
-        <!-- Экран оплаты (пейволл) с родительским контролем -->
+        <!-- Экран оплаты (пейволл) отключен -->
         <activity
             android:name=".PaywallActivity"
             android:exported="false"
+            android:enabled="false"
             android:parentActivityName=".MathExercisesActivity"
             android:screenOrientation="portrait" />
 
