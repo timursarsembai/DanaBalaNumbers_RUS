@@ -1,7 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Разрешения для биллинга -->
+    <!-- Разрешения для сети (AdMob) и биллинга -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
@@ -15,15 +17,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DanaBala">
 
-        <!-- Указываем что приложение семейное -->
+        <!-- AdMob App ID. Для debug используем тестовый, для release — реальный (см. manifestPlaceholders) -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
+            android:value="${ADMOB_APP_ID}" />
 
-        <!-- ГЛАВНАЯ АКТИВНОСТЬ -->
+        <!-- Главная активность теперь MathExercisesActivity -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".MathExercisesActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,13 +39,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".MathExercisesActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" />
-
-        <!-- Экран оплаты (пейволл) отключен -->
         <activity
             android:name=".PaywallActivity"
             android:exported="false"

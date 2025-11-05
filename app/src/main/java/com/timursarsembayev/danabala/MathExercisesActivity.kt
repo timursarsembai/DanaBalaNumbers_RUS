@@ -1,21 +1,47 @@
 package com.timursarsembayev.danabalanumbers
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageButton
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.tabs.TabLayout
 
-class MathExercisesActivity : AppCompatActivity() {
+class MathExercisesActivity : BaseActivity() {
     private val billing by lazy { (application as DanaBalApplication).billing }
+    override val adUnitId: String? get() = getString(R.string.admob_banner_id)
 
+    @SuppressLint("UnknownIdInLayout", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_math_exercises)
+
+        // Пытаемся найти контейнер по имени, чтобы не зависеть от наличия константы R.id.ad_container
+        val containerId = resources.getIdentifier("ad_container", "id", packageName)
+        var container: ViewGroup? = if (containerId != 0) findViewById(containerId) else null
+        if (container == null) {
+            // Фолбэк: создаём контейнер программно и добавляем в конец корневого LinearLayout
+            val root = findViewById<LinearLayout>(R.id.main)
+            val newContainer = FrameLayout(this).apply {
+                id = View.generateViewId()
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    topMargin = (4 * resources.displayMetrics.density).toInt()
+                    bottomMargin = (4 * resources.displayMetrics.density).toInt()
+                }
+            }
+            root.addView(newContainer)
+            container = newContainer
+        }
+        attachBannerIfPossible(container)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

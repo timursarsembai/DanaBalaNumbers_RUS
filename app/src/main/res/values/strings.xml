@@ -18,6 +18,9 @@
     <string name="incorrect_answer">Неверный ответ. Попробуйте еще раз.</string>
     <string name="purchase_cancelled">Покупка отменена</string>
 
+    <!-- AdMob banner ad unit id: debug можно переопределить через разные values, по умолчанию тестовый -->
+    <string name="admob_banner_id" translatable="false">ca-app-pub-3940256099942544/9214589741</string>
+
     <!-- Остальные строки перенесены в модульные файлы:
          - strings_ui.xml - общие элементы интерфейса
          - strings_training.xml - тренировки

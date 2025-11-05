@@ -32,38 +32,21 @@ class BillingManager(private val app: Application) : PurchasesUpdatedListener {
     private var productDetails: ProductDetails? = null
 
     fun start() {
-        if (billingClient.isReady) {
-            queryExistingPurchases()
-            queryProductDetails()
-            return
-        }
-        billingClient.startConnection(object : BillingClientStateListener {
-            override fun onBillingSetupFinished(billingResult: BillingResult) {
-                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                    queryExistingPurchases()
-                    queryProductDetails()
-                } else {
-                    Log.w(TAG, "Billing setup failed: ${billingResult.debugMessage}")
-                }
-            }
-            override fun onBillingServiceDisconnected() {
-                // Попробуем переподключиться позже
-            }
-        })
+        // Премиум временно отключён — не подключаемся к биллингу
+        // Оставляем no-op, чтобы не влиять на остальной код
     }
 
-    fun isPremium(): Boolean = prefs.getBoolean(KEY_PREMIUM, false)
-    fun isPending(): Boolean = prefs.getBoolean(KEY_PENDING, false)
+    // Премиум полностью выключен
+    fun isPremium(): Boolean = false
+    fun isPending(): Boolean = false
 
     fun restorePurchases() {
-        // Явный запрос существующих покупок
-        queryExistingPurchases()
+        // no-op в режиме отключённого премиума
     }
 
-    // Разблокировка для ревью без оплаты
+    // Разблокировка для ревью — тоже no-op, премиум выключен
     fun grantPremiumForReview() {
-        setPending(false)
-        setPremium(true)
+        // no-op
     }
 
     private fun setPremium(value: Boolean) {
@@ -75,107 +58,23 @@ class BillingManager(private val app: Application) : PurchasesUpdatedListener {
     }
 
     private fun queryProductDetails() {
-        val products = listOf(
-            QueryProductDetailsParams.Product.newBuilder()
-                .setProductId(PRODUCT_ID_FULL)
-                .setProductType(BillingClient.ProductType.INAPP)
-                .build()
-        )
-        val params = QueryProductDetailsParams.newBuilder()
-            .setProductList(products)
-            .build()
-        billingClient.queryProductDetailsAsync(params) { billingResult, queryProductDetailsResult ->
-            val detailsList = queryProductDetailsResult.productDetailsList ?: emptyList()
-            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                productDetails = detailsList.firstOrNull()
-                if (productDetails == null) {
-                    Log.w(TAG, "ProductDetails not found for $PRODUCT_ID_FULL")
-                }
-            } else {
-                Log.w(TAG, "queryProductDetails failed: ${billingResult.debugMessage}")
-            }
-        }
+        // no-op в режиме отключённого премиума
     }
 
     private fun queryExistingPurchases() {
-        val params = QueryPurchasesParams.newBuilder()
-            .setProductType(BillingClient.ProductType.INAPP)
-            .build()
-        billingClient.queryPurchasesAsync(params) { billingResult, purchases ->
-            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                val hasPurchased = purchases.any { it.products.contains(PRODUCT_ID_FULL) && it.purchaseState == Purchase.PurchaseState.PURCHASED }
-                val hasPending = purchases.any { it.products.contains(PRODUCT_ID_FULL) && it.purchaseState == Purchase.PurchaseState.PENDING }
-                if (hasPurchased) {
-                    purchases.forEach { acknowledgeIfNeeded(it) }
-                    setPending(false)
-                    setPremium(true)
-                } else if (hasPending) {
-                    setPremium(false)
-                    setPending(true)
-                } else {
-                    setPremium(false)
-                    setPending(false)
-                }
-            } else {
-                Log.w(TAG, "queryPurchases failed: ${billingResult.debugMessage}")
-            }
-        }
+        // no-op в режиме отключённого премиума
     }
 
     fun launchPurchase(activity: Activity): Boolean {
-        val details = productDetails ?: run {
-            queryProductDetails()
-            return false
-        }
-        val productDetailsParams = BillingFlowParams.ProductDetailsParams.newBuilder()
-            .setProductDetails(details)
-            .build()
-        val params = BillingFlowParams.newBuilder()
-            .setProductDetailsParamsList(listOf(productDetailsParams))
-            .build()
-        val result = billingClient.launchBillingFlow(activity, params)
-        return result.responseCode == BillingClient.BillingResponseCode.OK
+        // Покупки отключены — всегда возвращаем false
+        return false
     }
 
     override fun onPurchasesUpdated(billingResult: BillingResult, purchases: MutableList<Purchase>?) {
-        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
-            purchases.forEach { purchase ->
-                if (purchase.products.contains(PRODUCT_ID_FULL)) {
-                    when (purchase.purchaseState) {
-                        Purchase.PurchaseState.PURCHASED -> {
-                            acknowledgeIfNeeded(purchase)
-                            setPending(false)
-                            setPremium(true)
-                        }
-                        Purchase.PurchaseState.PENDING -> {
-                            // Отложенная покупка: ждем одобрение родителя
-                            setPremium(false)
-                            setPending(true)
-                        }
-                        else -> { /* UNSPECIFIED_STATE */ }
-                    }
-                }
-            }
-        } else if (billingResult.responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
-            // Пользователь отменил: очищаем флаг ожидания
-            setPending(false)
-        } else {
-            Log.w(TAG, "Purchase failed: ${billingResult.debugMessage}")
-        }
+        // no-op в режиме отключённого премиума
     }
 
     private fun acknowledgeIfNeeded(purchase: Purchase) {
-        if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED && !purchase.isAcknowledged) {
-            val params = AcknowledgePurchaseParams.newBuilder()
-                .setPurchaseToken(purchase.purchaseToken)
-                .build()
-            billingClient.acknowledgePurchase(params) { result ->
-                if (result.responseCode == BillingClient.BillingResponseCode.OK) {
-                    setPremium(true)
-                } else {
-                    Log.w(TAG, "Acknowledge failed: ${result.debugMessage}")
-                }
-            }
-        }
+        // no-op в режиме отключённого премиума
     }
 }

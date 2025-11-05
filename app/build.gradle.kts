@@ -15,15 +15,24 @@ android {
         versionName = "1.5.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Используем реальный App ID для всех сборок
+        manifestPlaceholders["ADMOB_APP_ID"] = "ca-app-pub-8956179513137325~7603355552"
     }
 
     buildTypes {
+        debug {
+            // Реальный App ID также в debug
+            manifestPlaceholders["ADMOB_APP_ID"] = "ca-app-pub-8956179513137325~7603355552"
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            // Реальный App ID для релиза
+            manifestPlaceholders["ADMOB_APP_ID"] = "ca-app-pub-8956179513137325~7603355552"
         }
     }
     compileOptions {
@@ -73,6 +82,10 @@ dependencies {
 
     // Google Play Billing (обновлено до 8.0.0 — дальнейшая адаптация к API выполнена)
     implementation("com.android.billingclient:billing-ktx:8.0.0")
+
+    // Google Mobile Ads SDK (AdMob)
+    // Используем стабильную версию 23.6.0 для совместимости
+    implementation("com.google.android.gms:play-services-ads:23.6.0")
 
     // Testing
     testImplementation(libs.junit)
