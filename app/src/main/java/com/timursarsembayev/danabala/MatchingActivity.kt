@@ -8,17 +8,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.Locale
 import kotlin.random.Random
 
-class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+class MatchingActivity : BaseActivity(), TextToSpeech.OnInitListener {
+
+    override val adUnitId: String? get() = getString(R.string.admob_banner_id)
 
     private lateinit var numbersRecyclerView: RecyclerView
     private lateinit var objectsRecyclerView: RecyclerView
@@ -56,6 +58,10 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_matching)
+
+        // Подключение баннера
+        val bannerContainer = findViewById<ViewGroup?>(R.id.ad_container)
+        attachBannerIfPossible(bannerContainer)
 
         // Определяем текущий язык и отключаем TTS для казахского
         val currentLang = LocaleManager.getCurrentLanguage(this).lowercase(Locale.ROOT)
@@ -262,109 +268,83 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             objectsAdapter.removeItem(objectItem)
 
             completedMatches++
+            totalScore += 10
 
-            // Проверяем завершение уровня
-            if (completedMatches >= 5) {
-                onLevelCompleted()
+            if (completedMatches >= currentLevelData!!.pairs.size) {
+                // Переходим на следующий уровень или завершаем тренировку
+                currentLevel++
+                if (currentLevel > totalLevels) {
+                    openResults()
+                } else {
+                    loadLevel(currentLevel)
+                }
             }
-        }
 
-        clearSelections()
+            // Сбрасываем выборы после совпадения
+            clearSelections()
+        }
     }
 
     private fun onIncorrectMatch() {
         incorrectActions++
+        // Проигрываем отрицательную анимацию и/или подсказки при желании
+        animateShake(selectedNumberView)
+        animateShake(selectedObjectView)
 
-        // Озвучиваем подбадривание (локализовано)
+        // Озвучиваем поддерживающую фразу (локализовано)
         val randomPhrase = incorrectPhrases[Random.nextInt(incorrectPhrases.size)]
         speakText(randomPhrase)
 
-        // Выделяем обе карточки красным цветом на полсекунды
-        selectedNumberView?.let { view ->
-            val numberText = view.findViewById<TextView>(R.id.numberText)
-            numberText?.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, android.R.color.holo_red_light))
-        }
-
-        selectedObjectView?.let { view ->
-            val linearLayout = view.findViewById<LinearLayout>(R.id.objectsLayout)
-            linearLayout?.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, android.R.color.holo_red_light))
-        }
-
-        // Через 500ms возвращаем зеленое выделение
-        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
-            selectedNumberView?.let { view ->
-                val numberText = view.findViewById<TextView>(R.id.numberText)
-                numberText?.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, android.R.color.holo_green_light))
-            }
-
-            selectedObjectView?.let { view ->
-                val linearLayout = view.findViewById<LinearLayout>(R.id.objectsLayout)
-                linearLayout?.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, android.R.color.holo_green_light))
-            }
-        }, 500)
-
-        // Анимация тряски для неправильного совпадения
-        animateIncorrectMatch(selectedNumberView!!, selectedObjectView!!)
+        // Сбрасываем выделения, чтобы пользователь выбрал заново
         clearSelections()
     }
 
-    private fun animateMatch(view1: View, view2: View, onComplete: () -> Unit) {
-        val animator1 = ValueAnimator.ofFloat(1f, 0f)
-        val animator2 = ValueAnimator.ofFloat(1f, 0f)
+    private fun animateMatch(numberView: View, objectView: View, onEnd: () -> Unit) {
+        val duration = 300L
 
-        animator1.duration = 300
-        animator2.duration = 300
-
-        animator1.addUpdateListener { animation ->
-            val alpha = animation.animatedValue as Float
-            view1.alpha = alpha
-            view1.scaleX = alpha
-            view1.scaleY = alpha
+        val numberAnimator = ValueAnimator.ofFloat(1f, 0f)
+        numberAnimator.addUpdateListener { animation ->
+            val value = animation.animatedValue as Float
+            numberView.alpha = value
+            numberView.scaleX = value
+            numberView.scaleY = value
         }
 
-        animator2.addUpdateListener { animation ->
-            val alpha = animation.animatedValue as Float
-            view2.alpha = alpha
-            view2.scaleX = alpha
-            view2.scaleY = alpha
+        val objectAnimator = ValueAnimator.ofFloat(1f, 0f)
+        objectAnimator.addUpdateListener { animation ->
+            val value = animation.animatedValue as Float
+            objectView.alpha = value
+            objectView.scaleX = value
+            objectView.scaleY = value
         }
 
-        animator1.addListener(object : AnimatorListenerAdapter() {
+        numberAnimator.duration = duration
+        objectAnimator.duration = duration
+
+        objectAnimator.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
-                onComplete()
+                onEnd()
             }
         })
 
-        animator1.start()
-        animator2.start()
+        numberAnimator.start()
+        objectAnimator.start()
     }
 
-    private fun animateIncorrectMatch(view1: View, view2: View) {
-        // Анимация тряски для неправильного совпадения
-        val shake = ValueAnimator.ofFloat(0f, 25f, -25f, 25f, -25f, 15f, -15f, 6f, -6f, 0f)
-        shake.duration = 600
-
-        shake.addUpdateListener { animation ->
-            val translateX = animation.animatedValue as Float
-            view1.translationX = translateX
-            view2.translationX = translateX
+    private fun animateShake(view: View?) {
+        view ?: return
+        val animator = ValueAnimator.ofFloat(0f, 20f, -20f, 10f, -10f, 0f)
+        animator.duration = 400
+        animator.addUpdateListener { animation ->
+            view.translationX = animation.animatedValue as Float
         }
-
-        shake.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-                view1.translationX = 0f
-                view2.translationX = 0f
-            }
-        })
-
-        shake.start()
+        animator.start()
     }
 
     private fun clearSelections() {
         selectedNumberItem = null
         selectedObjectItem = null
 
-        // Сбрасываем выделение правильным способом
         selectedNumberView?.let { view ->
             val numberText = view.findViewById<TextView>(R.id.numberText)
             numberText?.setBackgroundColor(androidx.core.content.ContextCompat.getColor(this, R.color.button_color))
@@ -379,35 +359,12 @@ class MatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         selectedObjectView = null
     }
 
-    private fun onLevelCompleted() {
-        if (currentLevel < totalLevels) {
-            // Убираем задержку - сразу переходим на следующий уровень
-            currentLevel++
-            loadLevel(currentLevel)
-        } else {
-            // Переход к экрану результатов без задержки
-            showResults()
-        }
-    }
-
-    private fun showResults() {
-        // Вычисляем итоговые очки: +10 за правильные действия, -5 за ошибки
-        val finalScore = (correctActions * 10) - (incorrectActions * 5)
-
+    private fun openResults() {
         val intent = Intent(this, MatchingResultsActivity::class.java)
-        intent.putExtra("completed_levels", currentLevel)
-        intent.putExtra("correct_actions", correctActions)
-        intent.putExtra("incorrect_actions", incorrectActions)
-        intent.putExtra("final_score", finalScore)
+        intent.putExtra("TOTAL_SCORE", totalScore)
+        intent.putExtra("CORRECT_ACTIONS", correctActions)
+        intent.putExtra("INCORRECT_ACTIONS", incorrectActions)
         startActivity(intent)
         finish()
-    }
-
-    override fun onDestroy() {
-        if (allowTts) {
-            tts?.stop()
-            tts?.shutdown()
-        }
-        super.onDestroy()
     }
 }
