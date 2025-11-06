@@ -39,6 +39,8 @@
             </intent-filter>
         </activity>
 
+
+        <!-- Экран оплаты (пейволл) отключен -->
         <activity
             android:name=".PaywallActivity"
             android:exported="false"
