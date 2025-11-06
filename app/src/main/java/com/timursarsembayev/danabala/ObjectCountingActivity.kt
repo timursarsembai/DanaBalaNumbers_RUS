@@ -6,11 +6,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -18,7 +18,9 @@ import androidx.core.view.WindowInsetsCompat
 import java.util.*
 import kotlin.random.Random
 
-class ObjectCountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+class ObjectCountingActivity : BaseActivity(), TextToSpeech.OnInitListener {
+
+    override val adUnitId: String? get() = getString(R.string.admob_banner_id)
 
     private var tts: TextToSpeech? = null
     private var allowTts: Boolean = true
@@ -132,6 +134,10 @@ class ObjectCountingActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_object_counting)
+
+        // Подключение баннера
+        val bannerContainer = findViewById<ViewGroup?>(R.id.ad_container)
+        attachBannerIfPossible(bannerContainer)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
