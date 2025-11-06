@@ -8,17 +8,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.Locale
 import kotlin.random.Random
 
-class AudioMatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+class AudioMatchingActivity : BaseActivity(), TextToSpeech.OnInitListener {
+
+    override val adUnitId: String? get() = getString(R.string.admob_banner_id)
 
     private lateinit var audioButtonsRecyclerView: RecyclerView
     private lateinit var numbersRecyclerView: RecyclerView
@@ -55,6 +57,10 @@ class AudioMatchingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_audio_matching)
+
+        // Подключение баннера
+        val bannerContainer = findViewById<ViewGroup?>(R.id.ad_container)
+        attachBannerIfPossible(bannerContainer)
 
         // Определяем текущий язык и отключаем TTS для казахского
         val currentLang = LocaleManager.getCurrentLanguage(this).lowercase(Locale.ROOT)
