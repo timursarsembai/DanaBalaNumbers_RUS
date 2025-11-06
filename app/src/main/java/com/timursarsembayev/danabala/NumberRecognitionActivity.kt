@@ -7,10 +7,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.BounceInterpolator
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -18,7 +18,9 @@ import androidx.core.view.WindowInsetsCompat
 import java.util.*
 import kotlin.random.Random
 
-class NumberRecognitionActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+class NumberRecognitionActivity : BaseActivity(), TextToSpeech.OnInitListener {
+
+    override val adUnitId: String? get() = getString(R.string.admob_banner_id)
 
     private var targetNumber = 1
     private var score = 0 // Правильные ответы с первого раза
@@ -65,6 +67,10 @@ class NumberRecognitionActivity : AppCompatActivity(), TextToSpeech.OnInitListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_number_recognition)
+
+        // Подключение баннера
+        val bannerContainer = findViewById<ViewGroup?>(R.id.ad_container)
+        attachBannerIfPossible(bannerContainer)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
