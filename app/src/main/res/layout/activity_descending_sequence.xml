@@ -1,290 +1,304 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/child_gradient_blue">
 
-    <LinearLayout
-        android:id="@+id/main"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        tools:context=".DescendingSequenceActivity">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <!-- Header with Back Button -->
         <LinearLayout
+            android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="16dp">
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:context=".DescendingSequenceActivity">
 
-            <ImageButton
-                android:id="@+id/backButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_arrow_back"
-                android:contentDescription="@string/back"
-                android:layout_marginEnd="16dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="📉"
-                android:textSize="32sp"
-                android:layout_marginEnd="12dp" />
-
-            <TextView
-                android:id="@+id/questionText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/descending_question"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#D32F2F" />
-
-        </LinearLayout>
-
-        <!-- Progress Bar -->
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:layout_marginBottom="24dp"
-            android:progress="0"
-            android:progressTint="#FF5722" />
-
-        <!-- Number Drop Zones Row -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp"
-            app:cardBackgroundColor="#FFFFFF">
-
+            <!-- Header with Back Button -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center"
-                android:padding="24dp">
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <ImageButton
+                    android:id="@+id/backButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_arrow_back"
+                    android:contentDescription="@string/back"
+                    android:layout_marginEnd="16dp" />
 
                 <TextView
-                    android:id="@+id/dropZone1"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="4dp"
-                    android:background="@drawable/number_drop_zone"
-                    android:gravity="center"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="#333333"
-                    android:tag="0" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📉"
+                    android:textSize="32sp"
+                    android:layout_marginEnd="12dp" />
 
                 <TextView
-                    android:id="@+id/dropZone2"
+                    android:id="@+id/questionText"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginHorizontal="4dp"
-                    android:background="@drawable/number_drop_zone"
-                    android:gravity="center"
-                    android:textSize="24sp"
+                    android:text="@string/descending_question"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="#333333"
-                    android:tag="1" />
-
-                <TextView
-                    android:id="@+id/dropZone3"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
-                    android:layout_marginHorizontal="4dp"
-                    android:background="@drawable/number_drop_zone"
-                    android:gravity="center"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="#333333"
-                    android:tag="2" />
-
-                <TextView
-                    android:id="@+id/dropZone4"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
-                    android:layout_marginHorizontal="4dp"
-                    android:background="@drawable/number_drop_zone"
-                    android:gravity="center"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="#333333"
-                    android:tag="3" />
-
-                <TextView
-                    android:id="@+id/dropZone5"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="4dp"
-                    android:background="@drawable/number_drop_zone"
-                    android:gravity="center"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="#333333"
-                    android:tag="4" />
+                    android:textColor="#D32F2F" />
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+            <!-- Progress Bar -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_marginBottom="24dp"
+                android:progress="0"
+                android:progressTint="#FF5722" />
 
-        <!-- Direction Hints for Descending -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="16dp"
-            android:paddingHorizontal="24dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/descending_more_label"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="#4CAF50"
-                android:padding="8dp"
-                android:background="@drawable/hint_background" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="← ← ← ←"
-                android:textSize="18sp"
-                android:textColor="#FF5722"
-                android:gravity="center"
-                android:layout_marginHorizontal="16dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/descending_less_label"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="#FF5722"
-                android:padding="8dp"
-                android:background="@drawable/hint_background" />
-
-        </LinearLayout>
-
-        <!-- Hint Text -->
-        <TextView
-            android:id="@+id/hintText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/descending_hint_drag"
-            android:textSize="16sp"
-            android:textColor="#666666"
-            android:gravity="center"
-            android:layout_marginBottom="24dp"
-            android:padding="12dp"
-            android:background="@drawable/hint_background" />
-
-        <!-- Draggable Number Cards -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/descending_choose_numbers"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#D32F2F"
-            android:layout_marginBottom="16dp"
-            android:layout_gravity="center" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp"
-            app:cardBackgroundColor="#FFFFFF">
-
-            <LinearLayout
-                android:id="@+id/draggableNumbersContainer"
+            <!-- Number Drop Zones Row -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="16dp">
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="#FFFFFF">
 
-                <!-- Первый ряд карточек -->
                 <LinearLayout
-                    android:id="@+id/firstRowContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center"
-                    android:layout_marginBottom="8dp">
+                    android:padding="24dp">
+
+                    <TextView
+                        android:id="@+id/dropZone1"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/number_drop_zone"
+                        android:gravity="center"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333"
+                        android:tag="0" />
+
+                    <TextView
+                        android:id="@+id/dropZone2"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:layout_marginHorizontal="4dp"
+                        android:background="@drawable/number_drop_zone"
+                        android:gravity="center"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333"
+                        android:tag="1" />
+
+                    <TextView
+                        android:id="@+id/dropZone3"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:layout_marginHorizontal="4dp"
+                        android:background="@drawable/number_drop_zone"
+                        android:gravity="center"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333"
+                        android:tag="2" />
+
+                    <TextView
+                        android:id="@+id/dropZone4"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:layout_marginHorizontal="4dp"
+                        android:background="@drawable/number_drop_zone"
+                        android:gravity="center"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333"
+                        android:tag="3" />
+
+                    <TextView
+                        android:id="@+id/dropZone5"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="4dp"
+                        android:background="@drawable/number_drop_zone"
+                        android:gravity="center"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333"
+                        android:tag="4" />
+
                 </LinearLayout>
 
-                <!-- Второй ряд карточек -->
-                <LinearLayout
-                    android:id="@+id/secondRowContainer"
-                    android:layout_width="match_parent"
+            </androidx.cardview.widget.CardView>
+
+            <!-- Direction Hints for Descending -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp"
+                android:paddingHorizontal="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-                </LinearLayout>
+                    android:text="@string/descending_more_label"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#4CAF50"
+                    android:padding="8dp"
+                    android:background="@drawable/hint_background" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="← ← ← ←"
+                    android:textSize="18sp"
+                    android:textColor="#FF5722"
+                    android:gravity="center"
+                    android:layout_marginHorizontal="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/descending_less_label"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#FF5722"
+                    android:padding="8dp"
+                    android:background="@drawable/hint_background" />
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+            <!-- Hint Text -->
+            <TextView
+                android:id="@+id/hintText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/descending_hint_drag"
+                android:textSize="16sp"
+                android:textColor="#666666"
+                android:gravity="center"
+                android:layout_marginBottom="24dp"
+                android:padding="12dp"
+                android:background="@drawable/hint_background" />
 
-        <!-- Buttons -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <Button
-                android:id="@+id/checkButton"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:text="@string/number_comparison_check_button_label"
+            <!-- Draggable Number Cards -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/descending_choose_numbers"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:background="@drawable/button_check"
-                android:elevation="4dp" />
+                android:textColor="#D32F2F"
+                android:layout_marginBottom="16dp"
+                android:layout_gravity="center" />
 
-            <Button
-                android:id="@+id/nextButton"
-                android:layout_width="0dp"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="@string/next"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                android:background="@drawable/button_next"
-                android:elevation="4dp"
-                android:visibility="gone" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:id="@+id/draggableNumbersContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp">
+
+                    <!-- Первый ряд карточек -->
+                    <LinearLayout
+                        android:id="@+id/firstRowContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginBottom="8dp">
+                    </LinearLayout>
+
+                    <!-- Второй ряд карточек -->
+                    <LinearLayout
+                        android:id="@+id/secondRowContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/checkButton"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/number_comparison_check_button_label"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/button_check"
+                    android:elevation="4dp" />
+
+                <Button
+                    android:id="@+id/nextButton"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/next"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/button_next"
+                    android:elevation="4dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
 
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/ad_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp" />
 
-</ScrollView>
+</LinearLayout>
