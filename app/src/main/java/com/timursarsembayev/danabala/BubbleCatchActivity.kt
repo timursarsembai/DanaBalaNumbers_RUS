@@ -32,7 +32,6 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -45,7 +44,7 @@ import kotlin.math.min
 import kotlin.math.roundToInt
 import kotlin.random.Random
 
-class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+class BubbleCatchActivity : BaseActivity(), TextToSpeech.OnInitListener {
 
     private lateinit var gameField: FrameLayout
     private lateinit var timerText: TextView
@@ -130,6 +129,9 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private val minSpawnIntervalMs = 300L
     private val scheduledSpawnReductions = mutableListOf<Runnable>()
 
+    override val adUnitId: String?
+        get() = getString(R.string.admob_banner_id)
+
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(LocaleManager.applyLanguage(newBase))
     }
@@ -138,6 +140,9 @@ class BubbleCatchActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bubble_catch)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        // Attach bottom banner to container if ads enabled
+        attachBannerIfPossible(findViewById(R.id.ad_container))
 
         // Определяем язык и поведение TTS
         languageCode = LocaleManager.getCurrentLanguage(this)
