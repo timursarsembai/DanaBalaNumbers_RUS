@@ -10,19 +10,21 @@ import android.speech.tts.TextToSpeech
 import android.view.DragEvent
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Button
 import android.widget.ImageButton
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.util.*
 import kotlin.random.Random
 
-class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+class AscendingSequenceActivity : BaseActivity(), TextToSpeech.OnInitListener {
+
+    override val adUnitId: String? get() = getString(R.string.admob_banner_id)
 
     private var tts: TextToSpeech? = null
     private var currentQuestion = 0
@@ -60,6 +62,10 @@ class AscendingSequenceActivity : AppCompatActivity(), TextToSpeech.OnInitListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ascending_sequence)
+
+        // Подключение баннера
+        val bannerContainer = findViewById<ViewGroup?>(R.id.ad_container)
+        attachBannerIfPossible(bannerContainer)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
