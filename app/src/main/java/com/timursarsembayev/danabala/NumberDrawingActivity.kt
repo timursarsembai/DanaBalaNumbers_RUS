@@ -10,7 +10,6 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -18,7 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-class NumberDrawingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+class NumberDrawingActivity : BaseActivity(), TextToSpeech.OnInitListener {
 
     private var tts: TextToSpeech? = null
     private var currentNumber = 0
@@ -37,6 +36,9 @@ class NumberDrawingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var colorAdapter: ColorPaletteAdapter
     private var selectedColor = 0xFF4CAF50.toInt() // Зеленый по умолчанию
 
+    override val adUnitId: String?
+        get() = getString(R.string.admob_banner_id)
+
     override fun attachBaseContext(newBase: android.content.Context?) {
         super.attachBaseContext(newBase?.let { LocaleManager.applyLanguage(it) })
     }
@@ -50,6 +52,9 @@ class NumberDrawingActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // Attach bottom banner to container if ads enabled
+        attachBannerIfPossible(findViewById(R.id.ad_container))
 
         initializeViews()
         setupTextToSpeech()
