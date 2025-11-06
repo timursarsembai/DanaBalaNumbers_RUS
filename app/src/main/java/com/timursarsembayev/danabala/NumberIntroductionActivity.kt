@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.GestureDetectorCompat
@@ -17,8 +16,11 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import java.util.*
 import kotlin.random.Random
+import android.view.ViewGroup
 
-class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+class NumberIntroductionActivity : BaseActivity(), TextToSpeech.OnInitListener { // изменено наследование
+
+    override val adUnitId: String? get() = getString(R.string.admob_banner_id)
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase?.let { LocaleManager.applyLanguage(it) })
@@ -175,6 +177,10 @@ class NumberIntroductionActivity : AppCompatActivity(), TextToSpeech.OnInitListe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_number_introduction)
+
+        // Подключение баннера
+        val bannerContainer = findViewById<ViewGroup?>(R.id.ad_container)
+        attachBannerIfPossible(bannerContainer)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
